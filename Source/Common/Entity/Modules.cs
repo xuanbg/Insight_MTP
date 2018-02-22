@@ -27,7 +27,7 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 模块组唯一ID
         /// </summary>
-        public Guid ID { get; set; }
+        public string ID { get; set; }
 
         /// <summary>
         /// 组排序索引
@@ -53,12 +53,12 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 业务模块唯一ID
         /// </summary>
-        public Guid ID { get; set; }
+        public string id { get; set; }
 
         /// <summary>
         /// 所属组ID
         /// </summary>
-        public Guid ModuleGroupId { get; set; }
+        public string moduleGroupId { get; set; }
 
         /// <summary>
         /// 排序索引

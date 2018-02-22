@@ -9,11 +9,11 @@ namespace Insight.MTP.Client.MainForm
 {
     public class Controller : BaseController<MainModel>
     {
-        private ChangPwModel _ChangPw;
+        private ChangPwModel changPw;
         private LockModel _Lock;
-        private PrintModel _Print;
-        private UpdateModel _Update;
-        private AboutModel _About;
+        private PrintModel print;
+        private UpdateModel update;
+        private AboutModel about;
          
         /// <summary>
         /// 构造函数
@@ -21,8 +21,8 @@ namespace Insight.MTP.Client.MainForm
         public Controller()
         {
             // 构造主窗体并显示
-            Model = new MainModel();
-            var view = Model.View;
+            model = new MainModel();
+            var view = model.view;
             view.Show();
             view.Refresh();
 
@@ -39,15 +39,15 @@ namespace Insight.MTP.Client.MainForm
             // 订阅主窗体事件
             view.Shown += (sender, args) =>
             {
-                Model.NeedOpens.ForEach(Model.AddPageMdi);
+                model.needOpens.ForEach(model.AddPageMdi);
                 CheckPassword();
                 Update(false);
             };
-            view.Closing += (sender, args) => args.Cancel = Model.Logout();
+            view.Closing += (sender, args) => args.Cancel = model.Logout();
             view.Closed += (sender, args) => Exit();
 
             // 订阅导航栏点击事件
-            Model.Links.ForEach(i => i.Item.LinkClicked += (sender, args) => Model.AddPageMdi(args.Link.Item.Tag));
+            model.links.ForEach(i => i.Item.LinkClicked += (sender, args) => model.AddPageMdi(args.Link.Item.Tag));
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Insight.MTP.Client.MainForm
         /// </summary>
         private void CheckPassword()
         {
-            if (!Params.NeedChangePW) return;
+            if (!Params.needChangePw) return;
             
             ChangPassword();
         }
@@ -65,18 +65,18 @@ namespace Insight.MTP.Client.MainForm
         /// </summary>
         private void ChangPassword()
         {
-            _ChangPw = new ChangPwModel();
-            var view = _ChangPw.View;
+            changPw = new ChangPwModel();
+            var view = changPw.view;
 
             SubCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
-                if (!_ChangPw.Save()) return;
+                if (!changPw.Save()) return;
 
                 CloseDialog(view);
             };
 
-            _ChangPw.Init();
+            changPw.Init();
             view.ShowDialog();
         }
 
@@ -86,7 +86,7 @@ namespace Insight.MTP.Client.MainForm
         private void Lock()
         {
             _Lock = new LockModel();
-            var view = _Lock.View;
+            var view = _Lock.view;
 
             view.Confirm.Click += (sender, args) =>
             {
@@ -115,7 +115,7 @@ namespace Insight.MTP.Client.MainForm
         /// </summary>
         private void Exit()
         {
-            Model.SaveLookAndFeel();
+            model.SaveLookAndFeel();
             Application.Exit();
         }
 
@@ -124,13 +124,13 @@ namespace Insight.MTP.Client.MainForm
         /// </summary>
         private void PrintSet()
         {
-            _Print = new PrintModel();
-            var view = _Print.View;
+            print = new PrintModel();
+            var view = print.view;
 
             SubCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
-                _Print.Save();
+                print.Save();
                 CloseDialog(view);
             };
 
@@ -142,21 +142,21 @@ namespace Insight.MTP.Client.MainForm
         /// </summary>
         private void Update(bool confirm = true)
         {
-            _Update = new UpdateModel();
-            var view = _Update.View;
+            update = new UpdateModel();
+            var view = update.view;
 
             view.Confirm.Click += (sender, args) =>
             {
                 CloseDialog(view);
-                if (!_Update.Restart) return;
+                if (!update.restart) return;
 
                 // 运行restart.bat重启应用程序
-                Process.Start(_Update.CreateBat());
+                Process.Start(update.CreateBat());
                 Application.Exit();
             };
 
             // 检查更新
-            var count = _Update.CheckUpdate();
+            var count = update.CheckUpdate();
             if (count == 0)
             {
                 if (confirm) Messages.ShowMessage("当前无可用更新！");
@@ -174,8 +174,8 @@ namespace Insight.MTP.Client.MainForm
         /// </summary>
         private void About()
         {
-            _About = new AboutModel();
-            var view = _About.View;
+            about = new AboutModel();
+            var view = about.view;
 
             SubCloseEvent(view, true);
             view.ShowDialog();

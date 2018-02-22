@@ -6,7 +6,7 @@ namespace Insight.MTP.Client.MainForm.Models
 {
     public class AboutModel
     {
-        public About View = new About();
+        public About view = new About();
 
         /// <summary>
         /// 构造函数，初始化视图
@@ -15,9 +15,9 @@ namespace Insight.MTP.Client.MainForm.Models
         {
             // 显示文件版本信息
             var fileVersion = FileVersionInfo.GetVersionInfo(Application.ExecutablePath);
-            View.labProduct.Text = fileVersion.ProductName;
-            View.labVer.Text = fileVersion.FileVersion;
-            View.labDev.Text = fileVersion.CompanyName;
+            view.labProduct.Text = fileVersion.ProductName;
+            view.labVer.Text = fileVersion.FileVersion;
+            view.labDev.Text = fileVersion.CompanyName;
         }
     }
 }

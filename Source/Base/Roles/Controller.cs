@@ -15,14 +15,14 @@ namespace Insight.MTP.Client.Base.Roles
         public Controller(ModuleInfo info)
         {
             // 构造ViewModel，订阅工具栏按钮点击事件
-            Model = new ManagerModel(info);
-            Model.Buttons.ForEach(i => i.ItemClick += (sender, args) => ItemClick(args.Item.Name));
+            model = new ManagerModel(info);
+            model.buttons.ForEach(i => i.ItemClick += (sender, args) => ItemClick(args.Item.Name));
 
             // 订阅角色列表双击事件
-            Model.View.GdvRole.DoubleClick += (sender, args) => RoleEdit();
+            model.view.GdvRole.DoubleClick += (sender, args) => RoleEdit();
 
             // 加载角色列表
-            Model.LoadRoles();
+            model.LoadRoles();
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Insight.MTP.Client.Base.Roles
             switch (action)
             {
                 case "Refresh":
-                    Model.Refresh();
+                    model.Refresh();
                     break;
                 case "NewRole":
                     AddRole();
@@ -43,13 +43,13 @@ namespace Insight.MTP.Client.Base.Roles
                     RoleEdit();
                     break;
                 case "DeleteRole":
-                    Model.RoleDelete();
+                    model.RoleDelete();
                     break;
                 case "AddMember":
                     AddMembers();
                     break;
                 case "Remove":
-                    Model.MemberRemove();
+                    model.MemberRemove();
                     break;
                 default:
                     Messages.ShowError("对不起，该功能尚未实现！");
@@ -68,12 +68,12 @@ namespace Insight.MTP.Client.Base.Roles
             SubCloseEvent(view);
             view.WizRole.FinishClick += (sender, args) =>
             {
-                Model.ShowWaitForm();
+                base.model.ShowWaitForm();
                 role = model.AddRole();
-                Model.CloseWaitForm();
+                base.model.CloseWaitForm();
                 if (role == null) return;
 
-                Model.AddRole(role);
+                base.model.AddRole(role);
             };
 
             view.ShowDialog();
@@ -84,20 +84,20 @@ namespace Insight.MTP.Client.Base.Roles
         /// </summary>
         private void RoleEdit()
         {
-            if (!Model.AllowDoubleClick("EditRole")) return;
+            if (!base.model.AllowDoubleClick("EditRole")) return;
 
-            var role = Util.Clone(Model.Role);
+            var role = Util.Clone(base.model.Role);
             var model = new WizardModel(role, "编辑角色");
             var view = model.View;
             SubCloseEvent(view);
             view.WizRole.FinishClick += (sender, args) =>
             {
-                Model.ShowWaitForm();
+                base.model.ShowWaitForm();
                 role = model.EditRole();
-                Model.CloseWaitForm();
+                base.model.CloseWaitForm();
                 if (role == null) return;
 
-                Model.UpdatePerm(role);
+                base.model.UpdatePerm(role);
             };
 
             view.ShowDialog();
@@ -108,17 +108,17 @@ namespace Insight.MTP.Client.Base.Roles
         /// </summary>
         private void AddMembers()
         {
-            var model = new MemberModel(Model.Role);
+            var model = new MemberModel(base.model.Role);
             var view = model.View;
             SubCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
-                Model.ShowWaitForm();
+                base.model.ShowWaitForm();
                 var role = model.Save();
-                Model.CloseWaitForm();
+                base.model.CloseWaitForm();
                 if (role == null) return;
 
-                Model.UpdateMember(role);
+                base.model.UpdateMember(role);
                 CloseDialog(view);
             };
 

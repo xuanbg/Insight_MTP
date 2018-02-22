@@ -41,6 +41,9 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Controls">
+      <HintPath>..\..\..\Utility\Controls.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Data.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
@@ -62,16 +65,15 @@
     <Reference Include="DevExpress.XtraTreeList.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
-    <Reference Include="FastReport">
-      <HintPath>..\packages\FastReport\FastReport.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Utils">
+      <HintPath>..\..\..\Utility\Utils.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseForm\Waiting.cs">
@@ -97,7 +99,6 @@
     <Compile Include="Models\DialogModel.cs" />
     <Compile Include="Models\MdiModel.cs" />
     <Compile Include="Models\MemberModel.cs" />
-    <Compile Include="Utils\ImageData.cs" />
     <Compile Include="BaseForm\BaseDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,16 +176,6 @@
     <EmbeddedResource Include="Dialogs\Handover.resx">
       <DependentUpon>Handover.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Utility\Controls\Controls.csproj">
-      <Project>{be23ee38-66c5-46a6-b064-7b98f3a43c4b}</Project>
-      <Name>Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Utility\Utils\Utils.csproj">
-      <Project>{0c3f2f08-6816-49fd-bb13-8526e43accc6}</Project>
-      <Name>Utils</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

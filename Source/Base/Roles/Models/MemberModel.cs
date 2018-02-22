@@ -57,9 +57,9 @@ namespace Insight.MTP.Client.Base.Roles.Models
             const string msg = "当前未选择任何角色成员！您确定要离开此界面吗？";
             if (_Members.Count == 0 && Messages.ShowConfirm(msg)) return null;
 
-            var url = $"{Params.Token.BaseServer}/roleapi/v1.0/roles/{_Role.ID}/members";
+            var url = $"{Params.tokenHelper.BaseServer}/roleapi/v1.0/roles/{_Role.ID}/members";
             var dict = new Dictionary<string, object> {{"members", _Members}};
-            var client = new HttpClient<Role>(Params.Token);
+            var client = new HttpClient<Role>(Params.tokenHelper);
             return client.Post(url, dict) ? client.Data : null;
         }
 
@@ -69,8 +69,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <param name="id">角色ID</param>
         private List<TitleMember> OtherTitles(Guid id)
         {
-            var url = Params.Token.BaseServer + $"/roleapi/v1.0/roles/{id}/othertitles";
-            var client = new HttpClient<List<TitleMember>>(Params.Token);
+            var url = Params.tokenHelper.BaseServer + $"/roleapi/v1.0/roles/{id}/othertitles";
+            var client = new HttpClient<List<TitleMember>>(Params.tokenHelper);
             return client.Get(url) ? client.Data : new List<TitleMember>();
         }
 
@@ -80,8 +80,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <param name="id">角色ID</param>
         private List<MemberUser> OtherGroups(Guid id)
         {
-            var url = Params.Token.BaseServer + $"/roleapi/v1.0/roles/{id}/othergroups";
-            var client = new HttpClient<List<MemberUser>>(Params.Token);
+            var url = Params.tokenHelper.BaseServer + $"/roleapi/v1.0/roles/{id}/othergroups";
+            var client = new HttpClient<List<MemberUser>>(Params.tokenHelper);
             return client.Get(url) ? client.Data : new List<MemberUser>();
         }
 
@@ -91,8 +91,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <param name="id">角色ID</param>
         private List<MemberUser> OtherUsers(Guid id)
         {
-            var url = Params.Token.BaseServer + $"/roleapi/v1.0/roles/{id}/otherusers";
-            var client = new HttpClient<List<MemberUser>>(Params.Token);
+            var url = Params.tokenHelper.BaseServer + $"/roleapi/v1.0/roles/{id}/otherusers";
+            var client = new HttpClient<List<MemberUser>>(Params.tokenHelper);
             return client.Get(url) ? client.Data : new List<MemberUser>();
         }
     }

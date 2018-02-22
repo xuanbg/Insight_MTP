@@ -14,18 +14,18 @@ namespace Insight.MTP.Client.MainForm.Models
 {
     public class UpdateModel
     {
-        public Update View = new Update();
-        public bool Restart;
+        public Update view = new Update();
+        public bool restart;
 
-        private List<FileInfo> _Updates;
-        private readonly string _Root = Application.StartupPath;
+        private List<FileInfo> updates;
+        private readonly string root = Application.StartupPath;
 
         /// <summary>
         /// 构造函数
         /// </summary>
         public UpdateModel()
         {
-            View.Shown += (sender, args) => Update();
+            view.Shown += (sender, args) => Update();
         }
 
         /// <summary>
@@ -36,20 +36,20 @@ namespace Insight.MTP.Client.MainForm.Models
         {
             // 读取本地客户端文件信息
             var locals = new List<FileInfo>();
-            Util.GetLocalFiles(locals, _Root, ".bak");
-            locals.ForEach(f => Util.DeleteFile(f.FullPath));
+            Util.GetLocalFiles(locals, root, ".bak");
+            locals.ForEach(f => Util.DeleteFile(f.fullPath));
 
             locals = new List<FileInfo>();
-            Util.GetLocalFiles(locals, _Root, ".exe|.dll|.frl");
+            Util.GetLocalFiles(locals, root, ".exe|.dll|.frl");
 
             // 根据服务器上文件信息，通过比对版本号得到可更新文件列表
-            _Updates = (from sf in GetFiles()
-                        let cf = locals.SingleOrDefault(f => f.Name == sf.Name && f.Path == sf.Path)
-                        let cv = new Version(cf?.Version ?? "1.0.0")
-                        let sv = new Version(sf?.Version ?? "1.0.0")
+            updates = (from sf in GetFiles()
+                        let cf = locals.SingleOrDefault(f => f.name == sf.name && f.path == sf.path)
+                        let cv = new Version(cf?.version ?? "1.0.0")
+                        let sv = new Version(sf?.version ?? "1.0.0")
                         where cf == null || cv < sv
                         select sf).ToList();
-            return _Updates.Count;
+            return updates.Count;
         }
 
         /// <summary>
@@ -78,24 +78,24 @@ namespace Insight.MTP.Client.MainForm.Models
         /// </summary>
         private void Update()
         {
-            View.Confirm.Enabled = false;
-            foreach (var file in _Updates)
+            view.Confirm.Enabled = false;
+            foreach (var file in updates)
             {
-                View.Progress.EditValue = $"正在更新：{file.Name}……";
-                View.Refresh();
+                view.Progress.EditValue = $"正在更新：{file.name}……";
+                view.Refresh();
                 Thread.Sleep(1000);
-                var data = GetFile(file.ID);
+                var data = GetFile(file.id);
                 if (data == null) continue;
 
                 var buffer = Convert.FromBase64String(data);
                 var bytes = Util.Decompress(buffer);
-                Restart = Util.UpdateFile(file, _Root, bytes) || Restart;
+                restart = Util.UpdateFile(file, root, bytes) || restart;
             }
 
-            View.Confirm.Enabled = true;
-            View.Progress.EditValue = Restart ? "已更新关键文件，需要重新运行客户端程序！" : "更新完成！";
-            View.Confirm.Text = Restart ? "重  启" : "关  闭";
-            View.Refresh();
+            view.Confirm.Enabled = true;
+            view.Progress.EditValue = restart ? "已更新关键文件，需要重新运行客户端程序！" : "更新完成！";
+            view.Confirm.Text = restart ? "重  启" : "关  闭";
+            view.Refresh();
         }
 
         /// <summary>
@@ -104,9 +104,9 @@ namespace Insight.MTP.Client.MainForm.Models
         /// <returns>文件版本信息</returns>
         private List<FileInfo> GetFiles()
         {
-            var url = $"{Params.InsightServer}/commonapi/v1.0/files";
-            var client = new HttpClient<List<FileInfo>>(Params.Token);
-            return client.Get(url) ? client.Data : new List<FileInfo>();
+            var url = $"{Params.tokenHelper.baseServer}/commonapi/v1.0/files";
+            var client = new HttpClient<List<FileInfo>>(Params.tokenHelper);
+            return client.Get(url) ? client.data : new List<FileInfo>();
         }
 
         /// <summary>
@@ -116,9 +116,9 @@ namespace Insight.MTP.Client.MainForm.Models
         /// <returns>Result</returns>
         private string GetFile(string id)
         {
-            var url = $"{Params.InsightServer}/commonapi/v1.0/files/{id}";
-            var client = new HttpClient<object>(Params.Token);
-            return client.Get(url) ? client.Data.ToString() : null;
+            var url = $"{Params.tokenHelper.baseServer}/commonapi/v1.0/files/{id}";
+            var client = new HttpClient<object>(Params.tokenHelper);
+            return client.Get(url) ? client.data.ToString() : null;
         }
     }
 }

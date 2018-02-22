@@ -19,14 +19,14 @@ namespace Insight.MTP.Client.Common.Models
 {
     public class MdiModel<T> where T : BaseMDI, new()
     {
-        private readonly Guid _ModuleId;
-        private readonly int _MinWaitTime = 800;
-        private int _Waits;
-        private DateTime _Wait;
-        private GridHitInfo _HitInfo = new GridHitInfo();
+        private const int MinWaitTime = 800;
+        private readonly string moduleId;
+        private int waits;
+        private DateTime wait;
+        private GridHitInfo hitInfo = new GridHitInfo();
 
-        public T View;
-        public List<BarButtonItem> Buttons;
+        public T view;
+        public List<BarButtonItem> buttons;
 
         /// <summary>
         /// 模块参数集合
@@ -39,8 +39,8 @@ namespace Insight.MTP.Client.Common.Models
         /// <param name="info">模块信息</param>
         protected MdiModel(ModuleInfo info)
         {
-            _ModuleId = info.ID;
-            View = new T
+            moduleId = info.id;
+            view = new T
             {
                 MdiParent = Application.OpenForms["MainWindow"],
                 Icon = Icon.FromHandle(new Bitmap(new MemoryStream(info.Icon)).GetHicon()),
@@ -48,7 +48,7 @@ namespace Insight.MTP.Client.Common.Models
                 Text = info.ApplicationName
             };
 
-            View.Show();
+            view.Show();
             InitToolBar();
         }
 
@@ -60,7 +60,7 @@ namespace Insight.MTP.Client.Common.Models
         {
             foreach (var obj in dict)
             {
-                var item = Buttons.Single(b => b.Name == obj.Key);
+                var item = buttons.Single(b => b.Name == obj.Key);
                 item.Enabled = obj.Value && (bool)item.Tag;
             }
         }
@@ -72,7 +72,7 @@ namespace Insight.MTP.Client.Common.Models
         /// <returns>是否允许双击</returns>
         public bool AllowDoubleClick(string key)
         {
-            var button = Buttons.SingleOrDefault(i => i.Name == key);
+            var button = buttons.SingleOrDefault(i => i.Name == key);
             return button != null && button.Enabled;
         }
 
@@ -81,11 +81,11 @@ namespace Insight.MTP.Client.Common.Models
         /// </summary>
         public void ShowWaitForm()
         {
-            _Waits++;
-            if (View.Wait.IsSplashFormVisible) return;
+            waits++;
+            if (view.Wait.IsSplashFormVisible) return;
 
-            _Wait = DateTime.Now;
-            View.Wait.ShowWaitForm();
+            wait = DateTime.Now;
+            view.Wait.ShowWaitForm();
         }
 
         /// <summary>
@@ -93,13 +93,13 @@ namespace Insight.MTP.Client.Common.Models
         /// </summary>
         public void CloseWaitForm()
         {
-            _Waits--;
-            if (_Waits > 0) return;
+            waits--;
+            if (waits > 0) return;
 
-            var time = (int) (DateTime.Now - _Wait).TotalMilliseconds;
-            if (time < _MinWaitTime) Thread.Sleep(_MinWaitTime - time);
+            var time = (int) (DateTime.Now - wait).TotalMilliseconds;
+            if (time < MinWaitTime) Thread.Sleep(MinWaitTime - time);
 
-            View.Wait.CloseWaitForm();
+            view.Wait.CloseWaitForm();
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace Insight.MTP.Client.Common.Models
             if (args.Button != MouseButtons.Right) return;
 
             var point = new Point(args.X, args.Y);
-            _HitInfo = gridView.CalcHitInfo(point);
+            hitInfo = gridView.CalcHitInfo(point);
         }
 
         /// <summary>
@@ -125,9 +125,9 @@ namespace Insight.MTP.Client.Common.Models
             var tsmi = new ToolStripMenuItem { Text = "复制" };
             tsmi.Click += (sender, args) =>
             {
-                if (_HitInfo.Column == null) return;
+                if (hitInfo.Column == null) return;
 
-                var content = gridView.GetRowCellDisplayText(_HitInfo.RowHandle, _HitInfo.Column);
+                var content = gridView.GetRowCellDisplayText(hitInfo.RowHandle, hitInfo.Column);
                 if (string.IsNullOrEmpty(content)) return;
 
                 Clipboard.Clear();
@@ -144,7 +144,7 @@ namespace Insight.MTP.Client.Common.Models
         /// </summary>
         private void InitToolBar()
         {
-            Buttons = (from a in GetActions()
+            buttons = (from a in GetActions()
                        select new BarButtonItem
                        {
                            AllowDrawArrow = a.BeginGroup,
@@ -156,7 +156,7 @@ namespace Insight.MTP.Client.Common.Models
                            PaintStyle = a.ShowText ? BarItemPaintStyle.CaptionGlyph : BarItemPaintStyle.Standard,
                            Visibility = a.Validity ? BarItemVisibility.Always : BarItemVisibility.Never
                        }).ToList();
-            Buttons.ForEach(i => View.ToolBar.ItemLinks.Add(i, i.AllowDrawArrow));
+            buttons.ForEach(i => view.ToolBar.ItemLinks.Add(i, i.AllowDrawArrow));
         }
 
         /// <summary>
@@ -165,9 +165,9 @@ namespace Insight.MTP.Client.Common.Models
         /// <returns>功能按钮集合</returns>
         private List<ModuleAction> GetActions()
         {
-            var url = $"{Params.Token.BaseServer}/moduleapi/v1.0/modules/{_ModuleId}/actions";
-            var client = new HttpClient<List<ModuleAction>>(Params.Token);
-            return client.Get(url) ? client.Data : new List<ModuleAction>();
+            var url = $"{Params.tokenHelper.baseServer}/moduleapi/v1.0/modules/{moduleId}/actions";
+            var client = new HttpClient<List<ModuleAction>>(Params.tokenHelper);
+            return client.Get(url) ? client.data : new List<ModuleAction>();
         }
 
         /// <summary>
@@ -177,11 +177,10 @@ namespace Insight.MTP.Client.Common.Models
         /// <returns></returns>
         public List<string> GetParameter(string id)
         {
-            var pid = Guid.Parse(id);
             var pvl = new List<string>();
-            if (ModuleParams.Exists(obj => obj.ID == pid))
+            if (ModuleParams.Exists(obj => obj.ID == id))
             {
-                pvl.AddRange(ModuleParams.FindAll(p => p.ID == pid).Select(p => p.Name));
+                pvl.AddRange(ModuleParams.FindAll(p => p.ID == id).Select(p => p.Name));
             }
             return pvl;
         }
@@ -247,74 +246,6 @@ namespace Insight.MTP.Client.Common.Models
 
         //    tree.DeleteNode(tree.FocusedNode);
         //}
-
-        /// <summary>
-        /// 使用指定的模板打印数据
-        /// </summary>
-        /// <param name="oid">数据对象ID</param>
-        /// <param name="tid">模板ID</param>
-        /// <param name="printer">打印机名称</param>
-        /// <param name="obj">ImageData对象实体</param>
-        /// <param name="onSheet">合并打印模式</param>
-        public string PrintImage(Guid oid, Guid? tid, string printer = null, ImageData obj = null,
-            PagesOnSheet onSheet = PagesOnSheet.One)
-        {
-            var print = BuildReport(oid, tid, obj);
-            if (print == null) return null;
-
-            if (onSheet != PagesOnSheet.One)
-            {
-                print.PrintSettings.PrintMode = PrintMode.Scale;
-                print.PrintSettings.PagesOnSheet = onSheet;
-            }
-
-            if (!string.IsNullOrEmpty(printer))
-            {
-                print.PrintSettings.ShowDialog = false;
-                print.PrintSettings.Printer = printer;
-            }
-            print.PrintPrepared();
-            return print.FileName;
-        }
-
-        /// <summary>
-        /// 使用指定的模板预览数据
-        /// </summary>
-        /// <param name="oid">数据对象ID</param>
-        /// <param name="tid">模板ID</param>
-        public void PreviewImage(Guid oid, Guid? tid)
-        {
-            var print = BuildReport(oid, tid);
-
-            print?.ShowPrepared(true);
-        }
-
-
-        private FastReport.Report BuildReport(Guid oid, Guid? tid, ImageData obj = null)
-        {
-            var isCopy = false;
-            ImageData img = new ImageData();
-            if (tid == null || tid == Guid.Empty)
-            {
-                isCopy = true;
-                //img = new ImageData();
-                if (img == null)
-                {
-                    Messages.ShowError("尚未设置打印模板！请先在设置对话框中设置正确的模板。");
-                    return null;
-                }
-            }
-            else
-            {
-                //img = Interface.BuildImageData(oid, (Guid) tid, obj);
-            }
-
-            var print = new FastReport.Report { FileName = img.ID.ToString()};
-            print.LoadPrepared(new MemoryStream(img.Image));
-
-            if (isCopy) ImageHelper.AddWatermark(print, "副 本");
-            return print;
-        }
 
     }
 }

@@ -10,12 +10,12 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 唯一ID
         /// </summary>
-        public Guid ID { get; set; }
+        public string ID { get; set; }
 
         /// <summary>
         /// 用户ID
         /// </summary>
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
 
         /// <summary>
         /// 用户名
@@ -25,12 +25,12 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 用户登录名
         /// </summary>
-        public string LoginName { get; set; }
+        public string account { get; set; }
 
         /// <summary>
         /// 用户描述
         /// </summary>
-        public string Description { get; set; }
+        public string remark { get; set; }
 
         /// <summary>
         /// 是否有效
@@ -87,17 +87,17 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 唯一ID
         /// </summary>
-        public Guid ID { get; set; }
+        public string id { get; set; }
 
         /// <summary>
         /// 名称
         /// </summary>
-        public string Name { get; set; }
+        public string name { get; set; }
 
         /// <summary>
         /// 描述
         /// </summary>
-        public string Description { get; set; }
+        public string remark { get; set; }
     }
 
     /// <summary>

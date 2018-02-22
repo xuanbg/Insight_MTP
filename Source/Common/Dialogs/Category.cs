@@ -29,7 +29,7 @@ namespace Insight.MTP.Client.Common.Dialogs
 
         private MemberUser _Category;
         private readonly List<MemberUser> _Categorys = new List<MemberUser>();
-        private readonly Guid? _ParentId = null;
+        private readonly string _ParentId = null;
         private int _IndexValue;
         private int _Index;
 
@@ -64,7 +64,7 @@ namespace Insight.MTP.Client.Common.Dialogs
         /// <param name="e"></param>
         private void tleParent_EditValueChanged(object sender, EventArgs e)
         {
-            var id = (Guid?)trlParent.EditValue;
+            var id = trlParent.EditValue.ToString();
             SetIndexValue(id);
 
             var list = _Categorys.Where(c => c.ID == id && c.Name == txtName.Text.Trim());
@@ -118,13 +118,13 @@ namespace Insight.MTP.Client.Common.Dialogs
             chkRoot.Checked = trlParent.EditValue == null;
             chkRoot.Enabled = AllowEditRoot;
             txtName.EditValue = _Category.Name;
-            memDescription.EditValue = _Category.Description;
+            memDescription.EditValue = _Category.remark;
         }
 
         /// <summary>
         /// 移除无关节点（自身及子节点）
         /// </summary>
-        private void RemoveNode(Guid? id)
+        private void RemoveNode(string id)
         {
         }
 
@@ -132,7 +132,7 @@ namespace Insight.MTP.Client.Common.Dialogs
         /// 递归删除子节点
         /// </summary>
         /// <param name="id"></param>
-        private void SubNodes(Guid? id)
+        private void SubNodes(string id)
         {
         }
 
@@ -140,7 +140,7 @@ namespace Insight.MTP.Client.Common.Dialogs
         /// 设置Index值
         /// </summary>
         /// <param name="id"></param>
-        private void SetIndexValue(Guid? id)
+        private void SetIndexValue(string id)
         {
             var list = _Categorys.Where(c => c.ID == id && c.Name == txtName.Text.Trim()).ToList();
             var maxValue = list.Count + 1;
@@ -193,7 +193,7 @@ namespace Insight.MTP.Client.Common.Dialogs
         /// </summary>
         private void ObjectAssign()
         {
-            _Category.Description = memDescription.EditValue == null ? null : memDescription.Text.Trim();
+            _Category.remark = memDescription.EditValue == null ? null : memDescription.Text.Trim();
         }
 
         #endregion

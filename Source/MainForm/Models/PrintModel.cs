@@ -7,9 +7,9 @@ namespace Insight.MTP.Client.MainForm.Models
 {
     public class PrintModel
     {
-        public PrintSet View = new PrintSet();
+        public PrintSet view = new PrintSet();
 
-        private readonly List<object> _Prints = new List<object>();
+        private readonly List<object> prints = new List<object>();
 
         /// <summary>
         /// 构造函数，初始化视图
@@ -18,29 +18,28 @@ namespace Insight.MTP.Client.MainForm.Models
         public PrintModel()
         {
             // 读取系统安装打印机列表
-            var prints = PrinterSettings.InstalledPrinters;
-            _Prints.Add("请设置默认打印机…");
-            foreach (var p in prints)
+            prints.Add("请设置默认打印机…");
+            foreach (var p in PrinterSettings.InstalledPrinters)
             {
-                _Prints.Add(p);
+                prints.Add(p);
             }
 
             // 使用系统安装打印机列表初始化下拉列表
-            View.DocPrint.Properties.Items.AddRange(_Prints);
-            View.TagPrint.Properties.Items.AddRange(_Prints);
-            View.BilPrint.Properties.Items.AddRange(_Prints);
+            view.DocPrint.Properties.Items.AddRange(prints);
+            view.TagPrint.Properties.Items.AddRange(prints);
+            view.BilPrint.Properties.Items.AddRange(prints);
 
             // 初始化控件初值
-            View.DocPrint.EditValue = string.IsNullOrEmpty(Params.DocPrint) ? _Prints[0] : Params.DocPrint;
-            View.TagPrint.EditValue = string.IsNullOrEmpty(Params.TagPrint) ? _Prints[0] : Params.TagPrint;
-            View.BilPrint.EditValue = string.IsNullOrEmpty(Params.BilPrint) ? _Prints[0] : Params.BilPrint;
-            View.MergerPrint.Checked = Params.IsMergerPrint;
+            view.DocPrint.EditValue = string.IsNullOrEmpty(Params.docPrint) ? prints[0] : Params.docPrint;
+            view.TagPrint.EditValue = string.IsNullOrEmpty(Params.tagPrint) ? prints[0] : Params.tagPrint;
+            view.BilPrint.EditValue = string.IsNullOrEmpty(Params.bilPrint) ? prints[0] : Params.bilPrint;
+            view.MergerPrint.Checked = Params.isMergerPrint;
 
             // 订阅下拉列表事件绑定数据
-            View.DocPrint.EditValueChanged += (sender, args) => Params.DocPrint = View.DocPrint.SelectedIndex < 1 ? "" : View.DocPrint.Text;
-            View.BilPrint.EditValueChanged += (sender, args) => Params.BilPrint = View.DocPrint.SelectedIndex < 1 ? "" : View.BilPrint.Text;
-            View.TagPrint.EditValueChanged += (sender, args) => Params.TagPrint = View.DocPrint.SelectedIndex < 1 ? "" : View.TagPrint.Text;
-            View.MergerPrint.CheckedChanged += (sender, args) => Params.IsMergerPrint = View.MergerPrint.Checked;
+            view.DocPrint.EditValueChanged += (sender, args) => Params.docPrint = view.DocPrint.SelectedIndex < 1 ? "" : view.DocPrint.Text;
+            view.BilPrint.EditValueChanged += (sender, args) => Params.bilPrint = view.DocPrint.SelectedIndex < 1 ? "" : view.BilPrint.Text;
+            view.TagPrint.EditValueChanged += (sender, args) => Params.tagPrint = view.DocPrint.SelectedIndex < 1 ? "" : view.TagPrint.Text;
+            view.MergerPrint.CheckedChanged += (sender, args) => Params.isMergerPrint = view.MergerPrint.Checked;
         }
 
         /// <summary>
@@ -48,10 +47,10 @@ namespace Insight.MTP.Client.MainForm.Models
         /// </summary>
         public void Save()
         {
-            Config.SavePrinter("docPrint", Params.DocPrint);
-            Config.SavePrinter("tagPrint", Params.TagPrint);
-            Config.SavePrinter("bilPrint", Params.BilPrint);
-            Config.SaveIsMergerPrint(Params.IsMergerPrint);
+            Config.SavePrinter("docPrint", Params.docPrint);
+            Config.SavePrinter("tagPrint", Params.tagPrint);
+            Config.SavePrinter("bilPrint", Params.bilPrint);
+            Config.SaveIsMergerPrint(Params.isMergerPrint);
         }
     }
 }

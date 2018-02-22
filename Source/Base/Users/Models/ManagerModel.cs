@@ -24,16 +24,16 @@ namespace Insight.MTP.Client.Base.Users.Models
         public ManagerModel(ModuleInfo info) : base(info)
         {
             // 订阅用户列表分页控件事件
-            View.TabUser.PageSizeChanged += (sender, args) => _UserRows = args.PageSize;
-            View.TabUser.CurrentPageChanged += (sender, args) => LoadUsers(View.TabUser.CurrentPage, args.RowHandle);
-            View.TabUser.TotalRowsChanged += (sender, args) => View.GdvUser.FocusedRowHandle = args.RowHandle;
+            view.TabUser.PageSizeChanged += (sender, args) => _UserRows = args.PageSize;
+            view.TabUser.CurrentPageChanged += (sender, args) => LoadUsers(view.TabUser.CurrentPage, args.RowHandle);
+            view.TabUser.TotalRowsChanged += (sender, args) => view.GdvUser.FocusedRowHandle = args.RowHandle;
 
             // 订阅界面事件
-            View.GdvUser.FocusedRowObjectChanged += (sender, args) => UserChanged(args.FocusedRowHandle);
-            View.Search.Click += (sender, args) => LoadUsers();
-            View.KeyInput.Properties.Click += (sender, args) => View.KeyInput.EditValue = null;
-            View.KeyInput.EditValueChanged += (sender, args) => _Key = View.KeyInput.Text.Trim();
-            View.KeyInput.KeyPress += (sender, args) =>
+            view.GdvUser.FocusedRowObjectChanged += (sender, args) => UserChanged(args.FocusedRowHandle);
+            view.Search.Click += (sender, args) => LoadUsers();
+            view.KeyInput.Properties.Click += (sender, args) => view.KeyInput.EditValue = null;
+            view.KeyInput.EditValueChanged += (sender, args) => _Key = view.KeyInput.Text.Trim();
+            view.KeyInput.KeyPress += (sender, args) =>
             {
                 if (args.KeyChar != 13) return;
 
@@ -41,9 +41,9 @@ namespace Insight.MTP.Client.Base.Users.Models
             };
 
             // 设置界面样式
-            Format.GridFormat(View.GdvUser);
-            Format.TreeFormat(View.TreAction, NodeIconType.NodeType);
-            Format.TreeFormat(View.TreData, NodeIconType.NodeType);
+            Format.GridFormat(view.GdvUser);
+            Format.TreeFormat(view.TreAction, NodeIconType.NodeType);
+            Format.TreeFormat(view.TreData, NodeIconType.NodeType);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// </summary>
         public void Refresh()
         {
-            LoadUsers(View.TabUser.CurrentPage, View.TabUser.FocusedRowHandle);
+            LoadUsers(view.TabUser.CurrentPage, view.TabUser.FocusedRowHandle);
         }
 
         /// <summary>
@@ -62,8 +62,8 @@ namespace Insight.MTP.Client.Base.Users.Models
         public void LoadUsers(int page = 1, int handel = 0)
         {
             ShowWaitForm();
-            var url = $"{Params.Token.BaseServer}/userapi/v1.0/users?rows={_UserRows}&page={page}&key={_Key}";
-            var client = new HttpClient<List<User>>(Params.Token);
+            var url = $"{Params.tokenHelper.BaseServer}/userapi/v1.0/users?rows={_UserRows}&page={page}&key={_Key}";
+            var client = new HttpClient<List<User>>(Params.tokenHelper);
             if (!client.Get(url))
             {
                 CloseWaitForm();
@@ -71,9 +71,9 @@ namespace Insight.MTP.Client.Base.Users.Models
             }
 
             _Users = client.Data;
-            View.TabUser.TotalRows = int.Parse(client.Option.ToString());
-            View.GrdUser.DataSource = _Users;
-            View.GdvUser.FocusedRowHandle = handel;
+            view.TabUser.TotalRows = int.Parse(client.Option.ToString());
+            view.GrdUser.DataSource = _Users;
+            view.GdvUser.FocusedRowHandle = handel;
             CloseWaitForm();
         }
 
@@ -85,8 +85,8 @@ namespace Insight.MTP.Client.Base.Users.Models
         {
             _Users.Add(user);
 
-            View.TabUser.AddItems();
-            View.GdvUser.RefreshData();
+            view.TabUser.AddItems();
+            view.GdvUser.RefreshData();
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Insight.MTP.Client.Base.Users.Models
         {
             User.name = user.name;
             User.description = user.description;
-            View.GdvUser.RefreshData();
+            view.GdvUser.RefreshData();
         }
 
         /// <summary>
@@ -110,8 +110,8 @@ namespace Insight.MTP.Client.Base.Users.Models
 
             ShowWaitForm();
             msg = $"对不起，无法删除用户【{User.loginName}】！\r\n如果您想禁止该用户登录系统，请使用封禁功能。";
-            var url = $"{Params.Token.BaseServer}/userapi/v1.0/users/{User.id}";
-            var client = new HttpClient<object>(Params.Token);
+            var url = $"{Params.tokenHelper.BaseServer}/userapi/v1.0/users/{User.id}";
+            var client = new HttpClient<object>(Params.tokenHelper);
             if (!client.Delete(url, null, msg))
             {
                 CloseWaitForm();
@@ -119,8 +119,8 @@ namespace Insight.MTP.Client.Base.Users.Models
             }
 
             _Users.Remove(User);
-            View.TabUser.RemoveItems();
-            View.GdvUser.RefreshData();
+            view.TabUser.RemoveItems();
+            view.GdvUser.RefreshData();
             CloseWaitForm();
         }
 
@@ -136,9 +136,9 @@ namespace Insight.MTP.Client.Base.Users.Models
             if (!Messages.ShowConfirm(msg)) return;
 
             ShowWaitForm();
-            var url = $"{Params.Token.BaseServer}/userapi/v1.0/users/{User.loginName}/validity";
+            var url = $"{Params.tokenHelper.BaseServer}/userapi/v1.0/users/{User.loginName}/validity";
             var dict = new Dictionary<string, object> {{"validity", status}};
-            var client = new HttpClient<object>(Params.Token);
+            var client = new HttpClient<object>(Params.tokenHelper);
             if (!client.Put(url, dict))
             {
                 CloseWaitForm();
@@ -146,7 +146,7 @@ namespace Insight.MTP.Client.Base.Users.Models
             }
 
             User.validity = status;
-            View.GdvUser.RefreshData();
+            view.GdvUser.RefreshData();
             RefreshToolBar();
             CloseWaitForm();
         }
@@ -161,11 +161,11 @@ namespace Insight.MTP.Client.Base.Users.Models
 
             ShowWaitForm();
             msg = $"对不起，用户【{User.loginName}】的密码重置失败。";
-            var url = $"{Params.Token.BaseServer}/userapi/v1.0/users/{User.loginName}/signature";
+            var url = $"{Params.tokenHelper.BaseServer}/userapi/v1.0/users/{User.loginName}/signature";
             var publicKey = Util.Base64Decode(Util.GetAppSetting("RSAKey"));
             var key = Util.Encrypt(publicKey, Util.Hash("123456"));
             var dict = new Dictionary<string, object> {{"password", key}};
-            var client = new HttpClient<object>(Params.Token);
+            var client = new HttpClient<object>(Params.tokenHelper);
             if (!client.Put(url, dict, msg))
             {
                 CloseWaitForm();
@@ -198,20 +198,20 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// <param name="index">List下标</param>
         private void UserChanged(int index)
         {
-            View.TabUser.FocusedRowHandle = index;
+            view.TabUser.FocusedRowHandle = index;
             User = index < 0 ? null : _Users[index];
             if (User != null && (User.Actions == null || User.Datas == null)) GetUser();
 
-            View.TreAction.DataSource = User?.Actions;
-            View.TreAction.ExpandToLevel(0);
-            View.TreData.DataSource = User?.Datas;
-            View.TreData.ExpandToLevel(0);
+            view.TreAction.DataSource = User?.Actions;
+            view.TreAction.ExpandToLevel(0);
+            view.TreData.DataSource = User?.Datas;
+            view.TreData.ExpandToLevel(0);
 
             RefreshToolBar();
 
             if (!_First) return;
 
-            View.tabPermission.SelectedTabPageIndex = 0;
+            view.tabPermission.SelectedTabPageIndex = 0;
             _First = false;
         }
 
@@ -220,8 +220,8 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// </summary>
         private void GetUser()
         {
-            var url = $"{Params.Token.BaseServer}/userapi/v1.0/users/{User.id}";
-            var client = new HttpClient<User>(Params.Token);
+            var url = $"{Params.tokenHelper.BaseServer}/userapi/v1.0/users/{User.id}";
+            var client = new HttpClient<User>(Params.tokenHelper);
             if (!client.Get(url)) return;
 
             User.Actions = client.Data.Actions;

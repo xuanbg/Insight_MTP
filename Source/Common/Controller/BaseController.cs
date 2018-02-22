@@ -8,7 +8,7 @@ namespace Insight.MTP.Client.Common.Controller
 {
     public class BaseController<T>
     {
-        protected T Model;
+        protected T model;
 
         /// <summary>
         /// 订阅对话框关闭事件
@@ -87,7 +87,7 @@ namespace Insight.MTP.Client.Common.Controller
         {
             if (view.DialogResult == DialogResult.OK) return;
 
-            var msg = "您确定要放弃所做的变更，离开向导吗？";
+            const string msg = "您确定要放弃所做的变更，离开向导吗？";
             if (!Messages.ShowConfirm(msg)) e.Cancel = true;
 
             view.FormClosing -= (sender, args) => WizardClosing(view, args);

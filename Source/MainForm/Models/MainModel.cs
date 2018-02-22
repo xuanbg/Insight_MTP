@@ -18,11 +18,11 @@ namespace Insight.MTP.Client.MainForm.Models
 {
     public class MainModel
     {
-        public MainWindow View = new MainWindow();
-        public List<NavBarItemLink> Links = new List<NavBarItemLink>();
-        public List<object> NeedOpens = new List<object>();
+        public MainWindow view = new MainWindow();
+        public List<NavBarItemLink> links = new List<NavBarItemLink>();
+        public List<object> needOpens = new List<object>();
 
-        private List<ModuleInfo> _NavItems;
+        private List<ModuleInfo> navItems;
 
         /// <summary>
         /// 构造函数，初始化视图
@@ -34,17 +34,15 @@ namespace Insight.MTP.Client.MainForm.Models
             InitNavBar();
 
             // 初始化界面
-            FastReport.Utils.Res.LoadLocale("Components\\Chinese (Simplified).frl");
-            View.MyFeel.LookAndFeel.SkinName = Params.LookAndFeel;
+            view.MyFeel.LookAndFeel.SkinName = Params.lookAndFeel;
 
-            View.StbTime.Caption = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            View.StbDept.Caption = Params.DeptName;
-            View.StbDept.Visibility = string.IsNullOrEmpty(Params.DeptName) ? BarItemVisibility.Never : BarItemVisibility.Always;
-            View.StbUser.Caption = Params.Token.Token.userName;
-            View.StbServer.Caption = Params.InsightServer;
+            view.StbTime.Caption = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            view.StbDept.Caption = Params.deptName;
+            view.StbDept.Visibility = string.IsNullOrEmpty(Params.deptName) ? BarItemVisibility.Never : BarItemVisibility.Always;
+            view.StbUser.Caption = Params.userName;
             if (SystemInformation.WorkingArea.Height > 755) return;
 
-            View.WindowState = FormWindowState.Maximized;
+            view.WindowState = FormWindowState.Maximized;
         }
 
         /// <summary>
@@ -60,7 +58,7 @@ namespace Insight.MTP.Client.MainForm.Models
                 return;
             }
 
-            var mod = _NavItems.Single(m => m.ProgramName == name.ToString());
+            var mod = navItems.Single(m => m.ProgramName == name.ToString());
             var path = $"{Application.StartupPath}\\{mod.Location}";
             if (!File.Exists(path))
             {
@@ -69,7 +67,7 @@ namespace Insight.MTP.Client.MainForm.Models
                 return;
             }
 
-            View.Loading.ShowWaitForm();
+            view.Loading.ShowWaitForm();
             var asm = Assembly.LoadFrom(path);
             var cont = asm.CreateInstance($"{mod.NameSpace}.Controller", false, BindingFlags.Default, null, new object[]{mod}, CultureInfo.CurrentCulture, null);
             if (cont == null)
@@ -78,7 +76,7 @@ namespace Insight.MTP.Client.MainForm.Models
                 Messages.ShowError(msg);
             }
 
-            View.Loading.CloseWaitForm();
+            view.Loading.CloseWaitForm();
         }
 
         /// <summary>
@@ -89,9 +87,6 @@ namespace Insight.MTP.Client.MainForm.Models
             var msg = "退出应用程序将导致当前未完成的输入内容丢失！\r\n您确定要退出吗？";
             if (!Messages.ShowConfirm(msg)) return true;
 
-            var url = $"{Params.Token.BaseServer}/securityapi/v1.0/tokens";
-            var client = new HttpClient<object>(Params.Token);
-            if (client.Delete(url)) return false;
 
             msg = "用户注销失败！是否强制退出系统？";
             return !Messages.ShowConfirm(msg);
@@ -102,7 +97,7 @@ namespace Insight.MTP.Client.MainForm.Models
         /// </summary>
         public void SaveLookAndFeel()
         {
-            Config.SaveLookAndFeel(View.MyFeel.LookAndFeel.SkinName);
+            Config.SaveLookAndFeel(view.MyFeel.LookAndFeel.SkinName);
         }
 
         /// <summary>
@@ -110,23 +105,23 @@ namespace Insight.MTP.Client.MainForm.Models
         /// </summary>
         private void InitNavBar()
         {
-            var url = $"{Params.Token.BaseServer}/moduleapi/v1.0/navigations";
-            var client = new HttpClient<NavData>(Params.Token);
+            var url = $"{Params.tokenHelper.baseServer}/moduleapi/v1.0/navigations";
+            var client = new HttpClient<NavData>(Params.tokenHelper);
             if (!client.Get(url)) return;
 
-            _NavItems = client.Data.Modules;
+            navItems = client.data.Modules;
 
-            var height = View.NavMain.Height;
-            foreach (var g in client.Data.Groups)
+            var height = view.NavMain.Height;
+            foreach (var g in client.data.Groups)
             {
                 var expand = false;
                 var items = new List<NavBarItemLink>();
-                foreach (var item in _NavItems.Where(i => i.ModuleGroupId == g.ID))
+                foreach (var item in navItems.Where(i => i.moduleGroupId == g.ID))
                 {
                     if (item.Default)
                     {
                         expand = true;
-                        NeedOpens.Add(item.ProgramName);
+                        needOpens.Add(item.ProgramName);
                     }
 
                     var icon = Image.FromStream(new MemoryStream(item.Icon));
@@ -137,15 +132,15 @@ namespace Insight.MTP.Client.MainForm.Models
                 var group = new NavBarGroup
                 {
                     Caption = g.Name,
-                    Name = g.ID.ToString(),
+                    Name = g.ID,
                     SmallImage = Image.FromStream(new MemoryStream(g.Icon))
                 };
-                var count = Links.Count + items.Count;
-                group.Expanded = client.Data.Groups.Count * 55 + count * 32 < height || expand;
+                var count = links.Count + items.Count;
+                group.Expanded = client.data.Groups.Count * 55 + count * 32 < height || expand;
                 group.ItemLinks.AddRange(items.ToArray());
 
-                View.NavMain.Groups.Add(group);
-                Links.AddRange(items);
+                view.NavMain.Groups.Add(group);
+                links.AddRange(items);
             }
         }
     }

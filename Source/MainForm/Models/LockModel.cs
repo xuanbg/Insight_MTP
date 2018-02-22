@@ -6,9 +6,9 @@ namespace Insight.MTP.Client.MainForm.Models
 {
     public class LockModel
     {
-        public Locked View = new Locked();
+        public Locked view = new Locked();
 
-        private string _Sing;
+        private string sing;
 
         /// <summary>
         /// 构造函数
@@ -16,8 +16,8 @@ namespace Insight.MTP.Client.MainForm.Models
         /// </summary>
         public LockModel()
         {
-            var sign = Util.Hash(Params.Token.Token.userId + Util.Hash(View.Password.Text));
-            View.Password.EditValueChanged += (sender, args) => _Sing = sign;
+            var sign = Util.Hash(Params.userId + Util.Hash(view.Password.Text));
+            view.Password.EditValueChanged += (sender, args) => sing = sign;
         }
 
         /// <summary>
@@ -25,8 +25,8 @@ namespace Insight.MTP.Client.MainForm.Models
         /// </summary>
         public void Init()
         {
-            View.Password.EditValue = null;
-            View.Refresh();
+            view.Password.EditValue = null;
+            view.Refresh();
         }
 
         /// <summary>
@@ -35,11 +35,11 @@ namespace Insight.MTP.Client.MainForm.Models
         /// <returns>bool 是否解锁成功</returns>
         public bool Unlock()
         {
-            if (_Sing == Params.Token.Sign) return true;
+            if (sing == Params.tokenHelper.sign) return true;
 
             Messages.ShowError("请输入正确的密码，否则无法为您解除锁定！");
-            View.Password.Text = string.Empty;
-            View.Password.Focus();
+            view.Password.Text = string.Empty;
+            view.Password.Focus();
             return false;
         }
     }

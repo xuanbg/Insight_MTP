@@ -29,26 +29,26 @@ namespace Insight.MTP.Client.Base.Roles.Models
         public ManagerModel(ModuleInfo info) : base(info)
         {
             // 订阅角色列表分页控件事件
-            View.TabRole.PageSizeChanged += (sender, args) => _PageRows = args.PageSize;
-            View.TabRole.CurrentPageChanged += (sender, args) => LoadRoles(View.TabRole.CurrentPage, args.RowHandle);
-            View.TabRole.TotalRowsChanged += (sender, args) => View.GdvRole.FocusedRowHandle = args.RowHandle;
+            view.TabRole.PageSizeChanged += (sender, args) => _PageRows = args.PageSize;
+            view.TabRole.CurrentPageChanged += (sender, args) => LoadRoles(view.TabRole.CurrentPage, args.RowHandle);
+            view.TabRole.TotalRowsChanged += (sender, args) => view.GdvRole.FocusedRowHandle = args.RowHandle;
 
             // 订阅角色成员用户列表分页控件事件
-            View.TabUser.PageSizeChanged += (sender, args) => _UserRows = args.PageSize;
-            View.TabUser.CurrentPageChanged += (sender, args) => GetMemberUsers(View.TabUser.CurrentPage, args.RowHandle);
-            View.TabUser.TotalRowsChanged += (sender, args) => View.GdvUser.FocusedRowHandle = args.RowHandle;
+            view.TabUser.PageSizeChanged += (sender, args) => _UserRows = args.PageSize;
+            view.TabUser.CurrentPageChanged += (sender, args) => GetMemberUsers(view.TabUser.CurrentPage, args.RowHandle);
+            view.TabUser.TotalRowsChanged += (sender, args) => view.GdvUser.FocusedRowHandle = args.RowHandle;
 
             // 订阅界面鼠标点击事件
-            View.GdvRole.FocusedRowObjectChanged += (sender, args) => RoleChanged(args.FocusedRowHandle);
-            View.GdvUser.FocusedRowObjectChanged += (sender, args) => View.TabUser.FocusedRowHandle = args.FocusedRowHandle;
-            View.TreMember.FocusedNodeChanged += (sender, args) => MemberChanged(args.Node);
+            view.GdvRole.FocusedRowObjectChanged += (sender, args) => RoleChanged(args.FocusedRowHandle);
+            view.GdvUser.FocusedRowObjectChanged += (sender, args) => view.TabUser.FocusedRowHandle = args.FocusedRowHandle;
+            view.TreMember.FocusedNodeChanged += (sender, args) => MemberChanged(args.Node);
 
             // 设置界面样式
-            Format.GridFormat(View.GdvRole);
-            Format.GridFormat(View.GdvUser);
-            Format.TreeFormat(View.TreMember, NodeIconType.OnlyLevel0);
-            Format.TreeFormat(View.TreAction, NodeIconType.NodeType);
-            Format.TreeFormat(View.TreData, NodeIconType.NodeType);
+            Format.GridFormat(view.GdvRole);
+            Format.GridFormat(view.GdvUser);
+            Format.TreeFormat(view.TreMember, NodeIconType.OnlyLevel0);
+            Format.TreeFormat(view.TreAction, NodeIconType.NodeType);
+            Format.TreeFormat(view.TreData, NodeIconType.NodeType);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// </summary>
         public void Refresh()
         {
-            LoadRoles(View.TabRole.CurrentPage, View.TabRole.FocusedRowHandle);
+            LoadRoles(view.TabRole.CurrentPage, view.TabRole.FocusedRowHandle);
         }
 
         /// <summary>
@@ -67,8 +67,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
         public void LoadRoles(int page = 1, int handel = 0)
         {
             ShowWaitForm();
-            var url = $"{Params.Token.BaseServer}/roleapi/v1.0/roles?rows={_PageRows}&page={page}";
-            var client = new HttpClient<List<Role>>(Params.Token);
+            var url = $"{Params.tokenHelper.BaseServer}/roleapi/v1.0/roles?rows={_PageRows}&page={page}";
+            var client = new HttpClient<List<Role>>(Params.tokenHelper);
             if (!client.Get(url))
             {
                 CloseWaitForm();
@@ -76,9 +76,9 @@ namespace Insight.MTP.Client.Base.Roles.Models
             }
 
             _Roles = client.Data;
-            View.TabRole.TotalRows = int.Parse(client.Option.ToString());
-            View.GrdRole.DataSource = _Roles;
-            View.GdvRole.FocusedRowHandle = handel;
+            view.TabRole.TotalRows = int.Parse(client.Option.ToString());
+            view.GrdRole.DataSource = _Roles;
+            view.GdvRole.FocusedRowHandle = handel;
             CloseWaitForm();
         }
 
@@ -90,8 +90,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
         {
             _Roles.Add(role);
 
-            View.TabRole.AddItems();
-            View.GrdRole.RefreshDataSource();
+            view.TabRole.AddItems();
+            view.GrdRole.RefreshDataSource();
         }
 
         /// <summary>
@@ -103,9 +103,9 @@ namespace Insight.MTP.Client.Base.Roles.Models
             if (!Messages.ShowConfirm(msg)) return;
 
             ShowWaitForm();
-            var url = $"{Params.Token.BaseServer}/roleapi/v1.0/roles/{Role.ID}";
+            var url = $"{Params.tokenHelper.BaseServer}/roleapi/v1.0/roles/{Role.ID}";
             msg = $"对不起，角色【{Role.Name}】删除失败！如多次删除失败，请联系管理员。";
-            var client = new HttpClient<object>(Params.Token);
+            var client = new HttpClient<object>(Params.tokenHelper);
             if (!client.Delete(url, null, msg))
             {
                 CloseWaitForm();
@@ -114,8 +114,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
 
             _Roles.Remove(Role);
 
-            View.TabRole.RemoveItems();
-            View.GdvRole.RefreshData();
+            view.TabRole.RemoveItems();
+            view.GdvRole.RefreshData();
             CloseWaitForm();
         }
 
@@ -129,8 +129,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
 
             ShowWaitForm();
             msg = $"对不起，角色成员【{Member.Name}】移除失败！如多次移除失败，请联系管理员。";
-            var url = $"{Params.Token.BaseServer}/roleapi/v1.0/roles/members/{Member.ID}";
-            var client = new HttpClient<Role>(Params.Token);
+            var url = $"{Params.tokenHelper.BaseServer}/roleapi/v1.0/roles/members/{Member.ID}";
+            var client = new HttpClient<Role>(Params.tokenHelper);
             if (!client.Delete(url, null, msg))
             {
                 CloseWaitForm();
@@ -168,9 +168,9 @@ namespace Insight.MTP.Client.Base.Roles.Models
             Role.Members.Clear();
             Role.Members.AddRange(role.Members);
 
-            View.TreMember.RefreshDataSource();
-            View.TreMember.ExpandAll();
-            View.TreMember.MoveFirst();
+            view.TreMember.RefreshDataSource();
+            view.TreMember.ExpandAll();
+            view.TreMember.MoveFirst();
 
             RefreshToolBar();
             GetMemberUsers();
@@ -196,11 +196,11 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// </summary>
         private void RefreshPerm()
         {
-            View.TreAction.RefreshDataSource();
-            View.TreAction.ExpandToLevel(0);
+            view.TreAction.RefreshDataSource();
+            view.TreAction.ExpandToLevel(0);
 
-            View.TreData.RefreshDataSource();
-            View.TreData.ExpandToLevel(0);
+            view.TreData.RefreshDataSource();
+            view.TreData.ExpandToLevel(0);
         }
 
         /// <summary>
@@ -209,27 +209,27 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <param name="index">List下标</param>
         private void RoleChanged(int index)
         {
-            View.TabRole.FocusedRowHandle = index;
+            view.TabRole.FocusedRowHandle = index;
 
             Role = _Roles[index];
             if (Role.Actions == null || Role.Datas == null || Role.Members == null) GetRole();
 
-            View.TreAction.DataSource = Role.Actions;
-            View.TreAction.ExpandToLevel(0);
-            View.TreData.DataSource = Role.Datas;
-            View.TreData.ExpandToLevel(0);
-            View.TreMember.DataSource = Role.Members;
-            View.TreMember.ExpandAll();
-            View.TreMember.MoveFirst();
+            view.TreAction.DataSource = Role.Actions;
+            view.TreAction.ExpandToLevel(0);
+            view.TreData.DataSource = Role.Datas;
+            view.TreData.ExpandToLevel(0);
+            view.TreMember.DataSource = Role.Members;
+            view.TreMember.ExpandAll();
+            view.TreMember.MoveFirst();
 
             GetMemberUsers();
-            View.GrdUser.DataSource = _MemberUsers;
+            view.GrdUser.DataSource = _MemberUsers;
 
             RefreshToolBar();
 
             if (!_First) return;
 
-            View.tabPermission.SelectedTabPageIndex = 0;
+            view.tabPermission.SelectedTabPageIndex = 0;
             _First = false;
         }
 
@@ -250,8 +250,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// </summary>
         private void GetRole()
         {
-            var url = $"{Params.Token.BaseServer}/roleapi/v1.0/roles/{Role.ID}";
-            var client = new HttpClient<Role>(Params.Token);
+            var url = $"{Params.tokenHelper.BaseServer}/roleapi/v1.0/roles/{Role.ID}";
+            var client = new HttpClient<Role>(Params.tokenHelper);
             if (!client.Get(url)) return;
 
             Role.Actions = client.Data.Actions;
@@ -266,14 +266,14 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <param name="handel">当前焦点行</param>
         private void GetMemberUsers(int page = 1, int handel = 0)
         {
-            var url = $"{Params.Token.BaseServer}/roleapi/v1.0/roles/{Role.ID}/users?rows={_UserRows}&page={page}";
-            var client = new HttpClient<List<MemberUser>>(Params.Token);
+            var url = $"{Params.tokenHelper.BaseServer}/roleapi/v1.0/roles/{Role.ID}/users?rows={_UserRows}&page={page}";
+            var client = new HttpClient<List<MemberUser>>(Params.tokenHelper);
             if (!client.Get(url)) return;
 
             _MemberUsers = client.Data;
-            View.TabUser.TotalRows = int.Parse(client.Option.ToString());
-            View.GrdUser.DataSource = _MemberUsers;
-            View.GdvUser.FocusedRowHandle = handel;
+            view.TabUser.TotalRows = int.Parse(client.Option.ToString());
+            view.GrdUser.DataSource = _MemberUsers;
+            view.GdvUser.FocusedRowHandle = handel;
         }
     }
 }

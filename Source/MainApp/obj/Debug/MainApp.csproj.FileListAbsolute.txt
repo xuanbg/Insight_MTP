@@ -21,3 +21,15 @@ C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Debug\Insigh
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Debug\Insight WS.pdb
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Debug\Insight WS.exe
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Debug\Insight WS.pdb
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainApp\obj\Debug\MainApp.csprojResolveAssemblyReference.cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainApp\obj\Debug\Insight.MTP.Client.MainApp.Properties.Resources.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainApp\obj\Debug\Insight.MTP.Client.MainApp.Views.Login.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainApp\obj\Debug\Insight.MTP.Client.MainApp.Views.LoginSet.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainApp\obj\Debug\Insight.MTP.Client.MainApp.Views.Waiting.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainApp\obj\Debug\MainApp.csproj.GenerateResource.Cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Debug\Insight MTP.exe.config
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Debug\Insight MTP.exe
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Debug\Insight MTP.pdb
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainApp\obj\Debug\MainApp.csproj.CoreCompileInputs.cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainApp\obj\Debug\Insight MTP.exe
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainApp\obj\Debug\Insight MTP.pdb

@@ -1,5 +1,4 @@
 ﻿using Insight.Utils.Client;
-using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.Common.Utils
 {
@@ -8,71 +7,56 @@ namespace Insight.MTP.Client.Common.Utils
         /// <summary>
         /// AccessToken管理帮助类
         /// </summary>
-        public static TokenHelper Token = new TokenHelper();
+        public static TokenHelper tokenHelper { get; set; } = new TokenHelper();
+
+        /// <summary>
+        /// 当前登录部门ID
+        /// </summary>
+        public static string deptId { get; set; }
 
         /// <summary>
         /// 当前登录部门全称
         /// </summary>
-        public static string DeptName;
+        public static string deptName { get; set; }
+
+        /// <summary>
+        /// 用户ID
+        /// </summary>
+        public static string userId { get; set; }
+
+        /// <summary>
+        /// 用户姓名
+        /// </summary>
+        public static string userName { get; set; }
 
         /// <summary>
         /// 是否需要修改密码
         /// </summary>
-        public static bool NeedChangePW;
-
-        /// <summary>
-        /// 当前连接业务应用服务
-        /// </summary>
-        public static string InsightServer;
-
-        /// <summary>
-        /// 当前连接报表应用服务
-        /// </summary>
-        public static string ReportServer = Util.GetAppSetting("ReportServer");
-
-        /// <summary>
-        /// 当前连接售后应用服务
-        /// </summary>
-        public static string RefundServer = Util.GetAppSetting("RefundServer");
-
-        /// <summary>
-        /// 当前连接订单应用服务
-        /// </summary>
-        public static string PurchaseServer = Util.GetAppSetting("PurchaseServer");
-
-        /// <summary>
-        /// 当前连接主数据应用服务
-        /// </summary>
-        public static string MasterDataServer = Util.GetAppSetting("MasterDataServer");
-
-        /// <summary>
-        /// 当前连接业务应用服务接口版本
-        /// </summary>
-        public static int InsightVer;
+        public static bool needChangePw { get; set; }
 
         /// <summary>
         /// 界面主题样式
         /// </summary>
-        public static string LookAndFeel;
+        public static string lookAndFeel { get; set; }
 
         /// <summary>
         /// 文档打印机
         /// </summary>
-        public static string DocPrint;
+        public static string docPrint { get; set; }
 
         /// <summary>
         /// 标签打印机
         /// </summary>
-        public static string TagPrint;
+        public static string tagPrint { get; set; }
 
         /// <summary>
         /// 票据打印机
         /// </summary>
-        public static string BilPrint;
+        public static string bilPrint { get; set; }
 
         /// <summary>
         /// 票据是否合并打印
         /// </summary>
-        public static bool IsMergerPrint;
+        public static bool isMergerPrint { get; set; }
     }
 }

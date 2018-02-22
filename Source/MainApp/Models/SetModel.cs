@@ -17,13 +17,11 @@ namespace Insight.MTP.Client.MainApp.Models
         {
             View = new LoginSet
             {
-                InsightInput = {Text = Params.InsightServer},
-                BaseInupt = {Text = Params.Token.BaseServer },
+                BaseInupt = {Text = Params.tokenHelper.baseServer },
                 SaveUserCheckBox = {Checked = _SaveUser}
             };
 
-            View.InsightInput.EditValueChanged += (sender, args) => Params.InsightServer = View.InsightInput.Text;
-            View.BaseInupt.EditValueChanged += (sender, args) => Params.Token.BaseServer = View.BaseInupt.Text;
+            View.BaseInupt.EditValueChanged += (sender, args) => Params.tokenHelper.baseServer = View.BaseInupt.Text;
             View.SaveUserCheckBox.CheckStateChanged += (sender, args) => _SaveUser = View.SaveUserCheckBox.Checked;
         }
 
@@ -35,8 +33,7 @@ namespace Insight.MTP.Client.MainApp.Models
             if (!_SaveUser) Config.SaveUserName(string.Empty);
 
             Config.SaveIsSaveUserInfo(_SaveUser);
-            Config.SaveAddress(Params.InsightServer);
-            Config.SaveBaseAddress(Params.Token.BaseServer);
+            Config.SaveBaseAddress(Params.tokenHelper.baseServer);
         }
     }
 }

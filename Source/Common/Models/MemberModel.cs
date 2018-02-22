@@ -10,8 +10,8 @@ namespace Insight.MTP.Client.Common.Models
 {
     public class MemberModel
     {
-        public Member View;
-        public List<Guid> SelectedList;
+        public Member view;
+        public List<string> selectedList;
 
         /// <summary>
         /// 构造函数
@@ -19,9 +19,9 @@ namespace Insight.MTP.Client.Common.Models
         /// <param name="title">View标题</param>
         public MemberModel(string title)
         {
-            View = new Member {Text = title};
+            view = new Member {Text = title};
 
-            Format.GridFormat(View.GdvSelect, 0);
+            Format.GridFormat(view.GdvSelect, 0);
         }
 
         /// <summary>
@@ -30,10 +30,10 @@ namespace Insight.MTP.Client.Common.Models
         /// <returns>bool 是否通过</returns>
         public bool InputExamine()
         {
-            SelectedList = (from i in View.GdvSelect.GetSelectedRows()
-                            let g = (LookUpMember)View.GdvSelect.GetRow(i)
-                            select g.ID).ToList();
-            if (SelectedList.Any()) return true;
+            selectedList = (from i in view.GdvSelect.GetSelectedRows()
+                            let g = (LookUpMember)view.GdvSelect.GetRow(i)
+                            select g.id).ToList();
+            if (selectedList.Any()) return true;
 
             Messages.ShowWarning("当前未选中任何成员！");
             return false;
