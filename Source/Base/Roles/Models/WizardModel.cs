@@ -73,10 +73,10 @@ namespace Insight.MTP.Client.Base.Roles.Models
         public Role AddRole()
         {
             var msg = "角色权限保存失败！如多次失败，请联系管理员。";
-            var url = $"{Params.tokenHelper.BaseServer}/roleapi/v1.0/roles";
+            var url = $"{Params.tokenHelper.baseServer}/roleapi/v1.0/roles";
             var dict = new Dictionary<string, object> {{"role", _Role}};
             var client = new HttpClient<Role>(Params.tokenHelper);
-            return client.Post(url, dict, msg) ? client.Data : null;
+            return client.Post(url, dict, msg) ? client.data : null;
         }
 
         /// <summary>
@@ -85,10 +85,10 @@ namespace Insight.MTP.Client.Base.Roles.Models
         internal Role EditRole()
         {
             var msg = "角色权限更新失败！如多次失败，请联系管理员。";
-            var url = $"{Params.tokenHelper.BaseServer}/roleapi/v1.0/roles/{_Role.ID}";
+            var url = $"{Params.tokenHelper.baseServer}/roleapi/v1.0/roles/{_Role.ID}";
             var dict = new Dictionary<string, object> {{"role", _Role}};
             var client = new HttpClient<Role>(Params.tokenHelper);
-            return client.Put(url, dict, msg) ? client.Data : null;
+            return client.Put(url, dict, msg) ? client.data : null;
         }
 
         /// <summary>
@@ -123,13 +123,13 @@ namespace Insight.MTP.Client.Base.Roles.Models
         private void InitTree()
         {
             // 加载数据
-            var url = $"{Params.tokenHelper.BaseServer}/roleapi/v1.0/roles/{_Role.ID}/allperm";
+            var url = $"{Params.tokenHelper.baseServer}/roleapi/v1.0/roles/{_Role.ID}/allperm";
             var client = new HttpClient<Role>(Params.tokenHelper);
             if (!client.Get(url)) return;
 
-            _Actions = client.Data.Actions;
+            _Actions = client.data.Actions;
             _Modules = _Actions.Where(a => a.NodeType < 2).ToList();
-            _Datas = client.Data.Datas;
+            _Datas = client.data.Datas;
             _DataModules = _Datas.Where(d => d.NodeType < 2).ToList();
 
             // 绑定数据源，设置TreeList样式

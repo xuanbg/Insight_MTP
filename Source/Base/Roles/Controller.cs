@@ -12,7 +12,7 @@ namespace Insight.MTP.Client.Base.Roles
         /// 构造函数
         /// </summary>
         /// <param name="info">模块信息</param>
-        public Controller(ModuleInfo info)
+        public Controller(Navigation info)
         {
             // 构造ViewModel，订阅工具栏按钮点击事件
             model = new ManagerModel(info);

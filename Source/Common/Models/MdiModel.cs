@@ -13,7 +13,6 @@ using Insight.MTP.Client.Common.Dialogs;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Common.Utils;
 using Insight.Utils.Client;
-using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.Common.Models
 {
@@ -31,21 +30,21 @@ namespace Insight.MTP.Client.Common.Models
         /// <summary>
         /// 模块参数集合
         /// </summary>
-        public List<MemberUser> ModuleParams { get; set; }
+        public List<MemberUser> moduleParams { get; set; }
 
         /// <summary>
         /// 构造函数，初始化MDI窗体并显示
         /// </summary>
         /// <param name="info">模块信息</param>
-        protected MdiModel(ModuleInfo info)
+        protected MdiModel(Navigation info)
         {
             moduleId = info.id;
             view = new T
             {
                 MdiParent = Application.OpenForms["MainWindow"],
-                Icon = Icon.FromHandle(new Bitmap(new MemoryStream(info.Icon)).GetHicon()),
-                Name = info.ProgramName,
-                Text = info.ApplicationName
+                Icon = Icon.FromHandle(new Bitmap(new MemoryStream(info.icon)).GetHicon()),
+                Name = info.alias,
+                Text = info.name
             };
 
             view.Show();
@@ -147,14 +146,13 @@ namespace Insight.MTP.Client.Common.Models
             buttons = (from a in GetActions()
                        select new BarButtonItem
                        {
-                           AllowDrawArrow = a.BeginGroup,
-                           Caption = a.Alias,
-                           Enabled = a.Enable,
-                           Name = a.Name,
-                           Tag = a.Enable,
-                           Glyph = Image.FromStream(new MemoryStream(a.Icon)),
-                           PaintStyle = a.ShowText ? BarItemPaintStyle.CaptionGlyph : BarItemPaintStyle.Standard,
-                           Visibility = a.Validity ? BarItemVisibility.Always : BarItemVisibility.Never
+                           AllowDrawArrow = a.isBegin,
+                           Caption = a.name,
+                           Enabled = a.permit == 1,
+                           Name = a.alias,
+                           Tag = a.permit == 1,
+                           Glyph = Image.FromStream(new MemoryStream(a.icon)),
+                           PaintStyle = a.isShowText ? BarItemPaintStyle.CaptionGlyph : BarItemPaintStyle.Standard,
                        }).ToList();
             buttons.ForEach(i => view.ToolBar.ItemLinks.Add(i, i.AllowDrawArrow));
         }
@@ -163,11 +161,11 @@ namespace Insight.MTP.Client.Common.Models
         /// 获取模块功能按钮集合
         /// </summary>
         /// <returns>功能按钮集合</returns>
-        private List<ModuleAction> GetActions()
+        private List<Function> GetActions()
         {
-            var url = $"{Params.tokenHelper.baseServer}/moduleapi/v1.0/modules/{moduleId}/actions";
-            var client = new HttpClient<List<ModuleAction>>(Params.tokenHelper);
-            return client.Get(url) ? client.data : new List<ModuleAction>();
+            var url = $"{Params.tokenHelper.baseServer}/moduleapi/v1.0/modules/{moduleId}/functions";
+            var client = new HttpClient<List<Function>>(Params.tokenHelper);
+            return client.Get(url) ? client.data : new List<Function>();
         }
 
         /// <summary>
@@ -178,9 +176,9 @@ namespace Insight.MTP.Client.Common.Models
         public List<string> GetParameter(string id)
         {
             var pvl = new List<string>();
-            if (ModuleParams.Exists(obj => obj.ID == id))
+            if (moduleParams.Exists(obj => obj.ID == id))
             {
-                pvl.AddRange(ModuleParams.FindAll(p => p.ID == id).Select(p => p.Name));
+                pvl.AddRange(moduleParams.FindAll(p => p.ID == id).Select(p => p.Name));
             }
             return pvl;
         }

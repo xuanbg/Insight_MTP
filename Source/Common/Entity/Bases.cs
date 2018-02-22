@@ -80,44 +80,49 @@ namespace Insight.MTP.Client.Common.Entity
     public class User
     {
         /// <summary>
-        /// 用户唯一ID
+        /// ID，唯一标识
         /// </summary>
-        public Guid id { get; set; }
+        public string id { get; set; }
 
         /// <summary>
-        /// 用户名
+        /// 姓名/昵称
         /// </summary>
         public string name { get; set; }
 
         /// <summary>
         /// 登录账号
         /// </summary>
-        public string loginName { get; set; }
+        public string account { get; set; }
 
         /// <summary>
-        /// 用户描述
+        /// 手机号
         /// </summary>
-        public string description { get; set; }
+        public string mobile { get; set; }
 
         /// <summary>
-        /// 用户类型
+        /// 注册邮箱
         /// </summary>
-        public int type { get; set; }
+        public string email { get; set; }
 
         /// <summary>
-        /// 是否内置
+        /// 描述
         /// </summary>
-        public bool builtIn { get; set; }
+        public string remark { get; set; }
 
         /// <summary>
-        /// 是否有效
+        /// 是否预置：0、自定；1、预置
         /// </summary>
-        public bool validity { get; set; }
+        public bool isBuiltin { get; set; }
+
+        /// <summary>
+        /// 是否失效：0、有效；1、失效
+        /// </summary>
+        public bool isInvalid { get; set; }
 
         /// <summary>
         /// 创建人ID
         /// </summary>
-        public Guid creatorUserId { get; set; }
+        public string creatorId { get; set; }
 
         /// <summary>
         /// 创建时间
@@ -240,17 +245,17 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// ID
         /// </summary>
-        public Guid ID { get; set; }
+        public string ID { get; set; }
 
         /// <summary>
         /// 父节点ID
         /// </summary>
-        public Guid? ParentId { get; set; }
+        public string ParentId { get; set; }
 
         /// <summary>
         /// 成员ID
         /// </summary>
-        public Guid MemberId { get; set; }
+        public string MemberId { get; set; }
 
         /// <summary>
         /// 序号

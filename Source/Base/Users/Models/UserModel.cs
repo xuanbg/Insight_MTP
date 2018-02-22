@@ -26,17 +26,17 @@ namespace Insight.MTP.Client.Base.Users.Models
             {
                 Text = title,
                 UserName = {EditValue = _User.name},
-                LoginName = {EditValue = _User.loginName},
-                Description = {EditValue = _User.description}
+                LoginName = {EditValue = _User.account},
+                Description = {EditValue = _User.remark}
             };
 
             // 订阅控件事件实现数据双向绑定
             View.UserName.EditValueChanged += (sender, args) => _User.name = View.UserName.Text.Trim();
-            View.LoginName.EditValueChanged += (sender, args) => _User.loginName = View.LoginName.Text.Trim();
+            View.LoginName.EditValueChanged += (sender, args) => _User.account = View.LoginName.Text.Trim();
             View.Description.EditValueChanged += (sender, args) =>
             {
                 var text = View.Description.EditValue?.ToString().Trim();
-                _User.description = string.IsNullOrEmpty(text) ? null : text;
+                _User.remark = string.IsNullOrEmpty(text) ? null : text;
             };
         }
 
@@ -47,11 +47,11 @@ namespace Insight.MTP.Client.Base.Users.Models
         {
             if (!InputExamine()) return null;
 
-            var msg = $"新建用户【{_User.loginName}】失败！";
-            var url = $"{Params.tokenHelper.BaseServer}/userapi/v1.0/users";
+            var msg = $"新建用户【{_User.name}】失败！";
+            var url = $"{Params.tokenHelper.baseServer}/userapi/v1.0/users";
             var dict = new Dictionary<string, object> {{"user", _User}};
             var client = new HttpClient<User>(Params.tokenHelper);
-            return client.Post(url, dict, msg) ? client.Data : null;
+            return client.Post(url, dict, msg) ? client.data : null;
         }
 
         /// <summary>
@@ -61,11 +61,11 @@ namespace Insight.MTP.Client.Base.Users.Models
         {
             if (!InputExamine()) return null;
 
-            var msg = $"没有更新用户【{_User.loginName}】的任何信息！";
-            var url = $"{Params.tokenHelper.BaseServer}/userapi/v1.0/users/{_User.id}";
+            var msg = $"没有更新用户【{_User.name}】的任何信息！";
+            var url = $"{Params.tokenHelper.baseServer}/userapi/v1.0/users/{_User.id}";
             var dict = new Dictionary<string, object> {{"user", _User}};
             var client = new HttpClient<User>(Params.tokenHelper);
-            return client.Put(url, dict, msg) ? client.Data : null;
+            return client.Put(url, dict, msg) ? client.data : null;
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Insight.MTP.Client.Base.Users.Models
                 return false;
             }
 
-            if (string.IsNullOrEmpty(_User.loginName))
+            if (string.IsNullOrEmpty(_User.account))
             {
                 Messages.ShowWarning("必须输入登录名！登录名只能是英文字母组成。");
                 View.LoginName.Focus();

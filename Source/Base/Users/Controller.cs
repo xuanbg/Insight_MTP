@@ -1,5 +1,4 @@
-﻿using System;
-using Insight.MTP.Client.Base.Users.Models;
+﻿using Insight.MTP.Client.Base.Users.Models;
 using Insight.MTP.Client.Common.Controller;
 using Insight.MTP.Client.Common.Entity;
 using Insight.Utils.Common;
@@ -12,7 +11,7 @@ namespace Insight.MTP.Client.Base.Users
         /// 构造函数
         /// </summary>
         /// <param name="info">模块信息</param>
-        public Controller(ModuleInfo info)
+        public Controller(Navigation info)
         {
             // 构造ViewModel，订阅工具栏按钮点击事件
             model = new ManagerModel(info);
@@ -65,22 +64,18 @@ namespace Insight.MTP.Client.Base.Users
         /// </summary>
         private void AddUser()
         {
-            var user = new User
-            {
-                id = Guid.NewGuid(),
-                type = 1
-            };
-            var model = new UserModel(user, "新建用户");
-            var view = model.View;
+            var user = new User();
+            var userModel = new UserModel(user, "新建用户");
+            var view = userModel.View;
             SubCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
-                base.model.ShowWaitForm();
-                user = model.AddUser();
-                base.model.CloseWaitForm();
+                model.ShowWaitForm();
+                user = userModel.AddUser();
+                model.CloseWaitForm();
                 if (user == null) return;
 
-                base.model.AddUser(user);
+                model.AddUser(user);
                 CloseDialog(view);
             };
 
@@ -92,9 +87,9 @@ namespace Insight.MTP.Client.Base.Users
         /// </summary>
         private void EditUser()
         {
-            if (!base.model.AllowDoubleClick("EditUser")) return;
+            if (!this.model.AllowDoubleClick("EditUser")) return;
 
-            var user = Util.Clone(base.model.User);
+            var user = Util.Clone(this.model.User);
             user.Actions = null;
             user.Datas = null;
             var model = new UserModel(user, "编辑用户");
@@ -103,12 +98,12 @@ namespace Insight.MTP.Client.Base.Users
             SubCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
-                base.model.ShowWaitForm();
+                this.model.ShowWaitForm();
                 user = model.EditUser();
-                base.model.CloseWaitForm();
+                this.model.CloseWaitForm();
                 if (user == null) return;
 
-                base.model.Update(user);
+                this.model.Update(user);
                 CloseDialog(view);
             };
 

@@ -41,7 +41,6 @@ namespace Insight.MTP.Client.MainForm
             {
                 model.needOpens.ForEach(model.AddPageMdi);
                 CheckPassword();
-                Update(false);
             };
             view.Closing += (sender, args) => args.Cancel = model.Logout();
             view.Closed += (sender, args) => Exit();

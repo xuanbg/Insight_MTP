@@ -21,7 +21,7 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// 构造函数，初始化视图
         /// 通过订阅事件实现双向数据绑定
         /// </summary>
-        public ManagerModel(ModuleInfo info) : base(info)
+        public ManagerModel(Navigation info) : base(info)
         {
             // 订阅用户列表分页控件事件
             view.TabUser.PageSizeChanged += (sender, args) => _UserRows = args.PageSize;
@@ -62,7 +62,7 @@ namespace Insight.MTP.Client.Base.Users.Models
         public void LoadUsers(int page = 1, int handel = 0)
         {
             ShowWaitForm();
-            var url = $"{Params.tokenHelper.BaseServer}/userapi/v1.0/users?rows={_UserRows}&page={page}&key={_Key}";
+            var url = $"{Params.tokenHelper.baseServer}/userapi/v1.0/users?rows={_UserRows}&page={page}&key={_Key}";
             var client = new HttpClient<List<User>>(Params.tokenHelper);
             if (!client.Get(url))
             {
@@ -70,8 +70,8 @@ namespace Insight.MTP.Client.Base.Users.Models
                 return;
             }
 
-            _Users = client.Data;
-            view.TabUser.TotalRows = int.Parse(client.Option.ToString());
+            _Users = client.data;
+            view.TabUser.TotalRows = int.Parse(client.option.ToString());
             view.GrdUser.DataSource = _Users;
             view.GdvUser.FocusedRowHandle = handel;
             CloseWaitForm();
@@ -96,7 +96,7 @@ namespace Insight.MTP.Client.Base.Users.Models
         public void Update(User user)
         {
             User.name = user.name;
-            User.description = user.description;
+            User.remark = user.remark;
             view.GdvUser.RefreshData();
         }
 
@@ -105,12 +105,12 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// </summary>
         public void DeleteUser()
         {
-            var msg = $"您确定要删除用户【{User.loginName}】吗？\r\n用户删除后将无法恢复！";
+            var msg = $"您确定要删除用户【{User.name}】吗？\r\n用户删除后将无法恢复！";
             if (!Messages.ShowConfirm(msg)) return;
 
             ShowWaitForm();
-            msg = $"对不起，无法删除用户【{User.loginName}】！\r\n如果您想禁止该用户登录系统，请使用封禁功能。";
-            var url = $"{Params.tokenHelper.BaseServer}/userapi/v1.0/users/{User.id}";
+            msg = $"对不起，无法删除用户【{User.name}】！\r\n如果您想禁止该用户登录系统，请使用封禁功能。";
+            var url = $"{Params.tokenHelper.baseServer}/userapi/v1.0/users/{User.id}";
             var client = new HttpClient<object>(Params.tokenHelper);
             if (!client.Delete(url, null, msg))
             {
@@ -132,11 +132,11 @@ namespace Insight.MTP.Client.Base.Users.Models
         {
             var key = status ? "解封" : "封禁";
             var action = status ? "即可正常" : "将无法";
-            var msg = $"您确定要{key}用户【{User.loginName}】吗？\r\n用户{key}后{action}登录系统！";
+            var msg = $"您确定要{key}用户【{User.name}】吗？\r\n用户{key}后{action}登录系统！";
             if (!Messages.ShowConfirm(msg)) return;
 
             ShowWaitForm();
-            var url = $"{Params.tokenHelper.BaseServer}/userapi/v1.0/users/{User.loginName}/validity";
+            var url = $"{Params.tokenHelper.baseServer}/userapi/v1.0/users/{User.id}/validity";
             var dict = new Dictionary<string, object> {{"validity", status}};
             var client = new HttpClient<object>(Params.tokenHelper);
             if (!client.Put(url, dict))
@@ -145,7 +145,7 @@ namespace Insight.MTP.Client.Base.Users.Models
                 return;
             }
 
-            User.validity = status;
+            User.isInvalid = !status;
             view.GdvUser.RefreshData();
             RefreshToolBar();
             CloseWaitForm();
@@ -156,12 +156,12 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// </summary>
         public void Reset()
         {
-            var msg = $"您确定要重置用户【{User.loginName}】的密码为 123456 吗？";
+            var msg = $"您确定要重置用户【{User.name}】的密码为 123456 吗？";
             if (!Messages.ShowConfirm(msg)) return;
 
             ShowWaitForm();
-            msg = $"对不起，用户【{User.loginName}】的密码重置失败。";
-            var url = $"{Params.tokenHelper.BaseServer}/userapi/v1.0/users/{User.loginName}/signature";
+            msg = $"对不起，用户【{User.name}】的密码重置失败。";
+            var url = $"{Params.tokenHelper.baseServer}/userapi/v1.0/users/{User.id}/signature";
             var publicKey = Util.Base64Decode(Util.GetAppSetting("RSAKey"));
             var key = Util.Encrypt(publicKey, Util.Hash("123456"));
             var dict = new Dictionary<string, object> {{"password", key}};
@@ -173,7 +173,7 @@ namespace Insight.MTP.Client.Base.Users.Models
             }
 
             CloseWaitForm();
-            Messages.ShowMessage($"用户【{User.loginName}】的密码已经重置。");
+            Messages.ShowMessage($"用户【{User.name}】的密码已经重置。");
         }
 
         /// <summary>
@@ -183,11 +183,11 @@ namespace Insight.MTP.Client.Base.Users.Models
         {
             var dict = new Dictionary<string, bool>
             {
-                ["EditUser"] = !User?.builtIn ?? false,
-                ["DeleteUser"] = !User?.builtIn ?? false,
-                ["Banned"] = (!User?.builtIn ?? false) && (User?.validity ?? false),
-                ["Release"] = !User?.validity ?? false,
-                ["Reset"] = !User?.builtIn ?? false
+                ["editUser"] = !User?.isBuiltin ?? false,
+                ["deleteUser"] = !User?.isBuiltin ?? false,
+                ["banned"] = (!User?.isBuiltin ?? false) && (!User?.isInvalid ?? false),
+                ["release"] = User?.isInvalid ?? false,
+                ["reset"] = !User?.isBuiltin ?? false
             };
             SwitchItemStatus(dict);
         }
@@ -220,12 +220,12 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// </summary>
         private void GetUser()
         {
-            var url = $"{Params.tokenHelper.BaseServer}/userapi/v1.0/users/{User.id}";
+            var url = $"{Params.tokenHelper.baseServer}/userapi/v1.0/users/{User.id}";
             var client = new HttpClient<User>(Params.tokenHelper);
             if (!client.Get(url)) return;
 
-            User.Actions = client.Data.Actions;
-            User.Datas = client.Data.Datas;
+            User.Actions = client.data.Actions;
+            User.Datas = client.data.Datas;
         }
     }
 }

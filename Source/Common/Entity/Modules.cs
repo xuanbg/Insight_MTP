@@ -1,154 +1,99 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Insight.MTP.Client.Common.Entity
+﻿namespace Insight.MTP.Client.Common.Entity
 {
     /// <summary>
     /// 导航栏数据
     /// </summary>
-    public class NavData
-    {
+    public class Navigation
+    {   
         /// <summary>
-        /// 模块组集合
-        /// </summary>
-        public List<ModuleGroup> Groups { get; set; }
-
-        /// <summary>
-        /// 业务模块集合
-        /// </summary>
-        public List<ModuleInfo> Modules { get; set; }
-    }
-
-    /// <summary>
-    /// 业务模块组
-    /// </summary>
-    public class ModuleGroup
-    {
-        /// <summary>
-        /// 模块组唯一ID
-        /// </summary>
-        public string ID { get; set; }
-
-        /// <summary>
-        /// 组排序索引
-        /// </summary>
-        public int Index { get; set; }
-
-        /// <summary>
-        /// 组名称
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// 图标
-        /// </summary>
-        public byte[] Icon { get; set; }
-    }
-
-    /// <summary>
-    /// 业务模块
-    /// </summary>
-    public class ModuleInfo
-    {
-        /// <summary>
-        /// 业务模块唯一ID
+        /// ID，唯一标识
         /// </summary>
         public string id { get; set; }
 
         /// <summary>
-        /// 所属组ID
+        /// 上级导航ID
         /// </summary>
-        public string moduleGroupId { get; set; }
+        public string parentId { get; set; }
 
         /// <summary>
-        /// 排序索引
+        /// 序号
         /// </summary>
-        public int Index { get; set; }
+        public int index { get; set; }
 
         /// <summary>
-        /// 程序名称
+        /// 导航名称
         /// </summary>
-        public string ProgramName { get; set; }
+        public string name { get; set; }
 
         /// <summary>
-        /// 命名空间
+        /// 模块名称
         /// </summary>
-        public string NameSpace { get; set; }
+        public string alias { get; set; }
 
         /// <summary>
-        /// 业务模块名称
+        /// 文件路径
         /// </summary>
-        public string ApplicationName { get; set; }
-
-        /// <summary>
-        /// 文件相对路径
-        /// </summary>
-        public string Location { get; set; }
-
-        /// <summary>
-        /// 是否默认加载
-        /// </summary>
-        public bool Default { get; set; }
+        public string filePath { get; set; }
 
         /// <summary>
         /// 图标
         /// </summary>
-        public byte[] Icon { get; set; }
+        public byte[] icon { get; set; }
+
+        /// <summary>
+        /// 是否默认启动：0、否；1、是
+        /// </summary>
+        public bool isDefault { get; set; }
     }
 
     /// <summary>
     /// 模块工具栏按钮
     /// </summary>
-    public class ModuleAction
+    public class Function
     {
         /// <summary>
-        /// 功能操作唯一ID
+        /// ID，唯一标识
         /// </summary>
-        public Guid ID { get; set; }
+        public string id { get; set; }
 
         /// <summary>
-        /// 所属模块ID
+        /// 导航ID
         /// </summary>
-        public Guid ModuleId { get; set; }
+        public string navigatorId { get; set; }
 
         /// <summary>
-        /// 排序索引
+        /// 序号
         /// </summary>
-        public int Index { get; set; }
+        public int index { get; set; }
 
         /// <summary>
-        /// 功能名称
+        /// 名称
         /// </summary>
-        public string Name { get; set; }
+        public string name { get; set; }
 
         /// <summary>
         /// 别名
         /// </summary>
-        public string Alias { get; set; }
+        public string alias { get; set; }
 
         /// <summary>
         /// 图标
         /// </summary>
-        public byte[] Icon { get; set; }
+        public byte[] icon { get; set; }
 
         /// <summary>
-        /// 是否显示按钮文字
+        /// 是否开始分组：0、否；1、是
         /// </summary>
-        public bool ShowText { get; set; }
+        public bool isBegin { get; set; }
 
         /// <summary>
-        /// 是否开始分组
+        /// 是否显示文字：0、隐藏；1、显示
         /// </summary>
-        public bool BeginGroup { get; set; }
+        public bool isShowText { get; set; }
 
         /// <summary>
-        /// 是否可用
+        /// 是否启用状态
         /// </summary>
-        public bool Enable { get; set; }
-
-        /// <summary>
-        /// 是否可见
-        /// </summary>
-        public bool Validity { get; set; }
+        public int permit { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace Insight.MTP.Client.Common.Utils
         /// <summary>
         /// AccessToken管理帮助类
         /// </summary>
-        public static TokenHelper tokenHelper { get; set; } = new TokenHelper();
+        public static TokenHelper tokenHelper { get; set; } = new TokenHelper{appId = "9dd99dd9-e6df-467a-8207-d05ea5581125"};
 
         /// <summary>
         /// 当前登录部门ID

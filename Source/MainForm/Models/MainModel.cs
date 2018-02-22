@@ -22,7 +22,7 @@ namespace Insight.MTP.Client.MainForm.Models
         public List<NavBarItemLink> links = new List<NavBarItemLink>();
         public List<object> needOpens = new List<object>();
 
-        private List<ModuleInfo> navItems;
+        private List<Navigation> navItems;
 
         /// <summary>
         /// 构造函数，初始化视图
@@ -58,21 +58,26 @@ namespace Insight.MTP.Client.MainForm.Models
                 return;
             }
 
-            var mod = navItems.Single(m => m.ProgramName == name.ToString());
-            var path = $"{Application.StartupPath}\\{mod.Location}";
+            var mod = navItems.Single(m => m.alias == name.ToString());
+            var path = $"{Application.StartupPath}\\{mod.filePath}";
             if (!File.Exists(path))
             {
-                var msg = $"对不起，{mod.ApplicationName}模块无法加载！\r\n未能发现{path}文件。";
+                var msg = $"对不起，{mod.name}模块无法加载！\r\n未能发现{path}文件。";
                 Messages.ShowError(msg);
                 return;
             }
 
             view.Loading.ShowWaitForm();
             var asm = Assembly.LoadFrom(path);
-            var cont = asm.CreateInstance($"{mod.NameSpace}.Controller", false, BindingFlags.Default, null, new object[]{mod}, CultureInfo.CurrentCulture, null);
+            var start = mod.filePath.LastIndexOf("/", StringComparison.Ordinal);
+            if (start < 0) start = 0;
+
+            var end = mod.filePath.LastIndexOf(".", StringComparison.Ordinal);
+            var className = mod.filePath.Substring(start, end - start);
+            var cont = asm.CreateInstance($"Insight.MTP.Client.{className}.{mod.alias}.Controller", false, BindingFlags.Default, null, new object[]{mod}, CultureInfo.CurrentCulture, null);
             if (cont == null)
             {
-                var msg = $"对不起，{mod.ApplicationName}模块无法加载！\r\n您的应用程序中缺少{mod.ApplicationName}组件。";
+                var msg = $"对不起，{mod.name}模块无法加载！\r\n您的应用程序中缺少相应组件。";
                 Messages.ShowError(msg);
             }
 
@@ -87,9 +92,9 @@ namespace Insight.MTP.Client.MainForm.Models
             var msg = "退出应用程序将导致当前未完成的输入内容丢失！\r\n您确定要退出吗？";
             if (!Messages.ShowConfirm(msg)) return true;
 
+            Params.tokenHelper.DeleteToken();
 
-            msg = "用户注销失败！是否强制退出系统？";
-            return !Messages.ShowConfirm(msg);
+            return false;
         }
 
         /// <summary>
@@ -106,37 +111,37 @@ namespace Insight.MTP.Client.MainForm.Models
         private void InitNavBar()
         {
             var url = $"{Params.tokenHelper.baseServer}/moduleapi/v1.0/navigations";
-            var client = new HttpClient<NavData>(Params.tokenHelper);
+            var client = new HttpClient<List<Navigation>>(Params.tokenHelper);
             if (!client.Get(url)) return;
 
-            navItems = client.data.Modules;
-
+            navItems = client.data.Where(i => i.parentId != null).ToList();
+            var groups = client.data.Where(i => i.parentId == null).ToList();
             var height = view.NavMain.Height;
-            foreach (var g in client.data.Groups)
+            foreach (var g in groups)
             {
                 var expand = false;
                 var items = new List<NavBarItemLink>();
-                foreach (var item in navItems.Where(i => i.moduleGroupId == g.ID))
+                foreach (var item in navItems.Where(i => i.parentId == g.id))
                 {
-                    if (item.Default)
+                    if (item.isDefault)
                     {
                         expand = true;
-                        needOpens.Add(item.ProgramName);
+                        needOpens.Add(item.alias);
                     }
 
-                    var icon = Image.FromStream(new MemoryStream(item.Icon));
-                    var n = new NavBarItem(item.ApplicationName) {Tag = item.ProgramName, SmallImage = icon};
-                    items.Add(new NavBarItemLink(n));
+                    var icon = Image.FromStream(new MemoryStream(item.icon));
+                    var navBarItem = new NavBarItem(item.name) {Tag = item.alias, SmallImage = icon};
+                    items.Add(new NavBarItemLink(navBarItem));
                 }
 
                 var group = new NavBarGroup
                 {
-                    Caption = g.Name,
-                    Name = g.ID,
-                    SmallImage = Image.FromStream(new MemoryStream(g.Icon))
+                    Caption = g.name,
+                    Name = g.name,
+                    SmallImage = Image.FromStream(new MemoryStream(g.icon))
                 };
                 var count = links.Count + items.Count;
-                group.Expanded = client.data.Groups.Count * 55 + count * 32 < height || expand;
+                group.Expanded = groups.Count * 55 + count * 32 < height || expand;
                 group.ItemLinks.AddRange(items.ToArray());
 
                 view.NavMain.Groups.Add(group);

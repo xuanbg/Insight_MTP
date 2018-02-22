@@ -56,12 +56,12 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 唯一ID
         /// </summary>
-        public Guid ID { get; set; }
+        public string ID { get; set; }
 
         /// <summary>
         /// 父级ID
         /// </summary>
-        public Guid? ParentId { get; set; }
+        public string ParentId { get; set; }
 
         /// <summary>
         /// 排序索引

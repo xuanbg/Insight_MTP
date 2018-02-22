@@ -26,7 +26,7 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// 构造函数，初始化视图
         /// 通过订阅事件实现双向数据绑定
         /// </summary>
-        public ManagerModel(ModuleInfo info) : base(info)
+        public ManagerModel(Navigation info) : base(info)
         {
             // 订阅角色列表分页控件事件
             view.TabRole.PageSizeChanged += (sender, args) => _PageRows = args.PageSize;
@@ -67,7 +67,7 @@ namespace Insight.MTP.Client.Base.Roles.Models
         public void LoadRoles(int page = 1, int handel = 0)
         {
             ShowWaitForm();
-            var url = $"{Params.tokenHelper.BaseServer}/roleapi/v1.0/roles?rows={_PageRows}&page={page}";
+            var url = $"{Params.tokenHelper.baseServer}/roleapi/v1.0/roles?rows={_PageRows}&page={page}";
             var client = new HttpClient<List<Role>>(Params.tokenHelper);
             if (!client.Get(url))
             {
@@ -75,8 +75,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
                 return;
             }
 
-            _Roles = client.Data;
-            view.TabRole.TotalRows = int.Parse(client.Option.ToString());
+            _Roles = client.data;
+            view.TabRole.TotalRows = int.Parse(client.option.ToString());
             view.GrdRole.DataSource = _Roles;
             view.GdvRole.FocusedRowHandle = handel;
             CloseWaitForm();
@@ -103,7 +103,7 @@ namespace Insight.MTP.Client.Base.Roles.Models
             if (!Messages.ShowConfirm(msg)) return;
 
             ShowWaitForm();
-            var url = $"{Params.tokenHelper.BaseServer}/roleapi/v1.0/roles/{Role.ID}";
+            var url = $"{Params.tokenHelper.baseServer}/roleapi/v1.0/roles/{Role.ID}";
             msg = $"对不起，角色【{Role.Name}】删除失败！如多次删除失败，请联系管理员。";
             var client = new HttpClient<object>(Params.tokenHelper);
             if (!client.Delete(url, null, msg))
@@ -129,7 +129,7 @@ namespace Insight.MTP.Client.Base.Roles.Models
 
             ShowWaitForm();
             msg = $"对不起，角色成员【{Member.Name}】移除失败！如多次移除失败，请联系管理员。";
-            var url = $"{Params.tokenHelper.BaseServer}/roleapi/v1.0/roles/members/{Member.ID}";
+            var url = $"{Params.tokenHelper.baseServer}/roleapi/v1.0/roles/members/{Member.ID}";
             var client = new HttpClient<Role>(Params.tokenHelper);
             if (!client.Delete(url, null, msg))
             {
@@ -137,7 +137,7 @@ namespace Insight.MTP.Client.Base.Roles.Models
                 return;
             }
 
-            UpdateMember(client.Data);
+            UpdateMember(client.data);
             CloseWaitForm();
         }
 
@@ -184,9 +184,9 @@ namespace Insight.MTP.Client.Base.Roles.Models
         {
             var dict = new Dictionary<string, bool>
             {
-                ["DeleteRole"] = !Role.BuiltIn,
-                ["AddMember"] = !Role.BuiltIn,
-                ["Remove"] = !Role.BuiltIn && type == 0
+                ["deleteRole"] = !Role.BuiltIn,
+                ["addRoleMember"] = !Role.BuiltIn,
+                ["removeRoleMember"] = !Role.BuiltIn && type == 0
             };
             SwitchItemStatus(dict);
         }
@@ -242,7 +242,7 @@ namespace Insight.MTP.Client.Base.Roles.Models
 
             var type = (int) node.GetValue("NodeType");
             RefreshToolBar(type);
-            Member = Role.Members.Single(m => m.ID == (Guid) node.GetValue("ID"));
+            Member = Role.Members.Single(m => m.ID == node.GetValue("ID").ToString());
         }
 
         /// <summary>
@@ -250,13 +250,13 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// </summary>
         private void GetRole()
         {
-            var url = $"{Params.tokenHelper.BaseServer}/roleapi/v1.0/roles/{Role.ID}";
+            var url = $"{Params.tokenHelper.baseServer}/roleapi/v1.0/roles/{Role.ID}";
             var client = new HttpClient<Role>(Params.tokenHelper);
             if (!client.Get(url)) return;
 
-            Role.Actions = client.Data.Actions;
-            Role.Datas = client.Data.Datas;
-            Role.Members = client.Data.Members;
+            Role.Actions = client.data.Actions;
+            Role.Datas = client.data.Datas;
+            Role.Members = client.data.Members;
         }
 
         /// <summary>
@@ -266,12 +266,12 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <param name="handel">当前焦点行</param>
         private void GetMemberUsers(int page = 1, int handel = 0)
         {
-            var url = $"{Params.tokenHelper.BaseServer}/roleapi/v1.0/roles/{Role.ID}/users?rows={_UserRows}&page={page}";
+            var url = $"{Params.tokenHelper.baseServer}/roleapi/v1.0/roles/{Role.ID}/users?rows={_UserRows}&page={page}";
             var client = new HttpClient<List<MemberUser>>(Params.tokenHelper);
             if (!client.Get(url)) return;
 
-            _MemberUsers = client.Data;
-            view.TabUser.TotalRows = int.Parse(client.Option.ToString());
+            _MemberUsers = client.data;
+            view.TabUser.TotalRows = int.Parse(client.option.ToString());
             view.GrdUser.DataSource = _MemberUsers;
             view.GdvUser.FocusedRowHandle = handel;
         }
