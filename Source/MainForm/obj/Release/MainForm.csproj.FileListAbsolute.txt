@@ -1,0 +1,13 @@
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Release\MainForm.dll
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Release\MainForm.pdb
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Release\MainForm.csprojResolveAssemblyReference.cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Release\Insight.WS.Client.MainForm.Views.About.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Release\Insight.WS.Client.MainForm.Views.ChangePw.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Release\Insight.WS.Client.MainForm.Views.Locked.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Release\Insight.WS.Client.MainForm.Views.MainWindow.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Release\Insight.WS.Client.MainForm.Views.PrintSet.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Release\Insight.WS.Client.MainForm.Views.Update.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Release\Insight.WS.Client.MainForm.Views.Loading.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Release\MainForm.csproj.GenerateResource.Cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Release\MainForm.dll
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Release\MainForm.pdb

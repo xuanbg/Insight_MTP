@@ -1,0 +1,23 @@
+C:\Users\xuan_\Project\Insight_Client\Source\MainApp\obj\Debug\Insight.WS.Client.MainApp.Properties.Resources.resources
+C:\Users\xuan_\Project\Insight_Client\Source\MainApp\obj\Debug\Insight.WS.Client.MainApp.Views.Login.resources
+C:\Users\xuan_\Project\Insight_Client\Source\MainApp\obj\Debug\Insight.WS.Client.MainApp.Views.LoginSet.resources
+C:\Users\xuan_\Project\Insight_Client\Source\MainApp\obj\Debug\Insight.WS.Client.MainApp.Views.Waiting.resources
+C:\Users\xuan_\Project\Insight_Client\Source\MainApp\obj\Debug\MainApp.csproj.GenerateResource.Cache
+C:\Users\xuan_\Project\Insight_Client\Source\MainApp\obj\Debug\MainApp.csprojResolveAssemblyReference.cache
+C:\Users\xuan_\Project\Insight_Client\Debug\Insight WS.exe.config
+C:\Users\xuan_\Project\Insight_Client\Debug\Insight WS.exe
+C:\Users\xuan_\Project\Insight_Client\Debug\Insight WS.pdb
+C:\Users\xuan_\Project\Insight_Client\Source\MainApp\obj\Debug\Insight WS.exe
+C:\Users\xuan_\Project\Insight_Client\Source\MainApp\obj\Debug\Insight WS.pdb
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Debug\MainApp.csprojResolveAssemblyReference.cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Debug\Insight.WS.Client.MainApp.Properties.Resources.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Debug\Insight.WS.Client.MainApp.Views.Login.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Debug\Insight.WS.Client.MainApp.Views.LoginSet.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Debug\Insight.WS.Client.MainApp.Views.Waiting.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Debug\MainApp.csproj.GenerateResource.Cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Debug\MainApp.csproj.CoreCompileInputs.cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Debug\Insight WS.exe.config
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Debug\Insight WS.exe
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Debug\Insight WS.pdb
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Debug\Insight WS.exe
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Debug\Insight WS.pdb

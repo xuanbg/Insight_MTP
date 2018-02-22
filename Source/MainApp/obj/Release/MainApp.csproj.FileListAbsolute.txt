@@ -1,0 +1,11 @@
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Release\Insight WS.exe.config
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Release\Insight WS.exe
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Release\Insight WS.pdb
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Release\MainApp.csprojResolveAssemblyReference.cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Release\Insight.WS.Client.MainApp.Properties.Resources.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Release\Insight.WS.Client.MainApp.Views.Login.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Release\Insight.WS.Client.MainApp.Views.LoginSet.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Release\Insight.WS.Client.MainApp.Views.Waiting.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Release\MainApp.csproj.GenerateResource.Cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Release\Insight WS.exe
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainApp\obj\Release\Insight WS.pdb

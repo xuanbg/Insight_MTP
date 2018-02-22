@@ -1,0 +1,27 @@
+C:\Users\xuan_\Project\Insight_Client\Source\MainForm\obj\Debug\MainForm.csprojResolveAssemblyReference.cache
+C:\Users\xuan_\Project\Insight_Client\Source\MainForm\obj\Debug\Insight.WS.Client.MainForm.Views.About.resources
+C:\Users\xuan_\Project\Insight_Client\Source\MainForm\obj\Debug\Insight.WS.Client.MainForm.Views.ChangePw.resources
+C:\Users\xuan_\Project\Insight_Client\Source\MainForm\obj\Debug\Insight.WS.Client.MainForm.Views.Locked.resources
+C:\Users\xuan_\Project\Insight_Client\Source\MainForm\obj\Debug\Insight.WS.Client.MainForm.Views.MainWindow.resources
+C:\Users\xuan_\Project\Insight_Client\Source\MainForm\obj\Debug\Insight.WS.Client.MainForm.Views.PrintSet.resources
+C:\Users\xuan_\Project\Insight_Client\Source\MainForm\obj\Debug\Insight.WS.Client.MainForm.Views.Update.resources
+C:\Users\xuan_\Project\Insight_Client\Source\MainForm\obj\Debug\Insight.WS.Client.MainForm.Views.Loading.resources
+C:\Users\xuan_\Project\Insight_Client\Source\MainForm\obj\Debug\MainForm.csproj.GenerateResource.Cache
+C:\Users\xuan_\Project\Insight_Client\Debug\MainForm.dll
+C:\Users\xuan_\Project\Insight_Client\Debug\MainForm.pdb
+C:\Users\xuan_\Project\Insight_Client\Source\MainForm\obj\Debug\MainForm.dll
+C:\Users\xuan_\Project\Insight_Client\Source\MainForm\obj\Debug\MainForm.pdb
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Debug\MainForm.csprojResolveAssemblyReference.cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Debug\Insight.WS.Client.MainForm.Views.About.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Debug\Insight.WS.Client.MainForm.Views.ChangePw.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Debug\Insight.WS.Client.MainForm.Views.Locked.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Debug\Insight.WS.Client.MainForm.Views.MainWindow.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Debug\Insight.WS.Client.MainForm.Views.PrintSet.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Debug\Insight.WS.Client.MainForm.Views.Update.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Debug\Insight.WS.Client.MainForm.Views.Loading.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Debug\MainForm.csproj.GenerateResource.Cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Debug\MainForm.csproj.CoreCompileInputs.cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Debug\MainForm.dll
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Debug\MainForm.pdb
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Debug\MainForm.dll
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\MainForm\obj\Debug\MainForm.pdb
