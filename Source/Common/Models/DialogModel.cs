@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Insight.MTP.Client.Common.Utils;
+using Insight.Utils.Client;
 using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.Common.Models
@@ -6,6 +8,9 @@ namespace Insight.MTP.Client.Common.Models
     public class DialogModel
     {
         private readonly List<InputItem> checkItems = new List<InputItem>();
+
+        public TokenHelper token = Params.tokenHelper;
+        public string server = Params.server;
 
         /// <summary>
         /// 设置一个输入检查对象

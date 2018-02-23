@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
-using DevExpress.XtraBars;
 using DevExpress.XtraNavBar;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Common.Utils;
@@ -35,10 +34,9 @@ namespace Insight.MTP.Client.MainForm.Models
 
             // 初始化界面
             view.MyFeel.LookAndFeel.SkinName = Params.lookAndFeel;
+            view.Text = "Insight MTP management client";
 
             view.StbTime.Caption = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            view.StbDept.Caption = Params.deptName;
-            view.StbDept.Visibility = string.IsNullOrEmpty(Params.deptName) ? BarItemVisibility.Never : BarItemVisibility.Always;
             view.StbUser.Caption = Params.userName;
             if (SystemInformation.WorkingArea.Height > 755) return;
 
@@ -110,7 +108,7 @@ namespace Insight.MTP.Client.MainForm.Models
         /// </summary>
         private void InitNavBar()
         {
-            var url = $"{Params.tokenHelper.baseServer}/moduleapi/v1.0/navigations";
+            var url = $"{Params.server}/moduleapi/v1.0/navigations";
             var client = new HttpClient<List<Navigation>>(Params.tokenHelper);
             if (!client.Get(url)) return;
 

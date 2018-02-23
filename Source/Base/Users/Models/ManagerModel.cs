@@ -62,7 +62,7 @@ namespace Insight.MTP.Client.Base.Users.Models
         public void LoadUsers(int page = 1, int handel = 0)
         {
             ShowWaitForm();
-            var url = $"{Params.tokenHelper.baseServer}/userapi/v1.0/users?rows={_UserRows}&page={page}&key={_Key}";
+            var url = $"{Params.server}/userapi/v1.0/users?rows={_UserRows}&page={page}&key={_Key}";
             var client = new HttpClient<List<User>>(Params.tokenHelper);
             if (!client.Get(url))
             {
@@ -110,7 +110,7 @@ namespace Insight.MTP.Client.Base.Users.Models
 
             ShowWaitForm();
             msg = $"对不起，无法删除用户【{User.name}】！\r\n如果您想禁止该用户登录系统，请使用封禁功能。";
-            var url = $"{Params.tokenHelper.baseServer}/userapi/v1.0/users/{User.id}";
+            var url = $"{Params.server}/userapi/v1.0/users/{User.id}";
             var client = new HttpClient<object>(Params.tokenHelper);
             if (!client.Delete(url, null, msg))
             {
@@ -136,7 +136,7 @@ namespace Insight.MTP.Client.Base.Users.Models
             if (!Messages.ShowConfirm(msg)) return;
 
             ShowWaitForm();
-            var url = $"{Params.tokenHelper.baseServer}/userapi/v1.0/users/{User.id}/validity";
+            var url = $"{Params.server}/userapi/v1.0/users/{User.id}/validity";
             var dict = new Dictionary<string, object> {{"validity", status}};
             var client = new HttpClient<object>(Params.tokenHelper);
             if (!client.Put(url, dict))
@@ -161,7 +161,7 @@ namespace Insight.MTP.Client.Base.Users.Models
 
             ShowWaitForm();
             msg = $"对不起，用户【{User.name}】的密码重置失败。";
-            var url = $"{Params.tokenHelper.baseServer}/userapi/v1.0/users/{User.id}/signature";
+            var url = $"{Params.server}/userapi/v1.0/users/{User.id}/signature";
             var publicKey = Util.Base64Decode(Util.GetAppSetting("RSAKey"));
             var key = Util.Encrypt(publicKey, Util.Hash("123456"));
             var dict = new Dictionary<string, object> {{"password", key}};
@@ -220,7 +220,7 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// </summary>
         private void GetUser()
         {
-            var url = $"{Params.tokenHelper.baseServer}/userapi/v1.0/users/{User.id}";
+            var url = $"{Params.server}/userapi/v1.0/users/{User.id}";
             var client = new HttpClient<User>(Params.tokenHelper);
             if (!client.Get(url)) return;
 

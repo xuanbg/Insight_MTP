@@ -56,13 +56,14 @@ namespace Insight.MTP.Client.MainForm
         {
             if (!Params.needChangePw) return;
             
-            ChangPassword();
+            ChangPassword("123456");
         }
 
         /// <summary>
         /// 点击菜单项：修改密码，弹出修改密码对话框
         /// </summary>
-        private void ChangPassword()
+        /// <param name="old">旧密码</param>
+        private void ChangPassword(string old = null)
         {
             changPw = new ChangPwModel();
             var view = changPw.view;
@@ -75,7 +76,7 @@ namespace Insight.MTP.Client.MainForm
                 CloseDialog(view);
             };
 
-            changPw.Init();
+            changPw.Init(old);
             view.ShowDialog();
         }
 
@@ -106,6 +107,7 @@ namespace Insight.MTP.Client.MainForm
             const string msg = "注销用户将导致当前未完成的输入内容丢失！\r\n您确定要注销吗？";
             if (!Messages.ShowConfirm(msg)) return;
 
+            Params.tokenHelper.DeleteToken();
             Application.Restart();
         }
 

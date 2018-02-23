@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Insight.MTP.Client.Common.Models;
 using Insight.MTP.Client.Common.Utils;
 using Insight.MTP.Client.MainForm.Views;
 using Insight.Utils.Client;
@@ -6,7 +7,7 @@ using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.MainForm.Models
 {
-    public class ChangPwModel
+    public class ChangPwModel : DialogModel
     {
         public ChangePw view = new ChangePw();
 
@@ -20,7 +21,7 @@ namespace Insight.MTP.Client.MainForm.Models
         /// </summary>
         public ChangPwModel()
         {
-            view.Password.EditValueChanged += (sender, args) => sing = Util.Hash(Params.userId + Util.Hash(view.Password.Text));
+            view.Password.EditValueChanged += (sender, args) => sing = Util.Hash(token.account + Util.Hash(view.Password.Text));
             view.NewPw.EditValueChanged += (sender, args) => newPw = view.NewPw.Text;
             view.ConfirmPw.EditValueChanged += (sender, args) => confirmPw = view.ConfirmPw.Text;
         }
@@ -28,9 +29,12 @@ namespace Insight.MTP.Client.MainForm.Models
         /// <summary>
         /// 初始化对话框
         /// </summary>
-        public void Init()
+        /// <param name="old">旧密码</param>
+        public void Init(string old)
         {
-            view.Password.EditValue = null;
+            view.Password.EditValue = old;
+            view.Password.Enabled = old == null;
+
             view.NewPw.EditValue = null;
             view.ConfirmPw.EditValue = null;
             view.Refresh();
@@ -75,12 +79,9 @@ namespace Insight.MTP.Client.MainForm.Models
             }
 
             const string msg = "更换密码失败！请检查网络状况，并再次进行更换密码操作。";
-            var url = $"{Params.tokenHelper.baseServer}/userapi/v1.0/users/{Params.tokenHelper.account}/signature";
-            var publicKey = Util.Base64Decode(Util.GetAppSetting("RSAKey"));
-            var key = Util.Encrypt(publicKey, Util.Hash(newPw));
-
-            var dict = new Dictionary<string, object> {{"password", key}};
-            var client = new HttpClient<object>(Params.tokenHelper);
+            var url = $"{Params.server}/userapi/v1.0/users/{Params.userId}/signature";
+            var dict = new Dictionary<string, object> {{"password", Util.Hash(newPw)}};
+            var client = new HttpClient<object>(token);
             if (!client.Put(url, dict, msg)) return false;
 
             Params.tokenHelper.Signature(newPw);

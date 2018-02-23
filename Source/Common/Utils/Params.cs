@@ -10,6 +10,11 @@ namespace Insight.MTP.Client.Common.Utils
         public static TokenHelper tokenHelper { get; set; } = new TokenHelper{appId = "9dd99dd9-e6df-467a-8207-d05ea5581125"};
 
         /// <summary>
+        /// 服务器地址
+        /// </summary>
+        public static string server = tokenHelper.baseServer;
+
+        /// <summary>
         /// 当前登录部门ID
         /// </summary>
         public static string deptId { get; set; }

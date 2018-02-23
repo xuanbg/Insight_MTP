@@ -104,7 +104,7 @@ namespace Insight.MTP.Client.MainForm.Models
         /// <returns>文件版本信息</returns>
         private List<FileInfo> GetFiles()
         {
-            var url = $"{Params.tokenHelper.baseServer}/commonapi/v1.0/files";
+            var url = $"{Params.server}/commonapi/v1.0/files";
             var client = new HttpClient<List<FileInfo>>(Params.tokenHelper);
             return client.Get(url) ? client.data : new List<FileInfo>();
         }
@@ -116,7 +116,7 @@ namespace Insight.MTP.Client.MainForm.Models
         /// <returns>Result</returns>
         private string GetFile(string id)
         {
-            var url = $"{Params.tokenHelper.baseServer}/commonapi/v1.0/files/{id}";
+            var url = $"{Params.server}/commonapi/v1.0/files/{id}";
             var client = new HttpClient<object>(Params.tokenHelper);
             return client.Get(url) ? client.data.ToString() : null;
         }

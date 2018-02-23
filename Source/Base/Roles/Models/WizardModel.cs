@@ -13,12 +13,12 @@ namespace Insight.MTP.Client.Base.Roles.Models
 {
     public class WizardModel
     {
-        public Wizard View;
+        public Wizard view;
 
-        private readonly Role _Role;
-        private List<RoleAction> _Modules;
+        private readonly Role role;
+        private List<RoleAction> modules;
         private List<RoleAction> _Actions;
-        private List<RoleData> _DataModules;
+        private List<RoleData> dataModules;
         private List<RoleData> _Datas;
 
         /// <summary>
@@ -29,37 +29,37 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <param name="title">View标题</param>
         public WizardModel(Role role, string title)
         {
-            _Role = role;
-            _Role.Actions = new List<RoleAction>();
-            _Role.Datas = new List<RoleData>();
+            this.role = role;
+            this.role.Actions = new List<RoleAction>();
+            this.role.Datas = new List<RoleData>();
 
             // 构造Wizard视图并设置控件样式
-            View = new Wizard
+            view = new Wizard
             {
                 Text = title,
                 NameInput = {EditValue = role.Name},
                 Description = {EditValue = role.Description}
             };
-            View.PagInfo.AllowNext = View.NameInput.EditValue != null;
+            view.PagInfo.AllowNext = view.NameInput.EditValue != null;
 
             // 订阅控件事件实现数据双向绑定
-            View.NameInput.EditValueChanged += (sender, args) =>
+            view.NameInput.EditValueChanged += (sender, args) =>
             {
-                _Role.Name = View.NameInput.Text.Trim();
-                View.PagInfo.AllowNext = View.NameInput.EditValue != null;
+                this.role.Name = view.NameInput.Text.Trim();
+                view.PagInfo.AllowNext = view.NameInput.EditValue != null;
             };
-            View.Description.EditValueChanged += (sender, args) =>
+            view.Description.EditValueChanged += (sender, args) =>
             {
-                var text = View.Description.EditValue?.ToString().Trim();
-                _Role.Description = string.IsNullOrEmpty(text) ? null : text;
+                var text = view.Description.EditValue?.ToString().Trim();
+                this.role.Description = string.IsNullOrEmpty(text) ? null : text;
             };
-            View.TreModule.NodeChanged += (sender, args) => ModuleTreeChanged(args);
-            View.TreAction.AfterCheckNode += (sender, args) => SetAction(args.Node);
-            View.TreDataModule.NodeChanged += (sender, args) => DataTreeChanged(args);
-            View.TreDataPerm.AfterCheckNode += (sender, args) => SetData(args.Node);
-            View.Shown += (sender, args) =>
+            view.TreModule.NodeChanged += (sender, args) => ModuleTreeChanged(args);
+            view.TreAction.AfterCheckNode += (sender, args) => SetAction(args.Node);
+            view.TreDataModule.NodeChanged += (sender, args) => DataTreeChanged(args);
+            view.TreDataPerm.AfterCheckNode += (sender, args) => SetData(args.Node);
+            view.Shown += (sender, args) =>
             {
-                View.NameInput.Focus();
+                view.NameInput.Focus();
                 RefreshTree();
             };
 
@@ -73,8 +73,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
         public Role AddRole()
         {
             var msg = "角色权限保存失败！如多次失败，请联系管理员。";
-            var url = $"{Params.tokenHelper.baseServer}/roleapi/v1.0/roles";
-            var dict = new Dictionary<string, object> {{"role", _Role}};
+            var url = $"{Params.server}/roleapi/v1.0/roles";
+            var dict = new Dictionary<string, object> {{"role", role}};
             var client = new HttpClient<Role>(Params.tokenHelper);
             return client.Post(url, dict, msg) ? client.data : null;
         }
@@ -85,8 +85,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
         internal Role EditRole()
         {
             var msg = "角色权限更新失败！如多次失败，请联系管理员。";
-            var url = $"{Params.tokenHelper.baseServer}/roleapi/v1.0/roles/{_Role.ID}";
-            var dict = new Dictionary<string, object> {{"role", _Role}};
+            var url = $"{Params.server}/roleapi/v1.0/roles/{role.ID}";
+            var dict = new Dictionary<string, object> {{"role", role}};
             var client = new HttpClient<Role>(Params.tokenHelper);
             return client.Put(url, dict, msg) ? client.data : null;
         }
@@ -97,24 +97,24 @@ namespace Insight.MTP.Client.Base.Roles.Models
         public void RefreshTree()
         {
             // 设置ModuleTree和ActionTree选中状态
-            View.TreModule.ExpandToLevel(0);
-            foreach (var module in _Modules.Where(m => m.Permit == 1))
+            view.TreModule.ExpandToLevel(0);
+            foreach (var module in modules.Where(m => m.Permit == 1))
             {
-                var node = View.TreModule.FindNodeByKeyID(module.ID);
-                View.TreModule.SetNodeCheckState(node, CheckState.Checked, true);
+                var node = view.TreModule.FindNodeByKeyID(module.ID);
+                view.TreModule.SetNodeCheckState(node, CheckState.Checked, true);
             }
-            View.TreAction.ExpandToLevel(0);
-            View.TreAction.MoveFirst();
+            view.TreAction.ExpandToLevel(0);
+            view.TreAction.MoveFirst();
 
             // 设置DataTree和DataPermTree选中状态
-            View.TreDataModule.ExpandToLevel(0);
-            foreach (var module in _DataModules.Where(m => m.Permit == 1))
+            view.TreDataModule.ExpandToLevel(0);
+            foreach (var module in dataModules.Where(m => m.Permit == 1))
             {
-                var node = View.TreDataModule.FindNodeByKeyID(module.ID);
-                View.TreDataModule.SetNodeCheckState(node, CheckState.Checked, true);
+                var node = view.TreDataModule.FindNodeByKeyID(module.ID);
+                view.TreDataModule.SetNodeCheckState(node, CheckState.Checked, true);
             }
-            View.TreDataPerm.ExpandToLevel(0);
-            View.TreDataPerm.MoveFirst();
+            view.TreDataPerm.ExpandToLevel(0);
+            view.TreDataPerm.MoveFirst();
         }
 
         /// <summary>
@@ -123,27 +123,27 @@ namespace Insight.MTP.Client.Base.Roles.Models
         private void InitTree()
         {
             // 加载数据
-            var url = $"{Params.tokenHelper.baseServer}/roleapi/v1.0/roles/{_Role.ID}/allperm";
+            var url = $"{Params.server}/roleapi/v1.0/roles/{role.ID}/allperm";
             var client = new HttpClient<Role>(Params.tokenHelper);
             if (!client.Get(url)) return;
 
             _Actions = client.data.Actions;
-            _Modules = _Actions.Where(a => a.NodeType < 2).ToList();
+            modules = _Actions.Where(a => a.NodeType < 2).ToList();
             _Datas = client.data.Datas;
-            _DataModules = _Datas.Where(d => d.NodeType < 2).ToList();
+            dataModules = _Datas.Where(d => d.NodeType < 2).ToList();
 
             // 绑定数据源，设置TreeList样式
-            View.TreModule.DataSource = _Modules;
-            Format.TreeFormat(View.TreModule, NodeIconType.NodeType);
+            view.TreModule.DataSource = modules;
+            Format.TreeFormat(view.TreModule, NodeIconType.NodeType);
 
-            View.TreAction.DataSource = _Role.Actions;
-            Format.TreeFormat(View.TreAction, NodeIconType.NodeType);
+            view.TreAction.DataSource = role.Actions;
+            Format.TreeFormat(view.TreAction, NodeIconType.NodeType);
 
-            View.TreDataModule.DataSource = _DataModules;
-            Format.TreeFormat(View.TreDataModule, NodeIconType.NodeType);
+            view.TreDataModule.DataSource = dataModules;
+            Format.TreeFormat(view.TreDataModule, NodeIconType.NodeType);
 
-            View.TreDataPerm.DataSource = _Role.Datas;
-            Format.TreeFormat(View.TreDataPerm, NodeIconType.NodeType);
+            view.TreDataPerm.DataSource = role.Datas;
+            Format.TreeFormat(view.TreDataPerm, NodeIconType.NodeType);
         }
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace Insight.MTP.Client.Base.Roles.Models
                 }
             }
 
-            View.TreAction.Refresh();
+            view.TreAction.Refresh();
         }
 
         /// <summary>
@@ -235,7 +235,7 @@ namespace Insight.MTP.Client.Base.Roles.Models
                 }
             }
 
-            View.TreDataPerm.Refresh();
+            view.TreDataPerm.Refresh();
         }
         
         /// <summary>
@@ -252,13 +252,13 @@ namespace Insight.MTP.Client.Base.Roles.Models
             if (!e.Node.Checked) return;
 
             // 根据现已权限设置权限树节点状态
-            foreach (var action in _Role.Actions.Where(a => a.ParentId == id))
+            foreach (var action in role.Actions.Where(a => a.ParentId == id))
             {
-                var node = View.TreAction.FindNodeByKeyID(action.ID);
+                var node = view.TreAction.FindNodeByKeyID(action.ID);
                 var state = action.Permit.HasValue
                     ? (action.Permit == 1 ? CheckState.Checked : CheckState.Indeterminate)
                     : CheckState.Unchecked;
-                View.TreAction.SetNodeCheckState(node, state, true);
+                view.TreAction.SetNodeCheckState(node, state, true);
             }
         }
 
@@ -276,13 +276,13 @@ namespace Insight.MTP.Client.Base.Roles.Models
             if (!e.Node.Checked) return;
 
             // 根据现已权限设置权限树节点状态
-            foreach (var data in _Role.Datas.Where(a => a.ParentId == id))
+            foreach (var data in role.Datas.Where(a => a.ParentId == id))
             {
-                var node = View.TreDataPerm.FindNodeByKeyID(data.ID);
+                var node = view.TreDataPerm.FindNodeByKeyID(data.ID);
                 var state = data.Permit.HasValue
                     ? (data.Permit == 1 ? CheckState.Checked : CheckState.Indeterminate)
                     : CheckState.Unchecked;
-                View.TreDataPerm.SetNodeCheckState(node, state, true);
+                view.TreDataPerm.SetNodeCheckState(node, state, true);
             }
         }
 
@@ -298,20 +298,20 @@ namespace Insight.MTP.Client.Base.Roles.Models
             var actions = _Actions.Where(a => a.ParentId == id);
             if (add)
             {
-                if (_Role.Actions.All(g => g.ID != group.ID)) _Role.Actions.Add(group);
+                if (role.Actions.All(g => g.ID != group.ID)) role.Actions.Add(group);
 
-                if (_Role.Actions.All(m => m.ID != module.ID)) _Role.Actions.Add(module);
+                if (role.Actions.All(m => m.ID != module.ID)) role.Actions.Add(module);
 
-                _Role.Actions.AddRange(actions.Where(action => _Role.Actions.All(a => a.ID != action.ID)));
+                role.Actions.AddRange(actions.Where(action => role.Actions.All(a => a.ID != action.ID)));
             }
             else
             {
-                _Role.Actions.RemoveAll(a => a.ParentId == id);
-                _Role.Actions.Remove(module);
-                if (_Role.Actions.All(a => a.ParentId != group.ID)) _Role.Actions.Remove(group);
+                role.Actions.RemoveAll(a => a.ParentId == id);
+                role.Actions.Remove(module);
+                if (role.Actions.All(a => a.ParentId != group.ID)) role.Actions.Remove(group);
             }
-            View.TreAction.RefreshDataSource();
-            View.TreAction.ExpandToLevel(0);
+            view.TreAction.RefreshDataSource();
+            view.TreAction.ExpandToLevel(0);
         }
 
         /// <summary>
@@ -326,20 +326,20 @@ namespace Insight.MTP.Client.Base.Roles.Models
             var datas = _Datas.Where(d => d.ParentId == id);
             if (add)
             {
-                if (_Role.Datas.All(g => g.ID != group.ID)) _Role.Datas.Add(group);
+                if (role.Datas.All(g => g.ID != group.ID)) role.Datas.Add(group);
 
-                if (_Role.Datas.All(m => m.ID != module.ID)) _Role.Datas.Add(module);
+                if (role.Datas.All(m => m.ID != module.ID)) role.Datas.Add(module);
 
-                _Role.Datas.AddRange(datas.Where(data => _Role.Datas.All(d => d.ID != data.ID)));
+                role.Datas.AddRange(datas.Where(data => role.Datas.All(d => d.ID != data.ID)));
             }
             else
             {
-                _Role.Datas.RemoveAll(a => a.ParentId == id);
-                _Role.Datas.Remove(module);
-                if (_Role.Datas.All(a => a.ParentId != group.ID)) _Role.Datas.Remove(group);
+                role.Datas.RemoveAll(a => a.ParentId == id);
+                role.Datas.Remove(module);
+                if (role.Datas.All(a => a.ParentId != group.ID)) role.Datas.Remove(group);
             }
-            View.TreDataPerm.RefreshDataSource();
-            View.TreDataPerm.ExpandToLevel(0);
+            view.TreDataPerm.RefreshDataSource();
+            view.TreDataPerm.ExpandToLevel(0);
         }
     }
 }

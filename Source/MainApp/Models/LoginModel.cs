@@ -1,5 +1,7 @@
-﻿using Insight.MTP.Client.Common.Utils;
+﻿using Insight.MTP.Client.Common.Entity;
+using Insight.MTP.Client.Common.Utils;
 using Insight.MTP.Client.MainApp.Views;
+using Insight.Utils.Client;
 using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.MainApp.Models
@@ -58,9 +60,25 @@ namespace Insight.MTP.Client.MainApp.Models
             Params.tokenHelper.GetTokens();
             if (!Params.tokenHelper.success) return false;
 
+            Params.userId = Params.tokenHelper.userId;
             Params.needChangePw = password == "123456";
             Config.SaveUserName(account);
+            GetUserInfo();
+
             return true;
+        }
+
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        private static void GetUserInfo()
+        {
+            var url = $"{Params.server}/userapi/v1.0/users/{Params.userId}";
+            var client = new HttpClient<User>(Params.tokenHelper);
+            if (!client.Get(url)) return;
+
+            Params.userId = client.data.id;
+            Params.userName = client.data.name;
         }
     }
 }

@@ -1,10 +1,11 @@
-﻿using Insight.MTP.Client.Common.Utils;
+﻿using Insight.MTP.Client.Common.Models;
+using Insight.MTP.Client.Common.Utils;
 using Insight.MTP.Client.MainForm.Views;
 using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.MainForm.Models
 {
-    public class LockModel
+    public class LockModel : DialogModel
     {
         public Locked view = new Locked();
 
@@ -16,8 +17,7 @@ namespace Insight.MTP.Client.MainForm.Models
         /// </summary>
         public LockModel()
         {
-            var sign = Util.Hash(Params.userId + Util.Hash(view.Password.Text));
-            view.Password.EditValueChanged += (sender, args) => sing = sign;
+            view.Password.EditValueChanged += (sender, args) => sing = Util.Hash(token.account + Util.Hash(view.Password.Text));
         }
 
         /// <summary>

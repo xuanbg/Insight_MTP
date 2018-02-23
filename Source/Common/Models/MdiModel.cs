@@ -9,7 +9,6 @@ using DevExpress.XtraBars;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using Insight.MTP.Client.Common.BaseForm;
-using Insight.MTP.Client.Common.Dialogs;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Common.Utils;
 using Insight.Utils.Client;
@@ -24,13 +23,10 @@ namespace Insight.MTP.Client.Common.Models
         private DateTime wait;
         private GridHitInfo hitInfo = new GridHitInfo();
 
+        public TokenHelper token = Params.tokenHelper;
+        public string server = Params.server;
         public T view;
         public List<BarButtonItem> buttons;
-
-        /// <summary>
-        /// 模块参数集合
-        /// </summary>
-        public List<MemberUser> moduleParams { get; set; }
 
         /// <summary>
         /// 构造函数，初始化MDI窗体并显示
@@ -161,89 +157,11 @@ namespace Insight.MTP.Client.Common.Models
         /// 获取模块功能按钮集合
         /// </summary>
         /// <returns>功能按钮集合</returns>
-        private List<Function> GetActions()
+        private IEnumerable<Function> GetActions()
         {
-            var url = $"{Params.tokenHelper.baseServer}/moduleapi/v1.0/modules/{moduleId}/functions";
+            var url = $"{Params.server}/moduleapi/v1.0/modules/{moduleId}/functions";
             var client = new HttpClient<List<Function>>(Params.tokenHelper);
             return client.Get(url) ? client.data : new List<Function>();
         }
-
-        /// <summary>
-        /// 根据输入的选项ID获取选项值
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public List<string> GetParameter(string id)
-        {
-            var pvl = new List<string>();
-            if (moduleParams.Exists(obj => obj.ID == id))
-            {
-                pvl.AddRange(moduleParams.FindAll(p => p.ID == id).Select(p => p.Name));
-            }
-            return pvl;
-        }
-
-        /// <summary>
-        /// 读取模块选项参数
-        /// </summary>
-        public void ReadModuleParameter()
-        {
-            //ModuleParams = Interface.ModuleParam(_ModuleId);
-        }
-
-        /// <summary>
-        /// 保存模块选项参数
-        /// </summary>
-        //public void WriteModuleParameter(IEnumerable<SYS_ModuleParam> pams)
-        //{
-        //    var apl = new List<SYS_ModuleParam>();
-        //    var upl = new List<SYS_ModuleParam>();
-        //    foreach (var pam in pams)
-        //    {
-        //        if (!ModuleParams.Exists(p => p.ID == pam.ID)) apl.Add(pam);
-        //        if (ModuleParams.Exists(p => p.ID == pam.ID && p.Value != pam.Value)) upl.Add(pam);
-        //    }
-
-        //    var result = Interface.SaveModuleParam(apl, upl);
-        //    if (!result)
-        //    {
-        //        Messages.ShowError("保存选项失败！如多次保存失败，请联系管理员。");
-        //    }
-        //}
-
-        /// <summary>
-        /// 新建/编辑分类
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="isEdit"></param>
-        /// <param name="allowEditRoot"></param>
-        /// <returns></returns>
-        public bool EditCatalog(Guid id, bool isEdit, bool allowEditRoot = false)
-        {
-            var dig = new Category
-            {
-                AllowEditRoot = allowEditRoot,
-            };
-            var result = dig.ShowDialog() == DialogResult.OK;
-            dig.Close();
-            return result;
-        }
-
-        /// <summary>
-        /// 删除分类
-        /// </summary>
-        //public void DeleteCatalog(TreeList tree)
-        //{
-        //    var fn = tree.FocusedNode;
-        //    var msg = $"您确定要删除分类【{fn.GetValue("Name")}】吗？";
-        //    if (Messages.ShowConfirm(msg) != DialogResult.OK) return;
-
-        //    var id = fn.GetValue("ID").ToString();
-        //    var result = Interface.DeleteCategory(id);
-        //    if (!result) return;
-
-        //    tree.DeleteNode(tree.FocusedNode);
-        //}
-
     }
 }

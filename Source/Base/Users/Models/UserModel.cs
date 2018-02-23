@@ -48,7 +48,7 @@ namespace Insight.MTP.Client.Base.Users.Models
             if (!InputExamine()) return null;
 
             var msg = $"新建用户【{_User.name}】失败！";
-            var url = $"{Params.tokenHelper.baseServer}/userapi/v1.0/users";
+            var url = $"{Params.server}/userapi/v1.0/users";
             var dict = new Dictionary<string, object> {{"user", _User}};
             var client = new HttpClient<User>(Params.tokenHelper);
             return client.Post(url, dict, msg) ? client.data : null;
@@ -62,7 +62,7 @@ namespace Insight.MTP.Client.Base.Users.Models
             if (!InputExamine()) return null;
 
             var msg = $"没有更新用户【{_User.name}】的任何信息！";
-            var url = $"{Params.tokenHelper.baseServer}/userapi/v1.0/users/{_User.id}";
+            var url = $"{Params.server}/userapi/v1.0/users/{_User.id}";
             var dict = new Dictionary<string, object> {{"user", _User}};
             var client = new HttpClient<User>(Params.tokenHelper);
             return client.Put(url, dict, msg) ? client.data : null;

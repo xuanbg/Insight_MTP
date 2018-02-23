@@ -53,6 +53,7 @@ namespace Insight.MTP.Client.MainApp
             view.Show();
             view.Refresh();
 
+
             // 关闭登录对话框，进入主窗体
             model.login.Close();
             // ReSharper disable once UnusedVariable

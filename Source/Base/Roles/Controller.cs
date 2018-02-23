@@ -63,17 +63,17 @@ namespace Insight.MTP.Client.Base.Roles
         private void AddRole()
         {
             var role = new Role {ID = Guid.NewGuid(), Validity = true};
-            var model = new WizardModel(role, "新建角色");
-            var view = model.View;
+            var wizardModel = new WizardModel(role, "新建角色");
+            var view = wizardModel.view;
             SubCloseEvent(view);
             view.WizRole.FinishClick += (sender, args) =>
             {
-                base.model.ShowWaitForm();
-                role = model.AddRole();
-                base.model.CloseWaitForm();
+                model.ShowWaitForm();
+                role = wizardModel.AddRole();
+                model.CloseWaitForm();
                 if (role == null) return;
 
-                base.model.AddRole(role);
+                model.AddRole(role);
             };
 
             view.ShowDialog();
@@ -84,20 +84,20 @@ namespace Insight.MTP.Client.Base.Roles
         /// </summary>
         private void RoleEdit()
         {
-            if (!base.model.AllowDoubleClick("EditRole")) return;
+            if (!model.AllowDoubleClick("EditRole")) return;
 
-            var role = Util.Clone(base.model.Role);
-            var model = new WizardModel(role, "编辑角色");
-            var view = model.View;
+            var role = Util.Clone(model.role);
+            var wizardModel = new WizardModel(role, "编辑角色");
+            var view = wizardModel.view;
             SubCloseEvent(view);
             view.WizRole.FinishClick += (sender, args) =>
             {
-                base.model.ShowWaitForm();
-                role = model.EditRole();
-                base.model.CloseWaitForm();
+                model.ShowWaitForm();
+                role = wizardModel.EditRole();
+                model.CloseWaitForm();
                 if (role == null) return;
 
-                base.model.UpdatePerm(role);
+                model.UpdatePerm(role);
             };
 
             view.ShowDialog();
@@ -108,17 +108,17 @@ namespace Insight.MTP.Client.Base.Roles
         /// </summary>
         private void AddMembers()
         {
-            var model = new MemberModel(base.model.Role);
-            var view = model.View;
+            var memberModel = new MemberModel(model.role);
+            var view = memberModel.View;
             SubCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
-                base.model.ShowWaitForm();
-                var role = model.Save();
-                base.model.CloseWaitForm();
+                model.ShowWaitForm();
+                var role = memberModel.Save();
+                model.CloseWaitForm();
                 if (role == null) return;
 
-                base.model.UpdateMember(role);
+                model.UpdateMember(role);
                 CloseDialog(view);
             };
 
