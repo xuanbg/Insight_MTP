@@ -96,6 +96,9 @@ namespace Insight.MTP.Client.Base.Users.Models
         public void Update(User data)
         {
             user.name = data.name;
+            user.account = data.account;
+            user.mobile = data.mobile;
+            user.email = data.email;
             user.remark = data.remark;
             view.GdvUser.RefreshData();
         }
@@ -127,17 +130,17 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// <summary>
         /// 封禁/解封当前选中用户
         /// </summary>
-        /// <param name="status">用户状态</param>
-        public void SetStatus(bool status)
+        /// <param name="isInvalid">用户状态</param>
+        public void SetInvalid(bool isInvalid)
         {
-            var action = status ? "解封" : "封禁";
-            var str = status ? "即可正常" : "将无法";
+            var action = isInvalid ? "封禁" : "解封";
+            var str = isInvalid ? "将无法" : "即可正常";
             var msg = $"您确定要{action}用户【{user.name}】吗？\r\n用户{action}后{str}登录系统！";
             if (!Messages.ShowConfirm(msg)) return;
 
             ShowWaitForm();
             var url = $"{Params.server}/userapi/v1.0/users/{user.id}/validity";
-            var dict = new Dictionary<string, object> {{"validity", status}};
+            var dict = new Dictionary<string, object> {{"invalid", isInvalid}};
             var client = new HttpClient<object>(Params.tokenHelper);
             if (!client.Put(url, dict))
             {
@@ -145,7 +148,7 @@ namespace Insight.MTP.Client.Base.Users.Models
                 return;
             }
 
-            user.isInvalid = !status;
+            user.isInvalid = isInvalid;
             view.GdvUser.RefreshData();
             RefreshToolBar();
             CloseWaitForm();

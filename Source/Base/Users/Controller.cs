@@ -32,25 +32,25 @@ namespace Insight.MTP.Client.Base.Users
         {
             switch (action)
             {
-                case "Refresh":
+                case "getUsers":
                     model.Refresh();
                     break;
-                case "NewUser":
+                case "newUser":
                     AddUser();
                     break;
-                case "EditUser":
+                case "editUser":
                     EditUser();
                     break;
-                case "DeleteUser":
+                case "deleteUser":
                     model.DeleteUser();
                     break;
-                case "Banned":
-                    model.SetStatus(false);
+                case "banned":
+                    model.SetInvalid(true);
                     break;
-                case "Release":
-                    model.SetStatus(true);
+                case "release":
+                    model.SetInvalid(false);
                     break;
-                case "Reset":
+                case "reset":
                     model.Reset();
                     break;
                 default:
@@ -66,7 +66,7 @@ namespace Insight.MTP.Client.Base.Users
         {
             var user = new User();
             var userModel = new UserModel(user, "新建用户");
-            var view = userModel.View;
+            var view = userModel.view;
             SubCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
@@ -87,14 +87,13 @@ namespace Insight.MTP.Client.Base.Users
         /// </summary>
         private void EditUser()
         {
-            if (!model.AllowDoubleClick("EditUser")) return;
+            if (!model.AllowDoubleClick("editUser")) return;
 
             var user = Util.Clone(model.user);
             user.funcs = null;
             user.datas = null;
             var userModel = new UserModel(user, "编辑用户");
-            var view = userModel.View;
-            view.LoginName.Enabled = false;
+            var view = userModel.view;
             SubCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {

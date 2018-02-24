@@ -112,7 +112,7 @@ namespace Insight.MTP.Client.Common.Utils
             // 使列标题文字居中显示
             foreach (TreeListColumn column in tree.Columns)
             {
-                if (column.FieldName == "Index") column.SortOrder = SortOrder.Ascending;
+                if (column.FieldName == "index") column.SortOrder = SortOrder.Ascending;
 
                 column.OptionsColumn.AllowSort = false;
                 column.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Center;
@@ -120,6 +120,8 @@ namespace Insight.MTP.Client.Common.Utils
 
             // 格式化TreeList属性
             tree.BorderStyle = BorderStyles.NoBorder;
+            tree.KeyFieldName = "id";
+            tree.ParentFieldName = "parentId";
             tree.OptionsBehavior.Editable = false;
             tree.OptionsView.ShowColumns = showColumns;
             tree.OptionsView.ShowIndicator = showIndicator;
@@ -141,8 +143,8 @@ namespace Insight.MTP.Client.Common.Utils
             control.Properties.ShowHeader = false;
             control.Properties.ShowFooter = false;
             control.Properties.DataSource = list;
-            control.Properties.DisplayMember = "Name";
-            control.Properties.ValueMember = "ID";
+            control.Properties.DisplayMember = "name";
+            control.Properties.ValueMember = "id";
             control.Properties.Columns.Add(new LookUpColumnInfo(control.Properties.DisplayMember));
             control.Properties.PopupFormMinSize = new Size(60, 0);
         }
@@ -157,8 +159,8 @@ namespace Insight.MTP.Client.Common.Utils
             control.ShowHeader = false;
             control.ShowFooter = false;
             control.DataSource = list;
-            control.DisplayMember = "Name";
-            control.ValueMember = "ID";
+            control.DisplayMember = "name";
+            control.ValueMember = "id";
             control.Columns.Add(new LookUpColumnInfo(control.DisplayMember));
             control.PopupFormMinSize = new Size(60, 0);
         }
@@ -171,8 +173,8 @@ namespace Insight.MTP.Client.Common.Utils
         public static void InitGridLookUpEdit(GridLookUpEdit control, List<LookUpMember> list)
         {
             control.Properties.DataSource = list;
-            control.Properties.DisplayMember = "Name";
-            control.Properties.ValueMember = "ID";
+            control.Properties.DisplayMember = "name";
+            control.Properties.ValueMember = "id";
             control.Properties.PopulateViewColumns();
             control.Properties.PopupFormMinSize = new Size(60, 0);
             GridFormat(control.Properties.View);
@@ -186,8 +188,8 @@ namespace Insight.MTP.Client.Common.Utils
         public static void InitSearchLookUpEdit(SearchLookUpEdit control, List<LookUpMember> list)
         {
             control.Properties.DataSource = list;
-            control.Properties.DisplayMember = "Name";
-            control.Properties.ValueMember = "ID";
+            control.Properties.DisplayMember = "name";
+            control.Properties.ValueMember = "id";
             control.Properties.PopulateViewColumns();
             GridFormat(control.Properties.View);
         }
@@ -201,10 +203,10 @@ namespace Insight.MTP.Client.Common.Utils
         public static void InitTreeListLookUpEdit(TreeListLookUpEdit control, List<TreeLookUpMember> list, NodeIconType type = NodeIconType.General)
         {
             control.Properties.DataSource = list;
-            control.Properties.DisplayMember = "Name";
-            control.Properties.ValueMember = "ID";
+            control.Properties.DisplayMember = "name";
+            control.Properties.ValueMember = "id";
             control.Properties.PopupFormMinSize = new Size(60, 0);
-            control.Properties.TreeList.ParentFieldName = "ParentId";
+            control.Properties.TreeList.ParentFieldName = "parentId";
 
             TreeFormat(control.Properties.TreeList, type);
         }
@@ -228,15 +230,15 @@ namespace Insight.MTP.Client.Common.Utils
                         args.SelectImageIndex = args.Node.Expanded ? 2 : 1;
                         break;
                     case NodeIconType.NodeType:
-                        args.SelectImageIndex = (int)args.Node.GetValue("NodeType");
+                        args.SelectImageIndex = (int)args.Node.GetValue("nodeType");
                         break;
                     case NodeIconType.Organization:
-                        args.SelectImageIndex = (int) args.Node.GetValue("NodeType") - 1;
+                        args.SelectImageIndex = (int) args.Node.GetValue("nodeType") - 1;
                         break;
                     case NodeIconType.OnlyLevel0:
                         if (args.Node.Level > 0) return;
 
-                        args.SelectImageIndex = (int) args.Node.GetValue("NodeType");
+                        args.SelectImageIndex = (int) args.Node.GetValue("nodeType");
                         break;
                     case NodeIconType.Custom:
                         break;

@@ -33,6 +33,7 @@ namespace Insight.MTP.Client.Base.Users.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
             this.tabPermission = new DevExpress.XtraTab.XtraTabControl();
             this.pagData = new DevExpress.XtraTab.XtraTabPage();
@@ -44,7 +45,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.colDescriptionD = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colPermit = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colPermission = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.imgData = new DevExpress.Utils.ImageCollection();
+            this.imgData = new DevExpress.Utils.ImageCollection(this.components);
             this.pagAction = new DevExpress.XtraTab.XtraTabPage();
             this.panAction = new DevExpress.XtraEditors.PanelControl();
             this.TreAction = new DevExpress.XtraTreeList.TreeList();
@@ -53,8 +54,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.colNameA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colDescriptionA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colPermitA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.colAction = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.imgPermission = new DevExpress.Utils.ImageCollection();
+            this.imgPermission = new DevExpress.Utils.ImageCollection(this.components);
             this.panMain = new DevExpress.XtraEditors.PanelControl();
             this.panUser = new DevExpress.XtraEditors.PanelControl();
             this.GrdUser = new DevExpress.XtraGrid.GridControl();
@@ -253,8 +253,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.colTypeA,
             this.colNameA,
             this.colDescriptionA,
-            this.colPermitA,
-            this.colAction});
+            this.colPermitA});
             this.TreAction.DataSource = null;
             this.TreAction.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TreAction.Location = new System.Drawing.Point(2, 2);
@@ -269,19 +268,19 @@ namespace Insight.MTP.Client.Base.Users.Views
             // 
             // colIndexA
             // 
-            this.colIndexA.FieldName = "Index";
+            this.colIndexA.FieldName = "index";
             this.colIndexA.Name = "colIndexA";
             this.colIndexA.Width = 50;
             // 
             // colTypeA
             // 
-            this.colTypeA.FieldName = "NodeType";
+            this.colTypeA.FieldName = "nodeType";
             this.colTypeA.Name = "colTypeA";
             this.colTypeA.Width = 51;
             // 
             // colNameA
             // 
-            this.colNameA.FieldName = "Name";
+            this.colNameA.FieldName = "name";
             this.colNameA.MinWidth = 33;
             this.colNameA.Name = "colNameA";
             this.colNameA.Visible = true;
@@ -290,7 +289,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             // 
             // colDescriptionA
             // 
-            this.colDescriptionA.FieldName = "Description";
+            this.colDescriptionA.FieldName = "remark";
             this.colDescriptionA.Name = "colDescriptionA";
             this.colDescriptionA.Visible = true;
             this.colDescriptionA.VisibleIndex = 1;
@@ -298,26 +297,21 @@ namespace Insight.MTP.Client.Base.Users.Views
             // 
             // colPermitA
             // 
-            this.colPermitA.FieldName = "Permit";
+            this.colPermitA.FieldName = "permit";
             this.colPermitA.Name = "colPermitA";
             this.colPermitA.Width = 61;
-            // 
-            // colAction
-            // 
-            this.colAction.FieldName = "Action";
-            this.colAction.Name = "colAction";
-            this.colAction.Width = 61;
             // 
             // imgPermission
             // 
             this.imgPermission.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imgPermission.ImageStream")));
-            this.imgPermission.Images.SetKeyName(0, "Navigation.png");
-            this.imgPermission.Images.SetKeyName(1, "Module.png");
-            this.imgPermission.InsertGalleryImage("close_16x16.png", "images/actions/close_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/close_16x16.png"), 2);
-            this.imgPermission.Images.SetKeyName(2, "close_16x16.png");
-            this.imgPermission.InsertGalleryImage("checkbox_16x16.png", "images/content/checkbox_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/content/checkbox_16x16.png"), 3);
-            this.imgPermission.Images.SetKeyName(3, "checkbox_16x16.png");
-            this.imgPermission.Images.SetKeyName(4, "Action.png");
+            this.imgPermission.Images.SetKeyName(0, "Module.png");
+            this.imgPermission.InsertGalleryImage("openhyperlink_16x16.png", "images/actions/openhyperlink_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/openhyperlink_16x16.png"), 1);
+            this.imgPermission.Images.SetKeyName(1, "openhyperlink_16x16.png");
+            this.imgPermission.Images.SetKeyName(2, "Action.png");
+            this.imgPermission.InsertGalleryImage("close_16x16.png", "images/actions/close_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/close_16x16.png"), 3);
+            this.imgPermission.Images.SetKeyName(3, "close_16x16.png");
+            this.imgPermission.InsertGalleryImage("checkbox_16x16.png", "images/content/checkbox_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/content/checkbox_16x16.png"), 4);
+            this.imgPermission.Images.SetKeyName(4, "checkbox_16x16.png");
             // 
             // panMain
             // 
@@ -531,7 +525,6 @@ namespace Insight.MTP.Client.Base.Users.Views
         private DevExpress.XtraTreeList.Columns.TreeListColumn colNameA;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colDescriptionA;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colPermitA;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn colAction;
         private DevExpress.Utils.ImageCollection imgData;
         private DevExpress.Utils.ImageCollection imgPermission;
         private PanelControl panMain;

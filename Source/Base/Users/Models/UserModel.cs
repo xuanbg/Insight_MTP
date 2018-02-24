@@ -9,9 +9,9 @@ namespace Insight.MTP.Client.Base.Users.Models
 {
     public class UserModel
     {
-        public UserDialog View;
+        public UserDialog view;
 
-        private readonly User _User;
+        private readonly User user;
 
         /// <summary>
         /// 构造函数
@@ -21,22 +21,22 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// <param name="title">View标题</param>
         public UserModel(User user, string title)
         {
-            _User = user;
-            View = new UserDialog
+            this.user = user;
+            view = new UserDialog
             {
                 Text = title,
-                UserName = {EditValue = _User.name},
-                LoginName = {EditValue = _User.account},
-                Description = {EditValue = _User.remark}
+                UserName = {EditValue = this.user.name},
+                LoginName = {EditValue = this.user.account},
+                Description = {EditValue = this.user.remark}
             };
 
             // 订阅控件事件实现数据双向绑定
-            View.UserName.EditValueChanged += (sender, args) => _User.name = View.UserName.Text.Trim();
-            View.LoginName.EditValueChanged += (sender, args) => _User.account = View.LoginName.Text.Trim();
-            View.Description.EditValueChanged += (sender, args) =>
+            view.UserName.EditValueChanged += (sender, args) => this.user.name = view.UserName.Text.Trim();
+            view.LoginName.EditValueChanged += (sender, args) => this.user.account = view.LoginName.Text.Trim();
+            view.Description.EditValueChanged += (sender, args) =>
             {
-                var text = View.Description.EditValue?.ToString().Trim();
-                _User.remark = string.IsNullOrEmpty(text) ? null : text;
+                var text = view.Description.EditValue?.ToString().Trim();
+                this.user.remark = string.IsNullOrEmpty(text) ? null : text;
             };
         }
 
@@ -47,9 +47,9 @@ namespace Insight.MTP.Client.Base.Users.Models
         {
             if (!InputExamine()) return null;
 
-            var msg = $"新建用户【{_User.name}】失败！";
+            var msg = $"新建用户【{user.name}】失败！";
             var url = $"{Params.server}/userapi/v1.0/users";
-            var dict = new Dictionary<string, object> {{"user", _User}};
+            var dict = new Dictionary<string, object> {{"user", user}};
             var client = new HttpClient<User>(Params.tokenHelper);
             return client.Post(url, dict, msg) ? client.data : null;
         }
@@ -61,11 +61,11 @@ namespace Insight.MTP.Client.Base.Users.Models
         {
             if (!InputExamine()) return null;
 
-            var msg = $"没有更新用户【{_User.name}】的任何信息！";
-            var url = $"{Params.server}/userapi/v1.0/users/{_User.id}";
-            var dict = new Dictionary<string, object> {{"user", _User}};
+            var msg = $"没有更新用户【{user.name}】的任何信息！";
+            var url = $"{Params.server}/userapi/v1.0/users/{user.id}";
+            var dict = new Dictionary<string, object> {{"user", user}};
             var client = new HttpClient<User>(Params.tokenHelper);
-            return client.Put(url, dict, msg) ? client.data : null;
+            return client.Put(url, dict, msg) ? user : null;
         }
 
         /// <summary>
@@ -74,17 +74,17 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// <returns>bool 是否通过</returns>
         private bool InputExamine()
         {
-            if (string.IsNullOrEmpty(_User.name))
+            if (string.IsNullOrEmpty(user.name))
             {
                 Messages.ShowWarning("必须输入用户名！用户名一般是用户的姓名。");
-                View.UserName.Focus();
+                view.UserName.Focus();
                 return false;
             }
 
-            if (string.IsNullOrEmpty(_User.account))
+            if (string.IsNullOrEmpty(user.account))
             {
                 Messages.ShowWarning("必须输入登录名！登录名只能是英文字母组成。");
-                View.LoginName.Focus();
+                view.LoginName.Focus();
                 return false;
             }
 
