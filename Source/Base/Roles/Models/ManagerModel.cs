@@ -84,10 +84,10 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <summary>
         /// 新增角色到角色列表
         /// </summary>
-        /// <param name="role">RoleInfo</param>
-        public void AddRole(Role role)
+        /// <param name="data">RoleInfo</param>
+        public void AddRole(Role data)
         {
-            roles.Add(role);
+            roles.Add(data);
 
             view.TabRole.AddItems();
             view.GrdRole.RefreshDataSource();
@@ -98,12 +98,12 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// </summary>
         public void RoleDelete()
         {
-            var msg = $"您确定要删除角色【{role.Name}】吗？\r\n角色删除后将无法恢复！";
+            var msg = $"您确定要删除角色【{role.name}】吗？\r\n角色删除后将无法恢复！";
             if (!Messages.ShowConfirm(msg)) return;
 
             ShowWaitForm();
-            var url = $"{server}/roleapi/v1.0/roles/{role.ID}";
-            msg = $"对不起，角色【{role.Name}】删除失败！如多次删除失败，请联系管理员。";
+            var url = $"{server}/roleapi/v1.0/roles/{role.id}";
+            msg = $"对不起，角色【{role.name}】删除失败！如多次删除失败，请联系管理员。";
             var client = new HttpClient<object>(token);
             if (!client.Delete(url, null, msg))
             {
@@ -123,12 +123,12 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// </summary>
         public void MemberRemove()
         {
-            var msg = $"您确定要移除角色成员【{member.Name}】吗？\r\n角色成员被移除后相应用户将失去该角色赋予的权限！";
+            var msg = $"您确定要移除角色成员【{member.name}】吗？\r\n角色成员被移除后相应用户将失去该角色赋予的权限！";
             if (!Messages.ShowConfirm(msg)) return;
 
             ShowWaitForm();
-            msg = $"对不起，角色成员【{member.Name}】移除失败！如多次移除失败，请联系管理员。";
-            var url = $"{server}/roleapi/v1.0/roles/members/{member.ID}";
+            msg = $"对不起，角色成员【{member.name}】移除失败！如多次移除失败，请联系管理员。";
+            var url = $"{server}/roleapi/v1.0/roles/members/{member.id}";
             var client = new HttpClient<Role>(token);
             if (!client.Delete(url, null, msg))
             {
@@ -143,17 +143,17 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <summary>
         /// 更新当前所选角色数据
         /// </summary>
-        /// <param name="role">RoleInfo</param>
-        public void UpdatePerm(Role role)
+        /// <param name="data">RoleInfo</param>
+        public void UpdatePerm(Role data)
         {
-            this.role.Name = role.Name;
-            this.role.Description = role.Description;
+            role.name = data.name;
+            role.remark = data.remark;
 
-            this.role.Actions.Clear();
-            this.role.Actions.AddRange(role.Actions);
+            role.funcs.Clear();
+            role.funcs.AddRange(data.funcs);
 
-            this.role.Datas.Clear();
-            this.role.Datas.AddRange(role.Datas);
+            role.datas.Clear();
+            role.datas.AddRange(data.datas);
 
             RefreshPerm();
         }
@@ -161,11 +161,11 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <summary>
         /// 更新当前所选角色数据
         /// </summary>
-        /// <param name="role">RoleInfo</param>
-        public void UpdateMember(Role role)
+        /// <param name="data">RoleInfo</param>
+        public void UpdateMember(Role data)
         {
-            this.role.Members.Clear();
-            this.role.Members.AddRange(role.Members);
+            role.members.Clear();
+            role.members.AddRange(data.members);
 
             view.TreMember.RefreshDataSource();
             view.TreMember.ExpandAll();
@@ -183,9 +183,9 @@ namespace Insight.MTP.Client.Base.Roles.Models
         {
             var dict = new Dictionary<string, bool>
             {
-                ["deleteRole"] = !role.BuiltIn,
-                ["addRoleMember"] = !role.BuiltIn,
-                ["removeRoleMember"] = !role.BuiltIn && type == 0
+                ["deleteRole"] = !role.isBuiltin,
+                ["addRoleMember"] = !role.isBuiltin,
+                ["removeRoleMember"] = !role.isBuiltin && type == 0
             };
             SwitchItemStatus(dict);
         }
@@ -211,13 +211,13 @@ namespace Insight.MTP.Client.Base.Roles.Models
             view.TabRole.FocusedRowHandle = index;
 
             role = roles[index];
-            if (role.Actions == null || role.Datas == null || role.Members == null) GetRole();
+            if (role.funcs == null || role.datas == null || role.members == null) GetRole();
 
-            view.TreAction.DataSource = role.Actions;
+            view.TreAction.DataSource = role.funcs;
             view.TreAction.ExpandToLevel(0);
-            view.TreData.DataSource = role.Datas;
+            view.TreData.DataSource = role.datas;
             view.TreData.ExpandToLevel(0);
-            view.TreMember.DataSource = role.Members;
+            view.TreMember.DataSource = role.members;
             view.TreMember.ExpandAll();
             view.TreMember.MoveFirst();
 
@@ -241,7 +241,7 @@ namespace Insight.MTP.Client.Base.Roles.Models
 
             var type = (int) node.GetValue("NodeType");
             RefreshToolBar(type);
-            member = role.Members.Single(m => m.ID == node.GetValue("ID").ToString());
+            member = role.members.Single(m => m.id == node.GetValue("ID").ToString());
         }
 
         /// <summary>
@@ -249,13 +249,13 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// </summary>
         private void GetRole()
         {
-            var url = $"{server}/roleapi/v1.0/roles/{role.ID}";
+            var url = $"{server}/roleapi/v1.0/roles/{role.id}";
             var client = new HttpClient<Role>(token);
             if (!client.Get(url)) return;
 
-            role.Actions = client.data.Actions;
-            role.Datas = client.data.Datas;
-            role.Members = client.data.Members;
+            role.funcs = client.data.funcs;
+            role.datas = client.data.datas;
+            role.members = client.data.members;
         }
 
         /// <summary>
@@ -265,7 +265,7 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <param name="handel">当前焦点行</param>
         private void GetMemberUsers(int page = 1, int handel = 0)
         {
-            var url = $"{server}/roleapi/v1.0/roles/{role.ID}/users?rows={userRows}&page={page}";
+            var url = $"{server}/roleapi/v1.0/roles/{role.id}/users?rows={userRows}&page={page}";
             var client = new HttpClient<List<MemberUser>>(token);
             if (!client.Get(url)) return;
 

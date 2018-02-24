@@ -57,11 +57,6 @@
         public string id { get; set; }
 
         /// <summary>
-        /// 导航ID
-        /// </summary>
-        public string navigatorId { get; set; }
-
-        /// <summary>
         /// 序号
         /// </summary>
         public int index { get; set; }
@@ -94,6 +89,6 @@
         /// <summary>
         /// 是否启用状态
         /// </summary>
-        public int permit { get; set; }
+        public bool permit { get; set; }
     }
 }

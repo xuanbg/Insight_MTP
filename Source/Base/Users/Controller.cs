@@ -87,23 +87,23 @@ namespace Insight.MTP.Client.Base.Users
         /// </summary>
         private void EditUser()
         {
-            if (!this.model.AllowDoubleClick("EditUser")) return;
+            if (!model.AllowDoubleClick("EditUser")) return;
 
-            var user = Util.Clone(this.model.User);
-            user.Actions = null;
-            user.Datas = null;
-            var model = new UserModel(user, "编辑用户");
-            var view = model.View;
+            var user = Util.Clone(model.user);
+            user.funcs = null;
+            user.datas = null;
+            var userModel = new UserModel(user, "编辑用户");
+            var view = userModel.View;
             view.LoginName.Enabled = false;
             SubCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
-                this.model.ShowWaitForm();
-                user = model.EditUser();
-                this.model.CloseWaitForm();
+                model.ShowWaitForm();
+                user = userModel.EditUser();
+                model.CloseWaitForm();
                 if (user == null) return;
 
-                this.model.Update(user);
+                model.Update(user);
                 CloseDialog(view);
             };
 

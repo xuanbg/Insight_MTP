@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Insight.MTP.Client.Base.Roles.Views;
 using Insight.MTP.Client.Common.Entity;
@@ -11,10 +10,10 @@ namespace Insight.MTP.Client.Base.Roles.Models
 {
     public class MemberModel
     {
-        public Member View = new Member();
+        public Member view = new Member();
 
-        private readonly Role _Role;
-        private List<RoleMember> _Members;
+        private readonly Role role;
+        private List<RoleMember> members;
 
         /// <summary>
         /// 构造函数，初始化视图
@@ -23,16 +22,16 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <param name="role">角色对象</param>
         public MemberModel(Role role)
         {
-            _Role = role;
+            this.role = role;
 
-            View.treOrg.DataSource = OtherTitles(role.ID);
-            Format.TreeFormat(View.treOrg, NodeIconType.Organization);
+            view.treOrg.DataSource = OtherTitles(role.id);
+            Format.TreeFormat(view.treOrg, NodeIconType.Organization);
 
-            View.grdGroup.DataSource = OtherGroups(role.ID);
-            Format.GridFormat(View.gdvGroup, 0);
+            view.grdGroup.DataSource = OtherGroups(role.id);
+            Format.GridFormat(view.gdvGroup, 0);
 
-            View.grdUser.DataSource = OtherUsers(role.ID);
-            Format.GridFormat(View.gdvUser, 0);
+            view.grdUser.DataSource = OtherUsers(role.id);
+            Format.GridFormat(view.gdvUser, 0);
         }
 
         /// <summary>
@@ -40,25 +39,25 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// </summary>
         public Role Save()
         {
-            var mt = from node in View.treOrg.GetAllCheckedNodes().Where(n => (int)n.GetValue("NodeType") == 3)
+            var mt = from node in view.treOrg.GetAllCheckedNodes().Where(n => (int)n.GetValue("NodeType") == 3)
                      let p = "00000000-0000-0000-0000-000000000003"
-                     let t = (TitleMember)View.treOrg.GetDataRecordByNode(node)
-                     select new RoleMember { ID = Util.NewId(), ParentId = p, MemberId = t.ID, NodeType = 3, Name = t.Name };
-            var mg = from list in View.gdvGroup.GetSelectedRows()
+                     let t = (TitleMember)view.treOrg.GetDataRecordByNode(node)
+                     select new RoleMember { id = Util.NewId(), parentId = p, memberId = t.id, nodeType = 3, name = t.name };
+            var mg = from list in view.gdvGroup.GetSelectedRows()
                      let p = "00000000-0000-0000-0000-000000000002"
-                     let g = (MemberUser)View.gdvGroup.GetRow(list)
-                     select new RoleMember { ID = Util.NewId(), ParentId = p, MemberId = g.ID, NodeType = 2, Name = g.Name };
-            var ug = from list in View.gdvUser.GetSelectedRows()
+                     let g = (MemberUser)view.gdvGroup.GetRow(list)
+                     select new RoleMember { id = Util.NewId(), parentId = p, memberId = g.id, nodeType = 2, name = g.Name };
+            var ug = from list in view.gdvUser.GetSelectedRows()
                      let p = "00000000-0000-0000-0000-000000000001"
-                     let u = (MemberUser)View.gdvUser.GetRow(list)
-                     select new RoleMember { ID = Util.NewId(), ParentId = p, MemberId = u.ID, NodeType = 1, Name = u.Name };
+                     let u = (MemberUser)view.gdvUser.GetRow(list)
+                     select new RoleMember { id = Util.NewId(), parentId = p, memberId = u.id, nodeType = 1, name = u.Name };
 
-            _Members = mt.Union(mg).Union(ug).ToList();
+            members = mt.Union(mg).Union(ug).ToList();
             const string msg = "当前未选择任何角色成员！您确定要离开此界面吗？";
-            if (_Members.Count == 0 && Messages.ShowConfirm(msg)) return null;
+            if (members.Count == 0 && Messages.ShowConfirm(msg)) return null;
 
-            var url = $"{Params.server}/roleapi/v1.0/roles/{_Role.ID}/members";
-            var dict = new Dictionary<string, object> {{"members", _Members}};
+            var url = $"{Params.server}/roleapi/v1.0/roles/{role.id}/members";
+            var dict = new Dictionary<string, object> {{"members", members}};
             var client = new HttpClient<Role>(Params.tokenHelper);
             return client.Post(url, dict) ? client.data : null;
         }
@@ -66,8 +65,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <summary>
         /// 加载非角色成员职位数据
         /// </summary>
-        /// <param name="id">角色ID</param>
-        private List<TitleMember> OtherTitles(Guid id)
+        /// <param name="id">角色id</param>
+        private List<TitleMember> OtherTitles(string id)
         {
             var url = Params.server + $"/roleapi/v1.0/roles/{id}/othertitles";
             var client = new HttpClient<List<TitleMember>>(Params.tokenHelper);
@@ -77,8 +76,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <summary>
         /// 加载非角色成员用户组列表数据
         /// </summary>
-        /// <param name="id">角色ID</param>
-        private List<MemberUser> OtherGroups(Guid id)
+        /// <param name="id">角色id</param>
+        private List<MemberUser> OtherGroups(string id)
         {
             var url = Params.server + $"/roleapi/v1.0/roles/{id}/othergroups";
             var client = new HttpClient<List<MemberUser>>(Params.tokenHelper);
@@ -88,8 +87,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <summary>
         /// 加载非角色成员用户列表数据
         /// </summary>
-        /// <param name="id">角色ID</param>
-        private List<MemberUser> OtherUsers(Guid id)
+        /// <param name="id">角色id</param>
+        private List<MemberUser> OtherUsers(string id)
         {
             var url = Params.server + $"/roleapi/v1.0/roles/{id}/otherusers";
             var client = new HttpClient<List<MemberUser>>(Params.tokenHelper);

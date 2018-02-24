@@ -67,7 +67,7 @@ namespace Insight.MTP.Client.Common.Dialogs
             var id = trlParent.EditValue.ToString();
             SetIndexValue(id);
 
-            var list = _Categorys.Where(c => c.ID == id && c.Name == txtName.Text.Trim());
+            var list = _Categorys.Where(c => c.id == id && c.Name == txtName.Text.Trim());
             if (list.Any())
             {
                 Messages.ShowMessage("您所选择的父分类下已经存在同名分类！请修改分类名称或重新选择父分类。");
@@ -104,7 +104,7 @@ namespace Insight.MTP.Client.Common.Dialogs
 
             if (_Categorys.Any())
             {
-                    RemoveNode(_Category.ID);
+                    RemoveNode(_Category.id);
             }
             else
             {
@@ -142,7 +142,7 @@ namespace Insight.MTP.Client.Common.Dialogs
         /// <param name="id"></param>
         private void SetIndexValue(string id)
         {
-            var list = _Categorys.Where(c => c.ID == id && c.Name == txtName.Text.Trim()).ToList();
+            var list = _Categorys.Where(c => c.id == id && c.Name == txtName.Text.Trim()).ToList();
             var maxValue = list.Count + 1;
             _IndexValue = maxValue;
             _Index = id == _ParentId ? _IndexValue : maxValue;

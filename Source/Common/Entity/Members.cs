@@ -10,7 +10,7 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 唯一ID
         /// </summary>
-        public string ID { get; set; }
+        public string id { get; set; }
 
         /// <summary>
         /// 用户ID
@@ -56,27 +56,27 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 唯一ID
         /// </summary>
-        public string ID { get; set; }
+        public string id { get; set; }
 
         /// <summary>
         /// 父级ID
         /// </summary>
-        public string ParentId { get; set; }
+        public string parentId { get; set; }
 
         /// <summary>
         /// 排序索引
         /// </summary>
-        public int Index { get; set; }
+        public int index { get; set; }
 
         /// <summary>
         /// 节点类型
         /// </summary>
-        public int NodeType { get; set; }
+        public int nodeType { get; set; }
 
         /// <summary>
         /// 名称
         /// </summary>
-        public string Name { get; set; }
+        public string name { get; set; }
     }
 
     /// <summary>
@@ -108,32 +108,32 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 唯一ID
         /// </summary>
-        public Guid ID { get; set; }
+        public string id { get; set; }
 
         /// <summary>
         /// 父级ID
         /// </summary>
-        public Guid? ParentId { get; set; }
+        public string parentId { get; set; }
 
         /// <summary>
         /// 节点类型
         /// </summary>
-        public int NodeType { get; set; }
+        public int nodeType { get; set; }
 
         /// <summary>
         /// 排序索引
         /// </summary>
-        public int Index { get; set; }
+        public int index { get; set; }
 
         /// <summary>
         /// 名称
         /// </summary>
-        public string Name { get; set; }
+        public string name { get; set; }
 
         /// <summary>
         /// 描述
         /// </summary>
-        public string Description { get; set; }
+        public string description { get; set; }
     }
 
     /// <summary>
@@ -142,8 +142,8 @@ namespace Insight.MTP.Client.Common.Entity
     public class ComboBoxItem
     {
 
-        private readonly int _Index;
-        private readonly string _Name;
+        private readonly int index;
+        private readonly string name;
 
         /// <summary>
         /// 构造函数
@@ -152,8 +152,8 @@ namespace Insight.MTP.Client.Common.Entity
         /// <param name="name"></param>
         public ComboBoxItem(int index, string name)
         {
-            _Index = index;
-            _Name = name;
+            this.index = index;
+            this.name = name;
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace Insight.MTP.Client.Common.Entity
         /// <returns></returns>
         public override string ToString()
         {
-            return _Name;
+            return name;
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Insight.MTP.Client.Common.Entity
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return _Index;
+            return index;
         }
     }
 }

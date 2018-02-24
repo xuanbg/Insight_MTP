@@ -1,5 +1,4 @@
-﻿using System;
-using Insight.MTP.Client.Base.Roles.Models;
+﻿using Insight.MTP.Client.Base.Roles.Models;
 using Insight.MTP.Client.Common.Controller;
 using Insight.MTP.Client.Common.Entity;
 using Insight.Utils.Common;
@@ -62,7 +61,7 @@ namespace Insight.MTP.Client.Base.Roles
         /// </summary>
         private void AddRole()
         {
-            var role = new Role {ID = Guid.NewGuid(), Validity = true};
+            var role = new Role {id = Util.NewId()};
             var wizardModel = new WizardModel(role, "新建角色");
             var view = wizardModel.view;
             SubCloseEvent(view);
@@ -109,7 +108,7 @@ namespace Insight.MTP.Client.Base.Roles
         private void AddMembers()
         {
             var memberModel = new MemberModel(model.role);
-            var view = memberModel.View;
+            var view = memberModel.view;
             SubCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
