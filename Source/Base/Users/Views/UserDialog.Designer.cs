@@ -34,45 +34,82 @@ namespace Insight.MTP.Client.Base.Users.Views
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserDialog));
             this.labUserName = new DevExpress.XtraEditors.LabelControl();
             this.labLoginName = new DevExpress.XtraEditors.LabelControl();
-            this.UserName = new DevExpress.XtraEditors.TextEdit();
+            this.txtName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.LoginName = new DevExpress.XtraEditors.TextEdit();
+            this.txtAccount = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.Description = new DevExpress.XtraEditors.MemoEdit();
+            this.memRemark = new DevExpress.XtraEditors.MemoEdit();
             this.labMemo = new DevExpress.XtraEditors.LabelControl();
+            this.labEmail = new DevExpress.XtraEditors.LabelControl();
+            this.txtEmail = new DevExpress.XtraEditors.TextEdit();
+            this.labMobile = new DevExpress.XtraEditors.LabelControl();
+            this.txtMobile = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CategoryNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OrgTreeNode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.UserName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LoginName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Description.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAccount.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memRemark.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMobile.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel
             // 
-            this.panel.Controls.Add(this.Description);
+            this.panel.Controls.Add(this.memRemark);
             this.panel.Controls.Add(this.labMemo);
-            this.panel.Controls.Add(this.UserName);
+            this.panel.Controls.Add(this.txtMobile);
+            this.panel.Controls.Add(this.txtName);
+            this.panel.Controls.Add(this.labMobile);
             this.panel.Controls.Add(this.labelControl1);
-            this.panel.Controls.Add(this.LoginName);
+            this.panel.Controls.Add(this.txtEmail);
+            this.panel.Controls.Add(this.labEmail);
+            this.panel.Controls.Add(this.txtAccount);
             this.panel.Controls.Add(this.labelControl2);
+            this.panel.Size = new System.Drawing.Size(370, 220);
             // 
             // Cancel
             // 
             this.Cancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Cancel.Appearance.Options.UseFont = true;
+            this.Cancel.Location = new System.Drawing.Point(200, 244);
             // 
             // Confirm
             // 
             this.Confirm.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Confirm.Appearance.Options.UseFont = true;
+            this.Confirm.Location = new System.Drawing.Point(290, 244);
+            // 
+            // FolderNode
+            // 
+            this.FolderNode.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("FolderNode.ImageStream")));
+            this.FolderNode.Images.SetKeyName(0, "Item.png");
+            this.FolderNode.Images.SetKeyName(1, "Folder.png");
+            this.FolderNode.Images.SetKeyName(2, "FolderOpen.png");
+            // 
+            // CategoryNode
+            // 
+            this.CategoryNode.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("CategoryNode.ImageStream")));
+            this.CategoryNode.Images.SetKeyName(0, "Doc.png");
+            this.CategoryNode.Images.SetKeyName(1, "Folder.png");
+            this.CategoryNode.Images.SetKeyName(2, "FolderOpen.png");
+            // 
+            // OrgTreeNode
+            // 
+            this.OrgTreeNode.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("OrgTreeNode.ImageStream")));
+            this.OrgTreeNode.Images.SetKeyName(0, "NodeOrg.png");
+            this.OrgTreeNode.Images.SetKeyName(1, "NodeDept.png");
+            this.OrgTreeNode.Images.SetKeyName(2, "NodePost.png");
             // 
             // labUserName
             // 
             this.labUserName.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labUserName.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.labUserName.Appearance.Options.UseFont = true;
+            this.labUserName.Appearance.Options.UseForeColor = true;
+            this.labUserName.Appearance.Options.UseTextOptions = true;
             this.labUserName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labUserName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labUserName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
@@ -86,6 +123,9 @@ namespace Insight.MTP.Client.Base.Users.Views
             // 
             this.labLoginName.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labLoginName.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.labLoginName.Appearance.Options.UseFont = true;
+            this.labLoginName.Appearance.Options.UseForeColor = true;
+            this.labLoginName.Appearance.Options.UseTextOptions = true;
             this.labLoginName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labLoginName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labLoginName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
@@ -95,17 +135,17 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.labLoginName.TabIndex = 1;
             this.labLoginName.Text = "登录名：";
             // 
-            // UserName
+            // txtName
             // 
-            this.UserName.EnterMoveNextControl = true;
-            this.UserName.Location = new System.Drawing.Point(80, 20);
-            this.UserName.Name = "UserName";
-            this.UserName.Properties.NullText = "推荐使用用户姓名（中文）作为用户名";
-            this.UserName.Size = new System.Drawing.Size(260, 20);
-            this.UserName.TabIndex = 1;
+            this.txtName.EnterMoveNextControl = true;
+            this.txtName.Location = new System.Drawing.Point(80, 20);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(260, 20);
+            this.txtName.TabIndex = 1;
             // 
             // labelControl1
             // 
+            this.labelControl1.Appearance.Options.UseTextOptions = true;
             this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
@@ -113,18 +153,18 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(80, 21);
             this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "用户名：";
+            this.labelControl1.Text = "用户名称：";
             // 
-            // LoginName
+            // txtAccount
             // 
-            this.LoginName.Location = new System.Drawing.Point(80, 50);
-            this.LoginName.Name = "LoginName";
-            this.LoginName.Properties.NullText = "请输入用户登录名，由大小写英文字母组成";
-            this.LoginName.Size = new System.Drawing.Size(260, 20);
-            this.LoginName.TabIndex = 2;
+            this.txtAccount.Location = new System.Drawing.Point(80, 50);
+            this.txtAccount.Name = "txtAccount";
+            this.txtAccount.Size = new System.Drawing.Size(260, 20);
+            this.txtAccount.TabIndex = 2;
             // 
             // labelControl2
             // 
+            this.labelControl2.Appearance.Options.UseTextOptions = true;
             this.labelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl2.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
@@ -132,39 +172,80 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(80, 21);
             this.labelControl2.TabIndex = 0;
-            this.labelControl2.Text = "登录名：";
+            this.labelControl2.Text = "登录账号：";
             // 
-            // Description
+            // memRemark
             // 
-            this.Description.Location = new System.Drawing.Point(80, 80);
-            this.Description.Name = "Description";
-            this.Description.Properties.NullText = "请输入用户描述…";
-            this.Description.Size = new System.Drawing.Size(260, 50);
-            this.Description.TabIndex = 3;
+            this.memRemark.Location = new System.Drawing.Point(80, 150);
+            this.memRemark.Name = "memRemark";
+            this.memRemark.Size = new System.Drawing.Size(260, 50);
+            this.memRemark.TabIndex = 5;
             // 
             // labMemo
             // 
+            this.labMemo.Appearance.Options.UseTextOptions = true;
             this.labMemo.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labMemo.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labMemo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labMemo.Location = new System.Drawing.Point(0, 80);
+            this.labMemo.Location = new System.Drawing.Point(0, 150);
             this.labMemo.Name = "labMemo";
             this.labMemo.Size = new System.Drawing.Size(80, 21);
             this.labMemo.TabIndex = 0;
             this.labMemo.Text = "描述：";
             // 
+            // labEmail
+            // 
+            this.labEmail.Appearance.Options.UseTextOptions = true;
+            this.labEmail.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.labEmail.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.labEmail.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labEmail.Location = new System.Drawing.Point(0, 110);
+            this.labEmail.Name = "labEmail";
+            this.labEmail.Size = new System.Drawing.Size(80, 21);
+            this.labEmail.TabIndex = 0;
+            this.labEmail.Text = "电子邮箱：";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(80, 110);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(260, 20);
+            this.txtEmail.TabIndex = 4;
+            // 
+            // labMobile
+            // 
+            this.labMobile.Appearance.Options.UseTextOptions = true;
+            this.labMobile.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.labMobile.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.labMobile.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labMobile.Location = new System.Drawing.Point(0, 80);
+            this.labMobile.Name = "labMobile";
+            this.labMobile.Size = new System.Drawing.Size(80, 21);
+            this.labMobile.TabIndex = 0;
+            this.labMobile.Text = "手机号码：";
+            // 
+            // txtMobile
+            // 
+            this.txtMobile.EnterMoveNextControl = true;
+            this.txtMobile.Location = new System.Drawing.Point(80, 80);
+            this.txtMobile.Name = "txtMobile";
+            this.txtMobile.Size = new System.Drawing.Size(260, 20);
+            this.txtMobile.TabIndex = 3;
+            // 
             // UserDialog
             // 
-            this.ClientSize = new System.Drawing.Size(384, 212);
+            this.ClientSize = new System.Drawing.Size(384, 282);
             this.Name = "UserDialog";
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CategoryNode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OrgTreeNode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.UserName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LoginName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Description.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAccount.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memRemark.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMobile.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -176,8 +257,12 @@ namespace Insight.MTP.Client.Base.Users.Views
         private LabelControl labelControl1;
         private LabelControl labelControl2;
         private LabelControl labMemo;
-        internal TextEdit UserName;
-        internal TextEdit LoginName;
-        internal MemoEdit Description;
+        internal TextEdit txtName;
+        internal TextEdit txtAccount;
+        internal MemoEdit memRemark;
+        internal TextEdit txtMobile;
+        private LabelControl labMobile;
+        internal TextEdit txtEmail;
+        private LabelControl labEmail;
     }
 }

@@ -17,26 +17,30 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// 构造函数
         /// 通过订阅事件实现双向数据绑定
         /// </summary>
-        /// <param name="user">UserInfo</param>
+        /// <param name="data">UserInfo</param>
         /// <param name="title">View标题</param>
-        public UserModel(User user, string title)
+        public UserModel(User data, string title)
         {
-            this.user = user;
+            user = data;
             view = new UserDialog
             {
                 Text = title,
-                UserName = {EditValue = this.user.name},
-                LoginName = {EditValue = this.user.account},
-                Description = {EditValue = this.user.remark}
+                txtName = {EditValue = data.name},
+                txtAccount = {EditValue = data.account},
+                txtMobile = {EditValue = data.mobile},
+                txtEmail = {EditValue = data.email},
+                memRemark = {EditValue = data.remark}
             };
 
             // 订阅控件事件实现数据双向绑定
-            view.UserName.EditValueChanged += (sender, args) => this.user.name = view.UserName.Text.Trim();
-            view.LoginName.EditValueChanged += (sender, args) => this.user.account = view.LoginName.Text.Trim();
-            view.Description.EditValueChanged += (sender, args) =>
+            view.txtName.EditValueChanged += (sender, args) => user.name = view.txtName.Text.Trim();
+            view.txtAccount.EditValueChanged += (sender, args) => user.account = view.txtAccount.Text.Trim();
+            view.txtMobile.EditValueChanged += (sender, args) => user.mobile = view.txtMobile.Text.Trim();
+            view.txtEmail.EditValueChanged += (sender, args) => user.email = view.txtEmail.Text.Trim();
+            view.memRemark.EditValueChanged += (sender, args) =>
             {
-                var text = view.Description.EditValue?.ToString().Trim();
-                this.user.remark = string.IsNullOrEmpty(text) ? null : text;
+                var text = view.memRemark.EditValue?.ToString().Trim();
+                user.remark = string.IsNullOrEmpty(text) ? null : text;
             };
         }
 
@@ -77,14 +81,14 @@ namespace Insight.MTP.Client.Base.Users.Models
             if (string.IsNullOrEmpty(user.name))
             {
                 Messages.ShowWarning("必须输入用户名！用户名一般是用户的姓名。");
-                view.UserName.Focus();
+                view.txtName.Focus();
                 return false;
             }
 
             if (string.IsNullOrEmpty(user.account))
             {
                 Messages.ShowWarning("必须输入登录名！登录名只能是英文字母组成。");
-                view.LoginName.Focus();
+                view.txtAccount.Focus();
                 return false;
             }
 
