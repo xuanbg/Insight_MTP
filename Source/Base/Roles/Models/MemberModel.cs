@@ -46,11 +46,11 @@ namespace Insight.MTP.Client.Base.Roles.Models
             var mg = from list in view.gdvGroup.GetSelectedRows()
                      let p = "00000000-0000-0000-0000-000000000002"
                      let g = (MemberUser)view.gdvGroup.GetRow(list)
-                     select new RoleMember { id = Util.NewId(), parentId = p, memberId = g.id, nodeType = 2, name = g.Name };
+                     select new RoleMember { id = Util.NewId(), parentId = p, memberId = g.id, nodeType = 2, name = g.name };
             var ug = from list in view.gdvUser.GetSelectedRows()
                      let p = "00000000-0000-0000-0000-000000000001"
                      let u = (MemberUser)view.gdvUser.GetRow(list)
-                     select new RoleMember { id = Util.NewId(), parentId = p, memberId = u.id, nodeType = 1, name = u.Name };
+                     select new RoleMember { id = Util.NewId(), parentId = p, memberId = u.id, nodeType = 1, name = u.name };
 
             members = mt.Union(mg).Union(ug).ToList();
             const string msg = "当前未选择任何角色成员！您确定要离开此界面吗？";

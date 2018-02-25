@@ -32,22 +32,22 @@ namespace Insight.MTP.Client.Base.Roles
         {
             switch (action)
             {
-                case "Refresh":
+                case "getRoles":
                     model.Refresh();
                     break;
-                case "NewRole":
+                case "newRole":
                     AddRole();
                     break;
-                case "EditRole":
+                case "editRole":
                     RoleEdit();
                     break;
-                case "DeleteRole":
+                case "deleteRole":
                     model.RoleDelete();
                     break;
-                case "AddMember":
+                case "addRoleMember":
                     AddMembers();
                     break;
-                case "Remove":
+                case "removeRoleMember":
                     model.MemberRemove();
                     break;
                 default:

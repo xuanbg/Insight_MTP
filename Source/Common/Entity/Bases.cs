@@ -115,6 +115,16 @@ namespace Insight.MTP.Client.Common.Entity
         public DateTime createTime { get; set; }
 
         /// <summary>
+        /// 角色成员
+        /// </summary>
+        public List<RoleMember> members { get; set; }
+
+        /// <summary>
+        /// 角色成员用户
+        /// </summary>
+        public List<MemberUser> memberUsers { get; set; }
+
+        /// <summary>
         /// 角色功能权限
         /// </summary>
         public List<AppTree> funcs { get; set; }
@@ -123,11 +133,6 @@ namespace Insight.MTP.Client.Common.Entity
         /// 角色数据权限
         /// </summary>
         public List<AppTree> datas { get; set; }
-
-        /// <summary>
-        /// 角色成员
-        /// </summary>
-        public List<RoleMember> members { get; set; }
     }
 
     /// <summary>
@@ -146,19 +151,14 @@ namespace Insight.MTP.Client.Common.Entity
         public string parentId { get; set; }
 
         /// <summary>
-        /// 成员ID
-        /// </summary>
-        public string memberId { get; set; }
-
-        /// <summary>
-        /// 序号
-        /// </summary>
-        public int index { get; set; }
-
-        /// <summary>
         /// 节点类型（成员类型：1、用户；2、用户组；3、岗位）
         /// </summary>
         public int nodeType { get; set; }
+
+        /// <summary>
+        /// 成员ID
+        /// </summary>
+        public string memberId { get; set; }
 
         /// <summary>
         /// 节点名称
@@ -180,11 +180,6 @@ namespace Insight.MTP.Client.Common.Entity
         /// 父级ID
         /// </summary>
         public string parentId { get; set; }
-
-        /// <summary>
-        /// 序号
-        /// </summary>
-        public int index { get; set; }
 
         /// <summary>
         /// 图标类型

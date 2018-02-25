@@ -67,7 +67,7 @@ namespace Insight.MTP.Client.Common.Dialogs
             var id = trlParent.EditValue.ToString();
             SetIndexValue(id);
 
-            var list = _Categorys.Where(c => c.id == id && c.Name == txtName.Text.Trim());
+            var list = _Categorys.Where(c => c.id == id && c.name == txtName.Text.Trim());
             if (list.Any())
             {
                 Messages.ShowMessage("您所选择的父分类下已经存在同名分类！请修改分类名称或重新选择父分类。");
@@ -117,7 +117,7 @@ namespace Insight.MTP.Client.Common.Dialogs
             trlParent.EditValue = _ParentId;
             chkRoot.Checked = trlParent.EditValue == null;
             chkRoot.Enabled = AllowEditRoot;
-            txtName.EditValue = _Category.Name;
+            txtName.EditValue = _Category.name;
             memDescription.EditValue = _Category.remark;
         }
 
@@ -142,7 +142,7 @@ namespace Insight.MTP.Client.Common.Dialogs
         /// <param name="id"></param>
         private void SetIndexValue(string id)
         {
-            var list = _Categorys.Where(c => c.id == id && c.Name == txtName.Text.Trim()).ToList();
+            var list = _Categorys.Where(c => c.id == id && c.name == txtName.Text.Trim()).ToList();
             var maxValue = list.Count + 1;
             _IndexValue = maxValue;
             _Index = id == _ParentId ? _IndexValue : maxValue;
@@ -164,21 +164,21 @@ namespace Insight.MTP.Client.Common.Dialogs
                 return false;
             }
 
-            if (_Category.Name != txtName.Text.Trim())
+            if (_Category.name != txtName.Text.Trim())
             {
                 Messages.ShowError($"对不起，在父分类【{trlParent.Text}】中已存在名称为【{txtName.Text}】的分类！\n\r请修改分类名称后再点击确定按钮保存数据。");
                 txtName.Focus();
                 return false;
             }
 
-            if (!string.IsNullOrEmpty(txtAlias.Text.Trim()) && _Category.Name != txtAlias.Text.Trim())
+            if (!string.IsNullOrEmpty(txtAlias.Text.Trim()) && _Category.name != txtAlias.Text.Trim())
             {
                 Messages.ShowError($"对不起，已经存在名为【{txtAlias.Text}】的简称！分类简称可以为空，但不能重复。");
                 txtAlias.Focus();
                 return false;
             }
 
-            if (!string.IsNullOrEmpty(txtCode.Text.Trim()) && _Category.Name != txtCode.Text.Trim())
+            if (!string.IsNullOrEmpty(txtCode.Text.Trim()) && _Category.name != txtCode.Text.Trim())
             {
                 Messages.ShowError($"对不起，已经存在名为【{txtCode.Text}】的编码！分类编码可以为空，但不能重复。");
                 txtCode.Focus();

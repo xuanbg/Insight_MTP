@@ -37,6 +37,7 @@ namespace Insight.MTP.Client.Base.Roles.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -48,16 +49,16 @@ namespace Insight.MTP.Client.Base.Roles.Views
             this.GdvRole = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBuiltIn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colApp = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TabRole = new Insight.Utils.Controls.PageControl();
             this.splMember = new DevExpress.XtraEditors.SplitContainerControl();
             this.grpMember = new DevExpress.XtraEditors.GroupControl();
             this.TreMember = new DevExpress.XtraTreeList.TreeList();
-            this.colIndex = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colNodeType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colMember = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.imgMember = new DevExpress.Utils.ImageCollection();
+            this.imgMember = new DevExpress.Utils.ImageCollection(this.components);
             this.grpUser = new DevExpress.XtraEditors.GroupControl();
             this.GrdUser = new DevExpress.XtraGrid.GridControl();
             this.GdvUser = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -77,7 +78,7 @@ namespace Insight.MTP.Client.Base.Roles.Views
             this.colDescriptionD = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colPermit = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colPermission = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.imgData = new DevExpress.Utils.ImageCollection();
+            this.imgData = new DevExpress.Utils.ImageCollection(this.components);
             this.pagAction = new DevExpress.XtraTab.XtraTabPage();
             this.panAction = new DevExpress.XtraEditors.PanelControl();
             this.TreAction = new DevExpress.XtraTreeList.TreeList();
@@ -86,9 +87,10 @@ namespace Insight.MTP.Client.Base.Roles.Views
             this.colNameA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colDescriptionA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colPermitA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.colAction = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.imgPermission = new DevExpress.Utils.ImageCollection();
+            this.imgPermission = new DevExpress.Utils.ImageCollection(this.components);
             this.xtraScrollable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrgTreeNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMain)).BeginInit();
             this.splMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grpRole)).BeginInit();
@@ -123,6 +125,48 @@ namespace Insight.MTP.Client.Base.Roles.Views
             // 
             this.xtraScrollable.Controls.Add(this.splMain);
             this.xtraScrollable.Controls.Add(this.tabPermission);
+            // 
+            // FolderNode
+            // 
+            this.FolderNode.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("FolderNode.ImageStream")));
+            this.FolderNode.Images.SetKeyName(0, "Item.png");
+            this.FolderNode.Images.SetKeyName(1, "Folder.png");
+            this.FolderNode.Images.SetKeyName(2, "FolderOpen.png");
+            // 
+            // OrgTreeNode
+            // 
+            this.OrgTreeNode.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("OrgTreeNode.ImageStream")));
+            this.OrgTreeNode.Images.SetKeyName(0, "NodeOrg.png");
+            this.OrgTreeNode.Images.SetKeyName(1, "NodeDept.png");
+            this.OrgTreeNode.Images.SetKeyName(2, "NodePost.png");
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = null;
+            this.barDockControlTop.Size = new System.Drawing.Size(0, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlBottom.Manager = null;
+            this.barDockControlBottom.Size = new System.Drawing.Size(0, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Manager = null;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 0);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlRight.Manager = null;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 0);
             // 
             // splMain
             // 
@@ -169,6 +213,7 @@ namespace Insight.MTP.Client.Base.Roles.Views
             this.GdvRole.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colID,
             this.colBuiltIn,
+            this.colApp,
             this.colName,
             this.colDescription});
             this.GdvRole.GridControl = this.GrdRole;
@@ -183,29 +228,38 @@ namespace Insight.MTP.Client.Base.Roles.Views
             // colBuiltIn
             // 
             this.colBuiltIn.Caption = "内置";
-            this.colBuiltIn.FieldName = "BuiltIn";
+            this.colBuiltIn.FieldName = "isBuiltin";
             this.colBuiltIn.Name = "colBuiltIn";
             this.colBuiltIn.Visible = true;
             this.colBuiltIn.VisibleIndex = 0;
             this.colBuiltIn.Width = 40;
             // 
+            // colApp
+            // 
+            this.colApp.Caption = "所属应用";
+            this.colApp.FieldName = "appName";
+            this.colApp.Name = "colApp";
+            this.colApp.Visible = true;
+            this.colApp.VisibleIndex = 1;
+            this.colApp.Width = 160;
+            // 
             // colName
             // 
             this.colName.Caption = "名称";
-            this.colName.FieldName = "Name";
+            this.colName.FieldName = "name";
             this.colName.Name = "colName";
             this.colName.Visible = true;
-            this.colName.VisibleIndex = 1;
-            this.colName.Width = 200;
+            this.colName.VisibleIndex = 2;
+            this.colName.Width = 160;
             // 
             // colDescription
             // 
             this.colDescription.Caption = "描述";
-            this.colDescription.FieldName = "Description";
+            this.colDescription.FieldName = "remark";
             this.colDescription.Name = "colDescription";
             this.colDescription.Visible = true;
-            this.colDescription.VisibleIndex = 2;
-            this.colDescription.Width = 450;
+            this.colDescription.VisibleIndex = 3;
+            this.colDescription.Width = 334;
             // 
             // TabRole
             // 
@@ -215,9 +269,10 @@ namespace Insight.MTP.Client.Base.Roles.Views
             this.TabRole.MaximumSize = new System.Drawing.Size(0, 22);
             this.TabRole.MinimumSize = new System.Drawing.Size(300, 22);
             this.TabRole.Name = "TabRole";
-            this.TabRole.PageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("TabRole.RowsSelectItems")));
+            this.TabRole.PageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("TabRole.PageSizeItems")));
             this.TabRole.Size = new System.Drawing.Size(746, 22);
             this.TabRole.TabIndex = 2;
+            this.TabRole.TotalRows = 0;
             // 
             // splMember
             // 
@@ -247,9 +302,9 @@ namespace Insight.MTP.Client.Base.Roles.Views
             // 
             this.TreMember.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.TreMember.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.colIndex,
             this.colNodeType,
             this.colMember});
+            this.TreMember.DataSource = null;
             this.TreMember.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TreMember.Location = new System.Drawing.Point(2, 21);
             this.TreMember.Name = "TreMember";
@@ -259,21 +314,15 @@ namespace Insight.MTP.Client.Base.Roles.Views
             this.TreMember.Size = new System.Drawing.Size(216, 267);
             this.TreMember.TabIndex = 0;
             // 
-            // colIndex
-            // 
-            this.colIndex.FieldName = "Index";
-            this.colIndex.Name = "colIndex";
-            this.colIndex.Width = 33;
-            // 
             // colNodeType
             // 
-            this.colNodeType.FieldName = "NodeType";
+            this.colNodeType.FieldName = "nodeType";
             this.colNodeType.Name = "colNodeType";
             this.colNodeType.Width = 67;
             // 
             // colMember
             // 
-            this.colMember.FieldName = "Name";
+            this.colMember.FieldName = "name";
             this.colMember.MinWidth = 33;
             this.colMember.Name = "colMember";
             this.colMember.Visible = true;
@@ -329,7 +378,7 @@ namespace Insight.MTP.Client.Base.Roles.Views
             // colName1
             // 
             this.colName1.Caption = "用户姓名";
-            this.colName1.FieldName = "Name";
+            this.colName1.FieldName = "name";
             this.colName1.Name = "colName1";
             this.colName1.Visible = true;
             this.colName1.VisibleIndex = 0;
@@ -338,7 +387,7 @@ namespace Insight.MTP.Client.Base.Roles.Views
             // colLoginName
             // 
             this.colLoginName.Caption = "登录账号";
-            this.colLoginName.FieldName = "LoginName";
+            this.colLoginName.FieldName = "account";
             this.colLoginName.Name = "colLoginName";
             this.colLoginName.Visible = true;
             this.colLoginName.VisibleIndex = 1;
@@ -347,7 +396,7 @@ namespace Insight.MTP.Client.Base.Roles.Views
             // colDescription1
             // 
             this.colDescription1.Caption = "描述";
-            this.colDescription1.FieldName = "Description";
+            this.colDescription1.FieldName = "remark";
             this.colDescription1.Name = "colDescription1";
             this.colDescription1.Visible = true;
             this.colDescription1.VisibleIndex = 2;
@@ -355,8 +404,8 @@ namespace Insight.MTP.Client.Base.Roles.Views
             // 
             // colValidity
             // 
-            this.colValidity.Caption = "有效";
-            this.colValidity.FieldName = "Validity";
+            this.colValidity.Caption = "封禁";
+            this.colValidity.FieldName = "isInvalid";
             this.colValidity.Name = "colValidity";
             this.colValidity.Visible = true;
             this.colValidity.VisibleIndex = 3;
@@ -370,9 +419,10 @@ namespace Insight.MTP.Client.Base.Roles.Views
             this.TabUser.MaximumSize = new System.Drawing.Size(0, 22);
             this.TabUser.MinimumSize = new System.Drawing.Size(320, 22);
             this.TabUser.Name = "TabUser";
-            this.TabUser.PageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("TabUser.RowsSelectItems")));
+            this.TabUser.PageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("TabUser.PageSizeItems")));
             this.TabUser.Size = new System.Drawing.Size(521, 22);
             this.TabUser.TabIndex = 1;
+            this.TabUser.TotalRows = 0;
             // 
             // tabPermission
             // 
@@ -415,6 +465,7 @@ namespace Insight.MTP.Client.Base.Roles.Views
             this.colDescriptionD,
             this.colPermit,
             this.colPermission});
+            this.TreData.DataSource = null;
             this.TreData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TreData.Location = new System.Drawing.Point(2, 2);
             this.TreData.Name = "TreData";
@@ -510,8 +561,8 @@ namespace Insight.MTP.Client.Base.Roles.Views
             this.colTypeA,
             this.colNameA,
             this.colDescriptionA,
-            this.colPermitA,
-            this.colAction});
+            this.colPermitA});
+            this.TreAction.DataSource = null;
             this.TreAction.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TreAction.Location = new System.Drawing.Point(2, 2);
             this.TreAction.Name = "TreAction";
@@ -525,19 +576,19 @@ namespace Insight.MTP.Client.Base.Roles.Views
             // 
             // colIndexA
             // 
-            this.colIndexA.FieldName = "Index";
+            this.colIndexA.FieldName = "index";
             this.colIndexA.Name = "colIndexA";
             this.colIndexA.Width = 50;
             // 
             // colTypeA
             // 
-            this.colTypeA.FieldName = "NodeType";
+            this.colTypeA.FieldName = "nodeType";
             this.colTypeA.Name = "colTypeA";
             this.colTypeA.Width = 51;
             // 
             // colNameA
             // 
-            this.colNameA.FieldName = "Name";
+            this.colNameA.FieldName = "name";
             this.colNameA.MinWidth = 33;
             this.colNameA.Name = "colNameA";
             this.colNameA.Visible = true;
@@ -546,7 +597,7 @@ namespace Insight.MTP.Client.Base.Roles.Views
             // 
             // colDescriptionA
             // 
-            this.colDescriptionA.FieldName = "Description";
+            this.colDescriptionA.FieldName = "remark";
             this.colDescriptionA.Name = "colDescriptionA";
             this.colDescriptionA.Visible = true;
             this.colDescriptionA.VisibleIndex = 1;
@@ -554,26 +605,23 @@ namespace Insight.MTP.Client.Base.Roles.Views
             // 
             // colPermitA
             // 
-            this.colPermitA.FieldName = "Permit";
+            this.colPermitA.FieldName = "permit";
             this.colPermitA.Name = "colPermitA";
             this.colPermitA.Width = 61;
-            // 
-            // colAction
-            // 
-            this.colAction.FieldName = "Action";
-            this.colAction.Name = "colAction";
-            this.colAction.Width = 61;
             // 
             // imgPermission
             // 
             this.imgPermission.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imgPermission.ImageStream")));
-            this.imgPermission.Images.SetKeyName(0, "Navigation.png");
-            this.imgPermission.Images.SetKeyName(1, "Module.png");
-            this.imgPermission.InsertGalleryImage("close_16x16.png", "images/actions/close_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/close_16x16.png"), 2);
-            this.imgPermission.Images.SetKeyName(2, "close_16x16.png");
-            this.imgPermission.InsertGalleryImage("checkbox_16x16.png", "images/content/checkbox_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/content/checkbox_16x16.png"), 3);
-            this.imgPermission.Images.SetKeyName(3, "checkbox_16x16.png");
-            this.imgPermission.Images.SetKeyName(4, "Action.png");
+            this.imgPermission.Images.SetKeyName(0, "Module.png");
+            this.imgPermission.InsertGalleryImage("openhyperlink_16x16.png", "images/actions/openhyperlink_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/openhyperlink_16x16.png"), 1);
+            this.imgPermission.Images.SetKeyName(1, "openhyperlink_16x16.png");
+            this.imgPermission.Images.SetKeyName(2, "Action.png");
+            this.imgPermission.InsertGalleryImage("close_16x16.png", "images/actions/close_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/close_16x16.png"), 3);
+            this.imgPermission.Images.SetKeyName(3, "close_16x16.png");
+            this.imgPermission.InsertGalleryImage("checkbox_16x16.png", "images/content/checkbox_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/content/checkbox_16x16.png"), 4);
+            this.imgPermission.Images.SetKeyName(4, "checkbox_16x16.png");
+            this.imgPermission.InsertGalleryImage("technology_16x16.png", "images/programming/technology_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/programming/technology_16x16.png"), 5);
+            this.imgPermission.Images.SetKeyName(5, "technology_16x16.png");
             // 
             // Manager
             // 
@@ -581,6 +629,8 @@ namespace Insight.MTP.Client.Base.Roles.Views
             this.ClientSize = new System.Drawing.Size(1080, 631);
             this.Name = "Manager";
             this.xtraScrollable.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrgTreeNode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMain)).EndInit();
             this.splMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grpRole)).EndInit();
@@ -610,6 +660,7 @@ namespace Insight.MTP.Client.Base.Roles.Views
             ((System.ComponentModel.ISupportInitialize)(this.TreAction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgPermission)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -650,14 +701,12 @@ namespace Insight.MTP.Client.Base.Roles.Views
         private DevExpress.XtraGrid.Columns.GridColumn colLoginName;
         private DevExpress.XtraGrid.Columns.GridColumn colDescription1;
         private DevExpress.XtraGrid.Columns.GridColumn colValidity;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn colIndex;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colNodeType;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colMember;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colPermit;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colPermission;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colDescriptionA;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colPermitA;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn colAction;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colNameA;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colTypeA;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colIndexA;
@@ -665,5 +714,6 @@ namespace Insight.MTP.Client.Base.Roles.Views
         private DevExpress.XtraTreeList.Columns.TreeListColumn colModel;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colType;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colIndexD;
+        private DevExpress.XtraGrid.Columns.GridColumn colApp;
     }
 }

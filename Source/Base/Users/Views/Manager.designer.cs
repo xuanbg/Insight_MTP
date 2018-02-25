@@ -63,6 +63,8 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.colBuiltIn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colLoginName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMobile = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEmail = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colValidity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TabUser = new Insight.Utils.Controls.PageControl();
@@ -356,6 +358,8 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.colBuiltIn1,
             this.colName,
             this.colLoginName,
+            this.colMobile,
+            this.colEmail,
             this.colDescription,
             this.colValidity});
             this.GdvUser.GridControl = this.GrdUser;
@@ -383,7 +387,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.colName.Name = "colName";
             this.colName.Visible = true;
             this.colName.VisibleIndex = 1;
-            this.colName.Width = 120;
+            this.colName.Width = 100;
             // 
             // colLoginName
             // 
@@ -394,14 +398,32 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.colLoginName.VisibleIndex = 2;
             this.colLoginName.Width = 100;
             // 
+            // colMobile
+            // 
+            this.colMobile.Caption = "手机号码";
+            this.colMobile.FieldName = "mobile";
+            this.colMobile.Name = "colMobile";
+            this.colMobile.Visible = true;
+            this.colMobile.VisibleIndex = 3;
+            this.colMobile.Width = 100;
+            // 
+            // colEmail
+            // 
+            this.colEmail.Caption = "电子邮箱";
+            this.colEmail.FieldName = "email";
+            this.colEmail.Name = "colEmail";
+            this.colEmail.Visible = true;
+            this.colEmail.VisibleIndex = 4;
+            this.colEmail.Width = 160;
+            // 
             // colDescription
             // 
             this.colDescription.Caption = "描述";
             this.colDescription.FieldName = "remark";
             this.colDescription.Name = "colDescription";
             this.colDescription.Visible = true;
-            this.colDescription.VisibleIndex = 3;
-            this.colDescription.Width = 392;
+            this.colDescription.VisibleIndex = 5;
+            this.colDescription.Width = 154;
             // 
             // colValidity
             // 
@@ -409,7 +431,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.colValidity.FieldName = "isInvalid";
             this.colValidity.Name = "colValidity";
             this.colValidity.Visible = true;
-            this.colValidity.VisibleIndex = 4;
+            this.colValidity.VisibleIndex = 6;
             this.colValidity.Width = 40;
             // 
             // TabUser
@@ -542,5 +564,7 @@ namespace Insight.MTP.Client.Base.Users.Views
         internal Utils.Controls.PageControl TabUser;
         private PanelControl panSpace;
         internal ButtonEdit KeyInput;
+        private DevExpress.XtraGrid.Columns.GridColumn colMobile;
+        private DevExpress.XtraGrid.Columns.GridColumn colEmail;
     }
 }

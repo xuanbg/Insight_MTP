@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Insight.MTP.Client.Common.Entity
+﻿namespace Insight.MTP.Client.Common.Entity
 {
     /// <summary>
     /// 成员用户
@@ -13,14 +11,9 @@ namespace Insight.MTP.Client.Common.Entity
         public string id { get; set; }
 
         /// <summary>
-        /// 用户ID
-        /// </summary>
-        public string UserId { get; set; }
-
-        /// <summary>
         /// 用户名
         /// </summary>
-        public string Name { get; set; }
+        public string name { get; set; }
 
         /// <summary>
         /// 用户登录名
@@ -35,17 +28,7 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 是否有效
         /// </summary>
-        public bool Validity { get; set; }
-
-        /// <summary>
-        /// 创建人ID
-        /// </summary>
-        public Guid CreatorUserId { get; set; }
-
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        public DateTime CreateTime { get; set; }
+        public bool isInvalid { get; set; }
     }
 
     /// <summary>

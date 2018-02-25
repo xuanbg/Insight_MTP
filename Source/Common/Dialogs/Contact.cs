@@ -75,7 +75,7 @@ namespace Insight.MTP.Client.Common.Dialogs
         /// <param name="e"></param>
         private void chkIsLogin_CheckedChanged(object sender, EventArgs e)
         {
-            if (_Contact.Validity || !chkIsLogin.Checked) return;
+            if (_Contact.isInvalid || !chkIsLogin.Checked) return;
 
             Messages.ShowError("您输入的登录账号已经存在！请更换登录账号…");
             txtLoginName.Focus();

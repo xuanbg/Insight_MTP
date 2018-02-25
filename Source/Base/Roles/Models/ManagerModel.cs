@@ -239,9 +239,9 @@ namespace Insight.MTP.Client.Base.Roles.Models
         {
             if (node == null) return;
 
-            var type = (int) node.GetValue("NodeType");
+            var type = (int) node.GetValue("nodeType");
             RefreshToolBar(type);
-            member = role.members.Single(m => m.id == node.GetValue("ID").ToString());
+            member = role.members.Single(m => m.id == node.GetValue("id").ToString());
         }
 
         /// <summary>
@@ -253,9 +253,10 @@ namespace Insight.MTP.Client.Base.Roles.Models
             var client = new HttpClient<Role>(token);
             if (!client.Get(url)) return;
 
-            role.funcs = client.data.funcs;
-            role.datas = client.data.datas;
-            role.members = client.data.members;
+            var data = client.data;
+            role.members = data.members;
+            role.funcs = data.funcs;
+            role.datas = data.datas;
         }
 
         /// <summary>
