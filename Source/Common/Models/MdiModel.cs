@@ -145,7 +145,7 @@ namespace Insight.MTP.Client.Common.Models
                            AllowDrawArrow = a.isBegin,
                            Caption = a.name,
                            Enabled = a.permit,
-                           Name = a.alias,
+                           Name = a.alias.Split(',')[0],
                            Tag = a.permit,
                            Glyph = Image.FromStream(new MemoryStream(a.icon)),
                            PaintStyle = a.isShowText ? BarItemPaintStyle.CaptionGlyph : BarItemPaintStyle.Standard,

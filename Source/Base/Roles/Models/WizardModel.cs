@@ -5,18 +5,19 @@ using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 using Insight.MTP.Client.Base.Roles.Views;
 using Insight.MTP.Client.Common.Entity;
+using Insight.MTP.Client.Common.Models;
 using Insight.MTP.Client.Common.Utils;
 using Insight.Utils.Client;
 
 namespace Insight.MTP.Client.Base.Roles.Models
 {
-    public class WizardModel
+    public class WizardModel: DialogModel
     {
         public Wizard view;
 
         private readonly Role role;
-        private List<AppTree> modules;
-        private List<AppTree> actions;
+        private List<AppTree> funcModules;
+        private List<AppTree> funcs;
         private List<AppTree> dataModules;
         private List<AppTree> datas;
 
@@ -24,42 +25,45 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// 构造函数
         /// 通过订阅事件实现双向数据绑定
         /// </summary>
-        /// <param name="role">RoleInfo</param>
+        /// <param name="data">RoleInfo</param>
         /// <param name="title">View标题</param>
-        public WizardModel(Role role, string title)
+        public WizardModel(Role data, string title)
         {
-            this.role = role;
-            this.role.funcs = new List<AppTree>();
-            this.role.datas = new List<AppTree>();
+            role = data;
+            role.funcs = new List<AppTree>();
+            role.datas = new List<AppTree>();
 
             // 构造Wizard视图并设置控件样式
             view = new Wizard
             {
                 Text = title,
-                NameInput = {EditValue = role.name},
-                Description = {EditValue = role.remark}
+                NameInput = {EditValue = data.name},
+                lueApp = {EditValue = data.appId},
+                Description = {EditValue = data.remark}
             };
             view.PagInfo.AllowNext = view.NameInput.EditValue != null;
 
             // 订阅控件事件实现数据双向绑定
             view.NameInput.EditValueChanged += (sender, args) =>
             {
-                this.role.name = view.NameInput.Text.Trim();
+                role.name = view.NameInput.Text.Trim();
                 view.PagInfo.AllowNext = view.NameInput.EditValue != null;
             };
+            view.lueApp.EditValueChanged += (sender, args) => role.appId = view.lueApp.EditValue.ToString();
             view.Description.EditValueChanged += (sender, args) =>
             {
                 var text = view.Description.EditValue?.ToString().Trim();
-                this.role.remark = string.IsNullOrEmpty(text) ? null : text;
+                role.remark = string.IsNullOrEmpty(text) ? null : text;
             };
-            view.TreModule.NodeChanged += (sender, args) => ModuleTreeChanged(args);
-            view.TreAction.AfterCheckNode += (sender, args) => SetAction(args.Node);
-            view.TreDataModule.NodeChanged += (sender, args) => DataTreeChanged(args);
-            view.TreDataPerm.AfterCheckNode += (sender, args) => SetData(args.Node);
+            view.TreFuncModule.AfterCheckNode += (sender, args) => ModuleTreeChanged(args, view.TreFunc, funcs, role.funcs);
+            view.TreFunc.AfterCheckNode += (sender, args) => UpdateNodeData(args.Node, role.funcs);
+            view.TreDataModule.AfterCheckNode += (sender, args) => ModuleTreeChanged(args, view.TreData, datas, role.datas);
+            view.TreData.AfterCheckNode += (sender, args) => UpdateNodeData(args.Node, role.datas);
             view.Shown += (sender, args) =>
             {
                 view.NameInput.Focus();
-                RefreshTree();
+                RefreshTree(view.TreFuncModule, view.TreFunc, funcModules, funcs, role.funcs);
+                RefreshTree(view.TreDataModule, view.TreData, dataModules, datas, role.datas);
             };
 
             // 初始化TreeList控件
@@ -72,9 +76,9 @@ namespace Insight.MTP.Client.Base.Roles.Models
         public Role AddRole()
         {
             var msg = "角色权限保存失败！如多次失败，请联系管理员。";
-            var url = $"{Params.server}/roleapi/v1.0/roles";
+            var url = $"{server}/roleapi/v1.0/roles";
             var dict = new Dictionary<string, object> {{"role", role}};
-            var client = new HttpClient<Role>(Params.tokenHelper);
+            var client = new HttpClient<Role>(token);
             return client.Post(url, dict, msg) ? client.data : null;
         }
 
@@ -84,36 +88,38 @@ namespace Insight.MTP.Client.Base.Roles.Models
         internal Role EditRole()
         {
             var msg = "角色权限更新失败！如多次失败，请联系管理员。";
-            var url = $"{Params.server}/roleapi/v1.0/roles/{role.id}";
+            var url = $"{server}/roleapi/v1.0/roles/{role.id}";
             var dict = new Dictionary<string, object> {{"role", role}};
-            var client = new HttpClient<Role>(Params.tokenHelper);
+            var client = new HttpClient<Role>(token);
             return client.Put(url, dict, msg) ? client.data : null;
         }
 
         /// <summary>
         /// 根据当前权限刷新权限树
         /// </summary>
-        public void RefreshTree()
+        /// <param name="moduleTree"></param>
+        /// <param name="tree"></param>
+        /// <param name="modules"></param>
+        /// <param name="source"></param>
+        /// <param name="target"></param>
+        public void RefreshTree(TreeList moduleTree, TreeList tree, List<AppTree> modules, List<AppTree> source, List<AppTree> target)
         {
             // 设置ModuleTree和ActionTree选中状态
-            view.TreModule.ExpandToLevel(0);
+            moduleTree.ExpandToLevel(0);
             foreach (var module in modules.Where(m => m.permit.HasValue && m.permit.Value))
             {
-                var node = view.TreModule.FindNodeByKeyID(module.id);
-                view.TreModule.SetNodeCheckState(node, CheckState.Checked, true);
+                var node = moduleTree.FindNodeByKeyID(module.id);
+                moduleTree.SetNodeCheckState(node, CheckState.Checked, true);
+                AddItem(module.id, source, target);
+                AddParent(module.id, source, target);
             }
-            view.TreAction.ExpandToLevel(0);
-            view.TreAction.MoveFirst();
 
-            // 设置DataTree和DataPermTree选中状态
-            view.TreDataModule.ExpandToLevel(0);
-            foreach (var module in dataModules.Where(m => m.permit.HasValue && m.permit.Value))
-            {
-                var node = view.TreDataModule.FindNodeByKeyID(module.id);
-                view.TreDataModule.SetNodeCheckState(node, CheckState.Checked, true);
-            }
-            view.TreDataPerm.ExpandToLevel(0);
-            view.TreDataPerm.MoveFirst();
+            var first = tree.Nodes.FirstNode;
+            tree.RefreshDataSource();
+            tree.ExpandToLevel(0);
+            tree.FocusedNode = first;
+            tree.Refresh();
+            RefreshCheckState(tree, role.funcs);
         }
 
         /// <summary>
@@ -122,223 +128,184 @@ namespace Insight.MTP.Client.Base.Roles.Models
         private void InitTree()
         {
             // 加载数据
-            var url = $"{Params.server}/roleapi/v1.0/roles/{role.id}/allperm";
-            var client = new HttpClient<Role>(Params.tokenHelper);
+            var url = $"{server}/roleapi/v1.0/roles/{role.id}/allperm";
+            var client = new HttpClient<Role>(token);
             if (!client.Get(url)) return;
 
-            actions = client.data.funcs;
-            modules = actions.Where(a => a.nodeType < 2).ToList();
+            funcs = client.data.funcs;
+            funcModules = funcs.Where(a => a.nodeType < 3).ToList();
             datas = client.data.datas;
-            dataModules = datas.Where(d => d.nodeType < 2).ToList();
+            dataModules = datas.Where(d => d.nodeType < 3).ToList();
 
             // 绑定数据源，设置TreeList样式
-            view.TreModule.DataSource = modules;
-            Format.TreeFormat(view.TreModule, NodeIconType.NodeType);
+            view.TreFuncModule.DataSource = funcModules;
+            Format.TreeFormat(view.TreFuncModule, NodeIconType.NodeType);
 
-            view.TreAction.DataSource = role.funcs;
-            Format.TreeFormat(view.TreAction, NodeIconType.NodeType);
+            view.TreFunc.DataSource = role.funcs;
+            Format.TreeFormat(view.TreFunc, NodeIconType.NodeType);
 
             view.TreDataModule.DataSource = dataModules;
             Format.TreeFormat(view.TreDataModule, NodeIconType.NodeType);
 
-            view.TreDataPerm.DataSource = role.datas;
-            Format.TreeFormat(view.TreDataPerm, NodeIconType.NodeType);
+            view.TreData.DataSource = role.datas;
+            Format.TreeFormat(view.TreData, NodeIconType.NodeType);
+        }
+
+        /// <summary>
+        /// 改变业务模块选中状态后刷新功能操作树
+        /// </summary>
+        /// <param name="e">NodeEventArgs</param>
+        /// <param name="tree">TreeList</param>
+        /// <param name="source">数据来源</param>
+        /// <param name="target">目标集合</param>
+        private void ModuleTreeChanged(NodeEventArgs e, TreeList tree, List<AppTree> source, List<AppTree> target)
+        {
+            // 将选中模块加入权限树
+            var id = e.Node.GetValue("id").ToString();
+            ChangeNodes(id, source, target, e.Node.Checked);
+
+            var node = tree.Nodes.FirstNode;
+            tree.RefreshDataSource();
+            tree.ExpandToLevel(0);
+            tree.FocusedNode = node;
+            tree.Refresh();
+            if (!e.Node.Checked) return;
+
+            RefreshCheckState(tree, role.funcs);
         }
 
         /// <summary>
         /// 设置操作权限
         /// </summary>
         /// <param name="node">TreeListNode</param>
-        private void SetAction(TreeListNode node)
+        /// <param name="list">节点数据集</param>
+        private static void UpdateNodeData(TreeListNode node, List<AppTree> list)
         {
-            // 根据节点类型获取需改变节点列表
-            IEnumerable<AppTree> list;
+            foreach (TreeListNode n in node.Nodes)
+            {
+                UpdateNodeData(n, list);
+            }
+
             var id = node.GetValue("id").ToString();
-            switch ((int)node.GetValue("NodeType"))
+            var item = list.Single(i => i.id == id);
+            if (item.nodeType < 3) return;
+
+            switch (node.CheckState)
             {
-                case 0:
-                    var ids = actions.Where(a => a.parentId == id).Select(a => a.id);
-                    list = actions.Where(a => ids.Any(i => i == a.parentId));
+                case CheckState.Unchecked:
+                    item.permit = null;
+                    item.remark = null;
                     break;
-                case 1:
-                    list = actions.Where(a => a.parentId == id);
+                case CheckState.Indeterminate:
+                    item.permit = false;
+                    item.remark = "拒绝";
                     break;
-                default:
-                    list = new List<AppTree> {actions.Single(a => a.id == id)};
+                case CheckState.Checked:
+                    item.permit = true;
+                    item.remark = "允许";
                     break;
             }
 
-            // 遍历列表更改权限状态
-            foreach (var action in list)
-            {
-                switch (node.CheckState)
-                {
-                    case CheckState.Unchecked:
-                        action.permit = null;
-                        action.remark = null;
-                        break;
-                    case CheckState.Indeterminate:
-                        action.permit = false;
-                        action.remark = "拒绝";
-                        break;
-                    case CheckState.Checked:
-                        action.permit = true;
-                        action.remark = "允许";
-                        break;
-                }
-            }
-
-            view.TreAction.Refresh();
+            node.TreeList.RefreshDataSource();
         }
 
         /// <summary>
-        /// 设置数据权限
+        /// 更新树节点
         /// </summary>
-        /// <param name="node">TreeListNode</param>
-        private void SetData(TreeListNode node)
+        /// <param name="id">节点id</param>
+        /// <param name="source">数据来源</param>
+        /// <param name="target">目标集合</param>
+        /// <param name="isChecked">是否增加</param>
+        private static void ChangeNodes(string id, List<AppTree> source, List<AppTree> target, bool isChecked)
         {
-            // 根据节点类型获取需改变节点列表
-            IEnumerable<AppTree> list;
-            var id = node.GetValue("id").ToString();
-            switch ((int)node.GetValue("NodeType"))
+            if (isChecked)
             {
-                case 0:
-                    var ids = datas.Where(a => a.parentId == id).Select(a => a.id);
-                    list = datas.Where(a => ids.Any(i => i == a.parentId));
-                    break;
-                case 1:
-                    list = datas.Where(a => a.parentId == id);
-                    break;
-                default:
-                    list = new List<AppTree> {datas.Single(a => a.id == id)};
-                    break;
-            }
-
-            // 遍历列表更改权限状态
-            foreach (var data in list)
-            {
-                switch (node.CheckState)
-                {
-                    case CheckState.Unchecked:
-                        data.permit = null;
-                        data.remark = null;
-                        break;
-                    case CheckState.Indeterminate:
-                        data.permit = false;
-                        data.remark = "只读";
-                        break;
-                    case CheckState.Checked:
-                        data.permit = true;
-                        data.remark = "读写";
-                        break;
-                }
-            }
-
-            view.TreDataPerm.Refresh();
-        }
-        
-        /// <summary>
-        /// 改变业务模块选中状态后刷新功能操作树
-        /// </summary>
-        /// <param name="e"></param>
-        private void ModuleTreeChanged(NodeChangedEventArgs e)
-        {
-            if (e.ChangeType != NodeChangeTypeEnum.CheckedState || e.Node.ParentNode == null) return;
-
-            // 将选中模块加入权限树
-            var id = e.Node.GetValue("id").ToString();
-            RefreshActions(id, e.Node.Checked);
-            if (!e.Node.Checked) return;
-
-            // 根据现已权限设置权限树节点状态
-            foreach (var action in role.funcs.Where(a => a.parentId == id))
-            {
-                var node = view.TreAction.FindNodeByKeyID(action.id);
-                var state = action.permit.HasValue
-                    ? (action.permit.Value ? CheckState.Checked : CheckState.Indeterminate)
-                    : CheckState.Unchecked;
-                view.TreAction.SetNodeCheckState(node, state, true);
-            }
-        }
-
-        /// <summary>
-        /// 改变业务模块选中状态后刷新数据权限树
-        /// </summary>
-        /// <param name="e"></param>
-        private void DataTreeChanged(NodeChangedEventArgs e)
-        {
-            if (e.ChangeType != NodeChangeTypeEnum.CheckedState || e.Node.ParentNode == null) return;
-
-            // 将选中模块加入权限树
-            var id = e.Node.GetValue("id").ToString();
-            RefreshDatas(id, e.Node.Checked);
-            if (!e.Node.Checked) return;
-
-            // 根据现已权限设置权限树节点状态
-            foreach (var data in role.datas.Where(a => a.parentId == id))
-            {
-                var node = view.TreDataPerm.FindNodeByKeyID(data.id);
-                var state = data.permit.HasValue
-                    ? (data.permit.Value ? CheckState.Checked : CheckState.Indeterminate)
-                    : CheckState.Unchecked;
-                view.TreDataPerm.SetNodeCheckState(node, state, true);
-            }
-        }
-
-        /// <summary>
-        /// 刷新操作资源树
-        /// </summary>
-        /// <param name="id">模块id</param>
-        /// <param name="add">是否增加</param>
-        private void RefreshActions(string id, bool add)
-        {
-            var module = actions.Single(m => m.id == id);
-            var group = actions.Single(g => g.id == module.parentId);
-            var funcs = actions.Where(a => a.parentId == id);
-            if (add)
-            {
-                if (role.funcs.All(g => g.id != group.id)) role.funcs.Add(group);
-
-                if (role.funcs.All(m => m.id != module.id)) role.funcs.Add(module);
-
-                role.funcs.AddRange(funcs.Where(action => role.funcs.All(a => a.id != action.id)));
+                AddItem(id, source, target);
+                AddParent(id, source, target);
             }
             else
             {
-                role.funcs.RemoveAll(a => a.parentId == id);
-                role.funcs.Remove(module);
-                if (role.funcs.All(a => a.parentId != group.id)) role.funcs.Remove(group);
+                RemoveItem(id, source, target);
+                RemoveParent(id, source, target);
             }
-            view.TreAction.RefreshDataSource();
-            view.TreAction.ExpandToLevel(0);
         }
 
         /// <summary>
-        /// 刷新数据资源树
+        /// 根据节点数据集刷新对应节点的选中状态
         /// </summary>
-        /// <param name="id">模块id</param>
-        /// <param name="add">是否增加</param>
-        private void RefreshDatas(string id, bool add)
+        /// <param name="tree">TreeList</param>
+        /// <param name="list">节点数据集</param>
+        private static void RefreshCheckState(TreeList tree, IEnumerable<AppTree> list)
         {
-            var module = datas.Single(m => m.id == id);
-            var group = datas.Single(g => g.id == module.parentId);
-            var dataList = datas.Where(d => d.parentId == id);
-            if (add)
+            foreach (var item in list.Where(i => i.nodeType > 2))
             {
-                if (role.datas.All(g => g.id != group.id)) role.datas.Add(group);
-
-                if (role.datas.All(m => m.id != module.id)) role.datas.Add(module);
-
-                role.datas.AddRange(dataList.Where(data => role.datas.All(d => d.id != data.id)));
+                var node = tree.FindNodeByKeyID(item.id);
+                var state = item.permit == null ? CheckState.Unchecked
+                    : (item.permit.Value ? CheckState.Checked : CheckState.Indeterminate);
+                tree.SetNodeCheckState(node, state, true);
             }
-            else
+        }
+
+        /// <summary>
+        /// 将指定ID的节点的下级节点加入到功能树
+        /// </summary>
+        /// <param name="id">节点ID</param>
+        /// <param name="source">数据来源</param>
+        /// <param name="target">目标集合</param>
+        private static void AddItem(string id, List<AppTree> source, List<AppTree> target)
+        {
+            foreach (var item in source.Where(i => i.parentId == id))
             {
-                role.datas.RemoveAll(a => a.parentId == id);
-                role.datas.Remove(module);
-                if (role.datas.All(a => a.parentId != group.id)) role.datas.Remove(group);
+                if (target.Any(i => i.id == item.id)) return;
+
+                target.Add(item);
+                AddItem(item.id, source, target);
             }
-            view.TreDataPerm.RefreshDataSource();
-            view.TreDataPerm.ExpandToLevel(0);
+        }
+
+        /// <summary>
+        /// 将指定ID的节点加入到功能树
+        /// </summary>
+        /// <param name="id">节点ID</param>
+        /// <param name="source">数据来源</param>
+        /// <param name="target">目标集合</param>
+        private static void AddParent(string id, List<AppTree> source, List<AppTree> target)
+        {
+            var item = source.SingleOrDefault(i => i.id == id);
+            if (item == null || target.Any(i => i.id == id)) return;
+
+            target.Add(item);
+            AddParent(item.parentId, source, target);
+        }
+
+        /// <summary>
+        /// 将指定ID的节点的下级节点从功能树中移除
+        /// </summary>
+        /// <param name="id">节点ID</param>
+        /// <param name="source">数据来源</param>
+        /// <param name="target">目标集合</param>
+        private static void RemoveItem(string id, List<AppTree> source, List<AppTree> target)
+        {
+            foreach (var item in source.Where(i => i.parentId == id))
+            {
+                RemoveItem(item.id, source, target);
+                target.RemoveAll(i => i.parentId == id);
+            }
+        }
+
+        /// <summary>
+        /// 将指定ID的节点从功能树中移除
+        /// </summary>
+        /// <param name="id">节点ID</param>
+        /// <param name="source">数据来源</param>
+        /// <param name="target">目标集合</param>
+        private static void RemoveParent(string id, List<AppTree> source, List<AppTree> target)
+        {
+            var item = source.SingleOrDefault(i => i.id == id);
+            if (item == null || target.Any(i => i.parentId == id)) return;
+
+            RemoveParent(item.parentId, source, target);
+            target.RemoveAll(i => i.id == id);
         }
     }
 }

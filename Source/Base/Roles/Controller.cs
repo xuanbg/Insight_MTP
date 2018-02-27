@@ -83,7 +83,7 @@ namespace Insight.MTP.Client.Base.Roles
         /// </summary>
         private void RoleEdit()
         {
-            if (!model.AllowDoubleClick("EditRole")) return;
+            if (!model.AllowDoubleClick("editRole")) return;
 
             var role = Util.Clone(model.role);
             var wizardModel = new WizardModel(role, "编辑角色");

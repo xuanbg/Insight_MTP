@@ -187,6 +187,11 @@ namespace Insight.MTP.Client.Common.Entity
         public int nodeType { get; set; }
 
         /// <summary>
+        /// ĞòºÅ
+        /// </summary>
+        public int index { get; set; }
+
+        /// <summary>
         /// ½ÚµãÃû³Æ
         /// </summary>
         public string name { get; set; }

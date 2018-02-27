@@ -73,7 +73,7 @@ namespace Insight.MTP.Client.MainApp.Models
         /// </summary>
         private static void GetUserInfo()
         {
-            var url = $"{Params.server}/userapi/v1.0/users/{Params.userId}";
+            var url = $"{Params.server}/userapi/v1.0/users/myself";
             var client = new HttpClient<User>(Params.tokenHelper);
             if (!client.Get(url)) return;
 

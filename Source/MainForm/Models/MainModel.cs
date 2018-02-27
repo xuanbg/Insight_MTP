@@ -19,8 +19,8 @@ namespace Insight.MTP.Client.MainForm.Models
     {
         public MainWindow view = new MainWindow();
         public List<NavBarItemLink> links = new List<NavBarItemLink>();
-        public List<object> needOpens = new List<object>();
 
+        private readonly List<object> needOpens = new List<object>();
         private List<Navigation> navItems;
 
         /// <summary>
@@ -41,6 +41,14 @@ namespace Insight.MTP.Client.MainForm.Models
             if (SystemInformation.WorkingArea.Height > 755) return;
 
             view.WindowState = FormWindowState.Maximized;
+        }
+
+        /// <summary>
+        /// 加载默认启动模块
+        /// </summary>
+        public void LoadDefault()
+        {
+            needOpens.ForEach(AddPageMdi);
         }
 
         /// <summary>
@@ -73,13 +81,12 @@ namespace Insight.MTP.Client.MainForm.Models
             var end = mod.filePath.LastIndexOf(".", StringComparison.Ordinal);
             var className = mod.filePath.Substring(start, end - start);
             var cont = asm.CreateInstance($"Insight.MTP.Client.{className}.{mod.alias}.Controller", false, BindingFlags.Default, null, new object[]{mod}, CultureInfo.CurrentCulture, null);
+            view.Loading.CloseWaitForm();
             if (cont == null)
             {
                 var msg = $"对不起，{mod.name}模块无法加载！\r\n您的应用程序中缺少相应组件。";
                 Messages.ShowError(msg);
             }
-
-            view.Loading.CloseWaitForm();
         }
 
         /// <summary>

@@ -39,7 +39,7 @@ namespace Insight.MTP.Client.MainForm
             // 订阅主窗体事件
             view.Shown += (sender, args) =>
             {
-                model.needOpens.ForEach(model.AddPageMdi);
+                model.LoadDefault();
                 CheckPassword();
             };
             view.Closing += (sender, args) => args.Cancel = model.Logout();
