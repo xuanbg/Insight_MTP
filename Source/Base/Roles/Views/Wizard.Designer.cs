@@ -39,14 +39,14 @@ namespace Insight.MTP.Client.Base.Roles.Views
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Wizard));
             this.WizRole = new DevExpress.XtraWizard.WizardControl();
-            this.PagInfo = new DevExpress.XtraWizard.WizardPage();
+            this.PagHome = new DevExpress.XtraWizard.WizardPage();
             this.lueApp = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labRemark = new DevExpress.XtraEditors.LabelControl();
             this.labName = new DevExpress.XtraEditors.LabelControl();
             this.Description = new DevExpress.XtraEditors.MemoEdit();
             this.NameInput = new DevExpress.XtraEditors.TextEdit();
-            this.PagAction = new DevExpress.XtraWizard.WizardPage();
+            this.PagFunc = new DevExpress.XtraWizard.WizardPage();
             this.splModule = new DevExpress.XtraEditors.SplitContainerControl();
             this.grpModule = new DevExpress.XtraEditors.GroupControl();
             this.TreFuncModule = new DevExpress.XtraTreeList.TreeList();
@@ -78,11 +78,11 @@ namespace Insight.MTP.Client.Base.Roles.Views
             ((System.ComponentModel.ISupportInitialize)(this.OrgTreeNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WizRole)).BeginInit();
             this.WizRole.SuspendLayout();
-            this.PagInfo.SuspendLayout();
+            this.PagHome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueApp.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Description.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NameInput.Properties)).BeginInit();
-            this.PagAction.SuspendLayout();
+            this.PagFunc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splModule)).BeginInit();
             this.splModule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grpModule)).BeginInit();
@@ -130,8 +130,8 @@ namespace Insight.MTP.Client.Base.Roles.Views
             this.WizRole.Appearance.PageTitle.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.WizRole.Appearance.PageTitle.Options.UseFont = true;
             this.WizRole.CancelText = "取 消";
-            this.WizRole.Controls.Add(this.PagInfo);
-            this.WizRole.Controls.Add(this.PagAction);
+            this.WizRole.Controls.Add(this.PagHome);
+            this.WizRole.Controls.Add(this.PagFunc);
             this.WizRole.Controls.Add(this.PagData);
             this.WizRole.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WizRole.FinishText = "完 成";
@@ -141,24 +141,24 @@ namespace Insight.MTP.Client.Base.Roles.Views
             this.WizRole.Name = "WizRole";
             this.WizRole.NextText = "下一步";
             this.WizRole.Pages.AddRange(new DevExpress.XtraWizard.BaseWizardPage[] {
-            this.PagInfo,
-            this.PagAction,
+            this.PagHome,
+            this.PagFunc,
             this.PagData});
             this.WizRole.PreviousText = "上一步";
             this.WizRole.Size = new System.Drawing.Size(624, 442);
             // 
-            // PagInfo
+            // PagHome
             // 
-            this.PagInfo.Controls.Add(this.lueApp);
-            this.PagInfo.Controls.Add(this.labelControl1);
-            this.PagInfo.Controls.Add(this.labRemark);
-            this.PagInfo.Controls.Add(this.labName);
-            this.PagInfo.Controls.Add(this.Description);
-            this.PagInfo.Controls.Add(this.NameInput);
-            this.PagInfo.DescriptionText = "欢迎使用角色设置向导。在输入必要的基础信息后，请点击下一步设置该角色的功能权限。";
-            this.PagInfo.Name = "PagInfo";
-            this.PagInfo.Size = new System.Drawing.Size(592, 297);
-            this.PagInfo.Text = "基本信息";
+            this.PagHome.Controls.Add(this.lueApp);
+            this.PagHome.Controls.Add(this.labelControl1);
+            this.PagHome.Controls.Add(this.labRemark);
+            this.PagHome.Controls.Add(this.labName);
+            this.PagHome.Controls.Add(this.Description);
+            this.PagHome.Controls.Add(this.NameInput);
+            this.PagHome.DescriptionText = "欢迎使用角色设置向导。在输入必要的基础信息后，请点击下一步设置该角色的功能权限。";
+            this.PagHome.Name = "PagHome";
+            this.PagHome.Size = new System.Drawing.Size(592, 297);
+            this.PagHome.Text = "基本信息";
             // 
             // lueApp
             // 
@@ -235,13 +235,13 @@ namespace Insight.MTP.Client.Base.Roles.Views
             this.NameInput.Size = new System.Drawing.Size(450, 20);
             this.NameInput.TabIndex = 1;
             // 
-            // PagAction
+            // PagFunc
             // 
-            this.PagAction.Controls.Add(this.splModule);
-            this.PagAction.DescriptionText = "请先勾选需要授权的功能所属模块，然后设置功能权限。点击下一步进行数据权限设置。";
-            this.PagAction.Name = "PagAction";
-            this.PagAction.Size = new System.Drawing.Size(592, 297);
-            this.PagAction.Text = "设置功能权限";
+            this.PagFunc.Controls.Add(this.splModule);
+            this.PagFunc.DescriptionText = "请先勾选需要授权的功能所属模块，然后设置功能权限。点击下一步进行数据权限设置。";
+            this.PagFunc.Name = "PagFunc";
+            this.PagFunc.Size = new System.Drawing.Size(592, 297);
+            this.PagFunc.Text = "设置功能权限";
             // 
             // splModule
             // 
@@ -539,11 +539,11 @@ namespace Insight.MTP.Client.Base.Roles.Views
             ((System.ComponentModel.ISupportInitialize)(this.OrgTreeNode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.WizRole)).EndInit();
             this.WizRole.ResumeLayout(false);
-            this.PagInfo.ResumeLayout(false);
+            this.PagHome.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lueApp.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Description.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NameInput.Properties)).EndInit();
-            this.PagAction.ResumeLayout(false);
+            this.PagFunc.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splModule)).EndInit();
             this.splModule.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grpModule)).EndInit();
@@ -576,8 +576,8 @@ namespace Insight.MTP.Client.Base.Roles.Views
         internal TreeList TreDataModule;
         internal TreeList TreData;
         internal WizardControl WizRole;
-        internal WizardPage PagInfo;
-        private WizardPage PagAction;
+        internal WizardPage PagHome;
+        private WizardPage PagFunc;
         private WizardPage PagData;
         private LabelControl labRemark;
         private LabelControl labName;

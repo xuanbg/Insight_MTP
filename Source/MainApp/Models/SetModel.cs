@@ -1,13 +1,14 @@
-﻿using Insight.MTP.Client.Common.Utils;
+﻿using Insight.MTP.Client.Common.Models;
+using Insight.MTP.Client.Common.Utils;
 using Insight.MTP.Client.MainApp.Views;
 
 namespace Insight.MTP.Client.MainApp.Models
 {
-    public class SetModel
+    public class SetModel : BaseModel
     {
-        public LoginSet View;
+        public LoginSet view;
 
-        private bool _SaveUser = Config.IsSaveUserInfo();
+        private bool saveUser = Config.IsSaveUserInfo();
 
         /// <summary>
         /// 构造函数，初始化视图
@@ -15,14 +16,14 @@ namespace Insight.MTP.Client.MainApp.Models
         /// </summary>
         public SetModel()
         {
-            View = new LoginSet
+            view = new LoginSet
             {
                 BaseInupt = {Text = Params.server },
-                SaveUserCheckBox = {Checked = _SaveUser}
+                SaveUserCheckBox = {Checked = saveUser}
             };
 
-            View.BaseInupt.EditValueChanged += (sender, args) => Params.server = View.BaseInupt.Text;
-            View.SaveUserCheckBox.CheckStateChanged += (sender, args) => _SaveUser = View.SaveUserCheckBox.Checked;
+            view.BaseInupt.EditValueChanged += (sender, args) => Params.server = view.BaseInupt.Text;
+            view.SaveUserCheckBox.CheckStateChanged += (sender, args) => saveUser = view.SaveUserCheckBox.Checked;
         }
 
         /// <summary>
@@ -30,10 +31,10 @@ namespace Insight.MTP.Client.MainApp.Models
         /// </summary>
         public void Save()
         {
-            if (!_SaveUser) Config.SaveUserName(string.Empty);
+            if (!saveUser) Config.SaveUserName(string.Empty);
 
-            Config.SaveIsSaveUserInfo(_SaveUser);
-            Config.SaveBaseAddress(Params.server);
+            Config.SaveIsSaveUserInfo(saveUser);
+            Config.SaveBaseAddress(server);
         }
     }
 }

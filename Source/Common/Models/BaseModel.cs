@@ -5,12 +5,12 @@ using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.Common.Models
 {
-    public class DialogModel
+    public class BaseModel
     {
         private readonly List<InputItem> checkItems = new List<InputItem>();
 
-        public TokenHelper token = Params.tokenHelper;
-        public string server = Params.server;
+        public static TokenHelper token = Params.tokenHelper;
+        public static string server = Params.server;
 
         /// <summary>
         /// 设置一个输入检查对象

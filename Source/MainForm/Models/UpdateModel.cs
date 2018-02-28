@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using Insight.MTP.Client.Common.Utils;
+using Insight.MTP.Client.Common.Models;
 using Insight.MTP.Client.MainForm.Views;
 using Insight.Utils.Client;
 using Insight.Utils.Common;
@@ -12,7 +12,7 @@ using Insight.Utils.Entity;
 
 namespace Insight.MTP.Client.MainForm.Models
 {
-    public class UpdateModel
+    public class UpdateModel : BaseModel
     {
         public Update view = new Update();
         public bool restart;
@@ -104,8 +104,8 @@ namespace Insight.MTP.Client.MainForm.Models
         /// <returns>文件版本信息</returns>
         private List<FileInfo> GetFiles()
         {
-            var url = $"{Params.server}/commonapi/v1.0/files";
-            var client = new HttpClient<List<FileInfo>>(Params.tokenHelper);
+            var url = $"{server}/commonapi/v1.0/files";
+            var client = new HttpClient<List<FileInfo>>(token);
             return client.Get(url) ? client.data : new List<FileInfo>();
         }
 
@@ -116,8 +116,8 @@ namespace Insight.MTP.Client.MainForm.Models
         /// <returns>Result</returns>
         private string GetFile(string id)
         {
-            var url = $"{Params.server}/commonapi/v1.0/files/{id}";
-            var client = new HttpClient<object>(Params.tokenHelper);
+            var url = $"{server}/commonapi/v1.0/files/{id}";
+            var client = new HttpClient<object>(token);
             return client.Get(url) ? client.data.ToString() : null;
         }
     }

@@ -96,7 +96,7 @@
     <Compile Include="Entity\Bases.cs" />
     <Compile Include="Entity\Members.cs" />
     <Compile Include="Controller\BaseController.cs" />
-    <Compile Include="Models\DialogModel.cs" />
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\MdiModel.cs" />
     <Compile Include="Models\MemberModel.cs" />
     <Compile Include="BaseForm\BaseDialog.cs">

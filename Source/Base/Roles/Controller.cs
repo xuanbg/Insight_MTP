@@ -70,7 +70,11 @@ namespace Insight.MTP.Client.Base.Roles
                 model.ShowWaitForm();
                 role = wizardModel.AddRole();
                 model.CloseWaitForm();
-                if (role == null) return;
+                if (role == null)
+                {
+                    args.Cancel = true;
+                    return;
+                }
 
                 model.AddRole(role);
             };
@@ -94,7 +98,11 @@ namespace Insight.MTP.Client.Base.Roles
                 model.ShowWaitForm();
                 role = wizardModel.EditRole();
                 model.CloseWaitForm();
-                if (role == null) return;
+                if (role == null)
+                {
+                    args.Cancel = true;
+                    return;
+                }
 
                 model.UpdatePerm(role);
             };

@@ -1,4 +1,5 @@
 ﻿using Insight.MTP.Client.Common.Entity;
+using Insight.MTP.Client.Common.Models;
 using Insight.MTP.Client.Common.Utils;
 using Insight.MTP.Client.MainApp.Views;
 using Insight.Utils.Client;
@@ -6,7 +7,7 @@ using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.MainApp.Models
 {
-    public class LoginModel
+    public class LoginModel : BaseModel
     {
         public Login login = new Login();
 
@@ -54,13 +55,12 @@ namespace Insight.MTP.Client.MainApp.Models
                 return false;
             }
 
-            Params.tokenHelper.tenantId = "2564cd55-9cd3-40f0-b814-09723fd8632a";
-            Params.tokenHelper.account = account;
-            Params.tokenHelper.Signature(password);
-            Params.tokenHelper.GetTokens();
-            if (!Params.tokenHelper.success) return false;
+            token.tenantId = "2564cd55-9cd3-40f0-b814-09723fd8632a";
+            token.account = account;
+            token.Signature(password);
+            token.GetTokens();
+            if (!token.success) return false;
 
-            Params.userId = Params.tokenHelper.userId;
             Params.needChangePw = password == "123456";
             Config.SaveUserName(account);
             GetUserInfo();
@@ -73,8 +73,8 @@ namespace Insight.MTP.Client.MainApp.Models
         /// </summary>
         private static void GetUserInfo()
         {
-            var url = $"{Params.server}/userapi/v1.0/users/myself";
-            var client = new HttpClient<User>(Params.tokenHelper);
+            var url = $"{server}/userapi/v1.0/users/myself";
+            var client = new HttpClient<User>(token);
             if (!client.Get(url)) return;
 
             Params.userId = client.data.id;

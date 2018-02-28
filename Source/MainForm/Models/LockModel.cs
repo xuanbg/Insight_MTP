@@ -5,7 +5,7 @@ using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.MainForm.Models
 {
-    public class LockModel : DialogModel
+    public class LockModel : BaseModel
     {
         public Locked view = new Locked();
 

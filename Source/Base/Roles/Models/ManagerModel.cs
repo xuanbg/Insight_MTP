@@ -146,6 +146,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <param name="data">RoleInfo</param>
         public void UpdatePerm(Role data)
         {
+            role.appId = data.appId;
+            role.appName = data.appName;
             role.name = data.name;
             role.remark = data.remark;
 

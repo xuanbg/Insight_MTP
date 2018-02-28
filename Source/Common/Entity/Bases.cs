@@ -80,17 +80,22 @@ namespace Insight.MTP.Client.Common.Entity
         public string id { get; set; }
 
         /// <summary>
-        /// 是否预置：0、自定；1、预置
+        /// 租户ID
         /// </summary>
         public string tenantId { get; set; }
 
         /// <summary>
-        /// 是否预置：0、自定；1、预置
+        /// 应用ID
         /// </summary>
         public string appId { get; set; }
 
         /// <summary>
         /// 应用名称
+        /// </summary>
+        public string appName { get; set; }
+
+        /// <summary>
+        /// 角色名称
         /// </summary>
         public string name { get; set; }
 

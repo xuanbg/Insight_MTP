@@ -49,7 +49,7 @@ namespace Insight.MTP.Client.MainApp
 
             // 显示等待界面
             var waiting = new WaitingModel();
-            var view = waiting.View;
+            var view = waiting.view;
             view.Show();
             view.Refresh();
 
@@ -70,7 +70,7 @@ namespace Insight.MTP.Client.MainApp
         private void ConfigServer()
         {
             var set = new SetModel();
-            var view = set.View;
+            var view = set.view;
 
             SubCloseEvent(view);
             view.Confirm.Click += (sender, args) =>

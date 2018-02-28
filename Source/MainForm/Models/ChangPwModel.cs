@@ -7,7 +7,7 @@ using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.MainForm.Models
 {
-    public class ChangPwModel : DialogModel
+    public class ChangPwModel : BaseModel
     {
         public ChangePw view = new ChangePw();
 

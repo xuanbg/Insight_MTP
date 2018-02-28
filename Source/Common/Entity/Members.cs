@@ -80,7 +80,7 @@
         /// <summary>
         /// 描述
         /// </summary>
-        public string remark { get; set; }
+        public string alias { get; set; }
     }
 
     /// <summary>

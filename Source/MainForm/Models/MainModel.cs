@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using DevExpress.XtraNavBar;
 using Insight.MTP.Client.Common.Entity;
+using Insight.MTP.Client.Common.Models;
 using Insight.MTP.Client.Common.Utils;
 using Insight.MTP.Client.MainForm.Views;
 using Insight.Utils.Client;
@@ -15,7 +16,7 @@ using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.MainForm.Models
 {
-    public class MainModel
+    public class MainModel : BaseModel
     {
         public MainWindow view = new MainWindow();
         public List<NavBarItemLink> links = new List<NavBarItemLink>();
@@ -94,10 +95,10 @@ namespace Insight.MTP.Client.MainForm.Models
         /// </summary>
         public bool Logout()
         {
-            var msg = "退出应用程序将导致当前未完成的输入内容丢失！\r\n您确定要退出吗？";
+            const string msg = "退出应用程序将导致当前未完成的输入内容丢失！\r\n您确定要退出吗？";
             if (!Messages.ShowConfirm(msg)) return true;
 
-            Params.tokenHelper.DeleteToken();
+            token.DeleteToken();
 
             return false;
         }
@@ -115,8 +116,8 @@ namespace Insight.MTP.Client.MainForm.Models
         /// </summary>
         private void InitNavBar()
         {
-            var url = $"{Params.server}/moduleapi/v1.0/navigations";
-            var client = new HttpClient<List<Navigation>>(Params.tokenHelper);
+            var url = $"{server}/moduleapi/v1.0/navigations";
+            var client = new HttpClient<List<Navigation>>(token);
             if (!client.Get(url)) return;
 
             navItems = client.data.Where(i => i.parentId != null).ToList();

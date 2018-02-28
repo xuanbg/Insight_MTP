@@ -4,6 +4,6 @@ namespace Insight.MTP.Client.MainApp.Models
 {
     public class WaitingModel
     {
-        public Waiting View = new Waiting();
+        public Waiting view = new Waiting();
     }
 }

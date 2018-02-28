@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using Insight.MTP.Client.Base.Users.Views;
 using Insight.MTP.Client.Common.Entity;
-using Insight.MTP.Client.Common.Utils;
+using Insight.MTP.Client.Common.Models;
 using Insight.Utils.Client;
 using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.Base.Users.Models
 {
-    public class UserModel
+    public class UserModel : BaseModel
     {
         public UserDialog view;
 
@@ -52,9 +52,9 @@ namespace Insight.MTP.Client.Base.Users.Models
             if (!InputExamine()) return null;
 
             var msg = $"新建用户【{user.name}】失败！";
-            var url = $"{Params.server}/userapi/v1.0/users";
+            var url = $"{server}/userapi/v1.0/users";
             var dict = new Dictionary<string, object> {{"user", user}};
-            var client = new HttpClient<User>(Params.tokenHelper);
+            var client = new HttpClient<User>(token);
             return client.Post(url, dict, msg) ? client.data : null;
         }
 
@@ -66,9 +66,9 @@ namespace Insight.MTP.Client.Base.Users.Models
             if (!InputExamine()) return null;
 
             var msg = $"没有更新用户【{user.name}】的任何信息！";
-            var url = $"{Params.server}/userapi/v1.0/users/{user.id}";
+            var url = $"{server}/userapi/v1.0/users/{user.id}";
             var dict = new Dictionary<string, object> {{"user", user}};
-            var client = new HttpClient<User>(Params.tokenHelper);
+            var client = new HttpClient<User>(token);
             return client.Put(url, dict, msg) ? user : null;
         }
 
@@ -76,7 +76,7 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// 输入合法性检查
         /// </summary>
         /// <returns>bool 是否通过</returns>
-        private bool InputExamine()
+        private new bool InputExamine()
         {
             if (string.IsNullOrEmpty(user.name))
             {

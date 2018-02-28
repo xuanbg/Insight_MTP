@@ -11,11 +11,12 @@ using Insight.Utils.Client;
 
 namespace Insight.MTP.Client.Base.Roles.Models
 {
-    public class WizardModel: DialogModel
+    public class WizardModel: BaseModel
     {
         public Wizard view;
 
         private readonly Role role;
+        private List<LookUpMember> apps;
         private List<AppTree> funcModules;
         private List<AppTree> funcs;
         private List<AppTree> dataModules;
@@ -41,13 +42,13 @@ namespace Insight.MTP.Client.Base.Roles.Models
                 lueApp = {EditValue = data.appId},
                 Description = {EditValue = data.remark}
             };
-            view.PagInfo.AllowNext = view.NameInput.EditValue != null;
+            view.PagHome.AllowNext = view.NameInput.EditValue != null;
 
             // 订阅控件事件实现数据双向绑定
             view.NameInput.EditValueChanged += (sender, args) =>
             {
                 role.name = view.NameInput.Text.Trim();
-                view.PagInfo.AllowNext = view.NameInput.EditValue != null;
+                view.PagHome.AllowNext = view.NameInput.EditValue != null;
             };
             view.lueApp.EditValueChanged += (sender, args) => role.appId = view.lueApp.EditValue.ToString();
             view.Description.EditValueChanged += (sender, args) =>
@@ -59,15 +60,10 @@ namespace Insight.MTP.Client.Base.Roles.Models
             view.TreFunc.AfterCheckNode += (sender, args) => UpdateNodeData(args.Node, role.funcs);
             view.TreDataModule.AfterCheckNode += (sender, args) => ModuleTreeChanged(args, view.TreData, datas, role.datas);
             view.TreData.AfterCheckNode += (sender, args) => UpdateNodeData(args.Node, role.datas);
-            view.Shown += (sender, args) =>
-            {
-                view.NameInput.Focus();
-                RefreshTree(view.TreFuncModule, view.TreFunc, funcModules, funcs, role.funcs);
-                RefreshTree(view.TreDataModule, view.TreData, dataModules, datas, role.datas);
-            };
+            view.Shown += (sender, args) => view.NameInput.Focus();
+            view.WizRole.NextClick += (sender, args) => InitTree(args.Page.Name);
 
-            // 初始化TreeList控件
-            InitTree();
+            Init();
         }
 
         /// <summary>
@@ -75,10 +71,13 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// </summary>
         public Role AddRole()
         {
-            var msg = "角色权限保存失败！如多次失败，请联系管理员。";
+            const string msg = "角色权限保存失败！如多次失败，请联系管理员。";
+            role.appName = apps.SingleOrDefault(i => i.id == role.appId)?.alias;
+
             var url = $"{server}/roleapi/v1.0/roles";
-            var dict = new Dictionary<string, object> {{"role", role}};
+            var dict = new Dictionary<string, object> {{"info", role}};
             var client = new HttpClient<Role>(token);
+
             return client.Post(url, dict, msg) ? client.data : null;
         }
 
@@ -87,48 +86,38 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// </summary>
         internal Role EditRole()
         {
-            var msg = "角色权限更新失败！如多次失败，请联系管理员。";
+            const string msg = "角色权限更新失败！如多次失败，请联系管理员。";
+            role.appName = apps.SingleOrDefault(i => i.id == role.appId)?.alias;
+
             var url = $"{server}/roleapi/v1.0/roles/{role.id}";
-            var dict = new Dictionary<string, object> {{"role", role}};
+            var dict = new Dictionary<string, object> {{"info", role}};
             var client = new HttpClient<Role>(token);
+
             return client.Put(url, dict, msg) ? client.data : null;
         }
 
         /// <summary>
-        /// 根据当前权限刷新权限树
+        /// 初始化数据
         /// </summary>
-        /// <param name="moduleTree"></param>
-        /// <param name="tree"></param>
-        /// <param name="modules"></param>
-        /// <param name="source"></param>
-        /// <param name="target"></param>
-        public void RefreshTree(TreeList moduleTree, TreeList tree, List<AppTree> modules, List<AppTree> source, List<AppTree> target)
+        private void Init()
         {
-            // 设置ModuleTree和ActionTree选中状态
-            moduleTree.ExpandToLevel(0);
-            foreach (var module in modules.Where(m => m.permit.HasValue && m.permit.Value))
-            {
-                var node = moduleTree.FindNodeByKeyID(module.id);
-                moduleTree.SetNodeCheckState(node, CheckState.Checked, true);
-                AddItem(module.id, source, target);
-                AddParent(module.id, source, target);
-            }
+            var url = $"{server}/appapi/v1.0/apps";
+            var client = new HttpClient<List<LookUpMember>>(token);
+            if (!client.Get(url)) return;
 
-            var first = tree.Nodes.FirstNode;
-            tree.RefreshDataSource();
-            tree.ExpandToLevel(0);
-            tree.FocusedNode = first;
-            tree.Refresh();
-            RefreshCheckState(tree, role.funcs);
+            apps = client.data;
+            Format.InitLookUpEdit(view.lueApp, apps);
         }
 
         /// <summary>
         /// 初始化权限树
         /// </summary>
-        private void InitTree()
+        /// <param name="page"></param>
+        private void InitTree(string page)
         {
-            // 加载数据
-            var url = $"{server}/roleapi/v1.0/roles/{role.id}/allperm";
+            if (page != "PagHome") return;
+
+            var url = $"{server}/roleapi/v1.0/roles/{role.id}/allperm?appid={role.appId}";
             var client = new HttpClient<Role>(token);
             if (!client.Get(url)) return;
 
@@ -140,15 +129,44 @@ namespace Insight.MTP.Client.Base.Roles.Models
             // 绑定数据源，设置TreeList样式
             view.TreFuncModule.DataSource = funcModules;
             Format.TreeFormat(view.TreFuncModule, NodeIconType.NodeType);
-
             view.TreFunc.DataSource = role.funcs;
             Format.TreeFormat(view.TreFunc, NodeIconType.NodeType);
 
             view.TreDataModule.DataSource = dataModules;
             Format.TreeFormat(view.TreDataModule, NodeIconType.NodeType);
-
             view.TreData.DataSource = role.datas;
             Format.TreeFormat(view.TreData, NodeIconType.NodeType);
+
+            RefreshTree(view.TreFuncModule, view.TreFunc, funcModules, funcs, role.funcs);
+            RefreshTree(view.TreDataModule, view.TreData, dataModules, datas, role.datas);
+        }
+
+        /// <summary>
+        /// 根据当前权限刷新权限树
+        /// </summary>
+        /// <param name="moduleTree">模块树</param>
+        /// <param name="tree">权限树</param>
+        /// <param name="modules">模块数据集</param>
+        /// <param name="source">数据来源</param>
+        /// <param name="target">目标集合</param>
+        private static void RefreshTree(TreeList moduleTree, TreeList tree, List<AppTree> modules, List<AppTree> source, List<AppTree> target)
+        {
+            moduleTree.ExpandToLevel(0);
+            foreach (var module in modules.Where(m => m.permit.HasValue && m.permit.Value))
+            {
+                var node = moduleTree.FindNodeByKeyID(module.id);
+                moduleTree.SetNodeCheckState(node, CheckState.Checked, true);
+                AddParent(module.id, source, target);
+                AddItem(module.id, source, target);
+            }
+
+            tree.RefreshDataSource();
+            var first = tree.Nodes.FirstNode;
+            tree.FocusedNode = first;
+            tree.ExpandToLevel(0);
+            tree.Refresh();
+
+            RefreshCheckState(tree, target);
         }
 
         /// <summary>
@@ -158,20 +176,19 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <param name="tree">TreeList</param>
         /// <param name="source">数据来源</param>
         /// <param name="target">目标集合</param>
-        private void ModuleTreeChanged(NodeEventArgs e, TreeList tree, List<AppTree> source, List<AppTree> target)
+        private static void ModuleTreeChanged(NodeEventArgs e, TreeList tree, List<AppTree> source, List<AppTree> target)
         {
-            // 将选中模块加入权限树
             var id = e.Node.GetValue("id").ToString();
             ChangeNodes(id, source, target, e.Node.Checked);
+            tree.RefreshDataSource();
 
             var node = tree.Nodes.FirstNode;
-            tree.RefreshDataSource();
-            tree.ExpandToLevel(0);
             tree.FocusedNode = node;
+            tree.ExpandToLevel(0);
             tree.Refresh();
             if (!e.Node.Checked) return;
 
-            RefreshCheckState(tree, role.funcs);
+            RefreshCheckState(tree, target);
         }
 
         /// <summary>
@@ -220,8 +237,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
         {
             if (isChecked)
             {
-                AddItem(id, source, target);
                 AddParent(id, source, target);
+                AddItem(id, source, target);
             }
             else
             {
@@ -274,8 +291,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
             var item = source.SingleOrDefault(i => i.id == id);
             if (item == null || target.Any(i => i.id == id)) return;
 
-            target.Add(item);
             AddParent(item.parentId, source, target);
+            target.Add(item);
         }
 
         /// <summary>
@@ -304,8 +321,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
             var item = source.SingleOrDefault(i => i.id == id);
             if (item == null || target.Any(i => i.parentId == id)) return;
 
-            RemoveParent(item.parentId, source, target);
             target.RemoveAll(i => i.id == id);
+            RemoveParent(item.parentId, source, target);
         }
     }
 }
