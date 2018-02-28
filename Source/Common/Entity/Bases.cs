@@ -156,9 +156,14 @@ namespace Insight.MTP.Client.Common.Entity
         public string parentId { get; set; }
 
         /// <summary>
-        /// 节点类型（成员类型：1、用户；2、用户组；3、岗位）
+        /// 节点类型
         /// </summary>
         public int nodeType { get; set; }
+
+        /// <summary>
+        /// 成员类型（成员类型：1、用户；2、用户组；3、岗位）
+        /// </summary>
+        public int memberType { get; set; }
 
         /// <summary>
         /// 成员ID

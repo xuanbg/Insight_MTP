@@ -153,7 +153,6 @@ namespace Insight.MTP.Client.Base.Roles.Models
 
             role.funcs.Clear();
             role.funcs.AddRange(data.funcs);
-
             role.datas.Clear();
             role.datas.AddRange(data.datas);
 
@@ -180,14 +179,14 @@ namespace Insight.MTP.Client.Base.Roles.Models
         /// <summary>
         /// 刷新工具条按钮状态
         /// </summary>
-        /// <param name="type">角色类型</param>
-        private void RefreshToolBar(int? type = null)
+        private void RefreshToolBar()
         {
             var dict = new Dictionary<string, bool>
             {
-                ["deleteRole"] = !role.isBuiltin,
-                ["addRoleMember"] = !role.isBuiltin,
-                ["removeRoleMember"] = !role.isBuiltin && type == 0
+                ["editRole"] = role != null,
+                ["deleteRole"] = !(role?.isBuiltin ?? true),
+                ["addRoleMember"] = role != null,
+                ["removeRoleMember"] = member != null
             };
             SwitchItemStatus(dict);
         }
@@ -241,9 +240,10 @@ namespace Insight.MTP.Client.Base.Roles.Models
         {
             if (node == null) return;
 
-            var type = (int) node.GetValue("nodeType");
-            RefreshToolBar(type);
-            member = role.members.Single(m => m.id == node.GetValue("id").ToString());
+            var id = node.GetValue("id").ToString();
+            member = role.members.SingleOrDefault(m => m.id == id && m.nodeType == 0);
+
+            RefreshToolBar();
         }
 
         /// <summary>

@@ -209,17 +209,20 @@ namespace Insight.MTP.Client.Base.Roles.Models
 
             switch (node.CheckState)
             {
-                case CheckState.Unchecked:
-                    item.permit = null;
-                    item.remark = null;
-                    break;
                 case CheckState.Indeterminate:
+                    item.nodeType = 3;
                     item.permit = false;
                     item.remark = "拒绝";
                     break;
                 case CheckState.Checked:
+                    item.nodeType = 4;
                     item.permit = true;
                     item.remark = "允许";
+                    break;
+                case CheckState.Unchecked:
+                    item.nodeType = 5;
+                    item.permit = null;
+                    item.remark = null;
                     break;
             }
 
