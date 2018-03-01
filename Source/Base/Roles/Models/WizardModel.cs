@@ -50,7 +50,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
                 role.name = view.NameInput.Text.Trim();
                 view.PagHome.AllowNext = view.NameInput.EditValue != null;
             };
-            view.lueApp.EditValueChanged += (sender, args) => role.appId = view.lueApp.EditValue.ToString();
+            view.lueApp.EditValueChanged += (sender, args) => role.appId = view.lueApp.EditValue?.ToString();
+            view.lueApp.ButtonPressed += (sender, args) => view.lueApp.EditValue = null;
             view.Description.EditValueChanged += (sender, args) =>
             {
                 var text = view.Description.EditValue?.ToString().Trim();
