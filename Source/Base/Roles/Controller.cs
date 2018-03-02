@@ -21,7 +21,7 @@ namespace Insight.MTP.Client.Base.Roles
             model.view.GdvRole.DoubleClick += (sender, args) => RoleEdit();
 
             // 加载角色列表
-            model.LoadRoles();
+            model.LoadData();
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Insight.MTP.Client.Base.Roles
                     RoleEdit();
                     break;
                 case "deleteRole":
-                    model.RoleDelete();
+                    model.DeleteItem();
                     break;
                 case "addRoleMember":
                     AddMembers();
@@ -76,7 +76,7 @@ namespace Insight.MTP.Client.Base.Roles
                     return;
                 }
 
-                model.AddRole(role);
+                model.AddItem(role);
             };
 
             view.ShowDialog();
@@ -104,7 +104,7 @@ namespace Insight.MTP.Client.Base.Roles
                     return;
                 }
 
-                model.UpdatePerm(role);
+                model.Update(role);
             };
 
             view.ShowDialog();

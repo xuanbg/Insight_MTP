@@ -25,19 +25,19 @@ namespace Insight.MTP.Client.Base.Users.Models
         {
             // 订阅用户列表分页控件事件
             view.TabUser.PageSizeChanged += (sender, args) => userRows = args.PageSize;
-            view.TabUser.CurrentPageChanged += (sender, args) => LoadUsers(view.TabUser.CurrentPage, args.RowHandle);
+            view.TabUser.CurrentPageChanged += (sender, args) => LoadData(view.TabUser.CurrentPage, args.RowHandle);
             view.TabUser.TotalRowsChanged += (sender, args) => view.GdvUser.FocusedRowHandle = args.RowHandle;
 
             // 订阅界面事件
-            view.GdvUser.FocusedRowObjectChanged += (sender, args) => UserChanged(args.FocusedRowHandle);
-            view.Search.Click += (sender, args) => LoadUsers();
+            view.GdvUser.FocusedRowObjectChanged += (sender, args) => ItemChanged(args.FocusedRowHandle);
+            view.Search.Click += (sender, args) => LoadData();
             view.KeyInput.Properties.Click += (sender, args) => view.KeyInput.EditValue = null;
             view.KeyInput.EditValueChanged += (sender, args) => key = view.KeyInput.Text.Trim();
             view.KeyInput.KeyPress += (sender, args) =>
             {
                 if (args.KeyChar != 13) return;
 
-                LoadUsers();
+                LoadData();
             };
 
             // 设置界面样式
@@ -51,7 +51,7 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// </summary>
         public void Refresh()
         {
-            LoadUsers(view.TabUser.CurrentPage, view.TabUser.FocusedRowHandle);
+            LoadData(view.TabUser.CurrentPage, view.TabUser.FocusedRowHandle);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// </summary>
         /// <param name="page">页码</param>
         /// <param name="handel">当前焦点行</param>
-        public void LoadUsers(int page = 1, int handel = 0)
+        public void LoadData(int page = 1, int handel = 0)
         {
             ShowWaitForm();
             var url = $"{Params.server}/userapi/v1.0/users?rows={userRows}&page={page}&key={key}";
@@ -81,7 +81,7 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// 新增用户
         /// </summary>
         /// <param name="data">UserInfo</param>
-        public void AddUser(User data)
+        public void AddItem(User data)
         {
             users.Add(data);
 
@@ -106,7 +106,7 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// <summary>
         /// 删除当前选中用户
         /// </summary>
-        public void DeleteUser()
+        public void DeleteItem()
         {
             var msg = $"您确定要删除用户【{user.name}】吗？\r\n用户删除后将无法恢复！";
             if (!Messages.ShowConfirm(msg)) return;
@@ -197,7 +197,7 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// 获取用户数据
         /// </summary>
         /// <param name="index">List下标</param>
-        private void UserChanged(int index)
+        private void ItemChanged(int index)
         {
             view.TabUser.FocusedRowHandle = index;
             user = index < 0 ? null : users[index];

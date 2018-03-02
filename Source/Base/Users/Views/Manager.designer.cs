@@ -74,7 +74,6 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.KeyInput = new DevExpress.XtraEditors.ButtonEdit();
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrgTreeNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabPermission)).BeginInit();
             this.tabPermission.SuspendLayout();
             this.pagData.SuspendLayout();
@@ -110,13 +109,6 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.FolderNode.Images.SetKeyName(0, "Item.png");
             this.FolderNode.Images.SetKeyName(1, "Folder.png");
             this.FolderNode.Images.SetKeyName(2, "FolderOpen.png");
-            // 
-            // OrgTreeNode
-            // 
-            this.OrgTreeNode.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("OrgTreeNode.ImageStream")));
-            this.OrgTreeNode.Images.SetKeyName(0, "NodeOrg.png");
-            this.OrgTreeNode.Images.SetKeyName(1, "NodeDept.png");
-            this.OrgTreeNode.Images.SetKeyName(2, "NodePost.png");
             // 
             // tabPermission
             // 
@@ -500,7 +492,6 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.Name = "Manager";
             this.xtraScrollable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrgTreeNode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabPermission)).EndInit();
             this.tabPermission.ResumeLayout(false);
             this.pagData.ResumeLayout(false);

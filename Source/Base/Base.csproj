@@ -87,6 +87,14 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Apps\Controller.cs" />
+    <Compile Include="Apps\Models\ManagerModel.cs" />
+    <Compile Include="Apps\Views\Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Views\Manager.Designer.cs">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Roles\Controller.cs" />
     <Compile Include="Roles\Models\MemberModel.cs" />
     <Compile Include="Roles\Models\ManagerModel.cs" />
@@ -102,6 +110,14 @@
     </Compile>
     <Compile Include="Roles\Views\Wizard.Designer.cs">
       <DependentUpon>Wizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tenants\Controller.cs" />
+    <Compile Include="Tenants\Models\ManagerModel.cs" />
+    <Compile Include="Tenants\Views\Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tenants\Views\Manager.Designer.cs">
+      <DependentUpon>Manager.cs</DependentUpon>
     </Compile>
     <Compile Include="Users\Controller.cs" />
     <Compile Include="Users\Models\ManagerModel.cs" />
@@ -127,11 +143,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Apps\Views\Manager.resx">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Roles\Views\Member.resx">
       <DependentUpon>Member.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Roles\Views\Wizard.resx">
       <DependentUpon>Wizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tenants\Views\Manager.resx">
+      <DependentUpon>Manager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\Views\UserDialog.resx">
       <DependentUpon>UserDialog.cs</DependentUpon>
@@ -177,6 +199,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,9 +1,9 @@
-﻿using Insight.MTP.Client.Base.Users.Models;
+﻿using Insight.MTP.Client.Base.Tenants.Models;
 using Insight.MTP.Client.Common.Controller;
 using Insight.MTP.Client.Common.Entity;
 using Insight.Utils.Common;
 
-namespace Insight.MTP.Client.Base.Users
+namespace Insight.MTP.Client.Base.Tenants
 {
     public class Controller : BaseController<ManagerModel>
     {
@@ -44,15 +44,6 @@ namespace Insight.MTP.Client.Base.Users
                 case "deleteUser":
                     model.DeleteItem();
                     break;
-                case "banned":
-                    model.SetInvalid(true);
-                    break;
-                case "release":
-                    model.SetInvalid(false);
-                    break;
-                case "reset":
-                    model.Reset();
-                    break;
                 default:
                     Messages.ShowError("对不起，该功能尚未实现！");
                     break;
@@ -64,22 +55,22 @@ namespace Insight.MTP.Client.Base.Users
         /// </summary>
         private void AddUser()
         {
-            var user = new User();
-            var userModel = new UserModel(user, "新建用户");
-            var view = userModel.view;
-            SubCloseEvent(view);
-            view.Confirm.Click += (sender, args) =>
-            {
-                model.ShowWaitForm();
-                user = userModel.AddUser();
-                model.CloseWaitForm();
-                if (user == null) return;
+            //var user = new User();
+            //var userModel = new UserModel(user, "新建用户");
+            //var view = userModel.view;
+            //SubCloseEvent(view);
+            //view.Confirm.Click += (sender, args) =>
+            //{
+            //    model.ShowWaitForm();
+            //    user = userModel.AddUser();
+            //    model.CloseWaitForm();
+            //    if (user == null) return;
 
-                model.AddItem(user);
-                CloseDialog(view);
-            };
+            //    model.AddUser(user);
+            //    CloseDialog(view);
+            //};
 
-            view.ShowDialog();
+            //view.ShowDialog();
         }
 
         /// <summary>
@@ -87,26 +78,26 @@ namespace Insight.MTP.Client.Base.Users
         /// </summary>
         private void EditUser()
         {
-            if (!model.AllowDoubleClick("editUser")) return;
+            //if (!model.AllowDoubleClick("editUser")) return;
 
-            var user = Util.Clone(model.user);
-            user.funcs = null;
-            user.datas = null;
-            var userModel = new UserModel(user, "编辑用户");
-            var view = userModel.view;
-            SubCloseEvent(view);
-            view.Confirm.Click += (sender, args) =>
-            {
-                model.ShowWaitForm();
-                user = userModel.EditUser();
-                model.CloseWaitForm();
-                if (user == null) return;
+            //var user = Util.Clone(model.user);
+            //user.funcs = null;
+            //user.datas = null;
+            //var userModel = new UserModel(user, "编辑用户");
+            //var view = userModel.view;
+            //SubCloseEvent(view);
+            //view.Confirm.Click += (sender, args) =>
+            //{
+            //    model.ShowWaitForm();
+            //    user = userModel.EditUser();
+            //    model.CloseWaitForm();
+            //    if (user == null) return;
 
-                model.Update(user);
-                CloseDialog(view);
-            };
+            //    model.Update(user);
+            //    CloseDialog(view);
+            //};
 
-            view.ShowDialog();
+            //view.ShowDialog();
         }
     }
 }

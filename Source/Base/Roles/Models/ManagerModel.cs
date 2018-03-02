@@ -18,7 +18,7 @@ namespace Insight.MTP.Client.Base.Roles.Models
         private List<Role> roles;
         private List<MemberUser> memberUsers;
         private bool first = true;
-        private int pageRows = 20;
+        private int roleRows = 20;
         private int userRows = 20;
 
         /// <summary>
@@ -28,8 +28,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
         public ManagerModel(Navigation info) : base(info)
         {
             // 订阅角色列表分页控件事件
-            view.TabRole.PageSizeChanged += (sender, args) => pageRows = args.PageSize;
-            view.TabRole.CurrentPageChanged += (sender, args) => LoadRoles(view.TabRole.CurrentPage, args.RowHandle);
+            view.TabRole.PageSizeChanged += (sender, args) => roleRows = args.PageSize;
+            view.TabRole.CurrentPageChanged += (sender, args) => LoadData(view.TabRole.CurrentPage, args.RowHandle);
             view.TabRole.TotalRowsChanged += (sender, args) => view.GdvRole.FocusedRowHandle = args.RowHandle;
 
             // 订阅角色成员用户列表分页控件事件
@@ -38,7 +38,7 @@ namespace Insight.MTP.Client.Base.Roles.Models
             view.TabUser.TotalRowsChanged += (sender, args) => view.GdvUser.FocusedRowHandle = args.RowHandle;
 
             // 订阅界面鼠标点击事件
-            view.GdvRole.FocusedRowObjectChanged += (sender, args) => RoleChanged(args.FocusedRowHandle);
+            view.GdvRole.FocusedRowObjectChanged += (sender, args) => ItemChanged(args.FocusedRowHandle);
             view.GdvUser.FocusedRowObjectChanged += (sender, args) => view.TabUser.FocusedRowHandle = args.FocusedRowHandle;
             view.TreMember.FocusedNodeChanged += (sender, args) => MemberChanged(args.Node);
 
@@ -51,22 +51,22 @@ namespace Insight.MTP.Client.Base.Roles.Models
         }
 
         /// <summary>
-        /// 刷新角色列表
+        /// 刷新列表
         /// </summary>
         public void Refresh()
         {
-            LoadRoles(view.TabRole.CurrentPage, view.TabRole.FocusedRowHandle);
+            LoadData(view.TabRole.CurrentPage, view.TabRole.FocusedRowHandle);
         }
 
         /// <summary>
-        /// 加载角色列表数据
+        /// 加载列表数据
         /// </summary>
         /// <param name="page">页码</param>
         /// <param name="handel">当前焦点行</param>
-        public void LoadRoles(int page = 1, int handel = 0)
+        public void LoadData(int page = 1, int handel = 0)
         {
             ShowWaitForm();
-            var url = $"{server}/roleapi/v1.0/roles?rows={pageRows}&page={page}";
+            var url = $"{server}/roleapi/v1.0/roles?rows={roleRows}&page={page}";
             var client = new HttpClient<List<Role>>(token);
             if (!client.Get(url))
             {
@@ -82,10 +82,10 @@ namespace Insight.MTP.Client.Base.Roles.Models
         }
 
         /// <summary>
-        /// 新增角色到角色列表
+        /// 新增列表数据
         /// </summary>
         /// <param name="data">RoleInfo</param>
-        public void AddRole(Role data)
+        public void AddItem(Role data)
         {
             roles.Add(data);
 
@@ -94,9 +94,9 @@ namespace Insight.MTP.Client.Base.Roles.Models
         }
 
         /// <summary>
-        /// 删除当前所选角色
+        /// 删除当前所选数据
         /// </summary>
-        public void RoleDelete()
+        public void DeleteItem()
         {
             var msg = $"您确定要删除角色【{role.name}】吗？\r\n角色删除后将无法恢复！";
             if (!Messages.ShowConfirm(msg)) return;
@@ -141,10 +141,10 @@ namespace Insight.MTP.Client.Base.Roles.Models
         }
 
         /// <summary>
-        /// 更新当前所选角色数据
+        /// 更新当前所选数据
         /// </summary>
         /// <param name="data">RoleInfo</param>
-        public void UpdatePerm(Role data)
+        public void Update(Role data)
         {
             role.appId = data.appId;
             role.appName = data.appName;
@@ -204,10 +204,10 @@ namespace Insight.MTP.Client.Base.Roles.Models
         }
 
         /// <summary>
-        /// 根据ID获取角色数据
+        /// 列表选中数据改变
         /// </summary>
         /// <param name="index">List下标</param>
-        private void RoleChanged(int index)
+        private void ItemChanged(int index)
         {
             view.TabRole.FocusedRowHandle = index;
 

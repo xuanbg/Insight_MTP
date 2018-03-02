@@ -88,6 +88,7 @@
     <Compile Include="Dialogs\Unshared.designer.cs">
       <DependentUpon>Unshared.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entity\App.cs" />
     <Compile Include="Entity\CategoryBses.cs" />
     <Compile Include="Entity\Reports.cs" />
     <Compile Include="Entity\Enums.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Entity\Bases.cs" />
     <Compile Include="Entity\Members.cs" />
     <Compile Include="Controller\BaseController.cs" />
+    <Compile Include="Entity\Tenant.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\MdiModel.cs" />
     <Compile Include="Models\MemberModel.cs" />

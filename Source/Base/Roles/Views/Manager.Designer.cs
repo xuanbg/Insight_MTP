@@ -90,7 +90,6 @@ namespace Insight.MTP.Client.Base.Roles.Views
             this.imgPermission = new DevExpress.Utils.ImageCollection(this.components);
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrgTreeNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMain)).BeginInit();
             this.splMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grpRole)).BeginInit();
@@ -132,13 +131,6 @@ namespace Insight.MTP.Client.Base.Roles.Views
             this.FolderNode.Images.SetKeyName(0, "Item.png");
             this.FolderNode.Images.SetKeyName(1, "Folder.png");
             this.FolderNode.Images.SetKeyName(2, "FolderOpen.png");
-            // 
-            // OrgTreeNode
-            // 
-            this.OrgTreeNode.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("OrgTreeNode.ImageStream")));
-            this.OrgTreeNode.Images.SetKeyName(0, "NodeOrg.png");
-            this.OrgTreeNode.Images.SetKeyName(1, "NodeDept.png");
-            this.OrgTreeNode.Images.SetKeyName(2, "NodePost.png");
             // 
             // barDockControlTop
             // 
@@ -630,7 +622,6 @@ namespace Insight.MTP.Client.Base.Roles.Views
             this.Name = "Manager";
             this.xtraScrollable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrgTreeNode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMain)).EndInit();
             this.splMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grpRole)).EndInit();

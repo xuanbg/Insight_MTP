@@ -59,7 +59,7 @@ namespace Insight.MTP.Client.MainApp.Models
             token.account = account;
             token.Signature(password);
             token.GetTokens();
-            if (!token.success) return false;
+            if (token.token == null) return false;
 
             Params.needChangePw = password == "123456";
             Config.SaveUserName(account);
