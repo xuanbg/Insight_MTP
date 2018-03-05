@@ -47,8 +47,8 @@ namespace Insight.MTP.Client.Base.Apps.Models
         public void LoadData(int page = 1, int handel = 0)
         {
             ShowWaitForm();
-            var url = $"{Params.server}/userapi/v1.0/users?rows={rows}&page={page}&key={key}";
-            var client = new HttpClient<List<Tenant>>(Params.tokenHelper);
+            var url = $"{server}/userapi/v1.0/users?rows={rows}&page={page}&key={key}";
+            var client = new HttpClient<List<Tenant>>(token);
             if (!client.Get(url))
             {
                 CloseWaitForm();
@@ -91,8 +91,8 @@ namespace Insight.MTP.Client.Base.Apps.Models
 
             ShowWaitForm();
             msg = $"对不起，无法删除用户【{item.name}】！\r\n如果您想禁止该用户登录系统，请使用封禁功能。";
-            var url = $"{Params.server}/userapi/v1.0/users/{item.id}";
-            var client = new HttpClient<object>(Params.tokenHelper);
+            var url = $"{server}/userapi/v1.0/users/{item.id}";
+            var client = new HttpClient<object>(token);
             if (!client.Delete(url, null, msg))
             {
                 CloseWaitForm();
@@ -111,8 +111,8 @@ namespace Insight.MTP.Client.Base.Apps.Models
         {
             var dict = new Dictionary<string, bool>
             {
-                ["editTenant"] = !item?.isBuiltin ?? false,
-                ["deleteTenant"] = !item?.isBuiltin ?? false,
+                ["editApp"] = !item?.isBuiltin ?? false,
+                ["deleteApp"] = !item?.isBuiltin ?? false,
             };
             SwitchItemStatus(dict);
         }
@@ -135,8 +135,8 @@ namespace Insight.MTP.Client.Base.Apps.Models
         /// </summary>
         private void GetDetail()
         {
-            var url = $"{Params.server}/userapi/v1.0/users/{item.id}";
-            var client = new HttpClient<Tenant>(Params.tokenHelper);
+            var url = $"{server}/userapi/v1.0/users/{item.id}";
+            var client = new HttpClient<Tenant>(token);
             if (!client.Get(url)) return;
 
             item.apps = client.data.apps;

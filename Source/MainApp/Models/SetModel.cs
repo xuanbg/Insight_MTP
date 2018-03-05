@@ -18,11 +18,11 @@ namespace Insight.MTP.Client.MainApp.Models
         {
             view = new LoginSet
             {
-                BaseInupt = {Text = Params.server },
+                BaseInupt = {Text = server },
                 SaveUserCheckBox = {Checked = saveUser}
             };
 
-            view.BaseInupt.EditValueChanged += (sender, args) => Params.server = view.BaseInupt.Text;
+            view.BaseInupt.EditValueChanged += (sender, args) => server = view.BaseInupt.Text;
             view.SaveUserCheckBox.CheckStateChanged += (sender, args) => saveUser = view.SaveUserCheckBox.Checked;
         }
 

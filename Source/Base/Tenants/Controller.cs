@@ -18,7 +18,7 @@ namespace Insight.MTP.Client.Base.Tenants
             model.buttons.ForEach(i => i.ItemClick += (sender, args) => ItemClick(args.Item.Name));
 
             // 订阅界面事件
-            model.view.GdvUser.DoubleClick += (sender, args) => EditUser();
+            model.view.gdvUser.DoubleClick += (sender, args) => EditUser();
 
             // 加载角色列表
             model.LoadData();
@@ -32,16 +32,19 @@ namespace Insight.MTP.Client.Base.Tenants
         {
             switch (action)
             {
-                case "getUsers":
+                case "getTenants":
                     model.Refresh();
                     break;
-                case "newUser":
+                case "newTenant":
                     AddUser();
                     break;
-                case "editUser":
+                case "editTenant":
                     EditUser();
                     break;
-                case "deleteUser":
+                case "deleteTenant":
+                    model.DeleteItem();
+                    break;
+                case "extend":
                     model.DeleteItem();
                     break;
                 default:
@@ -78,7 +81,7 @@ namespace Insight.MTP.Client.Base.Tenants
         /// </summary>
         private void EditUser()
         {
-            //if (!model.AllowDoubleClick("editUser")) return;
+            //if (!model.AllowDoubleClick("editTenant")) return;
 
             //var user = Util.Clone(model.user);
             //user.funcs = null;

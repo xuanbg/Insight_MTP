@@ -172,8 +172,8 @@ namespace Insight.MTP.Client.Base.Roles.Models
             view.TreMember.ExpandAll();
             view.TreMember.MoveFirst();
 
-            RefreshToolBar();
             GetMemberUsers();
+            RefreshToolBar();
         }
 
         /// <summary>
@@ -223,8 +223,6 @@ namespace Insight.MTP.Client.Base.Roles.Models
             view.TreMember.MoveFirst();
 
             GetMemberUsers();
-            view.GrdUser.DataSource = memberUsers;
-
             RefreshToolBar();
 
             if (!first) return;

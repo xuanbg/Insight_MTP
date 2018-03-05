@@ -41,6 +41,11 @@ namespace Insight.MTP.Client.Common.Entity
         public string email { get; set; }
 
         /// <summary>
+        /// 全地址
+        /// </summary>
+        public string fullAdd => province + city + county + address;
+
+        /// <summary>
         /// 所在省/直辖市
         /// </summary>
         public string province { get; set; }

@@ -159,8 +159,8 @@ namespace Insight.MTP.Client.Common.Models
         /// <returns>功能按钮集合</returns>
         private IEnumerable<Function> GetActions()
         {
-            var url = $"{Params.server}/moduleapi/v1.0/modules/{moduleId}/functions";
-            var client = new HttpClient<List<Function>>(Params.tokenHelper);
+            var url = $"{server}/moduleapi/v1.0/modules/{moduleId}/functions";
+            var client = new HttpClient<List<Function>>(token);
             return client.Get(url) ? client.data : new List<Function>();
         }
     }

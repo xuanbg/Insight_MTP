@@ -44,55 +44,62 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.splMain = new DevExpress.XtraEditors.SplitContainerControl();
+            this.palTenant = new DevExpress.XtraEditors.PanelControl();
+            this.grdTenant = new DevExpress.XtraGrid.GridControl();
+            this.tenantBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gdvTenant = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colname = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colalias = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colexpireDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colcontact = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colmobile = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colemail = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colfullAdd = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colremark = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.tabTenant = new Insight.Utils.Controls.PageControl();
             this.panSpace = new DevExpress.XtraEditors.PanelControl();
             this.panSearch = new DevExpress.XtraEditors.PanelControl();
             this.Search = new DevExpress.XtraEditors.SimpleButton();
             this.KeyInput = new DevExpress.XtraEditors.ButtonEdit();
-            this.palTenant = new DevExpress.XtraEditors.PanelControl();
-            this.GrdTenant = new DevExpress.XtraGrid.GridControl();
-            this.GdvTenant = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.tabTenant = new Insight.Utils.Controls.PageControl();
             this.splMember = new DevExpress.XtraEditors.SplitContainerControl();
             this.grpMember = new DevExpress.XtraEditors.GroupControl();
             this.grdApp = new DevExpress.XtraGrid.GridControl();
+            this.appBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gdvApp = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colname2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colalias1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grpUser = new DevExpress.XtraEditors.GroupControl();
-            this.GrdUser = new DevExpress.XtraGrid.GridControl();
-            this.GdvUser = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colUID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdUser = new DevExpress.XtraGrid.GridControl();
+            this.gdvUser = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colLoginName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colValidity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tabUser = new Insight.Utils.Controls.PageControl();
-            this.imgMember = new DevExpress.Utils.ImageCollection(this.components);
-            this.imgData = new DevExpress.Utils.ImageCollection(this.components);
-            this.imgPermission = new DevExpress.Utils.ImageCollection(this.components);
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMain)).BeginInit();
             this.splMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.palTenant)).BeginInit();
+            this.palTenant.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdTenant)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tenantBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvTenant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSpace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSearch)).BeginInit();
             this.panSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KeyInput.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.palTenant)).BeginInit();
-            this.palTenant.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GrdTenant)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GdvTenant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMember)).BeginInit();
             this.splMember.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grpMember)).BeginInit();
             this.grpMember.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdApp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.appBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvApp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpUser)).BeginInit();
             this.grpUser.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GrdUser)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GdvUser)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgMember)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgPermission)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdUser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvUser)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraScrollable
@@ -155,6 +162,131 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.splMain.SplitterPosition = 300;
             this.splMain.TabIndex = 0;
             // 
+            // palTenant
+            // 
+            this.palTenant.Controls.Add(this.grdTenant);
+            this.palTenant.Controls.Add(this.tabTenant);
+            this.palTenant.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.palTenant.Location = new System.Drawing.Point(0, 44);
+            this.palTenant.Name = "palTenant";
+            this.palTenant.Size = new System.Drawing.Size(1070, 256);
+            this.palTenant.TabIndex = 0;
+            // 
+            // grdTenant
+            // 
+            this.grdTenant.DataSource = this.tenantBindingSource;
+            this.grdTenant.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdTenant.Location = new System.Drawing.Point(2, 2);
+            this.grdTenant.MainView = this.gdvTenant;
+            this.grdTenant.Name = "grdTenant";
+            this.grdTenant.Size = new System.Drawing.Size(1066, 230);
+            this.grdTenant.TabIndex = 0;
+            this.grdTenant.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gdvTenant});
+            // 
+            // tenantBindingSource
+            // 
+            this.tenantBindingSource.DataSource = typeof(Insight.MTP.Client.Common.Entity.Tenant);
+            // 
+            // gdvTenant
+            // 
+            this.gdvTenant.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.gdvTenant.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colexpireDate,
+            this.colname,
+            this.colalias,
+            this.colcontact,
+            this.colmobile,
+            this.colemail,
+            this.colfullAdd,
+            this.colremark});
+            this.gdvTenant.GridControl = this.grdTenant;
+            this.gdvTenant.Name = "gdvTenant";
+            this.gdvTenant.OptionsDetail.EnableMasterViewMode = false;
+            // 
+            // colname
+            // 
+            this.colname.Caption = "名称";
+            this.colname.FieldName = "name";
+            this.colname.Name = "colname";
+            this.colname.Visible = true;
+            this.colname.VisibleIndex = 1;
+            this.colname.Width = 240;
+            // 
+            // colalias
+            // 
+            this.colalias.Caption = "简称";
+            this.colalias.FieldName = "alias";
+            this.colalias.Name = "colalias";
+            this.colalias.Visible = true;
+            this.colalias.VisibleIndex = 2;
+            this.colalias.Width = 120;
+            // 
+            // colexpireDate
+            // 
+            this.colexpireDate.Caption = "到期日期";
+            this.colexpireDate.FieldName = "expireDate";
+            this.colexpireDate.Name = "colexpireDate";
+            this.colexpireDate.Visible = true;
+            this.colexpireDate.VisibleIndex = 0;
+            this.colexpireDate.Width = 80;
+            // 
+            // colcontact
+            // 
+            this.colcontact.Caption = "联系人";
+            this.colcontact.FieldName = "contact";
+            this.colcontact.Name = "colcontact";
+            this.colcontact.Visible = true;
+            this.colcontact.VisibleIndex = 3;
+            this.colcontact.Width = 60;
+            // 
+            // colmobile
+            // 
+            this.colmobile.Caption = "联系电话";
+            this.colmobile.FieldName = "mobile";
+            this.colmobile.Name = "colmobile";
+            this.colmobile.Visible = true;
+            this.colmobile.VisibleIndex = 4;
+            this.colmobile.Width = 100;
+            // 
+            // colemail
+            // 
+            this.colemail.Caption = "邮箱";
+            this.colemail.FieldName = "email";
+            this.colemail.Name = "colemail";
+            // 
+            // colfullAdd
+            // 
+            this.colfullAdd.Caption = "地址";
+            this.colfullAdd.FieldName = "fullAdd";
+            this.colfullAdd.Name = "colfullAdd";
+            this.colfullAdd.OptionsColumn.ReadOnly = true;
+            this.colfullAdd.Visible = true;
+            this.colfullAdd.VisibleIndex = 5;
+            this.colfullAdd.Width = 300;
+            // 
+            // colremark
+            // 
+            this.colremark.Caption = "备注";
+            this.colremark.FieldName = "remark";
+            this.colremark.Name = "colremark";
+            this.colremark.Visible = true;
+            this.colremark.VisibleIndex = 6;
+            this.colremark.Width = 114;
+            // 
+            // tabTenant
+            // 
+            this.tabTenant.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tabTenant.FocusedRowHandle = 0;
+            this.tabTenant.Location = new System.Drawing.Point(2, 232);
+            this.tabTenant.MaximumSize = new System.Drawing.Size(0, 22);
+            this.tabTenant.MinimumSize = new System.Drawing.Size(300, 22);
+            this.tabTenant.Name = "tabTenant";
+            this.tabTenant.PageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("tabTenant.PageSizeItems")));
+            this.tabTenant.Size = new System.Drawing.Size(1066, 22);
+            this.tabTenant.TabIndex = 0;
+            this.tabTenant.TotalRows = 0;
+            // 
             // panSpace
             // 
             this.panSpace.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -201,47 +333,6 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.KeyInput.Size = new System.Drawing.Size(976, 21);
             this.KeyInput.TabIndex = 1;
             // 
-            // palTenant
-            // 
-            this.palTenant.Controls.Add(this.GrdTenant);
-            this.palTenant.Controls.Add(this.tabTenant);
-            this.palTenant.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.palTenant.Location = new System.Drawing.Point(0, 44);
-            this.palTenant.Name = "palTenant";
-            this.palTenant.Size = new System.Drawing.Size(1070, 256);
-            this.palTenant.TabIndex = 0;
-            // 
-            // GrdTenant
-            // 
-            this.GrdTenant.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GrdTenant.Location = new System.Drawing.Point(2, 2);
-            this.GrdTenant.MainView = this.GdvTenant;
-            this.GrdTenant.Name = "GrdTenant";
-            this.GrdTenant.Size = new System.Drawing.Size(1066, 230);
-            this.GrdTenant.TabIndex = 0;
-            this.GrdTenant.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.GdvTenant});
-            // 
-            // GdvTenant
-            // 
-            this.GdvTenant.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.GdvTenant.GridControl = this.GrdTenant;
-            this.GdvTenant.Name = "GdvTenant";
-            this.GdvTenant.OptionsDetail.EnableMasterViewMode = false;
-            // 
-            // tabTenant
-            // 
-            this.tabTenant.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabTenant.FocusedRowHandle = 0;
-            this.tabTenant.Location = new System.Drawing.Point(2, 232);
-            this.tabTenant.MaximumSize = new System.Drawing.Size(0, 22);
-            this.tabTenant.MinimumSize = new System.Drawing.Size(300, 22);
-            this.tabTenant.Name = "tabTenant";
-            this.tabTenant.PageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("tabTenant.PageSizeItems")));
-            this.tabTenant.Size = new System.Drawing.Size(1066, 22);
-            this.tabTenant.TabIndex = 0;
-            this.tabTenant.TotalRows = 0;
-            // 
             // splMember
             // 
             this.splMember.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -268,6 +359,7 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             // 
             // grdApp
             // 
+            this.grdApp.DataSource = this.appBindingSource;
             this.grdApp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdApp.Location = new System.Drawing.Point(2, 21);
             this.grdApp.MainView = this.gdvApp;
@@ -277,14 +369,39 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.grdApp.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvApp});
             // 
+            // appBindingSource
+            // 
+            this.appBindingSource.DataSource = typeof(Insight.MTP.Client.Common.Entity.App);
+            // 
             // gdvApp
             // 
+            this.gdvApp.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colname2,
+            this.colalias1});
             this.gdvApp.GridControl = this.grdApp;
             this.gdvApp.Name = "gdvApp";
             // 
+            // colname2
+            // 
+            this.colname2.Caption = "名称";
+            this.colname2.FieldName = "name";
+            this.colname2.Name = "colname2";
+            this.colname2.Visible = true;
+            this.colname2.VisibleIndex = 0;
+            this.colname2.Width = 280;
+            // 
+            // colalias1
+            // 
+            this.colalias1.Caption = "简称";
+            this.colalias1.FieldName = "alias";
+            this.colalias1.Name = "colalias1";
+            this.colalias1.Visible = true;
+            this.colalias1.VisibleIndex = 1;
+            this.colalias1.Width = 145;
+            // 
             // grpUser
             // 
-            this.grpUser.Controls.Add(this.GrdUser);
+            this.grpUser.Controls.Add(this.grdUser);
             this.grpUser.Controls.Add(this.tabUser);
             this.grpUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpUser.Location = new System.Drawing.Point(0, 0);
@@ -293,32 +410,27 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.grpUser.TabIndex = 0;
             this.grpUser.Text = "关联用户";
             // 
-            // GrdUser
+            // grdUser
             // 
-            this.GrdUser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GrdUser.Location = new System.Drawing.Point(2, 21);
-            this.GrdUser.MainView = this.GdvUser;
-            this.GrdUser.Name = "GrdUser";
-            this.GrdUser.Size = new System.Drawing.Size(580, 240);
-            this.GrdUser.TabIndex = 0;
-            this.GrdUser.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.GdvUser});
+            this.grdUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdUser.Location = new System.Drawing.Point(2, 21);
+            this.grdUser.MainView = this.gdvUser;
+            this.grdUser.Name = "grdUser";
+            this.grdUser.Size = new System.Drawing.Size(580, 240);
+            this.grdUser.TabIndex = 0;
+            this.grdUser.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gdvUser});
             // 
-            // GdvUser
+            // gdvUser
             // 
-            this.GdvUser.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colUID,
+            this.gdvUser.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colName1,
             this.colLoginName,
             this.colDescription1,
             this.colValidity});
-            this.GdvUser.GridControl = this.GrdUser;
-            this.GdvUser.Name = "GdvUser";
-            // 
-            // colUID
-            // 
-            this.colUID.FieldName = "ID";
-            this.colUID.Name = "colUID";
+            this.gdvUser.GridControl = this.grdUser;
+            this.gdvUser.Name = "gdvUser";
+            this.gdvUser.OptionsDetail.EnableMasterViewMode = false;
             // 
             // colName1
             // 
@@ -369,45 +481,6 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.tabUser.TabIndex = 0;
             this.tabUser.TotalRows = 0;
             // 
-            // imgMember
-            // 
-            this.imgMember.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imgMember.ImageStream")));
-            this.imgMember.Images.SetKeyName(0, "Suggestion.png");
-            this.imgMember.Images.SetKeyName(1, "User.png");
-            this.imgMember.Images.SetKeyName(2, "Group.png");
-            this.imgMember.Images.SetKeyName(3, "NodePost.png");
-            // 
-            // imgData
-            // 
-            this.imgData.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imgData.ImageStream")));
-            this.imgData.Images.SetKeyName(0, "Navigation.png");
-            this.imgData.InsertGalleryImage("database_16x16.png", "images/data/database_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/data/database_16x16.png"), 1);
-            this.imgData.Images.SetKeyName(1, "database_16x16.png");
-            this.imgData.InsertGalleryImage("new_16x16.png", "images/actions/new_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/new_16x16.png"), 2);
-            this.imgData.Images.SetKeyName(2, "new_16x16.png");
-            this.imgData.InsertGalleryImage("customer_16x16.png", "images/people/customer_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/people/customer_16x16.png"), 3);
-            this.imgData.Images.SetKeyName(3, "customer_16x16.png");
-            this.imgData.Images.SetKeyName(4, "NodeDept.png");
-            this.imgData.InsertGalleryImage("home_16x16.png", "images/navigation/home_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/navigation/home_16x16.png"), 5);
-            this.imgData.Images.SetKeyName(5, "home_16x16.png");
-            this.imgData.Images.SetKeyName(6, "NodeOrg.png");
-            this.imgData.InsertGalleryImage("documentmap_16x16.png", "images/navigation/documentmap_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/navigation/documentmap_16x16.png"), 7);
-            this.imgData.Images.SetKeyName(7, "documentmap_16x16.png");
-            // 
-            // imgPermission
-            // 
-            this.imgPermission.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imgPermission.ImageStream")));
-            this.imgPermission.Images.SetKeyName(0, "Module.png");
-            this.imgPermission.InsertGalleryImage("openhyperlink_16x16.png", "images/actions/openhyperlink_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/openhyperlink_16x16.png"), 1);
-            this.imgPermission.Images.SetKeyName(1, "openhyperlink_16x16.png");
-            this.imgPermission.Images.SetKeyName(2, "Action.png");
-            this.imgPermission.InsertGalleryImage("close_16x16.png", "images/actions/close_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/close_16x16.png"), 3);
-            this.imgPermission.Images.SetKeyName(3, "close_16x16.png");
-            this.imgPermission.InsertGalleryImage("checkbox_16x16.png", "images/content/checkbox_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/content/checkbox_16x16.png"), 4);
-            this.imgPermission.Images.SetKeyName(4, "checkbox_16x16.png");
-            this.imgPermission.InsertGalleryImage("technology_16x16.png", "images/programming/technology_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/programming/technology_16x16.png"), 5);
-            this.imgPermission.Images.SetKeyName(5, "technology_16x16.png");
-            // 
             // Manager
             // 
             this.Appearance.Options.UseFont = true;
@@ -417,27 +490,26 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMain)).EndInit();
             this.splMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.palTenant)).EndInit();
+            this.palTenant.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdTenant)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tenantBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvTenant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSpace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSearch)).EndInit();
             this.panSearch.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.KeyInput.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.palTenant)).EndInit();
-            this.palTenant.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.GrdTenant)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GdvTenant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMember)).EndInit();
             this.splMember.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grpMember)).EndInit();
             this.grpMember.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdApp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.appBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvApp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpUser)).EndInit();
             this.grpUser.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.GrdUser)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GdvUser)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgMember)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgPermission)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdUser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvUser)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -445,8 +517,8 @@ namespace Insight.MTP.Client.Base.Tenants.Views
 
         #endregion
         internal Utils.Controls.PageControl tabUser;
-        internal GridControl GrdUser;
-        internal GridView GdvUser;
+        internal GridControl grdUser;
+        internal GridView gdvUser;
         private BarDockControl barDockControlTop;
         private BarDockControl barDockControlBottom;
         private BarDockControl barDockControlLeft;
@@ -455,17 +527,13 @@ namespace Insight.MTP.Client.Base.Tenants.Views
         private GroupControl grpUser;
         private SplitContainerControl splMain;
         private SplitContainerControl splMember;
-        private ImageCollection imgMember;
-        private ImageCollection imgPermission;
-        private ImageCollection imgData;
-        private DevExpress.XtraGrid.Columns.GridColumn colUID;
         private DevExpress.XtraGrid.Columns.GridColumn colName1;
         private DevExpress.XtraGrid.Columns.GridColumn colLoginName;
         private DevExpress.XtraGrid.Columns.GridColumn colDescription1;
         private DevExpress.XtraGrid.Columns.GridColumn colValidity;
         private PanelControl palTenant;
-        internal GridControl GrdTenant;
-        internal GridView GdvTenant;
+        internal GridControl grdTenant;
+        internal GridView gdvTenant;
         internal Utils.Controls.PageControl tabTenant;
         internal GridControl grdApp;
         internal GridView gdvApp;
@@ -473,5 +541,17 @@ namespace Insight.MTP.Client.Base.Tenants.Views
         private PanelControl panSearch;
         internal SimpleButton Search;
         internal ButtonEdit KeyInput;
+        private System.Windows.Forms.BindingSource appBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colname2;
+        private DevExpress.XtraGrid.Columns.GridColumn colalias1;
+        private System.Windows.Forms.BindingSource tenantBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colname;
+        private DevExpress.XtraGrid.Columns.GridColumn colalias;
+        private DevExpress.XtraGrid.Columns.GridColumn colexpireDate;
+        private DevExpress.XtraGrid.Columns.GridColumn colcontact;
+        private DevExpress.XtraGrid.Columns.GridColumn colmobile;
+        private DevExpress.XtraGrid.Columns.GridColumn colemail;
+        private DevExpress.XtraGrid.Columns.GridColumn colfullAdd;
+        private DevExpress.XtraGrid.Columns.GridColumn colremark;
     }
 }

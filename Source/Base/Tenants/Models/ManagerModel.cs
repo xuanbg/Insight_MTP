@@ -25,15 +25,15 @@ namespace Insight.MTP.Client.Base.Tenants.Models
             // 订阅租户列表分页控件事件
             view.tabTenant.PageSizeChanged += (sender, args) => rows = args.PageSize;
             view.tabTenant.CurrentPageChanged += (sender, args) => LoadData(view.tabTenant.CurrentPage, args.RowHandle);
-            view.tabTenant.TotalRowsChanged += (sender, args) => view.GdvTenant.FocusedRowHandle = args.RowHandle;
+            view.tabTenant.TotalRowsChanged += (sender, args) => view.gdvTenant.FocusedRowHandle = args.RowHandle;
 
             // 订阅用户列表分页控件事件
             view.tabUser.PageSizeChanged += (sender, args) => rows = args.PageSize;
             view.tabUser.CurrentPageChanged += (sender, args) => LoadData(view.tabUser.CurrentPage, args.RowHandle);
-            view.tabUser.TotalRowsChanged += (sender, args) => view.GdvUser.FocusedRowHandle = args.RowHandle;
+            view.tabUser.TotalRowsChanged += (sender, args) => view.gdvUser.FocusedRowHandle = args.RowHandle;
 
             // 订阅界面事件
-            view.GdvTenant.FocusedRowObjectChanged += (sender, args) => ItemChanged(args.FocusedRowHandle);
+            view.gdvTenant.FocusedRowObjectChanged += (sender, args) => ItemChanged(args.FocusedRowHandle);
             view.Search.Click += (sender, args) => LoadData();
             view.KeyInput.Properties.Click += (sender, args) => view.KeyInput.EditValue = null;
             view.KeyInput.EditValueChanged += (sender, args) => key = view.KeyInput.Text.Trim();
@@ -45,9 +45,9 @@ namespace Insight.MTP.Client.Base.Tenants.Models
             };
 
             // 设置界面样式
-            Format.GridFormat(view.GdvTenant);
+            Format.GridFormat(view.gdvTenant);
             Format.GridFormat(view.gdvApp);
-            Format.GridFormat(view.GdvUser);
+            Format.GridFormat(view.gdvUser);
         }
 
         /// <summary>
@@ -66,8 +66,8 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         public void LoadData(int page = 1, int handel = 0)
         {
             ShowWaitForm();
-            var url = $"{Params.server}/userapi/v1.0/users?rows={rows}&page={page}&key={key}";
-            var client = new HttpClient<List<Tenant>>(Params.tokenHelper);
+            var url = $"{server}/tenantapi/v1.0/tenants?rows={rows}&page={page}&key={key}";
+            var client = new HttpClient<List<Tenant>>(token);
             if (!client.Get(url))
             {
                 CloseWaitForm();
@@ -76,8 +76,8 @@ namespace Insight.MTP.Client.Base.Tenants.Models
 
             list = client.data;
             view.tabTenant.TotalRows = int.Parse(client.option.ToString());
-            view.GrdTenant.DataSource = list;
-            view.GdvTenant.FocusedRowHandle = handel;
+            view.grdTenant.DataSource = list;
+            view.gdvTenant.FocusedRowHandle = handel;
             CloseWaitForm();
         }
 
@@ -90,7 +90,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
             list.Add(data);
 
             view.tabTenant.AddItems();
-            view.GdvUser.RefreshData();
+            view.gdvUser.RefreshData();
         }
 
         /// <summary>
@@ -112,8 +112,8 @@ namespace Insight.MTP.Client.Base.Tenants.Models
 
             ShowWaitForm();
             msg = $"对不起，无法删除用户【{item.name}】！\r\n如果您想禁止该用户登录系统，请使用封禁功能。";
-            var url = $"{Params.server}/userapi/v1.0/users/{item.id}";
-            var client = new HttpClient<object>(Params.tokenHelper);
+            var url = $"{server}/tenantapi/v1.0/tenants/{item.id}";
+            var client = new HttpClient<object>(token);
             if (!client.Delete(url, null, msg))
             {
                 CloseWaitForm();
@@ -122,7 +122,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
 
             list.Remove(item);
             view.tabTenant.RemoveItems();
-            view.GdvUser.RefreshData();
+            view.gdvUser.RefreshData();
             CloseWaitForm();
         }
 
@@ -149,6 +149,8 @@ namespace Insight.MTP.Client.Base.Tenants.Models
             item = index < 0 ? null : list[index];
             if (item != null && (item.apps == null || item.users == null)) GetDetail();
 
+            view.grdApp.DataSource = item?.apps;
+            view.grdUser.DataSource = item?.users;
 
             RefreshToolBar();
         }
@@ -158,8 +160,8 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// </summary>
         private void GetDetail()
         {
-            var url = $"{Params.server}/userapi/v1.0/users/{item.id}";
-            var client = new HttpClient<Tenant>(Params.tokenHelper);
+            var url = $"{server}/tenantapi/v1.0/tenants/{item.id}";
+            var client = new HttpClient<Tenant>(token);
             if (!client.Get(url)) return;
 
             item.apps = client.data.apps;

@@ -62,8 +62,8 @@ namespace Insight.MTP.Client.Base.Users.Models
         public void LoadData(int page = 1, int handel = 0)
         {
             ShowWaitForm();
-            var url = $"{Params.server}/userapi/v1.0/users?rows={userRows}&page={page}&key={key}";
-            var client = new HttpClient<List<User>>(Params.tokenHelper);
+            var url = $"{server}/userapi/v1.0/users?rows={userRows}&page={page}&key={key}";
+            var client = new HttpClient<List<User>>(token);
             if (!client.Get(url))
             {
                 CloseWaitForm();
@@ -113,8 +113,8 @@ namespace Insight.MTP.Client.Base.Users.Models
 
             ShowWaitForm();
             msg = $"对不起，无法删除用户【{user.name}】！\r\n如果您想禁止该用户登录系统，请使用封禁功能。";
-            var url = $"{Params.server}/userapi/v1.0/users/{user.id}";
-            var client = new HttpClient<object>(Params.tokenHelper);
+            var url = $"{server}/userapi/v1.0/users/{user.id}";
+            var client = new HttpClient<object>(token);
             if (!client.Delete(url, null, msg))
             {
                 CloseWaitForm();
@@ -139,9 +139,9 @@ namespace Insight.MTP.Client.Base.Users.Models
             if (!Messages.ShowConfirm(msg)) return;
 
             ShowWaitForm();
-            var url = $"{Params.server}/userapi/v1.0/users/{user.id}/validity";
+            var url = $"{server}/userapi/v1.0/users/{user.id}/validity";
             var dict = new Dictionary<string, object> {{"invalid", isInvalid}};
-            var client = new HttpClient<object>(Params.tokenHelper);
+            var client = new HttpClient<object>(token);
             if (!client.Put(url, dict))
             {
                 CloseWaitForm();
@@ -164,9 +164,9 @@ namespace Insight.MTP.Client.Base.Users.Models
 
             ShowWaitForm();
             msg = $"对不起，用户【{user.name}】的密码重置失败。";
-            var url = $"{Params.server}/userapi/v1.0/users/{user.id}/signature";
+            var url = $"{server}/userapi/v1.0/users/{user.id}/signature";
             var dict = new Dictionary<string, object> {{"password", Util.Hash("123456") } };
-            var client = new HttpClient<object>(Params.tokenHelper);
+            var client = new HttpClient<object>(token);
             if (!client.Put(url, dict, msg))
             {
                 CloseWaitForm();
@@ -221,8 +221,8 @@ namespace Insight.MTP.Client.Base.Users.Models
         /// </summary>
         private void GetUser()
         {
-            var url = $"{Params.server}/userapi/v1.0/users/{user.id}";
-            var client = new HttpClient<User>(Params.tokenHelper);
+            var url = $"{server}/userapi/v1.0/users/{user.id}";
+            var client = new HttpClient<User>(token);
             if (!client.Get(url)) return;
 
             user.funcs = client.data.funcs;

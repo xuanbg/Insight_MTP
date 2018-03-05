@@ -46,7 +46,7 @@ namespace Insight.MTP.Client.MainForm.Models
         /// <returns>bool 是否修改成功</returns>
         public bool Save()
         {
-            if (sing != Params.tokenHelper.sign)
+            if (sing != token.sign)
             {
                 Messages.ShowError("请输入正确的原密码，否则无法为您更换密码！");
                 view.Password.EditValue = null;
@@ -79,12 +79,12 @@ namespace Insight.MTP.Client.MainForm.Models
             }
 
             const string msg = "更换密码失败！请检查网络状况，并再次进行更换密码操作。";
-            var url = $"{Params.server}/userapi/v1.0/users/{Params.userId}/signature";
+            var url = $"{server}/userapi/v1.0/users/{Params.userId}/signature";
             var dict = new Dictionary<string, object> {{"password", Util.Hash(newPw)}};
             var client = new HttpClient<object>(token);
             if (!client.Put(url, dict, msg)) return false;
 
-            Params.tokenHelper.Signature(newPw);
+            token.Signature(newPw);
             Messages.ShowMessage("更换密码成功！请牢记新密码并使用新密码登录系统。");
             return true;
         }

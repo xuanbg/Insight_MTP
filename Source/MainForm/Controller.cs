@@ -102,7 +102,7 @@ namespace Insight.MTP.Client.MainForm
         /// <summary>
         /// 点击菜单项：注销，弹出询问对话框，确认注销后重启应用程序
         /// </summary>
-        private void Logout()
+        private static void Logout()
         {
             const string msg = "注销用户将导致当前未完成的输入内容丢失！\r\n您确定要注销吗？";
             if (!Messages.ShowConfirm(msg)) return;

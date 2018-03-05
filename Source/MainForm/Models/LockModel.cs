@@ -1,5 +1,4 @@
 ﻿using Insight.MTP.Client.Common.Models;
-using Insight.MTP.Client.Common.Utils;
 using Insight.MTP.Client.MainForm.Views;
 using Insight.Utils.Common;
 
@@ -35,7 +34,7 @@ namespace Insight.MTP.Client.MainForm.Models
         /// <returns>bool 是否解锁成功</returns>
         public bool Unlock()
         {
-            if (sing == Params.tokenHelper.sign) return true;
+            if (sing == token.sign) return true;
 
             Messages.ShowError("请输入正确的密码，否则无法为您解除锁定！");
             view.Password.Text = string.Empty;
