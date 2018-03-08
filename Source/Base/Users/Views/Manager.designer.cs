@@ -72,6 +72,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.panSearch = new DevExpress.XtraEditors.PanelControl();
             this.Search = new DevExpress.XtraEditors.SimpleButton();
             this.KeyInput = new DevExpress.XtraEditors.ButtonEdit();
+            this.spcMain = new DevExpress.XtraEditors.SplitContainerControl();
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabPermission)).BeginInit();
@@ -96,12 +97,16 @@ namespace Insight.MTP.Client.Base.Users.Views
             ((System.ComponentModel.ISupportInitialize)(this.panSearch)).BeginInit();
             this.panSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KeyInput.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spcMain)).BeginInit();
+            this.spcMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // xtraScrollable
             // 
-            this.xtraScrollable.Controls.Add(this.panMain);
-            this.xtraScrollable.Controls.Add(this.tabPermission);
+            this.xtraScrollable.Controls.Add(this.spcMain);
+            this.xtraScrollable.Location = new System.Drawing.Point(0, 31);
+            this.xtraScrollable.Padding = new System.Windows.Forms.Padding(5);
+            this.xtraScrollable.Size = new System.Drawing.Size(1080, 600);
             // 
             // FolderNode
             // 
@@ -112,12 +117,13 @@ namespace Insight.MTP.Client.Base.Users.Views
             // 
             // tabPermission
             // 
-            this.tabPermission.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tabPermission.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabPermission.Location = new System.Drawing.Point(760, 5);
+            this.tabPermission.Location = new System.Drawing.Point(0, 0);
             this.tabPermission.Name = "tabPermission";
             this.tabPermission.SelectedTabPage = this.pagData;
-            this.tabPermission.Size = new System.Drawing.Size(319, 594);
+            this.tabPermission.Size = new System.Drawing.Size(304, 594);
             this.tabPermission.TabIndex = 0;
             this.tabPermission.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.pagAction,
@@ -127,7 +133,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             // 
             this.pagData.Controls.Add(this.panData);
             this.pagData.Name = "pagData";
-            this.pagData.Size = new System.Drawing.Size(313, 565);
+            this.pagData.Size = new System.Drawing.Size(298, 565);
             this.pagData.Text = "数据权限";
             // 
             // panData
@@ -138,7 +144,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.panData.Controls.Add(this.TreData);
             this.panData.Location = new System.Drawing.Point(2, 2);
             this.panData.Name = "panData";
-            this.panData.Size = new System.Drawing.Size(309, 561);
+            this.panData.Size = new System.Drawing.Size(294, 561);
             this.panData.TabIndex = 0;
             // 
             // TreData
@@ -160,7 +166,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.TreData.OptionsView.ShowVertLines = false;
             this.TreData.ParentFieldName = "ParentId";
             this.TreData.SelectImageList = this.imgData;
-            this.TreData.Size = new System.Drawing.Size(305, 557);
+            this.TreData.Size = new System.Drawing.Size(290, 557);
             this.TreData.TabIndex = 5;
             // 
             // colIndexD
@@ -225,7 +231,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             // 
             this.pagAction.Controls.Add(this.panAction);
             this.pagAction.Name = "pagAction";
-            this.pagAction.Size = new System.Drawing.Size(313, 565);
+            this.pagAction.Size = new System.Drawing.Size(297, 564);
             this.pagAction.Text = "功能权限";
             // 
             // panAction
@@ -236,7 +242,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.panAction.Controls.Add(this.TreAction);
             this.panAction.Location = new System.Drawing.Point(2, 2);
             this.panAction.Name = "panAction";
-            this.panAction.Size = new System.Drawing.Size(309, 561);
+            this.panAction.Size = new System.Drawing.Size(293, 560);
             this.panAction.TabIndex = 0;
             // 
             // TreAction
@@ -257,7 +263,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.TreAction.OptionsView.ShowVertLines = false;
             this.TreAction.ParentFieldName = "ParentId";
             this.TreAction.SelectImageList = this.imgPermission;
-            this.TreAction.Size = new System.Drawing.Size(305, 557);
+            this.TreAction.Size = new System.Drawing.Size(289, 556);
             this.TreAction.TabIndex = 4;
             // 
             // colIndexA
@@ -309,16 +315,14 @@ namespace Insight.MTP.Client.Base.Users.Views
             // 
             // panMain
             // 
-            this.panMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panMain.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panMain.Controls.Add(this.panUser);
             this.panMain.Controls.Add(this.panSpace);
             this.panMain.Controls.Add(this.panSearch);
-            this.panMain.Location = new System.Drawing.Point(5, 5);
+            this.panMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panMain.Location = new System.Drawing.Point(0, 0);
             this.panMain.Name = "panMain";
-            this.panMain.Size = new System.Drawing.Size(750, 590);
+            this.panMain.Size = new System.Drawing.Size(765, 590);
             this.panMain.TabIndex = 0;
             // 
             // panUser
@@ -328,7 +332,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.panUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panUser.Location = new System.Drawing.Point(0, 44);
             this.panUser.Name = "panUser";
-            this.panUser.Size = new System.Drawing.Size(750, 546);
+            this.panUser.Size = new System.Drawing.Size(765, 546);
             this.panUser.TabIndex = 0;
             // 
             // GrdUser
@@ -337,7 +341,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.GrdUser.Location = new System.Drawing.Point(2, 2);
             this.GrdUser.MainView = this.GdvUser;
             this.GrdUser.Name = "GrdUser";
-            this.GrdUser.Size = new System.Drawing.Size(746, 520);
+            this.GrdUser.Size = new System.Drawing.Size(761, 520);
             this.GrdUser.TabIndex = 3;
             this.GrdUser.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GdvUser});
@@ -435,7 +439,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.TabUser.MinimumSize = new System.Drawing.Size(320, 22);
             this.TabUser.Name = "TabUser";
             this.TabUser.PageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("TabUser.PageSizeItems")));
-            this.TabUser.Size = new System.Drawing.Size(746, 22);
+            this.TabUser.Size = new System.Drawing.Size(761, 22);
             this.TabUser.TabIndex = 0;
             this.TabUser.TotalRows = 0;
             // 
@@ -445,7 +449,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.panSpace.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSpace.Location = new System.Drawing.Point(0, 39);
             this.panSpace.Name = "panSpace";
-            this.panSpace.Size = new System.Drawing.Size(750, 5);
+            this.panSpace.Size = new System.Drawing.Size(765, 5);
             this.panSpace.TabIndex = 0;
             // 
             // panSearch
@@ -455,7 +459,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.panSearch.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSearch.Location = new System.Drawing.Point(0, 0);
             this.panSearch.Name = "panSearch";
-            this.panSearch.Size = new System.Drawing.Size(750, 39);
+            this.panSearch.Size = new System.Drawing.Size(765, 39);
             this.panSearch.TabIndex = 0;
             // 
             // Search
@@ -465,7 +469,7 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.Search.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Search.Appearance.Options.UseFont = true;
             this.Search.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("Search.ImageOptions.Image")));
-            this.Search.Location = new System.Drawing.Point(672, 8);
+            this.Search.Location = new System.Drawing.Point(687, 8);
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(70, 23);
             this.Search.TabIndex = 2;
@@ -482,8 +486,22 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.KeyInput.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
             this.KeyInput.Properties.NullText = "在此输入查询关键词……";
-            this.KeyInput.Size = new System.Drawing.Size(656, 21);
+            this.KeyInput.Size = new System.Drawing.Size(671, 21);
             this.KeyInput.TabIndex = 1;
+            // 
+            // spcMain
+            // 
+            this.spcMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spcMain.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
+            this.spcMain.Location = new System.Drawing.Point(5, 5);
+            this.spcMain.Name = "spcMain";
+            this.spcMain.Panel1.Controls.Add(this.panMain);
+            this.spcMain.Panel1.MinSize = 750;
+            this.spcMain.Panel2.Controls.Add(this.tabPermission);
+            this.spcMain.Panel2.MinSize = 300;
+            this.spcMain.Size = new System.Drawing.Size(1070, 590);
+            this.spcMain.SplitterPosition = 300;
+            this.spcMain.TabIndex = 1;
             // 
             // Manager
             // 
@@ -514,6 +532,8 @@ namespace Insight.MTP.Client.Base.Users.Views
             ((System.ComponentModel.ISupportInitialize)(this.panSearch)).EndInit();
             this.panSearch.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.KeyInput.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spcMain)).EndInit();
+            this.spcMain.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -557,5 +577,6 @@ namespace Insight.MTP.Client.Base.Users.Views
         internal ButtonEdit KeyInput;
         private DevExpress.XtraGrid.Columns.GridColumn colMobile;
         private DevExpress.XtraGrid.Columns.GridColumn colEmail;
+        private SplitContainerControl spcMain;
     }
 }

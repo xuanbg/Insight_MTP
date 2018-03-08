@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Insight.MTP.Client.Common.Entity
 {
@@ -8,6 +9,11 @@ namespace Insight.MTP.Client.Common.Entity
         /// ID，唯一标识
         /// </summary>
         public string id { get; set; }
+
+        /// <summary>
+        /// 序号
+        /// </summary>
+        public int index { get; set; }
 
         /// <summary>
         /// 应用名称
@@ -53,5 +59,10 @@ namespace Insight.MTP.Client.Common.Entity
         /// 创建时间
         /// </summary>
         public DateTime createTime { get; set; }
+
+        /// <summary>
+        /// 导航集合
+        /// </summary>
+        public List<Navigation> navs { get; set; }
     }
 }

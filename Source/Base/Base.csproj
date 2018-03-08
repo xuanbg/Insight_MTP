@@ -51,6 +51,11 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Utility\Controls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DevExpress.Data.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>False</Private>
     </Reference>
@@ -83,12 +88,26 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Utils, Version=1.1.6635.29549, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Utility\Utils.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apps\Controller.cs" />
     <Compile Include="Apps\Models\ManagerModel.cs" />
+    <Compile Include="Apps\Models\AppModel.cs" />
+    <Compile Include="Apps\Views\AppDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Views\AppDialog.Designer.cs">
+      <DependentUpon>AppDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Apps\Views\Manager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +162,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Apps\Views\AppDialog.resx">
+      <DependentUpon>AppDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Apps\Views\Manager.resx">
       <DependentUpon>Manager.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,16 +188,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Utility\Controls\Controls.csproj">
-      <Project>{be23ee38-66c5-46a6-b064-7b98f3a43c4b}</Project>
-      <Name>Controls</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Utility\Utils\Utils.csproj">
-      <Project>{0c3f2f08-6816-49fd-bb13-8526e43accc6}</Project>
-      <Name>Utils</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{7c8ac27e-e640-4403-af4d-5b62c6c55826}</Project>
       <Name>Common</Name>
@@ -198,10 +210,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Properties\DataSources\Insight.MTP.Client.Common.Entity.App.datasource" />
-    <None Include="Properties\DataSources\Insight.MTP.Client.Common.Entity.Tenant.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

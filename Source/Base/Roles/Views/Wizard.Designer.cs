@@ -221,6 +221,7 @@ namespace Insight.MTP.Client.Base.Roles.Views
             // Description
             // 
             this.Description.EnterMoveNextControl = true;
+            this.Description.ImeMode = System.Windows.Forms.ImeMode.On;
             this.Description.Location = new System.Drawing.Point(90, 120);
             this.Description.Name = "Description";
             this.Description.Properties.NullText = "请输入备注信息…";
@@ -229,6 +230,7 @@ namespace Insight.MTP.Client.Base.Roles.Views
             // 
             // NameInput
             // 
+            this.NameInput.ImeMode = System.Windows.Forms.ImeMode.On;
             this.NameInput.Location = new System.Drawing.Point(90, 40);
             this.NameInput.Name = "NameInput";
             this.NameInput.Properties.NullText = "请输入角色名称…";

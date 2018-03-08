@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            this.barManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManager = new DevExpress.XtraBars.BarManager();
             this.meuMain = new DevExpress.XtraBars.Bar();
             this.bmuUser = new DevExpress.XtraBars.BarSubItem();
             this.MubChangPassWord = new DevExpress.XtraBars.BarButtonItem();
@@ -47,7 +46,6 @@
             this.MubAbout = new DevExpress.XtraBars.BarButtonItem();
             this.barStatus = new DevExpress.XtraBars.Bar();
             this.StbTime = new DevExpress.XtraBars.BarButtonItem();
-            this.StbDept = new DevExpress.XtraBars.BarButtonItem();
             this.StbUser = new DevExpress.XtraBars.BarButtonItem();
             this.StbMessger = new DevExpress.XtraBars.BarButtonItem();
             this.StbThing = new DevExpress.XtraBars.BarButtonItem();
@@ -57,10 +55,11 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.StbDept = new DevExpress.XtraBars.BarButtonItem();
             this.NavMain = new DevExpress.XtraNavBar.NavBarControl();
-            this.mdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.mdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager();
             this.splitterControl = new DevExpress.XtraEditors.SplitterControl();
-            this.MyFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.MyFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             this.Loading = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Insight.MTP.Client.MainForm.Views.Loading), true, true);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NavMain)).BeginInit();
@@ -284,14 +283,6 @@
             this.StbTime.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("StbTime.ImageOptions.LargeImage")));
             this.StbTime.Name = "StbTime";
             // 
-            // StbDept
-            // 
-            this.StbDept.CategoryGuid = new System.Guid("bb5179f7-aee9-4a1f-8fc5-39d222e973a5");
-            this.StbDept.Id = 43;
-            this.StbDept.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("StbDept.ImageOptions.Image")));
-            this.StbDept.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("StbDept.ImageOptions.LargeImage")));
-            this.StbDept.Name = "StbDept";
-            // 
             // StbUser
             // 
             this.StbUser.CategoryGuid = new System.Guid("bb5179f7-aee9-4a1f-8fc5-39d222e973a5");
@@ -369,6 +360,14 @@
             this.barDockControlRight.Location = new System.Drawing.Point(1264, 24);
             this.barDockControlRight.Manager = this.barManager;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 671);
+            // 
+            // StbDept
+            // 
+            this.StbDept.CategoryGuid = new System.Guid("bb5179f7-aee9-4a1f-8fc5-39d222e973a5");
+            this.StbDept.Id = 43;
+            this.StbDept.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("StbDept.ImageOptions.Image")));
+            this.StbDept.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("StbDept.ImageOptions.LargeImage")));
+            this.StbDept.Name = "StbDept";
             // 
             // NavMain
             // 
@@ -449,7 +448,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager mdiManager;
         private DevExpress.XtraBars.BarSubItem bmuUser;
         private DevExpress.XtraBars.BarSubItem bmuSet;
         private DevExpress.XtraBars.BarSubItem bmuHelp;
@@ -457,6 +455,7 @@
         private DevExpress.XtraBars.BarMdiChildrenListItem mdiList;
         private DevExpress.XtraEditors.SplitterControl splitterControl;
         internal DevExpress.XtraSplashScreen.SplashScreenManager Loading;
+        internal DevExpress.XtraTabbedMdi.XtraTabbedMdiManager mdiManager;
     }
 }
 

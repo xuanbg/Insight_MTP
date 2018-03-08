@@ -107,11 +107,11 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// </summary>
         public void DeleteItem()
         {
-            var msg = $"您确定要删除用户【{item.name}】吗？\r\n用户删除后将无法恢复！";
+            var msg = $"您确定要删除租户【{item.name}】吗？\r\n租户删除后将无法恢复！";
             if (!Messages.ShowConfirm(msg)) return;
 
             ShowWaitForm();
-            msg = $"对不起，无法删除用户【{item.name}】！\r\n如果您想禁止该用户登录系统，请使用封禁功能。";
+            msg = $"对不起，无法租除用户【{item.name}】！";
             var url = $"{server}/tenantapi/v1.0/tenants/{item.id}";
             var client = new HttpClient<object>(token);
             if (!client.Delete(url, null, msg))

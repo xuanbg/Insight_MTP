@@ -14,8 +14,8 @@ namespace Insight.MTP.Client.MainApp
         public Controller()
         {
             // 构造登录Model并订阅登录窗体事件
-            model = new LoginModel();
-            var view = model.login;
+            manage = new LoginModel();
+            var view = manage.login;
             view.LoginButton.Click += (sender, args) => UserLogin();
             view.SetButton.Click += (sender, args) => ConfigServer();
             view.CloseButton.Click += (sender, args) => Application.Exit();
@@ -25,7 +25,7 @@ namespace Insight.MTP.Client.MainApp
             view.Refresh();
 
             InitParams();
-            model.InitUserName();
+            manage.InitUserName();
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Insight.MTP.Client.MainApp
         /// </summary>
         private void UserLogin()
         {
-            if (!model.Login()) return;
+            if (!manage.Login()) return;
 
             // 显示等待界面
             var waiting = new WaitingModel();
@@ -55,7 +55,7 @@ namespace Insight.MTP.Client.MainApp
 
 
             // 关闭登录对话框，进入主窗体
-            model.login.Close();
+            manage.login.Close();
             // ReSharper disable once UnusedVariable
             var controller = new MainForm.Controller();
 
@@ -75,7 +75,7 @@ namespace Insight.MTP.Client.MainApp
             SubCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
-                model.InitUserName();
+                manage.InitUserName();
                 set.Save();
 
                 CloseDialog(view);

@@ -21,8 +21,8 @@ namespace Insight.MTP.Client.MainForm
         public Controller()
         {
             // 构造主窗体并显示
-            model = new MainModel();
-            var view = model.view;
+            manage = new MainModel();
+            var view = manage.view;
             view.Show();
             view.Refresh();
 
@@ -39,14 +39,14 @@ namespace Insight.MTP.Client.MainForm
             // 订阅主窗体事件
             view.Shown += (sender, args) =>
             {
-                model.LoadDefault();
+                manage.LoadDefault();
                 CheckPassword();
             };
-            view.Closing += (sender, args) => args.Cancel = model.Logout();
+            view.Closing += (sender, args) => args.Cancel = manage.Logout();
             view.Closed += (sender, args) => Exit();
 
             // 订阅导航栏点击事件
-            model.links.ForEach(i => i.Item.LinkClicked += (sender, args) => model.AddPageMdi(args.Link.Item.Tag));
+            manage.links.ForEach(i => i.Item.LinkClicked += (sender, args) => manage.AddPageMdi(args.Link.Item.Tag));
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace Insight.MTP.Client.MainForm
         /// </summary>
         private void Exit()
         {
-            model.SaveLookAndFeel();
+            manage.SaveLookAndFeel();
             Application.Exit();
         }
 

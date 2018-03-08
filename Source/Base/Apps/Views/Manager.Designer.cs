@@ -37,38 +37,50 @@ namespace Insight.MTP.Client.Base.Apps.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.splMain = new DevExpress.XtraEditors.SplitContainerControl();
-            this.GrdApp = new DevExpress.XtraGrid.GridControl();
-            this.GdvApp = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grdApp = new DevExpress.XtraGrid.GridControl();
+            this.gdvApp = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colname = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colalias = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colhost = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colremark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.splMember = new DevExpress.XtraEditors.SplitContainerControl();
             this.grpMember = new DevExpress.XtraEditors.GroupControl();
             this.TreNav = new DevExpress.XtraTreeList.TreeList();
             this.colNodeType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colMember = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.imgNav = new DevExpress.Utils.ImageCollection(this.components);
             this.grpUser = new DevExpress.XtraEditors.GroupControl();
-            this.GrdFunc = new DevExpress.XtraGrid.GridControl();
-            this.GdvFunc = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grdFunc = new DevExpress.XtraGrid.GridControl();
+            this.gdvFunc = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colname1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colalias1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colisBegin = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colisShowText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMain)).BeginInit();
             this.splMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GrdApp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GdvApp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdApp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvApp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMember)).BeginInit();
             this.splMember.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grpMember)).BeginInit();
             this.grpMember.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TreNav)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgNav)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpUser)).BeginInit();
             this.grpUser.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GrdFunc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GdvFunc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdFunc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvFunc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -121,31 +133,72 @@ namespace Insight.MTP.Client.Base.Apps.Views
             this.splMain.Horizontal = false;
             this.splMain.Location = new System.Drawing.Point(5, 5);
             this.splMain.Name = "splMain";
-            this.splMain.Panel1.Controls.Add(this.GrdApp);
+            this.splMain.Panel1.Controls.Add(this.grdApp);
             this.splMain.Panel1.MinSize = 200;
             this.splMain.Panel2.Controls.Add(this.splMember);
-            this.splMain.Panel2.MinSize = 360;
+            this.splMain.Panel2.MinSize = 200;
             this.splMain.ScrollBarSmallChange = 1;
             this.splMain.Size = new System.Drawing.Size(1070, 590);
-            this.splMain.SplitterPosition = 225;
+            this.splMain.SplitterPosition = 300;
             this.splMain.TabIndex = 0;
             // 
-            // GrdApp
+            // grdApp
             // 
-            this.GrdApp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GrdApp.Location = new System.Drawing.Point(0, 0);
-            this.GrdApp.MainView = this.GdvApp;
-            this.GrdApp.Name = "GrdApp";
-            this.GrdApp.Size = new System.Drawing.Size(1070, 225);
-            this.GrdApp.TabIndex = 0;
-            this.GrdApp.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.GdvApp});
+            this.grdApp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdApp.Location = new System.Drawing.Point(0, 0);
+            this.grdApp.MainView = this.gdvApp;
+            this.grdApp.Name = "grdApp";
+            this.grdApp.Size = new System.Drawing.Size(1070, 300);
+            this.grdApp.TabIndex = 0;
+            this.grdApp.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gdvApp});
             // 
-            // GdvApp
+            // gdvApp
             // 
-            this.GdvApp.GridControl = this.GrdApp;
-            this.GdvApp.Name = "GdvApp";
-            this.GdvApp.OptionsDetail.EnableMasterViewMode = false;
+            this.gdvApp.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colname,
+            this.colalias,
+            this.colhost,
+            this.colremark});
+            this.gdvApp.GridControl = this.grdApp;
+            this.gdvApp.Name = "gdvApp";
+            this.gdvApp.OptionsDetail.EnableMasterViewMode = false;
+            // 
+            // colname
+            // 
+            this.colname.Caption = "名称";
+            this.colname.FieldName = "name";
+            this.colname.Name = "colname";
+            this.colname.Visible = true;
+            this.colname.VisibleIndex = 0;
+            this.colname.Width = 360;
+            // 
+            // colalias
+            // 
+            this.colalias.Caption = "简称";
+            this.colalias.FieldName = "alias";
+            this.colalias.Name = "colalias";
+            this.colalias.Visible = true;
+            this.colalias.VisibleIndex = 1;
+            this.colalias.Width = 160;
+            // 
+            // colhost
+            // 
+            this.colhost.Caption = "域名";
+            this.colhost.FieldName = "host";
+            this.colhost.Name = "colhost";
+            this.colhost.Visible = true;
+            this.colhost.VisibleIndex = 2;
+            this.colhost.Width = 160;
+            // 
+            // colremark
+            // 
+            this.colremark.Caption = "备注";
+            this.colremark.FieldName = "remark";
+            this.colremark.Name = "colremark";
+            this.colremark.Visible = true;
+            this.colremark.VisibleIndex = 3;
+            this.colremark.Width = 336;
             // 
             // splMember
             // 
@@ -156,7 +209,7 @@ namespace Insight.MTP.Client.Base.Apps.Views
             this.splMember.Panel1.MinSize = 300;
             this.splMember.Panel2.Controls.Add(this.grpUser);
             this.splMember.Panel2.MinSize = 500;
-            this.splMember.Size = new System.Drawing.Size(1070, 360);
+            this.splMember.Size = new System.Drawing.Size(1070, 285);
             this.splMember.SplitterPosition = 300;
             this.splMember.TabIndex = 0;
             // 
@@ -166,7 +219,7 @@ namespace Insight.MTP.Client.Base.Apps.Views
             this.grpMember.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpMember.Location = new System.Drawing.Point(0, 0);
             this.grpMember.Name = "grpMember";
-            this.grpMember.Size = new System.Drawing.Size(300, 360);
+            this.grpMember.Size = new System.Drawing.Size(300, 285);
             this.grpMember.TabIndex = 0;
             this.grpMember.Text = "导航";
             // 
@@ -182,7 +235,8 @@ namespace Insight.MTP.Client.Base.Apps.Views
             this.TreNav.Name = "TreNav";
             this.TreNav.OptionsView.ShowColumns = false;
             this.TreNav.ParentFieldName = "ParentId";
-            this.TreNav.Size = new System.Drawing.Size(296, 337);
+            this.TreNav.SelectImageList = this.imgNav;
+            this.TreNav.Size = new System.Drawing.Size(296, 262);
             this.TreNav.TabIndex = 0;
             // 
             // colNodeType
@@ -200,36 +254,96 @@ namespace Insight.MTP.Client.Base.Apps.Views
             this.colMember.VisibleIndex = 0;
             this.colMember.Width = 99;
             // 
+            // imgNav
+            // 
+            this.imgNav.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imgNav.ImageStream")));
+            this.imgNav.InsertGalleryImage("properties_16x16.png", "images/setup/properties_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/setup/properties_16x16.png"), 0);
+            this.imgNav.Images.SetKeyName(0, "properties_16x16.png");
+            this.imgNav.InsertGalleryImage("openhyperlink_16x16.png", "images/actions/openhyperlink_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/openhyperlink_16x16.png"), 1);
+            this.imgNav.Images.SetKeyName(1, "openhyperlink_16x16.png");
+            this.imgNav.InsertGalleryImage("openhyperlink_16x16.png", "images/actions/openhyperlink_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/openhyperlink_16x16.png"), 2);
+            this.imgNav.Images.SetKeyName(2, "openhyperlink_16x16.png");
+            // 
             // grpUser
             // 
-            this.grpUser.Controls.Add(this.GrdFunc);
+            this.grpUser.Controls.Add(this.grdFunc);
             this.grpUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpUser.Location = new System.Drawing.Point(0, 0);
             this.grpUser.Name = "grpUser";
-            this.grpUser.Size = new System.Drawing.Size(765, 360);
+            this.grpUser.Size = new System.Drawing.Size(765, 285);
             this.grpUser.TabIndex = 0;
             this.grpUser.Text = "模块功能";
             // 
-            // GrdFunc
+            // grdFunc
             // 
-            this.GrdFunc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GrdFunc.Location = new System.Drawing.Point(2, 21);
-            this.GrdFunc.MainView = this.GdvFunc;
-            this.GrdFunc.Name = "GrdFunc";
-            this.GrdFunc.Size = new System.Drawing.Size(761, 337);
-            this.GrdFunc.TabIndex = 0;
-            this.GrdFunc.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.GdvFunc,
+            this.grdFunc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdFunc.Location = new System.Drawing.Point(2, 21);
+            this.grdFunc.MainView = this.gdvFunc;
+            this.grdFunc.Name = "grdFunc";
+            this.grdFunc.Size = new System.Drawing.Size(761, 262);
+            this.grdFunc.TabIndex = 0;
+            this.grdFunc.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gdvFunc,
             this.gridView1});
             // 
-            // GdvFunc
+            // gdvFunc
             // 
-            this.GdvFunc.GridControl = this.GrdFunc;
-            this.GdvFunc.Name = "GdvFunc";
+            this.gdvFunc.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colname1,
+            this.colalias1,
+            this.gridColumn1,
+            this.colisBegin,
+            this.colisShowText});
+            this.gdvFunc.GridControl = this.grdFunc;
+            this.gdvFunc.Name = "gdvFunc";
+            // 
+            // colname1
+            // 
+            this.colname1.Caption = "名称";
+            this.colname1.FieldName = "name";
+            this.colname1.Name = "colname1";
+            this.colname1.Visible = true;
+            this.colname1.VisibleIndex = 0;
+            this.colname1.Width = 160;
+            // 
+            // colalias1
+            // 
+            this.colalias1.Caption = "操作码";
+            this.colalias1.FieldName = "alias";
+            this.colalias1.Name = "colalias1";
+            this.colalias1.Visible = true;
+            this.colalias1.VisibleIndex = 1;
+            this.colalias1.Width = 200;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "备注";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 2;
+            this.gridColumn1.Width = 269;
+            // 
+            // colisBegin
+            // 
+            this.colisBegin.Caption = "分组";
+            this.colisBegin.FieldName = "isBegin";
+            this.colisBegin.Name = "colisBegin";
+            this.colisBegin.Visible = true;
+            this.colisBegin.VisibleIndex = 3;
+            this.colisBegin.Width = 40;
+            // 
+            // colisShowText
+            // 
+            this.colisShowText.Caption = "文字";
+            this.colisShowText.FieldName = "isShowText";
+            this.colisShowText.Name = "colisShowText";
+            this.colisShowText.Visible = true;
+            this.colisShowText.VisibleIndex = 4;
+            this.colisShowText.Width = 40;
             // 
             // gridView1
             // 
-            this.gridView1.GridControl = this.GrdFunc;
+            this.gridView1.GridControl = this.grdFunc;
             this.gridView1.Name = "gridView1";
             // 
             // Manager
@@ -241,17 +355,18 @@ namespace Insight.MTP.Client.Base.Apps.Views
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMain)).EndInit();
             this.splMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.GrdApp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GdvApp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdApp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvApp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMember)).EndInit();
             this.splMember.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grpMember)).EndInit();
             this.grpMember.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TreNav)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgNav)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpUser)).EndInit();
             this.grpUser.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.GrdFunc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GdvFunc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdFunc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvFunc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -267,13 +382,23 @@ namespace Insight.MTP.Client.Base.Apps.Views
         private SplitContainerControl splMain;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colNodeType;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colMember;
-        internal GridControl GrdApp;
-        internal GridView GdvApp;
+        internal GridControl grdApp;
+        internal GridView gdvApp;
         private SplitContainerControl splMember;
         private GroupControl grpMember;
         private GroupControl grpUser;
-        internal GridControl GrdFunc;
-        internal GridView GdvFunc;
+        internal GridControl grdFunc;
+        internal GridView gdvFunc;
         private GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn colname;
+        private DevExpress.XtraGrid.Columns.GridColumn colalias;
+        private DevExpress.XtraGrid.Columns.GridColumn colhost;
+        private DevExpress.XtraGrid.Columns.GridColumn colremark;
+        private DevExpress.XtraGrid.Columns.GridColumn colname1;
+        private DevExpress.XtraGrid.Columns.GridColumn colalias1;
+        private DevExpress.XtraGrid.Columns.GridColumn colisBegin;
+        private DevExpress.XtraGrid.Columns.GridColumn colisShowText;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private ImageCollection imgNav;
     }
 }

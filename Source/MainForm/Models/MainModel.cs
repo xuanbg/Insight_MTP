@@ -21,7 +21,7 @@ namespace Insight.MTP.Client.MainForm.Models
         public MainWindow view = new MainWindow();
         public List<NavBarItemLink> links = new List<NavBarItemLink>();
 
-        private readonly List<object> needOpens = new List<object>();
+        private readonly List<string> needOpens = new List<string>();
         private List<Navigation> navItems;
 
         /// <summary>
@@ -30,6 +30,7 @@ namespace Insight.MTP.Client.MainForm.Models
         /// </summary>
         public MainModel()
         {
+
             // 加载模块数据并初始化导航栏
             InitNavBar();
 
@@ -66,7 +67,7 @@ namespace Insight.MTP.Client.MainForm.Models
             }
 
             var mod = navItems.Single(m => m.alias == name.ToString());
-            var path = $"{Application.StartupPath}\\{mod.filePath}";
+            var path = $"{Application.StartupPath}\\{mod.url}";
             if (!File.Exists(path))
             {
                 var msg = $"对不起，{mod.name}模块无法加载！\r\n未能发现{path}文件。";
@@ -76,11 +77,11 @@ namespace Insight.MTP.Client.MainForm.Models
 
             view.Loading.ShowWaitForm();
             var asm = Assembly.LoadFrom(path);
-            var start = mod.filePath.LastIndexOf("/", StringComparison.Ordinal);
+            var start = mod.url.LastIndexOf("/", StringComparison.Ordinal);
             if (start < 0) start = 0;
 
-            var end = mod.filePath.LastIndexOf(".", StringComparison.Ordinal);
-            var className = mod.filePath.Substring(start, end - start);
+            var end = mod.url.LastIndexOf(".", StringComparison.Ordinal);
+            var className = mod.url.Substring(start, end - start);
             var cont = asm.CreateInstance($"Insight.MTP.Client.{className}.{mod.alias}.Controller", false, BindingFlags.Default, null, new object[]{mod}, CultureInfo.CurrentCulture, null);
             view.Loading.CloseWaitForm();
             if (cont == null)

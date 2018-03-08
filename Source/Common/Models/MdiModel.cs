@@ -37,6 +37,7 @@ namespace Insight.MTP.Client.Common.Models
             moduleId = info.id;
             view = new T
             {
+                ControlBox = info.index > 0,
                 MdiParent = Application.OpenForms["MainWindow"],
                 Icon = Icon.FromHandle(new Bitmap(new MemoryStream(info.icon)).GetHicon()),
                 Name = info.alias,

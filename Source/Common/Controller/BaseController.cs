@@ -8,7 +8,7 @@ namespace Insight.MTP.Client.Common.Controller
 {
     public class BaseController<T>
     {
-        protected T model;
+        protected T manage;
 
         /// <summary>
         /// 订阅对话框关闭事件
@@ -83,7 +83,7 @@ namespace Insight.MTP.Client.Common.Controller
         /// </summary>
         /// <param name="view">向导视图</param>
         /// <param name="e">向导视图关闭事件</param>
-        private void WizardClosing(BaseWizard view, FormClosingEventArgs e)
+        private static void WizardClosing(Form view, CancelEventArgs e)
         {
             if (view.DialogResult == DialogResult.OK) return;
 

@@ -14,14 +14,14 @@ namespace Insight.MTP.Client.Base.Roles
         public Controller(Navigation info)
         {
             // 构造ViewModel，订阅工具栏按钮点击事件
-            model = new ManagerModel(info);
-            model.buttons.ForEach(i => i.ItemClick += (sender, args) => ItemClick(args.Item.Name));
+            manage = new ManagerModel(info);
+            manage.buttons.ForEach(i => i.ItemClick += (sender, args) => ItemClick(args.Item.Name));
 
             // 订阅角色列表双击事件
-            model.view.GdvRole.DoubleClick += (sender, args) => RoleEdit();
+            manage.view.GdvRole.DoubleClick += (sender, args) => RoleEdit();
 
             // 加载角色列表
-            model.LoadData();
+            manage.LoadData();
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Insight.MTP.Client.Base.Roles
             switch (action)
             {
                 case "getRoles":
-                    model.Refresh();
+                    manage.Refresh();
                     break;
                 case "newRole":
                     AddRole();
@@ -42,13 +42,13 @@ namespace Insight.MTP.Client.Base.Roles
                     RoleEdit();
                     break;
                 case "deleteRole":
-                    model.DeleteItem();
+                    manage.DeleteItem();
                     break;
                 case "addRoleMember":
                     AddMembers();
                     break;
                 case "removeRoleMember":
-                    model.MemberRemove();
+                    manage.MemberRemove();
                     break;
                 default:
                     Messages.ShowError("对不起，该功能尚未实现！");
@@ -67,16 +67,16 @@ namespace Insight.MTP.Client.Base.Roles
             SubCloseEvent(view);
             view.WizRole.FinishClick += (sender, args) =>
             {
-                model.ShowWaitForm();
+                manage.ShowWaitForm();
                 role = wizardModel.AddRole();
-                model.CloseWaitForm();
+                manage.CloseWaitForm();
                 if (role == null)
                 {
                     args.Cancel = true;
                     return;
                 }
 
-                model.AddItem(role);
+                manage.AddItem(role);
             };
 
             view.ShowDialog();
@@ -87,24 +87,24 @@ namespace Insight.MTP.Client.Base.Roles
         /// </summary>
         private void RoleEdit()
         {
-            if (!model.AllowDoubleClick("editRole")) return;
+            if (!manage.AllowDoubleClick("editRole")) return;
 
-            var role = Util.Clone(model.role);
+            var role = Util.Clone(manage.role);
             var wizardModel = new WizardModel(role, "编辑角色");
             var view = wizardModel.view;
             SubCloseEvent(view);
             view.WizRole.FinishClick += (sender, args) =>
             {
-                model.ShowWaitForm();
+                manage.ShowWaitForm();
                 role = wizardModel.EditRole();
-                model.CloseWaitForm();
+                manage.CloseWaitForm();
                 if (role == null)
                 {
                     args.Cancel = true;
                     return;
                 }
 
-                model.Update(role);
+                manage.Update(role);
             };
 
             view.ShowDialog();
@@ -115,17 +115,17 @@ namespace Insight.MTP.Client.Base.Roles
         /// </summary>
         private void AddMembers()
         {
-            var memberModel = new MemberModel(model.role);
+            var memberModel = new MemberModel(manage.role);
             var view = memberModel.view;
             SubCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
-                model.ShowWaitForm();
+                manage.ShowWaitForm();
                 var role = memberModel.Save();
-                model.CloseWaitForm();
+                manage.CloseWaitForm();
                 if (role == null) return;
 
-                model.UpdateMember(role);
+                manage.UpdateMember(role);
                 CloseDialog(view);
             };
 

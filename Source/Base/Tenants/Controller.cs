@@ -14,14 +14,14 @@ namespace Insight.MTP.Client.Base.Tenants
         public Controller(Navigation info)
         {
             // 构造ViewModel，订阅工具栏按钮点击事件
-            model = new ManagerModel(info);
-            model.buttons.ForEach(i => i.ItemClick += (sender, args) => ItemClick(args.Item.Name));
+            manage = new ManagerModel(info);
+            manage.buttons.ForEach(i => i.ItemClick += (sender, args) => ItemClick(args.Item.Name));
 
             // 订阅界面事件
-            model.view.gdvUser.DoubleClick += (sender, args) => EditUser();
+            manage.view.gdvUser.DoubleClick += (sender, args) => EditUser();
 
             // 加载角色列表
-            model.LoadData();
+            manage.LoadData();
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Insight.MTP.Client.Base.Tenants
             switch (action)
             {
                 case "getTenants":
-                    model.Refresh();
+                    manage.Refresh();
                     break;
                 case "newTenant":
                     AddUser();
@@ -42,10 +42,16 @@ namespace Insight.MTP.Client.Base.Tenants
                     EditUser();
                     break;
                 case "deleteTenant":
-                    model.DeleteItem();
+                    manage.DeleteItem();
+                    break;
+                case "bindApp":
+                    EditUser();
+                    break;
+                case "unbindApp":
+                    manage.DeleteItem();
                     break;
                 case "extend":
-                    model.DeleteItem();
+                    manage.DeleteItem();
                     break;
                 default:
                     Messages.ShowError("对不起，该功能尚未实现！");

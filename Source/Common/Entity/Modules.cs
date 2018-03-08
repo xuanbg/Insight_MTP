@@ -1,4 +1,6 @@
-﻿namespace Insight.MTP.Client.Common.Entity
+﻿using System.Collections.Generic;
+
+namespace Insight.MTP.Client.Common.Entity
 {
     /// <summary>
     /// 导航栏数据
@@ -33,7 +35,7 @@
         /// <summary>
         /// 文件路径
         /// </summary>
-        public string filePath { get; set; }
+        public string url { get; set; }
 
         /// <summary>
         /// 图标
@@ -44,6 +46,11 @@
         /// 是否默认启动：0、否；1、是
         /// </summary>
         public bool isDefault { get; set; }
+
+        /// <summary>
+        /// 功能集合
+        /// </summary>
+        public List<Function> funcs { get; set; }
     }
 
     /// <summary>

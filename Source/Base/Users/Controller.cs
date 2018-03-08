@@ -14,14 +14,14 @@ namespace Insight.MTP.Client.Base.Users
         public Controller(Navigation info)
         {
             // 构造ViewModel，订阅工具栏按钮点击事件
-            model = new ManagerModel(info);
-            model.buttons.ForEach(i => i.ItemClick += (sender, args) => ItemClick(args.Item.Name));
+            manage = new ManagerModel(info);
+            manage.buttons.ForEach(i => i.ItemClick += (sender, args) => ItemClick(args.Item.Name));
 
             // 订阅界面事件
-            model.view.GdvUser.DoubleClick += (sender, args) => EditUser();
+            manage.view.GdvUser.DoubleClick += (sender, args) => EditUser();
 
             // 加载角色列表
-            model.LoadData();
+            manage.LoadData();
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Insight.MTP.Client.Base.Users
             switch (action)
             {
                 case "getUsers":
-                    model.Refresh();
+                    manage.Refresh();
                     break;
                 case "newUser":
                     AddUser();
@@ -42,16 +42,16 @@ namespace Insight.MTP.Client.Base.Users
                     EditUser();
                     break;
                 case "deleteUser":
-                    model.DeleteItem();
+                    manage.DeleteItem();
                     break;
                 case "banned":
-                    model.SetInvalid(true);
+                    manage.SetInvalid(true);
                     break;
                 case "release":
-                    model.SetInvalid(false);
+                    manage.SetInvalid(false);
                     break;
                 case "reset":
-                    model.Reset();
+                    manage.Reset();
                     break;
                 default:
                     Messages.ShowError("对不起，该功能尚未实现！");
@@ -70,12 +70,12 @@ namespace Insight.MTP.Client.Base.Users
             SubCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
-                model.ShowWaitForm();
+                manage.ShowWaitForm();
                 user = userModel.AddUser();
-                model.CloseWaitForm();
+                manage.CloseWaitForm();
                 if (user == null) return;
 
-                model.AddItem(user);
+                manage.AddItem(user);
                 CloseDialog(view);
             };
 
@@ -87,9 +87,9 @@ namespace Insight.MTP.Client.Base.Users
         /// </summary>
         private void EditUser()
         {
-            if (!model.AllowDoubleClick("editUser")) return;
+            if (!manage.AllowDoubleClick("editUser")) return;
 
-            var user = Util.Clone(model.user);
+            var user = Util.Clone(manage.user);
             user.funcs = null;
             user.datas = null;
             var userModel = new UserModel(user, "编辑用户");
@@ -97,12 +97,12 @@ namespace Insight.MTP.Client.Base.Users
             SubCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
-                model.ShowWaitForm();
+                manage.ShowWaitForm();
                 user = userModel.EditUser();
-                model.CloseWaitForm();
+                manage.CloseWaitForm();
                 if (user == null) return;
 
-                model.Update(user);
+                manage.Update(user);
                 CloseDialog(view);
             };
 

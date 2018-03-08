@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using DevExpress.XtraTreeList.Nodes;
 using Insight.MTP.Client.Base.Apps.Views;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Common.Models;
@@ -10,11 +12,11 @@ namespace Insight.MTP.Client.Base.Apps.Models
 {
     public class ManagerModel : MdiModel<Manager>
     {
-        public Tenant item;
+        public App item;
+        public Navigation nav;
+        public Function fun;
 
-        private List<Tenant> list;
-        private int rows = 20;
-        private string key;
+        private List<App> list;
 
         /// <summary>
         /// 构造函数，初始化视图
@@ -23,12 +25,14 @@ namespace Insight.MTP.Client.Base.Apps.Models
         public ManagerModel(Navigation info) : base(info)
         {
             // 订阅界面事件
-            view.GdvApp.FocusedRowObjectChanged += (sender, args) => ItemChanged(args.FocusedRowHandle);
+            view.gdvApp.FocusedRowObjectChanged += (sender, args) => ItemChanged(args.FocusedRowHandle);
+            view.TreNav.FocusedNodeChanged += (sender, args) => NavChanged(args.Node);
+            view.gdvFunc.FocusedRowObjectChanged += (sender, args) => FunChanged(args.FocusedRowHandle);
 
             // 设置界面样式
-            Format.GridFormat(view.GdvApp);
+            Format.GridFormat(view.gdvApp);
             Format.TreeFormat(view.TreNav);
-            Format.GridFormat(view.GdvFunc);
+            Format.GridFormat(view.gdvFunc);
         }
 
         /// <summary>
@@ -47,8 +51,8 @@ namespace Insight.MTP.Client.Base.Apps.Models
         public void LoadData(int page = 1, int handel = 0)
         {
             ShowWaitForm();
-            var url = $"{server}/userapi/v1.0/users?rows={rows}&page={page}&key={key}";
-            var client = new HttpClient<List<Tenant>>(token);
+            var url = $"{server}/appapi/v1.0/apps/all";
+            var client = new HttpClient<List<App>>(token);
             if (!client.Get(url))
             {
                 CloseWaitForm();
@@ -56,8 +60,8 @@ namespace Insight.MTP.Client.Base.Apps.Models
             }
 
             list = client.data;
-            view.GrdApp.DataSource = list;
-            view.GdvApp.FocusedRowHandle = handel;
+            view.grdApp.DataSource = list;
+            view.gdvApp.FocusedRowHandle = handel;
             CloseWaitForm();
         }
 
@@ -65,18 +69,18 @@ namespace Insight.MTP.Client.Base.Apps.Models
         /// 新增数据
         /// </summary>
         /// <param name="data"></param>
-        public void AddItem(Tenant data)
+        public void AddItem(App data)
         {
             list.Add(data);
 
-            view.GdvApp.RefreshData();
+            view.gdvApp.RefreshData();
         }
 
         /// <summary>
         /// 更新数据
         /// </summary>
         /// <param name="data">UserInfo</param>
-        public void Update(Tenant data)
+        public void Update(App data)
         {
             Util.CopyValue(data, item);
         }
@@ -100,7 +104,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
             }
 
             list.Remove(item);
-            view.GdvApp.RefreshData();
+            view.gdvApp.RefreshData();
             CloseWaitForm();
         }
 
@@ -111,8 +115,8 @@ namespace Insight.MTP.Client.Base.Apps.Models
         {
             var dict = new Dictionary<string, bool>
             {
-                ["editApp"] = !item?.isBuiltin ?? false,
-                ["deleteApp"] = !item?.isBuiltin ?? false,
+                ["editApp"] = item != null,
+                ["deleteApp"] = item != null,
             };
             SwitchItemStatus(dict);
         }
@@ -124,8 +128,11 @@ namespace Insight.MTP.Client.Base.Apps.Models
         private void ItemChanged(int index)
         {
             item = index < 0 ? null : list[index];
-            if (item != null && (item.apps == null || item.users == null)) GetDetail();
+            if (item != null && item.navs == null) GetDetail();
 
+            view.TreNav.DataSource = item?.navs;
+            view.TreNav.ExpandAll();
+            view.TreNav.MoveFirst();
 
             RefreshToolBar();
         }
@@ -135,12 +142,50 @@ namespace Insight.MTP.Client.Base.Apps.Models
         /// </summary>
         private void GetDetail()
         {
-            var url = $"{server}/userapi/v1.0/users/{item.id}";
-            var client = new HttpClient<Tenant>(token);
+            var url = $"{server}/appapi/v1.0/apps/{item.id}/navigations";
+            var client = new HttpClient<List<Navigation>>(token);
             if (!client.Get(url)) return;
 
-            item.apps = client.data.apps;
-            item.users = client.data.users;
+            item.navs = client.data;
+        }
+
+        /// <summary>
+        /// 导航节点改变
+        /// </summary>
+        /// <param name="node">导航节点</param>
+        private void NavChanged(TreeListNode node)
+        {
+            if (node == null) return;
+
+            var id = node.GetValue("id").ToString();
+            nav = item.navs.SingleOrDefault(m => m.id == id && m.parentId != null);
+            if (nav != null && nav.funcs == null) GetFuns();
+
+            view.grdFunc.DataSource = nav?.funcs;
+            RefreshToolBar();
+        }
+
+        /// <summary>
+        /// 获取模块功能
+        /// </summary>
+        private void GetFuns()
+        {
+            var url = $"{server}/appapi/v1.0/apps/navigations/{nav.id}/functions";
+            var client = new HttpClient<List<Function>>(token);
+            if (!client.Get(url)) return;
+
+            nav.funcs = client.data;
+        }
+
+        /// <summary>
+        /// 列表所选数据改变
+        /// </summary>
+        /// <param name="index">List下标</param>
+        private void FunChanged(int index)
+        {
+            fun = index < 0 ? null : nav.funcs[index];
+
+            RefreshToolBar();
         }
     }
 }

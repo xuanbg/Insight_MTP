@@ -46,11 +46,10 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.splMain = new DevExpress.XtraEditors.SplitContainerControl();
             this.palTenant = new DevExpress.XtraEditors.PanelControl();
             this.grdTenant = new DevExpress.XtraGrid.GridControl();
-            this.tenantBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gdvTenant = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colexpireDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colname = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colalias = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colexpireDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colcontact = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colmobile = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colemail = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -64,7 +63,6 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.splMember = new DevExpress.XtraEditors.SplitContainerControl();
             this.grpMember = new DevExpress.XtraEditors.GroupControl();
             this.grdApp = new DevExpress.XtraGrid.GridControl();
-            this.appBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gdvApp = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colname2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colalias1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -83,7 +81,6 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             ((System.ComponentModel.ISupportInitialize)(this.palTenant)).BeginInit();
             this.palTenant.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdTenant)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tenantBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvTenant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSpace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSearch)).BeginInit();
@@ -94,7 +91,6 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             ((System.ComponentModel.ISupportInitialize)(this.grpMember)).BeginInit();
             this.grpMember.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdApp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.appBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvApp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpUser)).BeginInit();
             this.grpUser.SuspendLayout();
@@ -174,7 +170,6 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             // 
             // grdTenant
             // 
-            this.grdTenant.DataSource = this.tenantBindingSource;
             this.grdTenant.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdTenant.Location = new System.Drawing.Point(2, 2);
             this.grdTenant.MainView = this.gdvTenant;
@@ -183,10 +178,6 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.grdTenant.TabIndex = 0;
             this.grdTenant.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvTenant});
-            // 
-            // tenantBindingSource
-            // 
-            this.tenantBindingSource.DataSource = typeof(Insight.MTP.Client.Common.Entity.Tenant);
             // 
             // gdvTenant
             // 
@@ -203,6 +194,15 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.gdvTenant.GridControl = this.grdTenant;
             this.gdvTenant.Name = "gdvTenant";
             this.gdvTenant.OptionsDetail.EnableMasterViewMode = false;
+            // 
+            // colexpireDate
+            // 
+            this.colexpireDate.Caption = "到期日期";
+            this.colexpireDate.FieldName = "expireDate";
+            this.colexpireDate.Name = "colexpireDate";
+            this.colexpireDate.Visible = true;
+            this.colexpireDate.VisibleIndex = 0;
+            this.colexpireDate.Width = 80;
             // 
             // colname
             // 
@@ -221,15 +221,6 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.colalias.Visible = true;
             this.colalias.VisibleIndex = 2;
             this.colalias.Width = 120;
-            // 
-            // colexpireDate
-            // 
-            this.colexpireDate.Caption = "到期日期";
-            this.colexpireDate.FieldName = "expireDate";
-            this.colexpireDate.Name = "colexpireDate";
-            this.colexpireDate.Visible = true;
-            this.colexpireDate.VisibleIndex = 0;
-            this.colexpireDate.Width = 80;
             // 
             // colcontact
             // 
@@ -359,7 +350,6 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             // 
             // grdApp
             // 
-            this.grdApp.DataSource = this.appBindingSource;
             this.grdApp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdApp.Location = new System.Drawing.Point(2, 21);
             this.grdApp.MainView = this.gdvApp;
@@ -368,10 +358,6 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.grdApp.TabIndex = 0;
             this.grdApp.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvApp});
-            // 
-            // appBindingSource
-            // 
-            this.appBindingSource.DataSource = typeof(Insight.MTP.Client.Common.Entity.App);
             // 
             // gdvApp
             // 
@@ -493,7 +479,6 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             ((System.ComponentModel.ISupportInitialize)(this.palTenant)).EndInit();
             this.palTenant.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdTenant)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tenantBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvTenant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSpace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSearch)).EndInit();
@@ -504,7 +489,6 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             ((System.ComponentModel.ISupportInitialize)(this.grpMember)).EndInit();
             this.grpMember.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdApp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.appBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvApp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpUser)).EndInit();
             this.grpUser.ResumeLayout(false);
@@ -541,10 +525,8 @@ namespace Insight.MTP.Client.Base.Tenants.Views
         private PanelControl panSearch;
         internal SimpleButton Search;
         internal ButtonEdit KeyInput;
-        private System.Windows.Forms.BindingSource appBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colname2;
         private DevExpress.XtraGrid.Columns.GridColumn colalias1;
-        private System.Windows.Forms.BindingSource tenantBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colname;
         private DevExpress.XtraGrid.Columns.GridColumn colalias;
         private DevExpress.XtraGrid.Columns.GridColumn colexpireDate;

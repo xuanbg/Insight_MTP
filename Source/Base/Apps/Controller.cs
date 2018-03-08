@@ -14,14 +14,14 @@ namespace Insight.MTP.Client.Base.Apps
         public Controller(Navigation info)
         {
             // 构造ViewModel，订阅工具栏按钮点击事件
-            model = new ManagerModel(info);
-            model.buttons.ForEach(i => i.ItemClick += (sender, args) => ItemClick(args.Item.Name));
+            manage = new ManagerModel(info);
+            manage.buttons.ForEach(i => i.ItemClick += (sender, args) => ItemClick(args.Item.Name));
 
             // 订阅界面事件
-            model.view.GdvApp.DoubleClick += (sender, args) => EditUser();
+            manage.view.gdvApp.DoubleClick += (sender, args) => EditApp();
 
             // 加载角色列表
-            model.LoadData();
+            manage.LoadData();
         }
 
         /// <summary>
@@ -32,17 +32,35 @@ namespace Insight.MTP.Client.Base.Apps
         {
             switch (action)
             {
-                case "getUsers":
-                    model.Refresh();
+                case "getApps":
+                    manage.Refresh();
                     break;
-                case "newUser":
-                    AddUser();
+                case "newApp":
+                    AddApp();
                     break;
-                case "editUser":
-                    EditUser();
+                case "editApp":
+                    EditApp();
                     break;
-                case "deleteUser":
-                    model.DeleteItem();
+                case "deleteApp":
+                    manage.DeleteItem();
+                    break;
+                case "newNav":
+                    AddApp();
+                    break;
+                case "editNav":
+                    EditApp();
+                    break;
+                case "deleteNav":
+                    manage.DeleteItem();
+                    break;
+                case "newFun":
+                    AddApp();
+                    break;
+                case "editFun":
+                    EditApp();
+                    break;
+                case "deleteFun":
+                    manage.DeleteItem();
                     break;
                 default:
                     Messages.ShowError("对不起，该功能尚未实现！");
@@ -53,51 +71,49 @@ namespace Insight.MTP.Client.Base.Apps
         /// <summary>
         /// 新建用户
         /// </summary>
-        private void AddUser()
+        private void AddApp()
         {
-            //var user = new User();
-            //var userModel = new UserModel(user, "新建用户");
-            //var view = userModel.view;
-            //SubCloseEvent(view);
-            //view.Confirm.Click += (sender, args) =>
-            //{
-            //    model.ShowWaitForm();
-            //    user = userModel.AddUser();
-            //    model.CloseWaitForm();
-            //    if (user == null) return;
+            var app = new App();
+            var model = new AppModel(app, "新建应用");
+            var view = model.view;
+            SubCloseEvent(view);
+            view.Confirm.Click += (sender, args) =>
+            {
+                manage.ShowWaitForm();
+                app = model.Add();
+                manage.CloseWaitForm();
+                if (app == null) return;
 
-            //    model.AddUser(user);
-            //    CloseDialog(view);
-            //};
+                manage.AddItem(app);
+                CloseDialog(view);
+            };
 
-            //view.ShowDialog();
+            view.ShowDialog();
         }
 
         /// <summary>
         /// 编辑用户
         /// </summary>
-        private void EditUser()
+        private void EditApp()
         {
-            //if (!model.AllowDoubleClick("editUser")) return;
+            if (!manage.AllowDoubleClick("editApp")) return;
 
-            //var user = Util.Clone(model.user);
-            //user.funcs = null;
-            //user.datas = null;
-            //var userModel = new UserModel(user, "编辑用户");
-            //var view = userModel.view;
-            //SubCloseEvent(view);
-            //view.Confirm.Click += (sender, args) =>
-            //{
-            //    model.ShowWaitForm();
-            //    user = userModel.EditUser();
-            //    model.CloseWaitForm();
-            //    if (user == null) return;
+            var app = Util.Clone(manage.item);
+            var model = new AppModel(app, "编辑应用");
+            var view = model.view;
+            SubCloseEvent(view);
+            view.Confirm.Click += (sender, args) =>
+            {
+                manage.ShowWaitForm();
+                app = model.Edit();
+                manage.CloseWaitForm();
+                if (app == null) return;
 
-            //    model.Update(user);
-            //    CloseDialog(view);
-            //};
+                manage.Update(app);
+                CloseDialog(view);
+            };
 
-            //view.ShowDialog();
+            view.ShowDialog();
         }
     }
 }
