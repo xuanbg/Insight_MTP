@@ -13,6 +13,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         public Tenant item;
 
         private List<Tenant> list;
+        private App app;
         private int rows = 20;
         private string key;
 
@@ -34,6 +35,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
 
             // 订阅界面事件
             view.gdvTenant.FocusedRowObjectChanged += (sender, args) => ItemChanged(args.FocusedRowHandle);
+            view.gdvApp.FocusedRowObjectChanged += (sender, args) => AppChanged(args.FocusedRowHandle);
             view.Search.Click += (sender, args) => LoadData();
             view.KeyInput.Properties.Click += (sender, args) => view.KeyInput.EditValue = null;
             view.KeyInput.EditValueChanged += (sender, args) => key = view.KeyInput.Text.Trim();
@@ -90,7 +92,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
             list.Add(data);
 
             view.tabTenant.AddItems();
-            view.gdvUser.RefreshData();
+            view.gdvTenant.RefreshData();
         }
 
         /// <summary>
@@ -122,7 +124,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
 
             list.Remove(item);
             view.tabTenant.RemoveItems();
-            view.gdvUser.RefreshData();
+            view.gdvTenant.RefreshData();
             CloseWaitForm();
         }
 
@@ -133,8 +135,10 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         {
             var dict = new Dictionary<string, bool>
             {
-                ["editTenant"] = !item?.isBuiltin ?? false,
-                ["deleteTenant"] = !item?.isBuiltin ?? false,
+                ["editTenant"] = item != null,
+                ["deleteTenant"] = item != null,
+                ["bindApp"] = item != null,
+                ["unbindApp"] = app != null
             };
             SwitchItemStatus(dict);
         }
@@ -152,6 +156,16 @@ namespace Insight.MTP.Client.Base.Tenants.Models
             view.grdApp.DataSource = item?.apps;
             view.grdUser.DataSource = item?.users;
 
+            RefreshToolBar();
+        }
+
+        /// <summary>
+        /// 应用列表所选数据改变
+        /// </summary>
+        /// <param name="index"></param>
+        private void AppChanged(int index)
+        {
+            app = index < 0 ? null : item?.apps[index];
             RefreshToolBar();
         }
 

@@ -145,7 +145,28 @@
       <DependentUpon>Wizard.cs</DependentUpon>
     </Compile>
     <Compile Include="Tenants\Controller.cs" />
+    <Compile Include="Tenants\Models\ExtendModel.cs" />
+    <Compile Include="Tenants\Models\BindModel.cs" />
+    <Compile Include="Tenants\Models\TenantModel.cs" />
     <Compile Include="Tenants\Models\ManagerModel.cs" />
+    <Compile Include="Tenants\Views\BindDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tenants\Views\BindDialog.Designer.cs">
+      <DependentUpon>BindDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tenants\Views\ExtendDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tenants\Views\ExtendDialog.Designer.cs">
+      <DependentUpon>ExtendDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tenants\Views\TenantDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tenants\Views\TenantDialog.Designer.cs">
+      <DependentUpon>TenantDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tenants\Views\Manager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +214,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Roles\Views\Wizard.resx">
       <DependentUpon>Wizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tenants\Views\BindDialog.resx">
+      <DependentUpon>BindDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tenants\Views\ExtendDialog.resx">
+      <DependentUpon>ExtendDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tenants\Views\TenantDialog.resx">
+      <DependentUpon>TenantDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tenants\Views\Manager.resx">
       <DependentUpon>Manager.cs</DependentUpon>

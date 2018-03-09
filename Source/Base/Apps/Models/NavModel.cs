@@ -13,7 +13,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
         public NavDialog view;
 
         private readonly Navigation nav;
-        private int size;
+        private int size = 32;
 
         /// <summary>
         /// 导航集合

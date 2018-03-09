@@ -224,8 +224,9 @@ namespace Insight.MTP.Client.Base.Apps.Models
             if (item != null && item.navs == null) GetDetail();
 
             view.TreNav.DataSource = item?.navs;
+            view.TreNav.FocusedNode = view.TreNav.Nodes.FirstNode;
             view.TreNav.ExpandAll();
-            view.TreNav.MoveFirst();
+            if (!(item?.navs?.Any() ?? false)) nav = null;
 
             RefreshToolBar();
         }
@@ -248,11 +249,13 @@ namespace Insight.MTP.Client.Base.Apps.Models
         /// <param name="node">导航节点</param>
         private void NavChanged(TreeListNode node)
         {
-            if (node == null) return;
-
-            var id = node.GetValue("id").ToString();
-            nav = item.navs.SingleOrDefault(m => m.id == id && m.parentId != null);
-            if (nav != null && nav.funcs == null) GetFuns();
+            if (node != null)
+            {
+                var id = node.GetValue("id").ToString();
+                nav = item.navs.SingleOrDefault(m => m.id == id);
+                if (node.HasChildren) fun = null;
+                else if (nav != null) GetFuns(id);
+            }
 
             view.grdFunc.DataSource = nav?.funcs;
             RefreshToolBar();
@@ -261,9 +264,10 @@ namespace Insight.MTP.Client.Base.Apps.Models
         /// <summary>
         /// 获取模块功能
         /// </summary>
-        private void GetFuns()
+        /// <param name="id">导航ID</param>
+        private void GetFuns(string id)
         {
-            var url = $"{server}/appapi/v1.0/apps/navigations/{nav.id}/functions";
+            var url = $"{server}/appapi/v1.0/apps/navigations/{id}/functions";
             var client = new HttpClient<List<Function>>(token);
             if (!client.Get(url)) return;
 

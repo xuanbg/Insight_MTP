@@ -133,6 +133,48 @@ namespace Insight.MTP.Client.Common.Utils
             CustomDrawNodeImages(tree, type);
         }
 
+
+        /// <summary>
+        /// 初始化LookUpEdit
+        /// </summary>
+        /// <param name="control">LookUpEdit</param>
+        /// <param name="list">MemberSelect集合</param>
+        /// <param name="index">选中项索引，默认不选中</param>
+        public static void InitComboBoxEdit(ComboBoxEdit control, List<LookUpMember> list, int index = -1)
+        {
+            control.Properties.ImmediatePopup = true;
+            control.Properties.PopupFormMinSize = new Size(60, 0);
+            control.Properties.Items.Clear();
+            if (list == null) return;
+
+            foreach (var i in list)
+            {
+                var item = new ImageComboBoxItem { Value = i.name };
+                control.Properties.Items.Add(item);
+            }
+
+            control.SelectedIndex = index;
+        }
+
+        /// <summary>
+        /// 初始化LookUpEdit
+        /// </summary>
+        /// <param name="control">LookUpEdit</param>
+        /// <param name="list">MemberSelect集合</param>
+        public static void InitComboBoxEdit(RepositoryItemComboBox control, List<LookUpMember> list)
+        {
+            control.ImmediatePopup = true;
+            control.PopupFormMinSize = new Size(60, 0);
+            control.Items.Clear();
+            if (list == null) return;
+
+            foreach (var i in list)
+            {
+                var item = new ImageComboBoxItem { Value = i.name };
+                control.Items.Add(item);
+            }
+        }
+
         /// <summary>
         /// 初始化LookUpEdit
         /// </summary>

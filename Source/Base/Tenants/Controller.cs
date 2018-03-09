@@ -18,7 +18,7 @@ namespace Insight.MTP.Client.Base.Tenants
             manage.buttons.ForEach(i => i.ItemClick += (sender, args) => ItemClick(args.Item.Name));
 
             // 订阅界面事件
-            manage.view.gdvUser.DoubleClick += (sender, args) => EditUser();
+            manage.view.gdvTenant.DoubleClick += (sender, args) => Edit();
 
             // 加载角色列表
             manage.LoadData();
@@ -36,22 +36,19 @@ namespace Insight.MTP.Client.Base.Tenants
                     manage.Refresh();
                     break;
                 case "newTenant":
-                    AddUser();
+                    Add();
                     break;
                 case "editTenant":
-                    EditUser();
+                    Edit();
                     break;
                 case "deleteTenant":
                     manage.DeleteItem();
                     break;
                 case "bindApp":
-                    EditUser();
-                    break;
-                case "unbindApp":
-                    manage.DeleteItem();
+                    Bind();
                     break;
                 case "extend":
-                    manage.DeleteItem();
+                    Extend();
                     break;
                 default:
                     Messages.ShowError("对不起，该功能尚未实现！");
@@ -60,53 +57,97 @@ namespace Insight.MTP.Client.Base.Tenants
         }
 
         /// <summary>
-        /// 新建用户
+        /// 新建
         /// </summary>
-        private void AddUser()
+        private void Add()
         {
-            //var user = new User();
-            //var userModel = new UserModel(user, "新建用户");
-            //var view = userModel.view;
-            //SubCloseEvent(view);
-            //view.Confirm.Click += (sender, args) =>
-            //{
-            //    model.ShowWaitForm();
-            //    user = userModel.AddUser();
-            //    model.CloseWaitForm();
-            //    if (user == null) return;
+            var tenant = new Tenant();
+            var model = new TenantModel(tenant, "新建租户");
+            var view = model.view;
+            SubCloseEvent(view);
+            view.Confirm.Click += (sender, args) =>
+            {
+                manage.ShowWaitForm();
+                tenant = model.Add();
+                manage.CloseWaitForm();
+                if (tenant == null) return;
 
-            //    model.AddUser(user);
-            //    CloseDialog(view);
-            //};
+                manage.AddItem(tenant);
+                CloseDialog(view);
+            };
 
-            //view.ShowDialog();
+            view.ShowDialog();
         }
 
         /// <summary>
-        /// 编辑用户
+        /// 编辑
         /// </summary>
-        private void EditUser()
+        private void Edit()
         {
-            //if (!model.AllowDoubleClick("editTenant")) return;
+            if (!manage.AllowDoubleClick("editTenant")) return;
 
-            //var user = Util.Clone(model.user);
-            //user.funcs = null;
-            //user.datas = null;
-            //var userModel = new UserModel(user, "编辑用户");
-            //var view = userModel.view;
-            //SubCloseEvent(view);
-            //view.Confirm.Click += (sender, args) =>
-            //{
-            //    model.ShowWaitForm();
-            //    user = userModel.EditUser();
-            //    model.CloseWaitForm();
-            //    if (user == null) return;
+            var tenant = Util.Clone(manage.item);
+            var model = new TenantModel(tenant, "编辑租户");
+            var view = model.view;
+            SubCloseEvent(view);
+            view.Confirm.Click += (sender, args) =>
+            {
+                manage.ShowWaitForm();
+                tenant = model.Edit();
+                manage.CloseWaitForm();
+                if (tenant == null) return;
 
-            //    model.Update(user);
-            //    CloseDialog(view);
-            //};
+                manage.Update(tenant);
+                CloseDialog(view);
+            };
 
-            //view.ShowDialog();
+            view.ShowDialog();
+        }
+
+        /// <summary>
+        /// 绑定应用
+        /// </summary>
+        private void Bind()
+        {
+            var tenant = Util.Clone(manage.item);
+            var model = new TenantModel(tenant, "编辑租户");
+            var view = model.view;
+            SubCloseEvent(view);
+            view.Confirm.Click += (sender, args) =>
+            {
+                manage.ShowWaitForm();
+                tenant = model.Edit();
+                manage.CloseWaitForm();
+                if (tenant == null) return;
+
+                manage.Update(tenant);
+                CloseDialog(view);
+            };
+
+            view.ShowDialog();
+        }
+
+        /// <summary>
+        /// 续租
+        /// </summary>
+        private void Extend()
+        {
+            var tenant = Util.Clone(manage.item);
+            var model = new ExtendModel(tenant, "续租");
+            var view = model.view;
+            SubCloseEvent(view);
+            view.Confirm.Click += (sender, args) =>
+            {
+                manage.ShowWaitForm();
+                tenant = model.Save();
+                manage.CloseWaitForm();
+                if (tenant == null) return;
+
+                manage.Update(tenant);
+                CloseDialog(view);
+            };
+
+            view.ShowDialog();
         }
     }
 }
