@@ -308,7 +308,7 @@ namespace Insight.MTP.Client.Base.Apps.Views
             // 
             // colalias1
             // 
-            this.colalias1.Caption = "操作码";
+            this.colalias1.Caption = "标识码";
             this.colalias1.FieldName = "alias";
             this.colalias1.Name = "colalias1";
             this.colalias1.Visible = true;

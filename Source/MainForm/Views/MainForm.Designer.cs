@@ -37,12 +37,9 @@
             this.MubLogout = new DevExpress.XtraBars.BarButtonItem();
             this.MubExit = new DevExpress.XtraBars.BarButtonItem();
             this.bmuSet = new DevExpress.XtraBars.BarSubItem();
-            this.MubPrintSet = new DevExpress.XtraBars.BarButtonItem();
             this.mubSkin = new DevExpress.XtraBars.SkinBarSubItem();
             this.mdiList = new DevExpress.XtraBars.BarMdiChildrenListItem();
             this.bmuHelp = new DevExpress.XtraBars.BarSubItem();
-            this.MubHelp = new DevExpress.XtraBars.BarButtonItem();
-            this.MubUpdate = new DevExpress.XtraBars.BarButtonItem();
             this.MubAbout = new DevExpress.XtraBars.BarButtonItem();
             this.barStatus = new DevExpress.XtraBars.Bar();
             this.StbTime = new DevExpress.XtraBars.BarButtonItem();
@@ -93,10 +90,7 @@
             this.MubLock,
             this.MubLogout,
             this.MubExit,
-            this.MubPrintSet,
             this.mubSkin,
-            this.MubHelp,
-            this.MubUpdate,
             this.MubAbout,
             this.StbTime,
             this.StbDept,
@@ -183,19 +177,9 @@
             this.bmuSet.CategoryGuid = new System.Guid("ba703b74-a3ae-461f-94c8-943ed9da4cdc");
             this.bmuSet.Id = 3;
             this.bmuSet.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.MubPrintSet),
             new DevExpress.XtraBars.LinkPersistInfo(this.mubSkin, true)});
             this.bmuSet.Name = "bmuSet";
             this.bmuSet.ShortcutKeyDisplayString = "S";
-            // 
-            // MubPrintSet
-            // 
-            this.MubPrintSet.Caption = "设置打印机";
-            this.MubPrintSet.CategoryGuid = new System.Guid("ba703b74-a3ae-461f-94c8-943ed9da4cdc");
-            this.MubPrintSet.Id = 14;
-            this.MubPrintSet.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("MubPrintSet.ImageOptions.Image")));
-            this.MubPrintSet.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("MubPrintSet.ImageOptions.LargeImage")));
-            this.MubPrintSet.Name = "MubPrintSet";
             // 
             // mubSkin
             // 
@@ -219,33 +203,9 @@
             this.bmuHelp.CategoryGuid = new System.Guid("ba703b74-a3ae-461f-94c8-943ed9da4cdc");
             this.bmuHelp.Id = 5;
             this.bmuHelp.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.MubHelp),
-            new DevExpress.XtraBars.LinkPersistInfo(this.MubUpdate, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.MubAbout)});
             this.bmuHelp.Name = "bmuHelp";
             this.bmuHelp.ShortcutKeyDisplayString = "H";
-            // 
-            // MubHelp
-            // 
-            this.MubHelp.Caption = "查看帮助";
-            this.MubHelp.CategoryGuid = new System.Guid("ba703b74-a3ae-461f-94c8-943ed9da4cdc");
-            this.MubHelp.Id = 12;
-            this.MubHelp.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("MubHelp.ImageOptions.Image")));
-            this.MubHelp.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("MubHelp.ImageOptions.LargeImage")));
-            this.MubHelp.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H));
-            this.MubHelp.Name = "MubHelp";
-            this.MubHelp.ShortcutKeyDisplayString = "Ctrl+H";
-            // 
-            // MubUpdate
-            // 
-            this.MubUpdate.Caption = "检查更新";
-            this.MubUpdate.CategoryGuid = new System.Guid("ba703b74-a3ae-461f-94c8-943ed9da4cdc");
-            this.MubUpdate.Id = 53;
-            this.MubUpdate.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("MubUpdate.ImageOptions.Image")));
-            this.MubUpdate.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("MubUpdate.ImageOptions.LargeImage")));
-            this.MubUpdate.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U));
-            this.MubUpdate.Name = "MubUpdate";
-            this.MubUpdate.ShortcutKeyDisplayString = "Ctrl+U";
             // 
             // MubAbout
             // 
@@ -430,9 +390,6 @@
         internal DevExpress.XtraBars.BarButtonItem MubLock;
         internal DevExpress.XtraBars.BarButtonItem MubLogout;
         internal DevExpress.XtraBars.BarButtonItem MubExit;
-        internal DevExpress.XtraBars.BarButtonItem MubPrintSet;
-        internal DevExpress.XtraBars.BarButtonItem MubHelp;
-        internal DevExpress.XtraBars.BarButtonItem MubUpdate;
         internal DevExpress.XtraBars.BarButtonItem MubAbout;
         internal DevExpress.XtraBars.BarButtonItem StbTime;
         internal DevExpress.XtraBars.BarButtonItem StbDept;

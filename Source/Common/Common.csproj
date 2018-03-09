@@ -82,12 +82,6 @@
     <Compile Include="BaseForm\Waiting.Designer.cs">
       <DependentUpon>Waiting.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\Unshared.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\Unshared.designer.cs">
-      <DependentUpon>Unshared.cs</DependentUpon>
-    </Compile>
     <Compile Include="Entity\App.cs" />
     <Compile Include="Entity\CategoryBses.cs" />
     <Compile Include="Entity\Reports.cs" />
@@ -100,7 +94,6 @@
     <Compile Include="Entity\Tenant.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\MdiModel.cs" />
-    <Compile Include="Models\MemberModel.cs" />
     <Compile Include="BaseForm\BaseDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,30 +112,6 @@
     <Compile Include="BaseForm\BaseMDI.Designer.cs">
       <DependentUpon>BaseMDI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\Contact.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\Contact.Designer.cs">
-      <DependentUpon>Contact.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\Member.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\Member.designer.cs">
-      <DependentUpon>Member.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\Category.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\Category.Designer.cs">
-      <DependentUpon>Category.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\Handover.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\Handover.designer.cs">
-      <DependentUpon>Handover.cs</DependentUpon>
-    </Compile>
     <Compile Include="Utils\Format.cs" />
     <Compile Include="Utils\Params.cs" />
     <Compile Include="Utils\RegexHelper.cs" />
@@ -153,9 +122,6 @@
     <EmbeddedResource Include="BaseForm\Waiting.resx">
       <DependentUpon>Waiting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\Unshared.resx">
-      <DependentUpon>Unshared.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="BaseForm\BaseDialog.resx">
       <DependentUpon>BaseDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,18 +131,6 @@
     <EmbeddedResource Include="BaseForm\BaseMDI.resx">
       <DependentUpon>BaseMDI.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\Contact.resx">
-      <DependentUpon>Contact.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\Member.resx">
-      <DependentUpon>Member.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\Category.resx">
-      <DependentUpon>Category.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\Handover.resx">
-      <DependentUpon>Handover.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

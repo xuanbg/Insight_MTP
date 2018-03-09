@@ -41,13 +41,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
             view.txtAlias.EditValueChanged += (sender, args) => app.alias = view.txtAlias.Text.Trim();
             view.txtHost.EditValueChanged += (sender, args) => app.host = view.txtHost.Text.Trim();
             view.txtlife.EditValueChanged += (sender, args) => app.tokenLife = Convert.ToInt32(view.txtlife.Text.Trim());
-            view.picIcon.ImageChanged += (sender, args) =>
-            {
-                var image = view.picIcon.Image;
-                if (image.Height == image.Width && image.Height == 256) app.icon = Util.ImageToByteArray(image);
-
-                Messages.ShowError("请使用大小为256 x 256的图片");
-            };
+            view.picIcon.ImageChanged += (sender, args) => app.icon = Util.Resize(view.picIcon.Image, 256, 256);
             view.memRemark.EditValueChanged += (sender, args) =>
             {
                 var text = view.memRemark.EditValue?.ToString().Trim();

@@ -212,7 +212,8 @@ namespace Insight.MTP.Client.Base.Users.Views
             // 
             this.txtEmail.Location = new System.Drawing.Point(80, 110);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Properties.Mask.EditMask = "^\\w+([.-]?\\w+)*@\\w+([.-]?\\w+)*(\\.\\w{2,3})+$";
+            this.txtEmail.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.None;
+            this.txtEmail.Properties.Mask.EditMask = "\\w+([.-]?\\w+)*@\\w+([.-]?\\w+)*(\\.\\w{2,3})+";
             this.txtEmail.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtEmail.Size = new System.Drawing.Size(260, 20);
             this.txtEmail.TabIndex = 4;
@@ -234,7 +235,8 @@ namespace Insight.MTP.Client.Base.Users.Views
             this.txtMobile.EnterMoveNextControl = true;
             this.txtMobile.Location = new System.Drawing.Point(80, 80);
             this.txtMobile.Name = "txtMobile";
-            this.txtMobile.Properties.Mask.EditMask = "^1[3-9]\\d{9}";
+            this.txtMobile.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.None;
+            this.txtMobile.Properties.Mask.EditMask = "1[3-9]\\d{9}";
             this.txtMobile.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtMobile.Size = new System.Drawing.Size(260, 20);
             this.txtMobile.TabIndex = 3;

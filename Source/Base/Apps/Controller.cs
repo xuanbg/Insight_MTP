@@ -1,4 +1,5 @@
-﻿using Insight.MTP.Client.Base.Apps.Models;
+﻿using System.Linq;
+using Insight.MTP.Client.Base.Apps.Models;
 using Insight.MTP.Client.Common.Controller;
 using Insight.MTP.Client.Common.Entity;
 using Insight.Utils.Common;
@@ -19,6 +20,8 @@ namespace Insight.MTP.Client.Base.Apps
 
             // 订阅界面事件
             manage.view.gdvApp.DoubleClick += (sender, args) => EditApp();
+            manage.view.TreNav.DoubleClick += (sender, args) => EditNav();
+            manage.view.gdvFunc.DoubleClick += (sender, args) => EditFun();
 
             // 加载角色列表
             manage.LoadData();
@@ -45,22 +48,22 @@ namespace Insight.MTP.Client.Base.Apps
                     manage.DeleteItem();
                     break;
                 case "newNav":
-                    AddApp();
+                    AddNav();
                     break;
                 case "editNav":
-                    EditApp();
+                    EditNav();
                     break;
                 case "deleteNav":
-                    manage.DeleteItem();
+                    manage.DeleteNav();
                     break;
                 case "newFun":
-                    AddApp();
+                    AddFun();
                     break;
                 case "editFun":
-                    EditApp();
+                    EditFun();
                     break;
                 case "deleteFun":
-                    manage.DeleteItem();
+                    manage.DeleteFun();
                     break;
                 default:
                     Messages.ShowError("对不起，该功能尚未实现！");
@@ -69,7 +72,7 @@ namespace Insight.MTP.Client.Base.Apps
         }
 
         /// <summary>
-        /// 新建用户
+        /// 新建应用
         /// </summary>
         private void AddApp()
         {
@@ -92,7 +95,7 @@ namespace Insight.MTP.Client.Base.Apps
         }
 
         /// <summary>
-        /// 编辑用户
+        /// 编辑应用
         /// </summary>
         private void EditApp()
         {
@@ -110,6 +113,103 @@ namespace Insight.MTP.Client.Base.Apps
                 if (app == null) return;
 
                 manage.Update(app);
+                CloseDialog(view);
+            };
+
+            view.ShowDialog();
+        }
+
+        /// <summary>
+        /// 新建导航
+        /// </summary>
+        private void AddNav()
+        {
+            var nav = new Navigation{appId = manage.item.id};
+            var navs = manage.item.navs.Select(i => new LookUpMember {id = i.id, name = i.name});
+            var model = new NavModel(nav, "新建导航") {navs = navs.ToList()};
+            var view = model.view;
+            SubCloseEvent(view);
+            view.Confirm.Click += (sender, args) =>
+            {
+                manage.ShowWaitForm();
+                nav = model.Add();
+                manage.CloseWaitForm();
+                if (nav == null) return;
+
+                manage.AddItem(nav);
+                CloseDialog(view);
+            };
+
+            view.ShowDialog();
+        }
+
+        /// <summary>
+        /// 编辑导航
+        /// </summary>
+        private void EditNav()
+        {
+            if (!manage.AllowDoubleClick("editNav")) return;
+
+            var nav = Util.Clone(manage.nav);
+            var navs = manage.item.navs.Where(i => i.id != nav.id).Select(i => new LookUpMember { id = i.id, name = i.name });
+            var model = new NavModel(nav, "编辑导航") { navs = navs.ToList() };
+            var view = model.view;
+            SubCloseEvent(view);
+            view.Confirm.Click += (sender, args) =>
+            {
+                manage.ShowWaitForm();
+                nav = model.Edit();
+                manage.CloseWaitForm();
+                if (nav == null) return;
+
+                manage.Update(nav);
+                CloseDialog(view);
+            };
+
+            view.ShowDialog();
+        }
+        /// <summary>
+        /// 新建功能
+        /// </summary>
+        private void AddFun()
+        {
+            var app = new Function{navigatorId = manage.nav.id};
+            var model = new FunModel(app, "新建功能");
+            var view = model.view;
+            SubCloseEvent(view);
+            view.Confirm.Click += (sender, args) =>
+            {
+                manage.ShowWaitForm();
+                app = model.Add();
+                manage.CloseWaitForm();
+                if (app == null) return;
+
+                manage.AddItem(app);
+                CloseDialog(view);
+            };
+
+            view.ShowDialog();
+        }
+
+        /// <summary>
+        /// 编辑功能
+        /// </summary>
+        private void EditFun()
+        {
+            if (!manage.AllowDoubleClick("editFun")) return;
+
+            var fun = Util.Clone(manage.fun);
+            var model = new FunModel(fun, "编辑功能");
+            var view = model.view;
+            SubCloseEvent(view);
+            view.Confirm.Click += (sender, args) =>
+            {
+                manage.ShowWaitForm();
+                fun = model.Edit();
+                manage.CloseWaitForm();
+                if (fun == null) return;
+
+                manage.Update(fun);
                 CloseDialog(view);
             };
 

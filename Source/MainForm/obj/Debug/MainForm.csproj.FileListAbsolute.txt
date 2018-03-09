@@ -32,8 +32,6 @@ C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainForm\obj\De
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainForm\obj\Debug\Insight.MTP.Client.MainForm.Views.ChangePw.resources
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainForm\obj\Debug\Insight.MTP.Client.MainForm.Views.Locked.resources
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainForm\obj\Debug\Insight.MTP.Client.MainForm.Views.MainWindow.resources
-C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainForm\obj\Debug\Insight.MTP.Client.MainForm.Views.PrintSet.resources
-C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainForm\obj\Debug\Insight.MTP.Client.MainForm.Views.Update.resources
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainForm\obj\Debug\Insight.MTP.Client.MainForm.Views.Loading.resources
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainForm\obj\Debug\MainForm.csproj.GenerateResource.Cache
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainForm\obj\Debug\MainForm.csproj.CoreCompileInputs.cache
