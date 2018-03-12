@@ -37,7 +37,6 @@ namespace Insight.MTP.Client.Base.Tenants.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -366,6 +365,7 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.colalias1});
             this.gdvApp.GridControl = this.grdApp;
             this.gdvApp.Name = "gdvApp";
+            this.gdvApp.OptionsDetail.EnableMasterViewMode = false;
             // 
             // colname2
             // 
