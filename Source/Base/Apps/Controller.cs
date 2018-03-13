@@ -3,6 +3,7 @@ using Insight.MTP.Client.Base.Apps.Models;
 using Insight.MTP.Client.Common.Controller;
 using Insight.MTP.Client.Common.Entity;
 using Insight.Utils.Common;
+using Insight.Utils.Entity;
 
 namespace Insight.MTP.Client.Base.Apps
 {
@@ -125,7 +126,7 @@ namespace Insight.MTP.Client.Base.Apps
         private void AddNav()
         {
             var nav = new Navigation{appId = manage.item.id};
-            var navs = manage.item.navs.Select(i => new LookUpMember {id = i.id, name = i.name});
+            var navs = manage.item.navs.Select(i => new TreeLookUpMember {id = i.id, parentId = i.parentId, name = i.name});
             var model = new NavModel(nav, "新建导航") {navs = navs.ToList()};
             var view = model.view;
             SubCloseEvent(view);
@@ -151,7 +152,8 @@ namespace Insight.MTP.Client.Base.Apps
             if (!manage.AllowDoubleClick("editNav")) return;
 
             var nav = Util.Clone(manage.nav);
-            var navs = manage.item.navs.Where(i => i.id != nav.id).Select(i => new LookUpMember { id = i.id, name = i.name });
+            var navs = manage.item.navs.Where(i => i.id != nav.id && i.parentId != nav.id)
+                .Select(i => new TreeLookUpMember { id = i.id, parentId = i.parentId, name = i.name });
             var model = new NavModel(nav, "编辑导航") { navs = navs.ToList() };
             var view = model.view;
             SubCloseEvent(view);

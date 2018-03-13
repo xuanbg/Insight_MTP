@@ -2,12 +2,12 @@
 
 namespace Insight.MTP.Client.MainApp.Views
 {
-    public partial class Login : XtraForm
+    public partial class view : XtraForm
     {
         /// <summary>
         /// 窗体构造函数
         /// </summary>
-        public Login()
+        public view()
         {
             InitializeComponent();
         }

@@ -110,13 +110,13 @@ namespace Insight.MTP.Client.Base.Tenants
         private void Bind()
         {
             var tenant = Util.Clone(manage.item);
-            var model = new TenantModel(tenant, "编辑租户");
+            var model = new BindModel(tenant, "绑定应用");
             var view = model.view;
             SubCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
                 manage.ShowWaitForm();
-                tenant = model.Edit();
+                tenant = model.Save();
                 manage.CloseWaitForm();
                 if (tenant == null) return;
 

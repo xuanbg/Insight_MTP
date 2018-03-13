@@ -41,7 +41,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Release\</OutputPath>
+    <OutputPath>..\..\Insight MTP Client\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -77,13 +77,7 @@
     <Reference Include="DevExpress.XtraGrid.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DevExpress.XtraTreeList.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraWizard.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -128,22 +122,6 @@
     <Compile Include="Apps\Views\Manager.Designer.cs">
       <DependentUpon>Manager.cs</DependentUpon>
     </Compile>
-    <Compile Include="Roles\Controller.cs" />
-    <Compile Include="Roles\Models\MemberModel.cs" />
-    <Compile Include="Roles\Models\ManagerModel.cs" />
-    <Compile Include="Roles\Models\WizardModel.cs" />
-    <Compile Include="Roles\Views\Member.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Roles\Views\Member.Designer.cs">
-      <DependentUpon>Member.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Roles\Views\Wizard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Roles\Views\Wizard.Designer.cs">
-      <DependentUpon>Wizard.cs</DependentUpon>
-    </Compile>
     <Compile Include="Tenants\Controller.cs" />
     <Compile Include="Tenants\Models\ExtendModel.cs" />
     <Compile Include="Tenants\Models\BindModel.cs" />
@@ -173,27 +151,6 @@
     <Compile Include="Tenants\Views\Manager.Designer.cs">
       <DependentUpon>Manager.cs</DependentUpon>
     </Compile>
-    <Compile Include="Users\Controller.cs" />
-    <Compile Include="Users\Models\ManagerModel.cs" />
-    <Compile Include="Users\Models\UserModel.cs" />
-    <Compile Include="Users\Views\UserDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Users\Views\UserDialog.Designer.cs">
-      <DependentUpon>UserDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Roles\Views\Manager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Roles\Views\Manager.Designer.cs">
-      <DependentUpon>Manager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Users\Views\Manager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Users\Views\Manager.designer.cs">
-      <DependentUpon>Manager.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -209,12 +166,6 @@
     <EmbeddedResource Include="Apps\Views\Manager.resx">
       <DependentUpon>Manager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Roles\Views\Member.resx">
-      <DependentUpon>Member.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Roles\Views\Wizard.resx">
-      <DependentUpon>Wizard.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Tenants\Views\BindDialog.resx">
       <DependentUpon>BindDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -225,15 +176,6 @@
       <DependentUpon>TenantDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tenants\Views\Manager.resx">
-      <DependentUpon>Manager.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Users\Views\UserDialog.resx">
-      <DependentUpon>UserDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Roles\Views\Manager.resx">
-      <DependentUpon>Manager.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Users\Views\Manager.resx">
       <DependentUpon>Manager.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

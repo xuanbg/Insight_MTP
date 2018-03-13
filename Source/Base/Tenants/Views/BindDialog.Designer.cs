@@ -39,6 +39,7 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.grdApp = new DevExpress.XtraGrid.GridControl();
             this.gdvApp = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAlias = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
@@ -52,7 +53,6 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             // 
             this.panel.Controls.Add(this.grdApp);
             this.panel.Size = new System.Drawing.Size(510, 300);
-            this.panel.Visible = false;
             // 
             // Cancel
             // 
@@ -102,9 +102,11 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             // 
             this.gdvApp.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.gdvApp.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colName});
+            this.colName,
+            this.colAlias});
             this.gdvApp.GridControl = this.grdApp;
             this.gdvApp.Name = "gdvApp";
+            this.gdvApp.OptionsDetail.EnableMasterViewMode = false;
             this.gdvApp.OptionsFind.AlwaysVisible = true;
             this.gdvApp.OptionsFind.FindDelay = 100;
             this.gdvApp.OptionsFind.FindNullPrompt = "输入关键字进行查询…";
@@ -120,12 +122,21 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.colName.Name = "colName";
             this.colName.Visible = true;
             this.colName.VisibleIndex = 1;
-            this.colName.Width = 140;
+            this.colName.Width = 240;
             // 
-            // Member
+            // colAlias
+            // 
+            this.colAlias.Caption = "简称";
+            this.colAlias.FieldName = "alias";
+            this.colAlias.Name = "colAlias";
+            this.colAlias.Visible = true;
+            this.colAlias.VisibleIndex = 2;
+            this.colAlias.Width = 160;
+            // 
+            // BindDialog
             // 
             this.ClientSize = new System.Drawing.Size(524, 362);
-            this.Name = "Member";
+            this.Name = "BindDialog";
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).EndInit();
@@ -142,5 +153,6 @@ namespace Insight.MTP.Client.Base.Tenants.Views
         internal GridControl grdApp;
         internal GridView gdvApp;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
+        private DevExpress.XtraGrid.Columns.GridColumn colAlias;
     }
 }

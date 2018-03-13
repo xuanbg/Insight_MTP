@@ -12,6 +12,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Columns;
 using Insight.MTP.Client.Common.Entity;
+using Insight.Utils.Entity;
 using DrawFocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle;
 using ScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility;
 

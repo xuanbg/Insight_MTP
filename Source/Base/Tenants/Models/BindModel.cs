@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Insight.MTP.Client.Base.Tenants.Views;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Common.Models;
@@ -9,7 +10,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
 {
     public class BindModel : BaseModel
     {
-        public BindDialog view = new BindDialog();
+        public BindDialog view;
 
         private readonly Tenant tenant;
 
@@ -17,13 +18,15 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// 构造函数，初始化视图
         /// 通过订阅事件实现双向数据绑定
         /// </summary>
-        /// <param name="tenant">租户对象</param>
-        public BindModel(Tenant tenant)
+        /// <param name="data"></param>
+        /// <param name="title"></param>
+        public BindModel(Tenant data, string title)
         {
-            this.tenant = tenant;
+            tenant = data;
+            view = new BindDialog {Text = title};
 
-            view.grdApp.DataSource = GetApps();
             Format.GridFormat(view.gdvApp, 0);
+            GetApps();
         }
 
         /// <summary>
@@ -32,23 +35,36 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         public Tenant Save()
         {
             const string msg = "更新绑定应用失败！";
-            var url = $"{server}/tenantapi/v1.0/tenants/{tenant.id}";
-            var dict = new Dictionary<string, object> { { "tenant", tenant } };
-            var client = new HttpClient<Tenant>(token);
+
+            var list = from r in view.gdvApp.GetSelectedRows()
+                       select (App)view.gdvApp.GetRow(r);
+            tenant.apps = list.ToList();
+
+            var url = $"{server}/tenantapi/v1.0/tenants/{tenant.id}/apps";
+            var ids = tenant.apps.Select(i => i.id);
+            var dict = new Dictionary<string, object> {{"apps", ids}};
+            var client = new HttpClient<object>(token);
 
             return client.Put(url, dict, msg) ? tenant : null;
         }
 
         /// <summary>
-        /// 加载非角色成员用户列表数据
+        /// 加载应用列表数据
         /// </summary>
-        private List<App> GetApps()
+        private void GetApps()
         {
             var url = $"{server}/appapi/v1.0/apps/all";
             var client = new HttpClient<List<App>>(token);
             client.Get(url);
 
-            return client.data;
+            view.grdApp.DataSource = client.data;
+            for (var i = 0; i < view.gdvApp.RowCount; i++)
+            {
+                var row = (App) view.gdvApp.GetRow(i);
+                if (tenant.apps.All(t => t.id != row.id)) continue;
+
+                view.gdvApp.SelectRow(i);
+            }
         }
     }
 }

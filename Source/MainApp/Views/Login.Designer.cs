@@ -3,7 +3,7 @@ using DevExpress.XtraEditors;
 
 namespace Insight.MTP.Client.MainApp.Views
 {
-    public partial class Login
+    public partial class view
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace Insight.MTP.Client.MainApp.Views
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(view));
             this.labUser = new DevExpress.XtraEditors.LabelControl();
             this.labPassword = new DevExpress.XtraEditors.LabelControl();
             this.UserNameInput = new DevExpress.XtraEditors.TextEdit();

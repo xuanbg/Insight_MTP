@@ -9,7 +9,7 @@ namespace Insight.MTP.Client.MainApp.Models
 {
     public class LoginModel : BaseModel
     {
-        public Login login = new Login();
+        public view login;
 
         private string account = Config.UserName();
         private string password;
@@ -20,6 +20,7 @@ namespace Insight.MTP.Client.MainApp.Models
         /// </summary>
         public LoginModel()
         {
+            login = new view {Text = "Insight MTP Client"};
             login.UserNameInput.EditValueChanged += (sender, args) => account = login.UserNameInput.Text.Trim();
             login.PassWordInput.EditValueChanged += (sender, args) => password = login.PassWordInput.Text;
         }

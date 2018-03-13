@@ -6,6 +6,7 @@ using Insight.MTP.Client.Common.Models;
 using Insight.MTP.Client.Common.Utils;
 using Insight.Utils.Client;
 using Insight.Utils.Common;
+using Insight.Utils.Entity;
 
 namespace Insight.MTP.Client.Base.Tenants.Models
 {

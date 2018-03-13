@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Insight 多租户平台管理客户端")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Insight Software Ltd.")]
-[assembly: AssemblyProduct("Insight MTP")]
+[assembly: AssemblyProduct("Insight MTP Client")]
 [assembly: AssemblyCopyright("Copyright © 2014 Insight Software Ltd.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

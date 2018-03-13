@@ -13,3 +13,15 @@ C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\Commo
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\Common\obj\Release\Common.csproj.GenerateResource.Cache
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\Common\obj\Release\Common.dll
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\Insight_Client\Source\Common\obj\Release\Common.pdb
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Insight MTP Client\Common.dll
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Insight MTP Client\Common.pdb
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\Common\obj\Release\Common.csprojResolveAssemblyReference.cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\Common\obj\Release\Insight.MTP.Client.Common.BaseForm.Waiting.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\Common\obj\Release\Insight.MTP.Client.Common.BaseForm.BaseDialog.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\Common\obj\Release\Insight.MTP.Client.Common.BaseForm.BaseWizard.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\Common\obj\Release\Insight.MTP.Client.Common.BaseForm.BaseMDI.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\Common\obj\Release\Common.csproj.GenerateResource.cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\Common\obj\Release\Common.csproj.CoreCompileInputs.cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\Common\obj\Release\Common.csproj.CopyComplete
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\Common\obj\Release\Common.dll
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\Common\obj\Release\Common.pdb

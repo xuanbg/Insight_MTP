@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Insight.MTP.Client.Base.Apps.Views;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Common.Models;
 using Insight.MTP.Client.Common.Utils;
 using Insight.Utils.Client;
 using Insight.Utils.Common;
+using Insight.Utils.Entity;
 
 namespace Insight.MTP.Client.Base.Apps.Models
 {
@@ -12,15 +14,21 @@ namespace Insight.MTP.Client.Base.Apps.Models
     {
         public NavDialog view;
 
+        private List<TreeLookUpMember> navList;
         private readonly Navigation nav;
         private int size = 32;
 
         /// <summary>
         /// 导航集合
         /// </summary>
-        public List<LookUpMember> navs
+        public List<TreeLookUpMember> navs
         {
-            set => Format.InitLookUpEdit(view.lueParent, value);
+            private get { return navList; }
+            set
+            {
+                navList = value;
+                Format.InitTreeListLookUpEdit(view.lueParent, navList);
+            }
         }
 
         /// <summary>
@@ -37,6 +45,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
                 Text = title,
                 lueParent = {EditValue = data.parentId},
                 speIndex = {EditValue = data.index},
+                cheLoad = {Checked = data.isDefault},
                 txtName = {EditValue = data.name},
                 txtAlias = {EditValue = data.alias},
                 txtUrl = {EditValue = data.url},
@@ -52,8 +61,10 @@ namespace Insight.MTP.Client.Base.Apps.Models
                 var pid = view.lueParent.EditValue.ToString();
                 size = string.IsNullOrEmpty(pid) ? 32 : 24;
                 nav.parentId = pid;
+                view.speIndex.Value = navs.Count(i => i.parentId == pid) + 1;
             };
             view.speIndex.EditValueChanged += (sender, args) => nav.index = (int) view.speIndex.Value;
+            view.cheLoad.CheckedChanged += (sender, args) => nav.isDefault = view.cheLoad.Checked;
             view.txtName.EditValueChanged += (sender, args) => nav.name = view.txtName.Text.Trim();
             view.txtAlias.EditValueChanged += (sender, args) => nav.alias = view.txtAlias.Text.Trim();
             view.txtUrl.EditValueChanged += (sender, args) => nav.url = view.txtUrl.Text.Trim();
@@ -104,13 +115,6 @@ namespace Insight.MTP.Client.Base.Apps.Models
             {
                 Messages.ShowWarning("必须输入导航名称！");
                 view.txtName.Focus();
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(nav.alias))
-            {
-                Messages.ShowWarning("必须输入简称！");
-                view.txtAlias.Focus();
                 return false;
             }
 

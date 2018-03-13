@@ -27,7 +27,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Release\</OutputPath>
+    <OutputPath>..\..\Insight MTP Client\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -83,13 +83,9 @@
       <DependentUpon>Waiting.cs</DependentUpon>
     </Compile>
     <Compile Include="Entity\App.cs" />
-    <Compile Include="Entity\CategoryBses.cs" />
-    <Compile Include="Entity\Reports.cs" />
     <Compile Include="Entity\Enums.cs" />
-    <Compile Include="Entity\ImageData.cs" />
     <Compile Include="Entity\Modules.cs" />
     <Compile Include="Entity\Bases.cs" />
-    <Compile Include="Entity\Members.cs" />
     <Compile Include="Controller\BaseController.cs" />
     <Compile Include="Entity\Tenant.cs" />
     <Compile Include="Models\BaseModel.cs" />
