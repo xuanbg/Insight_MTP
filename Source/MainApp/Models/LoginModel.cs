@@ -59,7 +59,6 @@ namespace Insight.MTP.Client.MainApp.Models
             token.tenantId = "2564cd55-9cd3-40f0-b814-09723fd8632a";
             token.account = account;
             token.Signature(password);
-            token.GetTokens();
             if (token.token == null) return false;
 
             Params.needChangePw = password == "123456";

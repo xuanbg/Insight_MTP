@@ -23,3 +23,15 @@ C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainForm\obj\Re
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainForm\obj\Release\MainForm.csproj.CoreCompileInputs.cache
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainForm\obj\Release\MainForm.dll
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainForm\obj\Release\MainForm.pdb
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Insight MTP Client\MainForm.dll
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Insight MTP Client\MainForm.pdb
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainForm\obj\Release\MainForm.csprojResolveAssemblyReference.cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainForm\obj\Release\Insight.MTP.Client.MainForm.Views.About.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainForm\obj\Release\Insight.MTP.Client.MainForm.Views.ChangePw.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainForm\obj\Release\Insight.MTP.Client.MainForm.Views.Locked.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainForm\obj\Release\Insight.MTP.Client.MainForm.Views.MainWindow.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainForm\obj\Release\Insight.MTP.Client.MainForm.Views.Loading.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainForm\obj\Release\MainForm.csproj.GenerateResource.cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainForm\obj\Release\MainForm.csproj.CoreCompileInputs.cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainForm\obj\Release\MainForm.dll
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainForm\obj\Release\MainForm.pdb
