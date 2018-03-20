@@ -117,7 +117,7 @@ namespace Insight.MTP.Client.MainForm.Models
         /// </summary>
         private void InitNavBar()
         {
-            var url = $"{server}/moduleapi/v1.0/navigations";
+            var url = $"{server}/commonapi/v1.0/navigations";
             var client = new HttpClient<List<Navigation>>(token);
             if (!client.Get(url)) return;
 

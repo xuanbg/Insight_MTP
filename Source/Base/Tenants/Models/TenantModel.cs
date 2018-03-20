@@ -54,6 +54,8 @@ namespace Insight.MTP.Client.Base.Tenants.Models
                 var index = view.cbeProvince.SelectedIndex;
                 if (index < 0) return;
 
+                Format.InitComboBoxEdit(view.cbeCounty, null);
+                view.cbeCounty.EditValue = null;
                 citys = GetRegions(provinces[index].id);
                 Format.InitComboBoxEdit(view.cbeCity, citys);
                 view.cbeCity.EditValue = null;
@@ -121,7 +123,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// <returns>地区列表</returns>
         private List<LookUpMember> GetRegions(string id = null)
         {
-            var url = $"{server}/moduleapi/v1.0/regions?pid={id}";
+            var url = $"{server}/commonapi/v1.0/regions?pid={id}";
             var client = new HttpClient<List<Region>>(token);
             client.Get(url);
 

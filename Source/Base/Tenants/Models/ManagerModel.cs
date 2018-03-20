@@ -66,9 +66,15 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         public void LoadData(int page = 1, int handel = 0)
         {
             ShowWaitForm();
-            var url = $"{server}/tenantapi/v1.0/tenants?rows={rows}&page={page}&key={key}";
+            var url = $"{server}/tenantapi/v1.0/tenants";
+            var dict = new Dictionary<string, object>
+            {
+                {"key", key},
+                {"page", page},
+                {"rows", rows}
+            };
             var client = new HttpClient<List<Tenant>>(token);
-            if (!client.Get(url))
+            if (!client.Get(url, dict))
             {
                 CloseWaitForm();
                 return;

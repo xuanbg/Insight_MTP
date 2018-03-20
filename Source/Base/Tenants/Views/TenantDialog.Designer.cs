@@ -144,6 +144,7 @@
             // 
             // txtName
             // 
+            this.txtName.EnterMoveNextControl = true;
             this.txtName.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtName.Location = new System.Drawing.Point(60, 22);
             this.txtName.Name = "txtName";
@@ -163,6 +164,7 @@
             // 
             // txtAlias
             // 
+            this.txtAlias.EnterMoveNextControl = true;
             this.txtAlias.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtAlias.Location = new System.Drawing.Point(380, 22);
             this.txtAlias.Name = "txtAlias";
@@ -212,6 +214,7 @@
             // 
             // txtContact
             // 
+            this.txtContact.EnterMoveNextControl = true;
             this.txtContact.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtContact.Location = new System.Drawing.Point(60, 52);
             this.txtContact.Name = "txtContact";
@@ -231,6 +234,7 @@
             // 
             // txtMobile
             // 
+            this.txtMobile.EnterMoveNextControl = true;
             this.txtMobile.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.txtMobile.Location = new System.Drawing.Point(220, 52);
             this.txtMobile.Name = "txtMobile";
@@ -252,6 +256,7 @@
             // 
             // txtEmail
             // 
+            this.txtEmail.EnterMoveNextControl = true;
             this.txtEmail.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.txtEmail.Location = new System.Drawing.Point(380, 52);
             this.txtEmail.Name = "txtEmail";
@@ -262,6 +267,7 @@
             // 
             // txtAddress
             // 
+            this.txtAddress.EnterMoveNextControl = true;
             this.txtAddress.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtAddress.Location = new System.Drawing.Point(60, 112);
             this.txtAddress.Name = "txtAddress";
@@ -270,7 +276,8 @@
             // 
             // cbeProvince
             // 
-            this.cbeProvince.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.cbeProvince.EnterMoveNextControl = true;
+            this.cbeProvince.ImeMode = System.Windows.Forms.ImeMode.On;
             this.cbeProvince.Location = new System.Drawing.Point(60, 82);
             this.cbeProvince.Name = "cbeProvince";
             this.cbeProvince.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -280,7 +287,8 @@
             // 
             // cbeCity
             // 
-            this.cbeCity.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.cbeCity.EnterMoveNextControl = true;
+            this.cbeCity.ImeMode = System.Windows.Forms.ImeMode.On;
             this.cbeCity.Location = new System.Drawing.Point(170, 82);
             this.cbeCity.Name = "cbeCity";
             this.cbeCity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -290,7 +298,8 @@
             // 
             // cbeCounty
             // 
-            this.cbeCounty.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.cbeCounty.EnterMoveNextControl = true;
+            this.cbeCounty.ImeMode = System.Windows.Forms.ImeMode.On;
             this.cbeCounty.Location = new System.Drawing.Point(330, 82);
             this.cbeCounty.Name = "cbeCounty";
             this.cbeCounty.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
