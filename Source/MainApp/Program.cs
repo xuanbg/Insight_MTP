@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Insight.Utils.MainForm.Login;
 
 namespace Insight.MTP.Client.MainApp
 {

@@ -1,4 +1,4 @@
-﻿using Insight.MTP.Client.Common.BaseForm;
+﻿using Insight.Utils.BaseForm;
 
 namespace Insight.MTP.Client.Base.Apps.Views
 {

@@ -2,11 +2,11 @@
 using System.Linq;
 using Insight.MTP.Client.Base.Tenants.Views;
 using Insight.MTP.Client.Common.Entity;
-using Insight.MTP.Client.Common.Models;
-using Insight.MTP.Client.Common.Utils;
 using Insight.Utils.Client;
 using Insight.Utils.Common;
+using Insight.Utils.Controls;
 using Insight.Utils.Entity;
+using Insight.Utils.Models;
 
 namespace Insight.MTP.Client.Base.Tenants.Models
 {
@@ -94,9 +94,9 @@ namespace Insight.MTP.Client.Base.Tenants.Models
             if (!InputExamine()) return null;
 
             var msg = $"新建租户【{tenant.name}】失败！";
-            var url = $"{server}/tenantapi/v1.0/tenants";
+            var url = $"{appServer}/tenantapi/v1.0/tenants";
             var dict = new Dictionary<string, object> {{"tenant", tenant}};
-            var client = new HttpClient<Tenant>(token);
+            var client = new HttpClient<Tenant>(tokenHelper);
 
             return client.Post(url, dict, msg) ? client.data : null;
         }
@@ -109,9 +109,9 @@ namespace Insight.MTP.Client.Base.Tenants.Models
             if (!InputExamine()) return null;
 
             var msg = $"没有更新租户【{tenant.name}】的任何信息！";
-            var url = $"{server}/tenantapi/v1.0/tenants/{tenant.id}";
+            var url = $"{appServer}/tenantapi/v1.0/tenants/{tenant.id}";
             var dict = new Dictionary<string, object> {{"tenant", tenant}};
-            var client = new HttpClient<Tenant>(token);
+            var client = new HttpClient<Tenant>(tokenHelper);
 
             return client.Put(url, dict, msg) ? tenant : null;
         }
@@ -123,8 +123,8 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// <returns>地区列表</returns>
         private List<LookUpMember> GetRegions(string id = null)
         {
-            var url = $"{server}/commonapi/v1.0/regions?pid={id}";
-            var client = new HttpClient<List<Region>>(token);
+            var url = $"{appServer}/commonapi/v1.0/regions?pid={id}";
+            var client = new HttpClient<List<Region>>(tokenHelper);
             client.Get(url);
 
             var list = client.data.Select(i => new LookUpMember {id = i.id, name = i.name});

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Insight.MTP.Client.Base.Tenants.Views;
 using Insight.MTP.Client.Common.Entity;
-using Insight.MTP.Client.Common.Models;
 using Insight.Utils.Client;
+using Insight.Utils.Models;
 
 namespace Insight.MTP.Client.Base.Tenants.Models
 {
@@ -31,9 +31,9 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         {
             var day = (int) view.speDays.Value;
             const string msg = "续租失败！";
-            var url = $"{server}/tenantapi/v1.0/tenants/{tenant.id}/expire";
+            var url = $"{appServer}/tenantapi/v1.0/tenants/{tenant.id}/expire";
             var dict = new Dictionary<string, object> {{"expire", day}};
-            var client = new HttpClient<object>(token);
+            var client = new HttpClient<object>(tokenHelper);
 
             if (!client.Put(url, dict, msg)) return null;
 

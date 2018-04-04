@@ -3,10 +3,11 @@ using System.Linq;
 using DevExpress.XtraTreeList.Nodes;
 using Insight.MTP.Client.Base.Apps.Views;
 using Insight.MTP.Client.Common.Entity;
-using Insight.MTP.Client.Common.Models;
-using Insight.MTP.Client.Common.Utils;
 using Insight.Utils.Client;
 using Insight.Utils.Common;
+using Insight.Utils.Controls;
+using Insight.Utils.Entity;
+using Insight.Utils.Models;
 
 namespace Insight.MTP.Client.Base.Apps.Models
 {
@@ -51,8 +52,8 @@ namespace Insight.MTP.Client.Base.Apps.Models
         public void LoadData(int handel = 0)
         {
             ShowWaitForm();
-            var url = $"{server}/appapi/v1.0/apps/all";
-            var client = new HttpClient<List<App>>(token);
+            var url = $"{appServer}/appapi/v1.0/apps/all";
+            var client = new HttpClient<List<App>>(tokenHelper);
             if (!client.Get(url))
             {
                 CloseWaitForm();
@@ -135,8 +136,8 @@ namespace Insight.MTP.Client.Base.Apps.Models
 
             ShowWaitForm();
             msg = $"对不起，无法删除应用【{item.name}】！";
-            var url = $"{server}/appapi/v1.0/apps/{item.id}";
-            var client = new HttpClient<object>(token);
+            var url = $"{appServer}/appapi/v1.0/apps/{item.id}";
+            var client = new HttpClient<object>(tokenHelper);
             if (!client.Delete(url, null, msg))
             {
                 CloseWaitForm();
@@ -158,8 +159,8 @@ namespace Insight.MTP.Client.Base.Apps.Models
 
             ShowWaitForm();
             msg = $"对不起，无法删除导航【{nav.name}】！";
-            var url = $"{server}/appapi/v1.0/apps/navigations/{nav.id}";
-            var client = new HttpClient<object>(token);
+            var url = $"{appServer}/appapi/v1.0/apps/navigations/{nav.id}";
+            var client = new HttpClient<object>(tokenHelper);
             if (!client.Delete(url, null, msg))
             {
                 CloseWaitForm();
@@ -181,8 +182,8 @@ namespace Insight.MTP.Client.Base.Apps.Models
 
             ShowWaitForm();
             msg = $"对不起，无法删除功能【{fun.name}】！";
-            var url = $"{server}/appapi/v1.0/apps/navigations/functions/{fun.id}";
-            var client = new HttpClient<object>(token);
+            var url = $"{appServer}/appapi/v1.0/apps/navigations/functions/{fun.id}";
+            var client = new HttpClient<object>(tokenHelper);
             if (!client.Delete(url, null, msg))
             {
                 CloseWaitForm();
@@ -236,8 +237,8 @@ namespace Insight.MTP.Client.Base.Apps.Models
         /// </summary>
         private void GetDetail()
         {
-            var url = $"{server}/appapi/v1.0/apps/{item.id}/navigations";
-            var client = new HttpClient<List<Navigation>>(token);
+            var url = $"{appServer}/appapi/v1.0/apps/{item.id}/navigations";
+            var client = new HttpClient<List<Navigation>>(tokenHelper);
             if (!client.Get(url)) return;
 
             item.navs = client.data;
@@ -267,8 +268,8 @@ namespace Insight.MTP.Client.Base.Apps.Models
         /// <param name="id">导航ID</param>
         private void GetFuns(string id)
         {
-            var url = $"{server}/appapi/v1.0/apps/navigations/{id}/functions";
-            var client = new HttpClient<List<Function>>(token);
+            var url = $"{appServer}/appapi/v1.0/apps/navigations/{id}/functions";
+            var client = new HttpClient<List<Function>>(tokenHelper);
             if (!client.Get(url)) return;
 
             nav.funcs = client.data;

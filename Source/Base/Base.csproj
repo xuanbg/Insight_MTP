@@ -51,9 +51,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Utility\Controls.dll</HintPath>
+    <Reference Include="BaseForm">
+      <HintPath>..\..\..\Utility\BaseForm.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.Data.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">

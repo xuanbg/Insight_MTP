@@ -267,15 +267,15 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             // tabTenant
             // 
             this.tabTenant.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabTenant.FocusedRowHandle = 0;
+            this.tabTenant.focusedRowHandle = 0;
             this.tabTenant.Location = new System.Drawing.Point(2, 232);
             this.tabTenant.MaximumSize = new System.Drawing.Size(0, 22);
             this.tabTenant.MinimumSize = new System.Drawing.Size(300, 22);
             this.tabTenant.Name = "tabTenant";
-            this.tabTenant.PageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("tabTenant.PageSizeItems")));
+            this.tabTenant.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("tabTenant.PageSizeItems")));
             this.tabTenant.Size = new System.Drawing.Size(1066, 22);
             this.tabTenant.TabIndex = 0;
-            this.tabTenant.TotalRows = 0;
+            this.tabTenant.totalRows = 0;
             // 
             // panSpace
             // 
@@ -457,15 +457,15 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             // tabUser
             // 
             this.tabUser.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabUser.FocusedRowHandle = 0;
+            this.tabUser.focusedRowHandle = 0;
             this.tabUser.Location = new System.Drawing.Point(2, 261);
             this.tabUser.MaximumSize = new System.Drawing.Size(0, 22);
             this.tabUser.MinimumSize = new System.Drawing.Size(320, 22);
             this.tabUser.Name = "tabUser";
-            this.tabUser.PageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("tabUser.PageSizeItems")));
+            this.tabUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("tabUser.PageSizeItems")));
             this.tabUser.Size = new System.Drawing.Size(580, 22);
             this.tabUser.TabIndex = 0;
-            this.tabUser.TotalRows = 0;
+            this.tabUser.totalRows = 0;
             // 
             // Manager
             // 

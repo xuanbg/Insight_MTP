@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Insight.MTP.Client.Base.Apps.Views;
 using Insight.MTP.Client.Common.Entity;
-using Insight.MTP.Client.Common.Models;
 using Insight.Utils.Client;
 using Insight.Utils.Common;
+using Insight.Utils.Models;
 
 namespace Insight.MTP.Client.Base.Apps.Models
 {
@@ -57,9 +57,9 @@ namespace Insight.MTP.Client.Base.Apps.Models
             if (!InputExamine()) return null;
 
             var msg = $"新建应用【{app.name}】失败！";
-            var url = $"{server}/appapi/v1.0/apps";
+            var url = $"{appServer}/appapi/v1.0/apps";
             var dict = new Dictionary<string, object> {{"app", app}};
-            var client = new HttpClient<App>(token);
+            var client = new HttpClient<App>(tokenHelper);
             return client.Post(url, dict, msg) ? client.data : null;
         }
 
@@ -71,9 +71,9 @@ namespace Insight.MTP.Client.Base.Apps.Models
             if (!InputExamine()) return null;
 
             var msg = $"没有更新应用【{app.name}】的任何信息！";
-            var url = $"{server}/appapi/v1.0/apps/{app.id}";
+            var url = $"{appServer}/appapi/v1.0/apps/{app.id}";
             var dict = new Dictionary<string, object> {{"app", app}};
-            var client = new HttpClient<App>(token);
+            var client = new HttpClient<App>(tokenHelper);
             return client.Put(url, dict, msg) ? app : null;
         }
 

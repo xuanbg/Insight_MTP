@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Insight.MTP.Client.Base.Apps.Views;
-using Insight.MTP.Client.Common.Entity;
-using Insight.MTP.Client.Common.Models;
 using Insight.Utils.Client;
 using Insight.Utils.Common;
+using Insight.Utils.Entity;
+using Insight.Utils.Models;
 
 namespace Insight.MTP.Client.Base.Apps.Models
 {
@@ -62,9 +62,9 @@ namespace Insight.MTP.Client.Base.Apps.Models
             if (!InputExamine()) return null;
 
             var msg = $"新建应用【{fun.name}】失败！";
-            var url = $"{server}/appapi/v1.0/apps/navigations/functions";
+            var url = $"{appServer}/appapi/v1.0/apps/navigations/functions";
             var dict = new Dictionary<string, object> {{"fun", fun}};
-            var client = new HttpClient<Function>(token);
+            var client = new HttpClient<Function>(tokenHelper);
             return client.Post(url, dict, msg) ? client.data : null;
         }
 
@@ -76,9 +76,9 @@ namespace Insight.MTP.Client.Base.Apps.Models
             if (!InputExamine()) return null;
 
             var msg = $"没有更新应用【{fun.name}】的任何信息！";
-            var url = $"{server}/appapi/v1.0/apps/navigations/functions/{fun.id}";
+            var url = $"{appServer}/appapi/v1.0/apps/navigations/functions/{fun.id}";
             var dict = new Dictionary<string, object> {{"fun", fun}};
-            var client = new HttpClient<Function>(token);
+            var client = new HttpClient<Function>(tokenHelper);
             return client.Put(url, dict, msg) ? fun : null;
         }
 

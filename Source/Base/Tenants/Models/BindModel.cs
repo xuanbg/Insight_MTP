@@ -2,9 +2,9 @@
 using System.Linq;
 using Insight.MTP.Client.Base.Tenants.Views;
 using Insight.MTP.Client.Common.Entity;
-using Insight.MTP.Client.Common.Models;
-using Insight.MTP.Client.Common.Utils;
 using Insight.Utils.Client;
+using Insight.Utils.Controls;
+using Insight.Utils.Models;
 
 namespace Insight.MTP.Client.Base.Tenants.Models
 {
@@ -40,10 +40,10 @@ namespace Insight.MTP.Client.Base.Tenants.Models
                        select (App)view.gdvApp.GetRow(r);
             tenant.apps = list.ToList();
 
-            var url = $"{server}/tenantapi/v1.0/tenants/{tenant.id}/apps";
+            var url = $"{appServer}/tenantapi/v1.0/tenants/{tenant.id}/apps";
             var ids = tenant.apps.Select(i => i.id);
             var dict = new Dictionary<string, object> {{"apps", ids}};
-            var client = new HttpClient<object>(token);
+            var client = new HttpClient<object>(tokenHelper);
 
             return client.Put(url, dict, msg) ? tenant : null;
         }
@@ -53,8 +53,8 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// </summary>
         private void GetApps()
         {
-            var url = $"{server}/appapi/v1.0/apps/all";
-            var client = new HttpClient<List<App>>(token);
+            var url = $"{appServer}/appapi/v1.0/apps/all";
+            var client = new HttpClient<List<App>>(tokenHelper);
             client.Get(url);
 
             view.grdApp.DataSource = client.data;

@@ -109,37 +109,4 @@ namespace Insight.MTP.Client.Common.Entity
         /// </summary>
         public bool? permit { get; set; }
     }
-
-    public class Region
-    {
-        /// <summary>
-        /// ID，唯一标识
-        /// </summary>
-        public string id { get; set; }
-
-        /// <summary>
-        /// 上级区划ID
-        /// </summary>
-        public string parentId { get; set; }
-
-        /// <summary>
-        /// 级别
-        /// </summary>
-        public int grade { get; set; }
-
-        /// <summary>
-        /// 编码
-        /// </summary>
-        public string code { get; set; }
-
-        /// <summary>
-        /// 名称
-        /// </summary>
-        public string name { get; set; }
-
-        /// <summary>
-        /// 别名/简称
-        /// </summary>
-        public string alias { get; set; }
-    }
 }

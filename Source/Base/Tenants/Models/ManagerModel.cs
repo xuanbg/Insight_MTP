@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using Insight.MTP.Client.Base.Tenants.Views;
 using Insight.MTP.Client.Common.Entity;
-using Insight.MTP.Client.Common.Models;
-using Insight.MTP.Client.Common.Utils;
 using Insight.Utils.Client;
 using Insight.Utils.Common;
+using Insight.Utils.Controls;
+using Insight.Utils.Entity;
+using Insight.Utils.Models;
 
 namespace Insight.MTP.Client.Base.Tenants.Models
 {
@@ -23,14 +24,14 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         public ManagerModel(Navigation info) : base(info)
         {
             // 订阅租户列表分页控件事件
-            view.tabTenant.PageSizeChanged += (sender, args) => rows = args.PageSize;
-            view.tabTenant.CurrentPageChanged += (sender, args) => LoadData(view.tabTenant.CurrentPage, args.RowHandle);
-            view.tabTenant.TotalRowsChanged += (sender, args) => view.gdvTenant.FocusedRowHandle = args.RowHandle;
+            view.tabTenant.PageSizeChanged += (sender, args) => rows = args.pageSize;
+            view.tabTenant.CurrentPageChanged += (sender, args) => LoadData(view.tabTenant.currentPage, args.rowHandle);
+            view.tabTenant.TotalRowsChanged += (sender, args) => view.gdvTenant.FocusedRowHandle = args.rowHandle;
 
             // 订阅用户列表分页控件事件
-            view.tabUser.PageSizeChanged += (sender, args) => rows = args.PageSize;
-            view.tabUser.CurrentPageChanged += (sender, args) => LoadData(view.tabUser.CurrentPage, args.RowHandle);
-            view.tabUser.TotalRowsChanged += (sender, args) => view.gdvUser.FocusedRowHandle = args.RowHandle;
+            view.tabUser.PageSizeChanged += (sender, args) => rows = args.pageSize;
+            view.tabUser.CurrentPageChanged += (sender, args) => LoadData(view.tabUser.currentPage, args.rowHandle);
+            view.tabUser.TotalRowsChanged += (sender, args) => view.gdvUser.FocusedRowHandle = args.rowHandle;
 
             // 订阅界面事件
             view.gdvTenant.FocusedRowObjectChanged += (sender, args) => ItemChanged(args.FocusedRowHandle);
@@ -55,7 +56,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// </summary>
         public void Refresh()
         {
-            LoadData(view.tabTenant.CurrentPage, view.tabTenant.FocusedRowHandle);
+            LoadData(view.tabTenant.currentPage, view.tabTenant.focusedRowHandle);
         }
 
         /// <summary>
@@ -66,14 +67,14 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         public void LoadData(int page = 1, int handel = 0)
         {
             ShowWaitForm();
-            var url = $"{server}/tenantapi/v1.0/tenants";
+            var url = $"{appServer}/tenantapi/v1.0/tenants";
             var dict = new Dictionary<string, object>
             {
                 {"key", key},
                 {"page", page},
                 {"rows", rows}
             };
-            var client = new HttpClient<List<Tenant>>(token);
+            var client = new HttpClient<List<Tenant>>(tokenHelper);
             if (!client.Get(url, dict))
             {
                 CloseWaitForm();
@@ -81,7 +82,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
             }
 
             list = client.data;
-            view.tabTenant.TotalRows = int.Parse(client.option.ToString());
+            view.tabTenant.totalRows = int.Parse(client.option.ToString());
             view.grdTenant.DataSource = list;
             view.gdvTenant.FocusedRowHandle = handel;
             CloseWaitForm();
@@ -118,8 +119,8 @@ namespace Insight.MTP.Client.Base.Tenants.Models
 
             ShowWaitForm();
             msg = $"对不起，无法租除用户【{item.name}】！";
-            var url = $"{server}/tenantapi/v1.0/tenants/{item.id}";
-            var client = new HttpClient<object>(token);
+            var url = $"{appServer}/tenantapi/v1.0/tenants/{item.id}";
+            var client = new HttpClient<object>(tokenHelper);
             if (!client.Delete(url, null, msg))
             {
                 CloseWaitForm();
@@ -153,7 +154,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// <param name="index">List下标</param>
         private void ItemChanged(int index)
         {
-            view.tabTenant.FocusedRowHandle = index;
+            view.tabTenant.focusedRowHandle = index;
             item = index < 0 ? null : list[index];
             if (item != null && (item.apps == null || item.users == null)) GetDetail();
 
@@ -168,8 +169,8 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// </summary>
         private void GetDetail()
         {
-            var url = $"{server}/tenantapi/v1.0/tenants/{item.id}";
-            var client = new HttpClient<Tenant>(token);
+            var url = $"{appServer}/tenantapi/v1.0/tenants/{item.id}";
+            var client = new HttpClient<Tenant>(tokenHelper);
             if (!client.Get(url)) return;
 
             item.apps = client.data.apps;
