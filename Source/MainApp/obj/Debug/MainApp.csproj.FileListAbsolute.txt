@@ -33,12 +33,12 @@ C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Debug\MainApp.exe
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Debug\MainApp.pdb
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainApp\obj\Debug\MainApp.exe
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\IMTP\Source\MainApp\obj\Debug\MainApp.pdb
-C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Debug\MainApp.exe.config
-C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Debug\MainApp.exe
-C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Debug\MainApp.pdb
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainApp\obj\Debug\MainApp.csprojResolveAssemblyReference.cache
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainApp\obj\Debug\Insight.MTP.Client.MainApp.Properties.Resources.resources
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainApp\obj\Debug\MainApp.csproj.GenerateResource.cache
 C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainApp\obj\Debug\MainApp.csproj.CoreCompileInputs.cache
-C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainApp\obj\Debug\MainApp.exe
-C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainApp\obj\Debug\MainApp.pdb
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Debug\InsightApp.exe.config
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Debug\InsightApp.exe
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Debug\InsightApp.pdb
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainApp\obj\Debug\InsightApp.exe
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\MTP\Source\MainApp\obj\Debug\InsightApp.pdb
