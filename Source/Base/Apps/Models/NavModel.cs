@@ -15,7 +15,6 @@ namespace Insight.MTP.Client.Base.Apps.Models
 
         private List<TreeLookUpMember> navList;
         private readonly Navigation nav;
-        private int size = 32;
 
         /// <summary>
         /// 导航集合
@@ -58,7 +57,6 @@ namespace Insight.MTP.Client.Base.Apps.Models
             view.lueParent.EditValueChanged += (sender, args) =>
             {
                 var pid = view.lueParent.EditValue.ToString();
-                size = string.IsNullOrEmpty(pid) ? 32 : 24;
                 nav.parentId = pid;
                 view.speIndex.Value = navs.Count(i => i.parentId == pid) + 1;
             };
@@ -67,7 +65,11 @@ namespace Insight.MTP.Client.Base.Apps.Models
             view.txtName.EditValueChanged += (sender, args) => nav.name = view.txtName.Text.Trim();
             view.txtAlias.EditValueChanged += (sender, args) => nav.alias = view.txtAlias.Text.Trim();
             view.txtUrl.EditValueChanged += (sender, args) => nav.url = view.txtUrl.Text.Trim();
-            view.picIcon.ImageChanged += (sender, args) => nav.icon = Util.Resize(view.picIcon.Image, size, size);
+            view.picIcon.ImageChanged += (sender, args) =>
+            {
+                var size = string.IsNullOrEmpty(nav.parentId) ? 32 : 24;
+                nav.icon = Util.Resize(view.picIcon.Image, size, size);
+            };
             view.memRemark.EditValueChanged += (sender, args) =>
             {
                 var text = view.memRemark.EditValue?.ToString().Trim();
