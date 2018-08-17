@@ -67,7 +67,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         public void LoadData(int page = 1, int handel = 0)
         {
             ShowWaitForm();
-            var url = $"{appServer}/tenantapi/v1.0/tenants";
+            var url = $"{baseServer}/tenantapi/v1.0/tenants";
             var dict = new Dictionary<string, object>
             {
                 {"key", key},
@@ -119,7 +119,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
 
             ShowWaitForm();
             msg = $"对不起，无法租除用户【{item.name}】！";
-            var url = $"{appServer}/tenantapi/v1.0/tenants/{item.id}";
+            var url = $"{baseServer}/tenantapi/v1.0/tenants/{item.id}";
             var client = new HttpClient<object>(tokenHelper);
             if (!client.Delete(url, null, msg))
             {
@@ -169,7 +169,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// </summary>
         private void GetDetail()
         {
-            var url = $"{appServer}/tenantapi/v1.0/tenants/{item.id}";
+            var url = $"{baseServer}/tenantapi/v1.0/tenants/{item.id}";
             var client = new HttpClient<Tenant>(tokenHelper);
             if (!client.Get(url)) return;
 

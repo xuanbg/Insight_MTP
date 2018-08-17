@@ -31,7 +31,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         {
             var day = (int) view.speDays.Value;
             const string msg = "续租失败！";
-            var url = $"{appServer}/tenantapi/v1.0/tenants/{tenant.id}/expire";
+            var url = $"{baseServer}/tenantapi/v1.0/tenants/{tenant.id}/expire";
             var dict = new Dictionary<string, object> {{"expire", day}};
             var client = new HttpClient<object>(tokenHelper);
 

@@ -52,7 +52,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
         public void LoadData(int handel = 0)
         {
             ShowWaitForm();
-            var url = $"{appServer}/appapi/v1.0/apps/all";
+            var url = $"{baseServer}/appapi/v1.0/apps/all";
             var client = new HttpClient<List<App>>(tokenHelper);
             if (!client.Get(url))
             {
@@ -136,7 +136,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
 
             ShowWaitForm();
             msg = $"对不起，无法删除应用【{item.name}】！";
-            var url = $"{appServer}/appapi/v1.0/apps/{item.id}";
+            var url = $"{baseServer}/appapi/v1.0/apps/{item.id}";
             var client = new HttpClient<object>(tokenHelper);
             if (!client.Delete(url, null, msg))
             {
@@ -159,7 +159,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
 
             ShowWaitForm();
             msg = $"对不起，无法删除导航【{nav.name}】！";
-            var url = $"{appServer}/appapi/v1.0/apps/navigations/{nav.id}";
+            var url = $"{baseServer}/appapi/v1.0/apps/navigations/{nav.id}";
             var client = new HttpClient<object>(tokenHelper);
             if (!client.Delete(url, null, msg))
             {
@@ -182,7 +182,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
 
             ShowWaitForm();
             msg = $"对不起，无法删除功能【{fun.name}】！";
-            var url = $"{appServer}/appapi/v1.0/apps/navigations/functions/{fun.id}";
+            var url = $"{baseServer}/appapi/v1.0/apps/navigations/functions/{fun.id}";
             var client = new HttpClient<object>(tokenHelper);
             if (!client.Delete(url, null, msg))
             {
@@ -237,7 +237,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
         /// </summary>
         private void GetDetail()
         {
-            var url = $"{appServer}/appapi/v1.0/apps/{item.id}/navigations";
+            var url = $"{baseServer}/appapi/v1.0/apps/{item.id}/navigations";
             var client = new HttpClient<List<Navigation>>(tokenHelper);
             if (!client.Get(url)) return;
 
@@ -268,7 +268,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
         /// <param name="id">导航ID</param>
         private void GetFuns(string id)
         {
-            var url = $"{appServer}/appapi/v1.0/apps/navigations/{id}/functions";
+            var url = $"{baseServer}/appapi/v1.0/apps/navigations/{id}/functions";
             var client = new HttpClient<List<Function>>(tokenHelper);
             if (!client.Get(url)) return;
 

@@ -86,7 +86,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
             if (!InputExamine()) return null;
 
             var msg = $"新建应用【{nav.name}】失败！";
-            var url = $"{appServer}/appapi/v1.0/apps/navigations";
+            var url = $"{baseServer}/appapi/v1.0/apps/navigations";
             var dict = new Dictionary<string, object> {{"nav", nav}};
             var client = new HttpClient<Navigation>(tokenHelper);
             return client.Post(url, dict, msg) ? client.data : null;
@@ -100,7 +100,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
             if (!InputExamine()) return null;
 
             var msg = $"没有更新应用【{nav.name}】的任何信息！";
-            var url = $"{appServer}/appapi/v1.0/apps/navigations/{nav.id}";
+            var url = $"{baseServer}/appapi/v1.0/apps/navigations/{nav.id}";
             var dict = new Dictionary<string, object> {{"nav", nav}};
             var client = new HttpClient<Navigation>(tokenHelper);
             return client.Put(url, dict, msg) ? nav : null;

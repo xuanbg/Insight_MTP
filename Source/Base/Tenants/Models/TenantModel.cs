@@ -94,7 +94,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
             if (!InputExamine()) return null;
 
             var msg = $"新建租户【{tenant.name}】失败！";
-            var url = $"{appServer}/tenantapi/v1.0/tenants";
+            var url = $"{baseServer}/tenantapi/v1.0/tenants";
             var dict = new Dictionary<string, object> {{"tenant", tenant}};
             var client = new HttpClient<Tenant>(tokenHelper);
 
@@ -109,7 +109,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
             if (!InputExamine()) return null;
 
             var msg = $"没有更新租户【{tenant.name}】的任何信息！";
-            var url = $"{appServer}/tenantapi/v1.0/tenants/{tenant.id}";
+            var url = $"{baseServer}/tenantapi/v1.0/tenants/{tenant.id}";
             var dict = new Dictionary<string, object> {{"tenant", tenant}};
             var client = new HttpClient<Tenant>(tokenHelper);
 
@@ -123,7 +123,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// <returns>地区列表</returns>
         private List<LookUpMember> GetRegions(string id = null)
         {
-            var url = $"{appServer}/commonapi/v1.0/regions?pid={id}";
+            var url = $"{baseServer}/commonapi/v1.0/regions?pid={id}";
             var client = new HttpClient<List<Region>>(tokenHelper);
             client.Get(url);
 

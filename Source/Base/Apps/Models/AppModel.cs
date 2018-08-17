@@ -57,7 +57,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
             if (!InputExamine()) return null;
 
             var msg = $"新建应用【{app.name}】失败！";
-            var url = $"{appServer}/appapi/v1.0/apps";
+            var url = $"{baseServer}/appapi/v1.0/apps";
             var dict = new Dictionary<string, object> {{"app", app}};
             var client = new HttpClient<App>(tokenHelper);
             return client.Post(url, dict, msg) ? client.data : null;
@@ -71,7 +71,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
             if (!InputExamine()) return null;
 
             var msg = $"没有更新应用【{app.name}】的任何信息！";
-            var url = $"{appServer}/appapi/v1.0/apps/{app.id}";
+            var url = $"{baseServer}/appapi/v1.0/apps/{app.id}";
             var dict = new Dictionary<string, object> {{"app", app}};
             var client = new HttpClient<App>(tokenHelper);
             return client.Put(url, dict, msg) ? app : null;

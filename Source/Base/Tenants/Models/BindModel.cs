@@ -40,7 +40,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
                        select (App)view.gdvApp.GetRow(r);
             tenant.apps = list.ToList();
 
-            var url = $"{appServer}/tenantapi/v1.0/tenants/{tenant.id}/apps";
+            var url = $"{baseServer}/tenantapi/v1.0/tenants/{tenant.id}/apps";
             var ids = tenant.apps.Select(i => i.id);
             var dict = new Dictionary<string, object> {{"apps", ids}};
             var client = new HttpClient<object>(tokenHelper);
@@ -53,7 +53,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// </summary>
         private void GetApps()
         {
-            var url = $"{appServer}/appapi/v1.0/apps/all";
+            var url = $"{baseServer}/appapi/v1.0/apps/all";
             var client = new HttpClient<List<App>>(tokenHelper);
             client.Get(url);
 
