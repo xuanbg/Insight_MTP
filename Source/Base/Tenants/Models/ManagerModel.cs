@@ -24,39 +24,39 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         public ManagerModel(Navigation info) : base(info)
         {
             // 订阅租户列表分页控件事件
-            view.tabTenant.PageSizeChanged += (sender, args) => rows = args.pageSize;
-            view.tabTenant.CurrentPageChanged += (sender, args) => LoadData(view.tabTenant.currentPage, args.rowHandle);
-            view.tabTenant.TotalRowsChanged += (sender, args) => view.gdvTenant.FocusedRowHandle = args.rowHandle;
+            view.tabTenant.pageSizeChanged += (sender, args) => rows = args.pageSize;
+            view.tabTenant.currentPageChanged += (sender, args) => loadData(view.tabTenant.currentPage, args.rowHandle);
+            view.tabTenant.totalRowsChanged += (sender, args) => view.gdvTenant.FocusedRowHandle = args.rowHandle;
 
             // 订阅用户列表分页控件事件
-            view.tabUser.PageSizeChanged += (sender, args) => rows = args.pageSize;
-            view.tabUser.CurrentPageChanged += (sender, args) => LoadData(view.tabUser.currentPage, args.rowHandle);
-            view.tabUser.TotalRowsChanged += (sender, args) => view.gdvUser.FocusedRowHandle = args.rowHandle;
+            view.tabUser.pageSizeChanged += (sender, args) => rows = args.pageSize;
+            view.tabUser.currentPageChanged += (sender, args) => loadData(view.tabUser.currentPage, args.rowHandle);
+            view.tabUser.totalRowsChanged += (sender, args) => view.gdvUser.FocusedRowHandle = args.rowHandle;
 
             // 订阅界面事件
-            view.gdvTenant.FocusedRowObjectChanged += (sender, args) => ItemChanged(args.FocusedRowHandle);
-            view.Search.Click += (sender, args) => LoadData();
+            view.gdvTenant.FocusedRowObjectChanged += (sender, args) => itemChanged(args.FocusedRowHandle);
+            view.Search.Click += (sender, args) => loadData();
             view.KeyInput.Properties.Click += (sender, args) => view.KeyInput.EditValue = null;
             view.KeyInput.EditValueChanged += (sender, args) => key = view.KeyInput.Text.Trim();
             view.KeyInput.KeyPress += (sender, args) =>
             {
                 if (args.KeyChar != 13) return;
 
-                LoadData();
+                loadData();
             };
 
             // 设置界面样式
-            Format.GridFormat(view.gdvTenant);
-            Format.GridFormat(view.gdvApp);
-            Format.GridFormat(view.gdvUser);
+            Format.gridFormat(view.gdvTenant);
+            Format.gridFormat(view.gdvApp);
+            Format.gridFormat(view.gdvUser);
         }
 
         /// <summary>
         /// 刷新列表
         /// </summary>
-        public void Refresh()
+        public void refresh()
         {
-            LoadData(view.tabTenant.currentPage, view.tabTenant.focusedRowHandle);
+            loadData(view.tabTenant.currentPage, view.tabTenant.focusedRowHandle);
         }
 
         /// <summary>
@@ -64,9 +64,9 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// </summary>
         /// <param name="page">页码</param>
         /// <param name="handel">当前焦点行</param>
-        public void LoadData(int page = 1, int handel = 0)
+        public void loadData(int page = 1, int handel = 0)
         {
-            ShowWaitForm();
+            showWaitForm();
             var url = $"{baseServer}/tenantapi/v1.0/tenants";
             var dict = new Dictionary<string, object>
             {
@@ -75,9 +75,9 @@ namespace Insight.MTP.Client.Base.Tenants.Models
                 {"rows", rows}
             };
             var client = new HttpClient<List<Tenant>>(tokenHelper);
-            if (!client.Get(url, dict))
+            if (!client.get(url, dict))
             {
-                CloseWaitForm();
+                closeWaitForm();
                 return;
             }
 
@@ -85,18 +85,18 @@ namespace Insight.MTP.Client.Base.Tenants.Models
             view.tabTenant.totalRows = int.Parse(client.option.ToString());
             view.grdTenant.DataSource = list;
             view.gdvTenant.FocusedRowHandle = handel;
-            CloseWaitForm();
+            closeWaitForm();
         }
 
         /// <summary>
         /// 新增数据
         /// </summary>
         /// <param name="data"></param>
-        public void AddItem(Tenant data)
+        public void addItem(Tenant data)
         {
             list.Add(data);
 
-            view.tabTenant.AddItems();
+            view.tabTenant.addItems();
             view.gdvTenant.RefreshData();
         }
 
@@ -104,39 +104,39 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// 更新数据
         /// </summary>
         /// <param name="data">UserInfo</param>
-        public void Update(Tenant data)
+        public void update(Tenant data)
         {
-            Util.CopyValue(data, item);
+            Util.copyValue(data, item);
         }
 
         /// <summary>
         /// 删除当前选中数据
         /// </summary>
-        public void DeleteItem()
+        public void deleteItem()
         {
             var msg = $"您确定要删除租户【{item.name}】吗？\r\n租户删除后将无法恢复！";
-            if (!Messages.ShowConfirm(msg)) return;
+            if (!Messages.showConfirm(msg)) return;
 
-            ShowWaitForm();
+            showWaitForm();
             msg = $"对不起，无法租除用户【{item.name}】！";
             var url = $"{baseServer}/tenantapi/v1.0/tenants/{item.id}";
             var client = new HttpClient<object>(tokenHelper);
-            if (!client.Delete(url, null, msg))
+            if (!client.delete(url, null, msg))
             {
-                CloseWaitForm();
+                closeWaitForm();
                 return;
             }
 
             list.Remove(item);
-            view.tabTenant.RemoveItems();
+            view.tabTenant.removeItems();
             view.gdvTenant.RefreshData();
-            CloseWaitForm();
+            closeWaitForm();
         }
 
         /// <summary>
         /// 刷新工具条按钮状态
         /// </summary>
-        private void RefreshToolBar()
+        private void refreshToolBar()
         {
             var dict = new Dictionary<string, bool>
             {
@@ -145,33 +145,33 @@ namespace Insight.MTP.Client.Base.Tenants.Models
                 ["bindApp"] = item != null,
                 ["extend"] = item != null
             };
-            SwitchItemStatus(dict);
+            switchItemStatus(dict);
         }
 
         /// <summary>
         /// 列表所选数据改变
         /// </summary>
         /// <param name="index">List下标</param>
-        private void ItemChanged(int index)
+        private void itemChanged(int index)
         {
             view.tabTenant.focusedRowHandle = index;
             item = index < 0 ? null : list[index];
-            if (item != null && (item.apps == null || item.users == null)) GetDetail();
+            if (item != null && (item.apps == null || item.users == null)) getDetail();
 
             view.grdApp.DataSource = item?.apps;
             view.grdUser.DataSource = item?.users;
 
-            RefreshToolBar();
+            refreshToolBar();
         }
 
         /// <summary>
         /// 获取明细数据
         /// </summary>
-        private void GetDetail()
+        private void getDetail()
         {
             var url = $"{baseServer}/tenantapi/v1.0/tenants/{item.id}";
             var client = new HttpClient<Tenant>(tokenHelper);
-            if (!client.Get(url)) return;
+            if (!client.get(url)) return;
 
             item.apps = client.data.apps;
             item.users = client.data.users;

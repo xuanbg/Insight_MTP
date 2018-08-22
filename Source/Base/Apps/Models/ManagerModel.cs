@@ -27,50 +27,50 @@ namespace Insight.MTP.Client.Base.Apps.Models
         public ManagerModel(Navigation info) : base(info)
         {
             // 订阅界面事件
-            view.gdvApp.FocusedRowObjectChanged += (sender, args) => ItemChanged(args.FocusedRowHandle);
-            view.TreNav.FocusedNodeChanged += (sender, args) => NavChanged(args.Node);
-            view.gdvFunc.FocusedRowObjectChanged += (sender, args) => FunChanged(args.FocusedRowHandle);
+            view.gdvApp.FocusedRowObjectChanged += (sender, args) => itemChanged(args.FocusedRowHandle);
+            view.TreNav.FocusedNodeChanged += (sender, args) => navChanged(args.Node);
+            view.gdvFunc.FocusedRowObjectChanged += (sender, args) => funChanged(args.FocusedRowHandle);
 
             // 设置界面样式
-            Format.GridFormat(view.gdvApp);
-            Format.TreeFormat(view.TreNav);
-            Format.GridFormat(view.gdvFunc);
+            Format.gridFormat(view.gdvApp);
+            Format.treeFormat(view.TreNav);
+            Format.gridFormat(view.gdvFunc);
         }
 
         /// <summary>
         /// 刷新列表
         /// </summary>
-        public void Refresh()
+        public void refresh()
         {
-            LoadData(handle);
+            loadData(handle);
         }
 
         /// <summary>
         /// 加载列表数据
         /// </summary>
         /// <param name="handel">当前焦点行</param>
-        public void LoadData(int handel = 0)
+        public void loadData(int handel = 0)
         {
-            ShowWaitForm();
+            showWaitForm();
             var url = $"{baseServer}/appapi/v1.0/apps/all";
             var client = new HttpClient<List<App>>(tokenHelper);
-            if (!client.Get(url))
+            if (!client.get(url))
             {
-                CloseWaitForm();
+                closeWaitForm();
                 return;
             }
 
             list = client.data;
             view.grdApp.DataSource = list;
             view.gdvApp.FocusedRowHandle = handel;
-            CloseWaitForm();
+            closeWaitForm();
         }
 
         /// <summary>
         /// 新增数据
         /// </summary>
         /// <param name="data">App</param>
-        public void AddItem(App data)
+        public void addItem(App data)
         {
             list.Add(data);
 
@@ -81,16 +81,16 @@ namespace Insight.MTP.Client.Base.Apps.Models
         /// 更新数据
         /// </summary>
         /// <param name="data">App</param>
-        public void Update(App data)
+        public void update(App data)
         {
-            Util.CopyValue(data, item);
+            Util.copyValue(data, item);
         }
 
         /// <summary>
         /// 新增数据
         /// </summary>
         /// <param name="data">Navigation</param>
-        public void AddItem(Navigation data)
+        public void addItem(Navigation data)
         {
             item.navs.Add(data);
 
@@ -101,16 +101,16 @@ namespace Insight.MTP.Client.Base.Apps.Models
         /// 更新数据
         /// </summary>
         /// <param name="data">Navigation</param>
-        public void Update(Navigation data)
+        public void update(Navigation data)
         {
-            Util.CopyValue(data, nav);
+            Util.copyValue(data, nav);
         }
 
         /// <summary>
         /// 新增数据
         /// </summary>
         /// <param name="data">Function</param>
-        public void AddItem(Function data)
+        public void addItem(Function data)
         {
             nav.funcs.Add(data);
 
@@ -121,84 +121,84 @@ namespace Insight.MTP.Client.Base.Apps.Models
         /// 更新数据
         /// </summary>
         /// <param name="data">Function</param>
-        public void Update(Function data)
+        public void update(Function data)
         {
-            Util.CopyValue(data, fun);
+            Util.copyValue(data, fun);
         }
 
         /// <summary>
         /// 删除当前选中数据
         /// </summary>
-        public void DeleteItem()
+        public void deleteItem()
         {
             var msg = $"您确定要删除应用【{item.name}】吗？\r\n数据删除后将无法恢复！";
-            if (!Messages.ShowConfirm(msg)) return;
+            if (!Messages.showConfirm(msg)) return;
 
-            ShowWaitForm();
+            showWaitForm();
             msg = $"对不起，无法删除应用【{item.name}】！";
             var url = $"{baseServer}/appapi/v1.0/apps/{item.id}";
             var client = new HttpClient<object>(tokenHelper);
-            if (!client.Delete(url, null, msg))
+            if (!client.delete(url, null, msg))
             {
-                CloseWaitForm();
+                closeWaitForm();
                 return;
             }
 
             list.Remove(item);
             view.gdvApp.RefreshData();
-            CloseWaitForm();
+            closeWaitForm();
         }
 
         /// <summary>
         /// 删除当前选中数据
         /// </summary>
-        public void DeleteNav()
+        public void deleteNav()
         {
             var msg = $"您确定要删除导航【{nav.name}】吗？\r\n数据删除后将无法恢复！";
-            if (!Messages.ShowConfirm(msg)) return;
+            if (!Messages.showConfirm(msg)) return;
 
-            ShowWaitForm();
+            showWaitForm();
             msg = $"对不起，无法删除导航【{nav.name}】！";
             var url = $"{baseServer}/appapi/v1.0/apps/navigations/{nav.id}";
             var client = new HttpClient<object>(tokenHelper);
-            if (!client.Delete(url, null, msg))
+            if (!client.delete(url, null, msg))
             {
-                CloseWaitForm();
+                closeWaitForm();
                 return;
             }
 
             item.navs.Remove(nav);
             view.TreNav.RefreshDataSource();
-            CloseWaitForm();
+            closeWaitForm();
         }
 
         /// <summary>
         /// 删除当前选中数据
         /// </summary>
-        public void DeleteFun()
+        public void deleteFun()
         {
             var msg = $"您确定要删除功能【{fun.name}】吗？\r\n数据删除后将无法恢复！";
-            if (!Messages.ShowConfirm(msg)) return;
+            if (!Messages.showConfirm(msg)) return;
 
-            ShowWaitForm();
+            showWaitForm();
             msg = $"对不起，无法删除功能【{fun.name}】！";
             var url = $"{baseServer}/appapi/v1.0/apps/navigations/functions/{fun.id}";
             var client = new HttpClient<object>(tokenHelper);
-            if (!client.Delete(url, null, msg))
+            if (!client.delete(url, null, msg))
             {
-                CloseWaitForm();
+                closeWaitForm();
                 return;
             }
 
             nav.funcs.Remove(fun);
             view.gdvFunc.RefreshData();
-            CloseWaitForm();
+            closeWaitForm();
         }
 
         /// <summary>
         /// 刷新工具条按钮状态
         /// </summary>
-        private void RefreshToolBar()
+        private void refreshToolBar()
         {
             var dict = new Dictionary<string, bool>
             {
@@ -211,35 +211,35 @@ namespace Insight.MTP.Client.Base.Apps.Models
                 ["editFun"] = fun != null,
                 ["deleteFun"] = fun != null,
             };
-            SwitchItemStatus(dict);
+            switchItemStatus(dict);
         }
 
         /// <summary>
         /// 列表所选数据改变
         /// </summary>
         /// <param name="index">List下标</param>
-        private void ItemChanged(int index)
+        private void itemChanged(int index)
         {
             handle = index;
             item = index < 0 ? null : list[index];
-            if (item != null && item.navs == null) GetDetail();
+            if (item != null && item.navs == null) getDetail();
 
             view.TreNav.DataSource = item?.navs;
             view.TreNav.FocusedNode = view.TreNav.Nodes.FirstNode;
             view.TreNav.ExpandAll();
             if (!(item?.navs?.Any() ?? false)) nav = null;
 
-            RefreshToolBar();
+            refreshToolBar();
         }
 
         /// <summary>
         /// 获取明细数据
         /// </summary>
-        private void GetDetail()
+        private void getDetail()
         {
             var url = $"{baseServer}/appapi/v1.0/apps/{item.id}/navigations";
             var client = new HttpClient<List<Navigation>>(tokenHelper);
-            if (!client.Get(url)) return;
+            if (!client.get(url)) return;
 
             item.navs = client.data;
         }
@@ -248,29 +248,29 @@ namespace Insight.MTP.Client.Base.Apps.Models
         /// 导航节点改变
         /// </summary>
         /// <param name="node">导航节点</param>
-        private void NavChanged(TreeListNode node)
+        private void navChanged(TreeListNode node)
         {
             if (node != null)
             {
                 var id = node.GetValue("id").ToString();
                 nav = item.navs.SingleOrDefault(m => m.id == id);
                 if (node.HasChildren) fun = null;
-                else if (nav != null) GetFuns(id);
+                else if (nav != null) getFuns(id);
             }
 
             view.grdFunc.DataSource = nav?.funcs;
-            RefreshToolBar();
+            refreshToolBar();
         }
 
         /// <summary>
         /// 获取模块功能
         /// </summary>
         /// <param name="id">导航ID</param>
-        private void GetFuns(string id)
+        private void getFuns(string id)
         {
             var url = $"{baseServer}/appapi/v1.0/apps/navigations/{id}/functions";
             var client = new HttpClient<List<Function>>(tokenHelper);
-            if (!client.Get(url)) return;
+            if (!client.get(url)) return;
 
             nav.funcs = client.data;
         }
@@ -279,11 +279,11 @@ namespace Insight.MTP.Client.Base.Apps.Models
         /// 列表所选数据改变
         /// </summary>
         /// <param name="index">List下标</param>
-        private void FunChanged(int index)
+        private void funChanged(int index)
         {
             fun = index < 0 ? null : nav.funcs[index];
 
-            RefreshToolBar();
+            refreshToolBar();
         }
     }
 }

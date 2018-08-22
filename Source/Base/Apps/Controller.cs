@@ -17,57 +17,57 @@ namespace Insight.MTP.Client.Base.Apps
         {
             // 构造ViewModel，订阅工具栏按钮点击事件
             manage = new ManagerModel(info);
-            manage.buttons.ForEach(i => i.ItemClick += (sender, args) => ItemClick(args.Item.Name));
+            manage.buttons.ForEach(i => i.ItemClick += (sender, args) => itemClick(args.Item.Name));
 
             // 订阅界面事件
-            manage.view.gdvApp.DoubleClick += (sender, args) => EditApp();
-            manage.view.TreNav.DoubleClick += (sender, args) => EditNav();
-            manage.view.gdvFunc.DoubleClick += (sender, args) => EditFun();
+            manage.view.gdvApp.DoubleClick += (sender, args) => editApp();
+            manage.view.TreNav.DoubleClick += (sender, args) => editNav();
+            manage.view.gdvFunc.DoubleClick += (sender, args) => editFun();
 
             // 加载角色列表
-            manage.LoadData();
+            manage.loadData();
         }
 
         /// <summary>
         /// 工具栏按钮点击事件路由
         /// </summary>
         /// <param name="action">功能操作</param>
-        private void ItemClick(string action)
+        private void itemClick(string action)
         {
             switch (action)
             {
                 case "getApps":
-                    manage.Refresh();
+                    manage.refresh();
                     break;
                 case "newApp":
-                    AddApp();
+                    addApp();
                     break;
                 case "editApp":
-                    EditApp();
+                    editApp();
                     break;
                 case "deleteApp":
-                    manage.DeleteItem();
+                    manage.deleteItem();
                     break;
                 case "newNav":
-                    AddNav();
+                    addNav();
                     break;
                 case "editNav":
-                    EditNav();
+                    editNav();
                     break;
                 case "deleteNav":
-                    manage.DeleteNav();
+                    manage.deleteNav();
                     break;
                 case "newFun":
-                    AddFun();
+                    addFun();
                     break;
                 case "editFun":
-                    EditFun();
+                    editFun();
                     break;
                 case "deleteFun":
-                    manage.DeleteFun();
+                    manage.deleteFun();
                     break;
                 default:
-                    Messages.ShowError("对不起，该功能尚未实现！");
+                    Messages.showError("对不起，该功能尚未实现！");
                     break;
             }
         }
@@ -75,21 +75,21 @@ namespace Insight.MTP.Client.Base.Apps
         /// <summary>
         /// 新建应用
         /// </summary>
-        private void AddApp()
+        private void addApp()
         {
             var app = new App();
             var model = new AppModel(app, "新建应用");
             var view = model.view;
-            SubCloseEvent(view);
+            subCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
-                manage.ShowWaitForm();
-                app = model.Add();
-                manage.CloseWaitForm();
+                manage.showWaitForm();
+                app = model.add();
+                manage.closeWaitForm();
                 if (app == null) return;
 
-                manage.AddItem(app);
-                CloseDialog(view);
+                manage.addItem(app);
+                closeDialog(view);
             };
 
             view.ShowDialog();
@@ -98,23 +98,23 @@ namespace Insight.MTP.Client.Base.Apps
         /// <summary>
         /// 编辑应用
         /// </summary>
-        private void EditApp()
+        private void editApp()
         {
-            if (!manage.AllowDoubleClick("editApp")) return;
+            if (!manage.allowDoubleClick("editApp")) return;
 
-            var app = Util.Clone(manage.item);
+            var app = Util.clone(manage.item);
             var model = new AppModel(app, "编辑应用");
             var view = model.view;
-            SubCloseEvent(view);
+            subCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
-                manage.ShowWaitForm();
-                app = model.Edit();
-                manage.CloseWaitForm();
+                manage.showWaitForm();
+                app = model.edit();
+                manage.closeWaitForm();
                 if (app == null) return;
 
-                manage.Update(app);
-                CloseDialog(view);
+                manage.update(app);
+                closeDialog(view);
             };
 
             view.ShowDialog();
@@ -123,22 +123,22 @@ namespace Insight.MTP.Client.Base.Apps
         /// <summary>
         /// 新建导航
         /// </summary>
-        private void AddNav()
+        private void addNav()
         {
             var nav = new Navigation{appId = manage.item.id};
             var navs = manage.item.navs.Select(i => new TreeLookUpMember {id = i.id, parentId = i.parentId, name = i.name});
             var model = new NavModel(nav, "新建导航") {navs = navs.ToList()};
             var view = model.view;
-            SubCloseEvent(view);
+            subCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
-                manage.ShowWaitForm();
-                nav = model.Add();
-                manage.CloseWaitForm();
+                manage.showWaitForm();
+                nav = model.add();
+                manage.closeWaitForm();
                 if (nav == null) return;
 
-                manage.AddItem(nav);
-                CloseDialog(view);
+                manage.addItem(nav);
+                closeDialog(view);
             };
 
             view.ShowDialog();
@@ -147,25 +147,25 @@ namespace Insight.MTP.Client.Base.Apps
         /// <summary>
         /// 编辑导航
         /// </summary>
-        private void EditNav()
+        private void editNav()
         {
-            if (!manage.AllowDoubleClick("editNav")) return;
+            if (!manage.allowDoubleClick("editNav")) return;
 
-            var nav = Util.Clone(manage.nav);
+            var nav = Util.clone(manage.nav);
             var navs = manage.item.navs.Where(i => i.id != nav.id && i.parentId != nav.id)
                 .Select(i => new TreeLookUpMember { id = i.id, parentId = i.parentId, name = i.name });
             var model = new NavModel(nav, "编辑导航") { navs = navs.ToList() };
             var view = model.view;
-            SubCloseEvent(view);
+            subCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
-                manage.ShowWaitForm();
-                nav = model.Edit();
-                manage.CloseWaitForm();
+                manage.showWaitForm();
+                nav = model.edit();
+                manage.closeWaitForm();
                 if (nav == null) return;
 
-                manage.Update(nav);
-                CloseDialog(view);
+                manage.update(nav);
+                closeDialog(view);
             };
 
             view.ShowDialog();
@@ -173,21 +173,21 @@ namespace Insight.MTP.Client.Base.Apps
         /// <summary>
         /// 新建功能
         /// </summary>
-        private void AddFun()
+        private void addFun()
         {
             var app = new Function{navigatorId = manage.nav.id};
             var model = new FunModel(app, "新建功能");
             var view = model.view;
-            SubCloseEvent(view);
+            subCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
-                manage.ShowWaitForm();
-                app = model.Add();
-                manage.CloseWaitForm();
+                manage.showWaitForm();
+                app = model.add();
+                manage.closeWaitForm();
                 if (app == null) return;
 
-                manage.AddItem(app);
-                CloseDialog(view);
+                manage.addItem(app);
+                closeDialog(view);
             };
 
             view.ShowDialog();
@@ -196,23 +196,23 @@ namespace Insight.MTP.Client.Base.Apps
         /// <summary>
         /// 编辑功能
         /// </summary>
-        private void EditFun()
+        private void editFun()
         {
-            if (!manage.AllowDoubleClick("editFun")) return;
+            if (!manage.allowDoubleClick("editFun")) return;
 
-            var fun = Util.Clone(manage.fun);
+            var fun = Util.clone(manage.fun);
             var model = new FunModel(fun, "编辑功能");
             var view = model.view;
-            SubCloseEvent(view);
+            subCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
-                manage.ShowWaitForm();
-                fun = model.Edit();
-                manage.CloseWaitForm();
+                manage.showWaitForm();
+                fun = model.edit();
+                manage.closeWaitForm();
                 if (fun == null) return;
 
-                manage.Update(fun);
-                CloseDialog(view);
+                manage.update(fun);
+                closeDialog(view);
             };
 
             view.ShowDialog();

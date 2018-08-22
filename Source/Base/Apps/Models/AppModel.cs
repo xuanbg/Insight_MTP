@@ -41,7 +41,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
             view.txtAlias.EditValueChanged += (sender, args) => app.alias = view.txtAlias.Text.Trim();
             view.txtHost.EditValueChanged += (sender, args) => app.host = view.txtHost.Text.Trim();
             view.txtlife.EditValueChanged += (sender, args) => app.tokenLife = Convert.ToInt32(view.txtlife.Text.Trim());
-            view.picIcon.ImageChanged += (sender, args) => app.icon = Util.Resize(view.picIcon.Image, 256, 256);
+            view.picIcon.ImageChanged += (sender, args) => app.icon = Util.resize(view.picIcon.Image, 256, 256);
             view.memRemark.EditValueChanged += (sender, args) =>
             {
                 var text = view.memRemark.EditValue?.ToString().Trim();
@@ -52,47 +52,47 @@ namespace Insight.MTP.Client.Base.Apps.Models
         /// <summary>
         /// 新增
         /// </summary>
-        public App Add()
+        public App add()
         {
-            if (!InputExamine()) return null;
+            if (!inputExamine()) return null;
 
             var msg = $"新建应用【{app.name}】失败！";
             var url = $"{baseServer}/appapi/v1.0/apps";
             var dict = new Dictionary<string, object> {{"app", app}};
             var client = new HttpClient<App>(tokenHelper);
-            return client.Post(url, dict, msg) ? client.data : null;
+            return client.post(url, dict, msg) ? client.data : null;
         }
 
         /// <summary>
         /// 编辑
         /// </summary>
-        public App Edit()
+        public App edit()
         {
-            if (!InputExamine()) return null;
+            if (!inputExamine()) return null;
 
             var msg = $"没有更新应用【{app.name}】的任何信息！";
             var url = $"{baseServer}/appapi/v1.0/apps/{app.id}";
             var dict = new Dictionary<string, object> {{"app", app}};
             var client = new HttpClient<App>(tokenHelper);
-            return client.Put(url, dict, msg) ? app : null;
+            return client.put(url, dict, msg) ? app : null;
         }
 
         /// <summary>
         /// 输入合法性检查
         /// </summary>
         /// <returns>bool 是否通过</returns>
-        private new bool InputExamine()
+        private new bool inputExamine()
         {
             if (string.IsNullOrEmpty(app.name))
             {
-                Messages.ShowWarning("必须输入应用名称！");
+                Messages.showWarning("必须输入应用名称！");
                 view.txtName.Focus();
                 return false;
             }
 
             if (string.IsNullOrEmpty(app.alias))
             {
-                Messages.ShowWarning("必须输入简称！");
+                Messages.showWarning("必须输入简称！");
                 view.txtAlias.Focus();
                 return false;
             }

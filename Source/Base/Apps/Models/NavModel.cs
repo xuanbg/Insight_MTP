@@ -25,7 +25,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
             set
             {
                 navList = value;
-                Format.InitTreeListLookUpEdit(view.lueParent, navList);
+                Format.initTreeListLookUpEdit(view.lueParent, navList);
             }
         }
 
@@ -68,7 +68,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
             view.picIcon.ImageChanged += (sender, args) =>
             {
                 var size = string.IsNullOrEmpty(nav.parentId) ? 32 : 24;
-                nav.icon = Util.Resize(view.picIcon.Image, size, size);
+                nav.icon = Util.resize(view.picIcon.Image, size, size);
             };
             view.memRemark.EditValueChanged += (sender, args) =>
             {
@@ -81,40 +81,40 @@ namespace Insight.MTP.Client.Base.Apps.Models
         /// <summary>
         /// 新增
         /// </summary>
-        public Navigation Add()
+        public Navigation add()
         {
-            if (!InputExamine()) return null;
+            if (!inputExamine()) return null;
 
             var msg = $"新建应用【{nav.name}】失败！";
             var url = $"{baseServer}/appapi/v1.0/apps/navigations";
             var dict = new Dictionary<string, object> {{"nav", nav}};
             var client = new HttpClient<Navigation>(tokenHelper);
-            return client.Post(url, dict, msg) ? client.data : null;
+            return client.post(url, dict, msg) ? client.data : null;
         }
 
         /// <summary>
         /// 编辑
         /// </summary>
-        public Navigation Edit()
+        public Navigation edit()
         {
-            if (!InputExamine()) return null;
+            if (!inputExamine()) return null;
 
             var msg = $"没有更新应用【{nav.name}】的任何信息！";
             var url = $"{baseServer}/appapi/v1.0/apps/navigations/{nav.id}";
             var dict = new Dictionary<string, object> {{"nav", nav}};
             var client = new HttpClient<Navigation>(tokenHelper);
-            return client.Put(url, dict, msg) ? nav : null;
+            return client.put(url, dict, msg) ? nav : null;
         }
 
         /// <summary>
         /// 输入合法性检查
         /// </summary>
         /// <returns>bool 是否通过</returns>
-        private new bool InputExamine()
+        private new bool inputExamine()
         {
             if (string.IsNullOrEmpty(nav.name))
             {
-                Messages.ShowWarning("必须输入导航名称！");
+                Messages.showWarning("必须输入导航名称！");
                 view.txtName.Focus();
                 return false;
             }

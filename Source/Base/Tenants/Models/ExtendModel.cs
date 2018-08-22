@@ -27,7 +27,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// <summary>
         /// 保存数据到数据库
         /// </summary>
-        public Tenant Save()
+        public Tenant save()
         {
             var day = (int) view.speDays.Value;
             const string msg = "续租失败！";
@@ -35,7 +35,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
             var dict = new Dictionary<string, object> {{"expire", day}};
             var client = new HttpClient<object>(tokenHelper);
 
-            if (!client.Put(url, dict, msg)) return null;
+            if (!client.put(url, dict, msg)) return null;
 
             tenant.expireDate = tenant.expireDate.AddDays(day);
 

@@ -25,14 +25,14 @@ namespace Insight.MTP.Client.Base.Tenants.Models
             tenant = data;
             view = new BindDialog {Text = title};
 
-            Format.GridFormat(view.gdvApp, 0);
-            GetApps();
+            Format.gridFormat(view.gdvApp, 0);
+            getApps();
         }
 
         /// <summary>
         /// 保存数据到数据库
         /// </summary>
-        public Tenant Save()
+        public Tenant save()
         {
             const string msg = "更新绑定应用失败！";
 
@@ -45,17 +45,17 @@ namespace Insight.MTP.Client.Base.Tenants.Models
             var dict = new Dictionary<string, object> {{"apps", ids}};
             var client = new HttpClient<object>(tokenHelper);
 
-            return client.Put(url, dict, msg) ? tenant : null;
+            return client.put(url, dict, msg) ? tenant : null;
         }
 
         /// <summary>
         /// 加载应用列表数据
         /// </summary>
-        private void GetApps()
+        private void getApps()
         {
             var url = $"{baseServer}/appapi/v1.0/apps/all";
             var client = new HttpClient<List<App>>(tokenHelper);
-            client.Get(url);
+            client.get(url);
 
             view.grdApp.DataSource = client.data;
             for (var i = 0; i < view.gdvApp.RowCount; i++)

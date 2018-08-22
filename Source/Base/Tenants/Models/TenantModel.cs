@@ -26,7 +26,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         public TenantModel(Tenant data, string title)
         {
             tenant = data;
-            var provinces = GetRegions();
+            var provinces = getRegions();
             view = new TenantDialog
             {
                 Text = title,
@@ -54,10 +54,10 @@ namespace Insight.MTP.Client.Base.Tenants.Models
                 var index = view.cbeProvince.SelectedIndex;
                 if (index < 0) return;
 
-                Format.InitComboBoxEdit(view.cbeCounty, null);
+                Format.initComboBoxEdit(view.cbeCounty, null);
                 view.cbeCounty.EditValue = null;
-                citys = GetRegions(provinces[index].id);
-                Format.InitComboBoxEdit(view.cbeCity, citys);
+                citys = getRegions(provinces[index].id);
+                Format.initComboBoxEdit(view.cbeCity, citys);
                 view.cbeCity.EditValue = null;
             };
             view.cbeCity.SelectedIndexChanged += (sender, args) =>
@@ -66,12 +66,12 @@ namespace Insight.MTP.Client.Base.Tenants.Models
                 var index = view.cbeCity.SelectedIndex;
                 if (index < 0) return;
 
-                var county = GetRegions(citys[index].id);
-                Format.InitComboBoxEdit(view.cbeCounty, county);
+                var county = getRegions(citys[index].id);
+                Format.initComboBoxEdit(view.cbeCounty, county);
             };
             view.cbeCounty.SelectedIndexChanged += (sender, args) => tenant.county = view.cbeCounty.Text;
             view.txtAddress.EditValueChanged += (sender, args) => tenant.address = view.txtAddress.Text.Trim();
-            view.picIcon.ImageChanged += (sender, args) => tenant.icon = Util.Resize(view.picIcon.Image, 64, 64);
+            view.picIcon.ImageChanged += (sender, args) => tenant.icon = Util.resize(view.picIcon.Image, 64, 64);
             view.memRemark.EditValueChanged += (sender, args) =>
             {
                 var text = view.memRemark.EditValue?.ToString().Trim();
@@ -79,7 +79,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
             };
 
             // 初始化地址列表
-            Format.InitComboBoxEdit(view.cbeProvince, provinces);
+            Format.initComboBoxEdit(view.cbeProvince, provinces);
 
             view.cbeProvince.EditValue = data.province;
             view.cbeCity.EditValue = data.city;
@@ -89,31 +89,31 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// <summary>
         /// 新增
         /// </summary>
-        public Tenant Add()
+        public Tenant add()
         {
-            if (!InputExamine()) return null;
+            if (!inputExamine()) return null;
 
             var msg = $"新建租户【{tenant.name}】失败！";
             var url = $"{baseServer}/tenantapi/v1.0/tenants";
             var dict = new Dictionary<string, object> {{"tenant", tenant}};
             var client = new HttpClient<Tenant>(tokenHelper);
 
-            return client.Post(url, dict, msg) ? client.data : null;
+            return client.post(url, dict, msg) ? client.data : null;
         }
 
         /// <summary>
         /// 编辑
         /// </summary>
-        public Tenant Edit()
+        public Tenant edit()
         {
-            if (!InputExamine()) return null;
+            if (!inputExamine()) return null;
 
             var msg = $"没有更新租户【{tenant.name}】的任何信息！";
             var url = $"{baseServer}/tenantapi/v1.0/tenants/{tenant.id}";
             var dict = new Dictionary<string, object> {{"tenant", tenant}};
             var client = new HttpClient<Tenant>(tokenHelper);
 
-            return client.Put(url, dict, msg) ? tenant : null;
+            return client.put(url, dict, msg) ? tenant : null;
         }
 
         /// <summary>
@@ -121,11 +121,11 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// </summary>
         /// <param name="id">上级地区ID</param>
         /// <returns>地区列表</returns>
-        private List<LookUpMember> GetRegions(string id = null)
+        private List<LookUpMember> getRegions(string id = null)
         {
             var url = $"{baseServer}/commonapi/v1.0/regions?pid={id}";
             var client = new HttpClient<List<Region>>(tokenHelper);
-            client.Get(url);
+            client.get(url);
 
             var list = client.data.Select(i => new LookUpMember {id = i.id, name = i.name});
             return list.ToList();
@@ -135,18 +135,18 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// 输入合法性检查
         /// </summary>
         /// <returns>bool 是否通过</returns>
-        private new bool InputExamine()
+        private new bool inputExamine()
         {
             if (string.IsNullOrEmpty(tenant.name))
             {
-                Messages.ShowWarning("必须输入应用名称！");
+                Messages.showWarning("必须输入应用名称！");
                 view.txtName.Focus();
                 return false;
             }
 
             if (string.IsNullOrEmpty(tenant.alias))
             {
-                Messages.ShowWarning("必须输入简称！");
+                Messages.showWarning("必须输入简称！");
                 view.txtAlias.Focus();
                 return false;
             }

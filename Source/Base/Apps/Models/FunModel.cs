@@ -44,7 +44,7 @@ namespace Insight.MTP.Client.Base.Apps.Models
             view.txtAlias.EditValueChanged += (sender, args) => fun.alias = view.txtAlias.Text.Trim();
             view.txtRoute.EditValueChanged += (sender, args) => fun.routes = view.txtRoute.Text.Trim();
             view.txtUrl.EditValueChanged += (sender, args) => fun.alias = view.txtUrl.Text.Trim();
-            view.picIcon.ImageChanged += (sender, args) => fun.icon = Util.Resize(view.picIcon.Image, 16, 16);
+            view.picIcon.ImageChanged += (sender, args) => fun.icon = Util.resize(view.picIcon.Image, 16, 16);
             view.chkGroup.CheckedChanged += (sender, args) => fun.isBegin = view.chkGroup.Checked;
             view.chkShow.CheckedChanged += (sender, args) => fun.isShowText = view.chkShow.Checked;
             view.memRemark.EditValueChanged += (sender, args) =>
@@ -57,47 +57,47 @@ namespace Insight.MTP.Client.Base.Apps.Models
         /// <summary>
         /// 新增
         /// </summary>
-        public Function Add()
+        public Function add()
         {
-            if (!InputExamine()) return null;
+            if (!inputExamine()) return null;
 
             var msg = $"新建应用【{fun.name}】失败！";
             var url = $"{baseServer}/appapi/v1.0/apps/navigations/functions";
             var dict = new Dictionary<string, object> {{"fun", fun}};
             var client = new HttpClient<Function>(tokenHelper);
-            return client.Post(url, dict, msg) ? client.data : null;
+            return client.post(url, dict, msg) ? client.data : null;
         }
 
         /// <summary>
         /// 编辑
         /// </summary>
-        public Function Edit()
+        public Function edit()
         {
-            if (!InputExamine()) return null;
+            if (!inputExamine()) return null;
 
             var msg = $"没有更新应用【{fun.name}】的任何信息！";
             var url = $"{baseServer}/appapi/v1.0/apps/navigations/functions/{fun.id}";
             var dict = new Dictionary<string, object> {{"fun", fun}};
             var client = new HttpClient<Function>(tokenHelper);
-            return client.Put(url, dict, msg) ? fun : null;
+            return client.put(url, dict, msg) ? fun : null;
         }
 
         /// <summary>
         /// 输入合法性检查
         /// </summary>
         /// <returns>bool 是否通过</returns>
-        private new bool InputExamine()
+        private new bool inputExamine()
         {
             if (string.IsNullOrEmpty(fun.name))
             {
-                Messages.ShowWarning("必须输入应用名称！");
+                Messages.showWarning("必须输入应用名称！");
                 view.txtName.Focus();
                 return false;
             }
 
             if (string.IsNullOrEmpty(fun.alias))
             {
-                Messages.ShowWarning("必须输入简称！");
+                Messages.showWarning("必须输入简称！");
                 view.txtUrl.Focus();
                 return false;
             }

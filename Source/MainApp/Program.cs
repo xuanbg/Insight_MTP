@@ -10,6 +10,7 @@ namespace Insight.MTP.Client.MainApp
         /// 应用程序的主入口点。
         /// </summary>
         [STAThread]
+        // ReSharper disable once InconsistentNaming
         static void Main()
         {
             Application.EnableVisualStyles();
