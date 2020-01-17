@@ -10,7 +10,7 @@ namespace Insight.MTP.Client.Common.Entity
         /// ID，唯一标识
         /// </summary>
         public string id { get; set; }
-
+        
         /// <summary>
         /// 序号
         /// </summary>
@@ -27,29 +27,44 @@ namespace Insight.MTP.Client.Common.Entity
         public string alias { get; set; }
 
         /// <summary>
-        /// 域名
+        /// 图标url
         /// </summary>
-        public string host { get; set; }
+        public string icon { get; set; }
 
         /// <summary>
-        /// 令牌生存周期(小时)
+        /// 域名
+        /// </summary>
+        public string domain { get; set; }
+
+        /// <summary>
+        /// 授权码生命周期(毫秒)
+        /// </summary>
+        public int permitLife { get; set; }
+
+        /// <summary>
+        /// 令牌生命周期(毫秒)
         /// </summary>
         public int tokenLife { get; set; }
 
         /// <summary>
-        /// 图标url
+        /// 是否单设备登录
         /// </summary>
-        public string iconurl { get; set; }
+        public bool signinOne { get; set; }
 
         /// <summary>
-        /// 图标
+        /// 是否自动刷新Token
         /// </summary>
-        public byte[] icon { get; set; }
+        public bool autoRefresh { get; set; }
 
         /// <summary>
-        /// 描述
+        /// 是否自动加载租户
         /// </summary>
-        public string remark { get; set; }
+        public bool autoTenant { get; set; }
+
+        /// <summary>
+        /// 创建人
+        /// </summary>
+        public string creator { get; set; }
 
         /// <summary>
         /// 创建人ID

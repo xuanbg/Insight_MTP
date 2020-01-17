@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7654C71F-3E13-49DA-A9B9-85EE3E40D589}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Insight.MTP.Client.Platform</RootNamespace>
+    <AssemblyName>Platform</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>发布\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Insight MTP Client\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BaseForm">
+      <HintPath>..\..\..\Utility\BaseForm.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Images.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Utils, Version=1.1.6635.29549, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Utility\Utils.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Apps\Controller.cs" />
+    <Compile Include="Apps\Models\FunModel.cs" />
+    <Compile Include="Apps\Models\NavModel.cs" />
+    <Compile Include="Apps\Models\ManagerModel.cs" />
+    <Compile Include="Apps\Models\AppModel.cs" />
+    <Compile Include="Apps\Views\FunDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Views\FunDialog.Designer.cs">
+      <DependentUpon>FunDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Views\NavDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Views\NavDialog.Designer.cs">
+      <DependentUpon>NavDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Views\AppDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Views\AppDialog.Designer.cs">
+      <DependentUpon>AppDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Views\Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Views\Manager.Designer.cs">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tenants\Controller.cs" />
+    <Compile Include="Tenants\Models\ExtendModel.cs" />
+    <Compile Include="Tenants\Models\BindModel.cs" />
+    <Compile Include="Tenants\Models\TenantModel.cs" />
+    <Compile Include="Tenants\Models\ManagerModel.cs" />
+    <Compile Include="Tenants\Views\BindDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tenants\Views\BindDialog.Designer.cs">
+      <DependentUpon>BindDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tenants\Views\ExtendDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tenants\Views\ExtendDialog.Designer.cs">
+      <DependentUpon>ExtendDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tenants\Views\TenantDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tenants\Views\TenantDialog.Designer.cs">
+      <DependentUpon>TenantDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tenants\Views\Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tenants\Views\Manager.Designer.cs">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Apps\Views\FunDialog.resx">
+      <DependentUpon>FunDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Views\NavDialog.resx">
+      <DependentUpon>NavDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Views\AppDialog.resx">
+      <DependentUpon>AppDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Views\Manager.resx">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tenants\Views\BindDialog.resx">
+      <DependentUpon>BindDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tenants\Views\ExtendDialog.resx">
+      <DependentUpon>ExtendDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tenants\Views\TenantDialog.resx">
+      <DependentUpon>TenantDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tenants\Views\Manager.resx">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{7c8ac27e-e640-4403-af4d-5b62c6c55826}</Project>
+      <Name>Common</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
