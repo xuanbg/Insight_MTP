@@ -70,20 +70,6 @@ namespace Insight.MTP.Client.Platform.Tenants
         {
             var tenant = new Tenant();
             var model = new TenantModel(tenant, "新建租户");
-            var view = model.view;
-            view.Confirm.Click += (sender, args) =>
-            {
-                showWaitForm();
-                tenant = model.add();
-                closeWaitForm();
-                if (tenant == null) return;
-
-                mdiModel.addItem(tenant);
-                mdiView.tabTenant.addItems();
-                mdiView.gdvTenant.RefreshData();
-            };
-
-            view.ShowDialog();
         }
 
         /// <summary>
@@ -95,18 +81,6 @@ namespace Insight.MTP.Client.Platform.Tenants
 
             var tenant = Util.clone(mdiModel.item);
             var model = new TenantModel(tenant, "编辑租户");
-            var view = model.view;
-            view.Confirm.Click += (sender, args) =>
-            {
-                showWaitForm();
-                tenant = model.edit();
-                closeWaitForm();
-                if (tenant == null) return;
-
-                mdiModel.update(tenant);
-            };
-
-            view.ShowDialog();
         }
 
         /// <summary>
@@ -116,18 +90,6 @@ namespace Insight.MTP.Client.Platform.Tenants
         {
             var tenant = Util.clone(mdiModel.item);
             var model = new BindModel(tenant, "绑定应用");
-            var view = model.view;
-            view.Confirm.Click += (sender, args) =>
-            {
-                showWaitForm();
-                tenant = model.save();
-                closeWaitForm();
-                if (tenant == null) return;
-
-                mdiModel.update(tenant);
-            };
-
-            view.ShowDialog();
         }
 
         /// <summary>
@@ -137,18 +99,6 @@ namespace Insight.MTP.Client.Platform.Tenants
         {
             var tenant = Util.clone(mdiModel.item);
             var model = new ExtendModel(tenant, "续租");
-            var view = model.view;
-            view.Confirm.Click += (sender, args) =>
-            {
-                showWaitForm();
-                tenant = model.save();
-                closeWaitForm();
-                if (tenant == null) return;
-
-                mdiModel.update(tenant);
-            };
-
-            view.ShowDialog();
         }
 
         /// <summary>

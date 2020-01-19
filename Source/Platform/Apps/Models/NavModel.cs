@@ -35,16 +35,12 @@ namespace Insight.MTP.Client.Platform.Apps.Models
         /// </summary>
         /// <param name="data">UserInfo</param>
         /// <param name="title">View标题</param>
-        public NavModel(Navigation data, string title)
+        public NavModel(Navigation data, string title) : base(title)
         {
             nav = data;
-            view = new NavDialog
-            {
-                Text = title,
-                lueParent = {EditValue = data.parentId},
-                speIndex = {EditValue = data.index},
-                txtName = {EditValue = data.name},
-            };
+            view.lueParent.EditValue = data.parentId;
+            view.speIndex.EditValue = data.index;
+            view.txtName.EditValue = data.name;
 
             view.picIcon.Click += (sender, args) => view.picIcon.LoadImage();
 

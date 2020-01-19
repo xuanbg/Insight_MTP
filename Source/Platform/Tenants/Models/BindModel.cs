@@ -19,10 +19,9 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// </summary>
         /// <param name="data"></param>
         /// <param name="title"></param>
-        public BindModel(Tenant data, string title)
+        public BindModel(Tenant data, string title) : base(title)
         {
             tenant = data;
-            view = new BindDialog {Text = title};
 
             Format.gridFormat(view.gdvApp, 0);
             getApps();

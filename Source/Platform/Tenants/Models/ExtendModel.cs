@@ -17,10 +17,9 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// </summary>
         /// <param name="data">初始化数据</param>
         /// <param name="title">View标题</param>
-        public ExtendModel(Tenant data, string title)
+        public ExtendModel(Tenant data, string title) : base(title)
         {
             tenant = data;
-            view = new ExtendDialog {Text = title};
         }
 
         /// <summary>

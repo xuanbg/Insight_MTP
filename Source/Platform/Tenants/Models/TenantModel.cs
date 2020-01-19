@@ -22,22 +22,18 @@ namespace Insight.MTP.Client.Base.Tenants.Models
         /// </summary>
         /// <param name="data">UserInfo</param>
         /// <param name="title">View标题</param>
-        public TenantModel(Tenant data, string title)
+        public TenantModel(Tenant data, string title) : base(title)
         {
             tenant = data;
             var provinces = getRegions();
-            view = new TenantDialog
-            {
-                Text = title,
-                txtName = {EditValue = data.name},
-                txtAlias = {EditValue = data.alias},
-                txtContact = {EditValue = data.contact},
-                txtMobile = { EditValue = data.mobile },
-                txtEmail = { EditValue = data.email },
-                txtAddress = { EditValue = data.address },
-                picIcon = {EditValue = data.icon },
-                memRemark = {EditValue = data.remark}
-            };
+            view.txtName.EditValue = data.name;
+            view.txtAlias.EditValue = data.alias;
+            view.txtContact.EditValue = data.contact;
+            view.txtMobile.EditValue = data.mobile;
+            view.txtEmail.EditValue = data.email;
+            view.txtAddress.EditValue = data.address;
+            view.picIcon.EditValue = data.icon;
+            view.memRemark.EditValue = data.remark;
 
             view.picIcon.Click += (sender, args) => view.picIcon.LoadImage();
 

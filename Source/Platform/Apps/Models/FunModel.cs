@@ -19,15 +19,11 @@ namespace Insight.MTP.Client.Platform.Apps.Models
         /// </summary>
         /// <param name="data">UserInfo</param>
         /// <param name="title">View标题</param>
-        public FunModel(Function data, string title)
+        public FunModel(Function data, string title) : base(title)
         {
             fun = data;
-            view = new FunDialog
-            {
-                Text = title,
-                speIndex = {EditValue = data.index},
-                txtName = {EditValue = data.name},
-            };
+            view.speIndex.EditValue = data.index;
+            view.txtName.EditValue = data.name;
 
             view.picIcon.Click += (sender, args) => view.picIcon.LoadImage();
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Insight.Utils.Entity;
 
 namespace Insight.MTP.Client.Common.Entity
 {

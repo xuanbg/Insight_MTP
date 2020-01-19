@@ -19,7 +19,7 @@ namespace Insight.MTP.Client.Platform.Apps.Models
         /// </summary>
         /// <param name="data">UserInfo</param>
         /// <param name="title">View标题</param>
-        public AppModel(App data, string title)
+        public AppModel(App data, string title) : base(title)
         {
             app = data;
             //view = new AppDialog
