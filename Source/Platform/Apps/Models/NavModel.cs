@@ -10,7 +10,7 @@ using Insight.Utils.Entity;
 
 namespace Insight.MTP.Client.Platform.Apps.Models
 {
-    public class NavModel : BaseDialogModel<NavDialog>
+    public class NavModel : BaseDialogModel<Navigation, NavDialog>
     {
 
         private List<TreeLookUpMember> navList;

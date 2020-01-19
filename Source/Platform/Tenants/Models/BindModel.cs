@@ -8,7 +8,7 @@ using Insight.Utils.Controls;
 
 namespace Insight.MTP.Client.Base.Tenants.Models
 {
-    public class BindModel : BaseDialogModel<BindDialog>
+    public class BindModel : BaseDialogModel<object, BindDialog>
     {
 
         private readonly Tenant tenant;

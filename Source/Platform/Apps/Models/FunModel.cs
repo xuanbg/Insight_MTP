@@ -8,7 +8,7 @@ using Insight.Utils.Entity;
 
 namespace Insight.MTP.Client.Platform.Apps.Models
 {
-    public class FunModel : BaseDialogModel<FunDialog>
+    public class FunModel : BaseDialogModel<Function, FunDialog>
     {
 
         private readonly Function fun;

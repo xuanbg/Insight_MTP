@@ -8,7 +8,7 @@ using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.Platform.Apps.Models
 {
-    public class AppModel : BaseDialogModel<AppDialog>
+    public class AppModel : BaseDialogModel<App, AppDialog>
     {
 
         private readonly App app;
@@ -22,15 +22,15 @@ namespace Insight.MTP.Client.Platform.Apps.Models
         public AppModel(App data, string title)
         {
             app = data;
-            view = new AppDialog
-            {
-                Text = title,
-                txtName = {EditValue = data.name},
-                txtAlias = {EditValue = data.alias},
-                txtlife = {EditValue = data.tokenLife},
-                txtHost = {EditValue = data.domain},
-                picIcon = {EditValue = data.icon }
-            };
+            //view = new AppDialog
+            //{
+            //    Text = title,
+            //    txtName = {EditValue = data.name},
+            //    txtAlias = {EditValue = data.alias},
+            //    txtlife = {EditValue = data.tokenLife},
+            //    txtHost = {EditValue = data.domain},
+            //    picIcon = {EditValue = data.icon }
+            //};
 
             view.picIcon.Click += (sender, args) => view.picIcon.LoadImage();
 

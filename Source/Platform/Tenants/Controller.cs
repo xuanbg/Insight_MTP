@@ -71,7 +71,6 @@ namespace Insight.MTP.Client.Platform.Tenants
             var tenant = new Tenant();
             var model = new TenantModel(tenant, "新建租户");
             var view = model.view;
-            subCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
                 showWaitForm();
@@ -82,7 +81,6 @@ namespace Insight.MTP.Client.Platform.Tenants
                 mdiModel.addItem(tenant);
                 mdiView.tabTenant.addItems();
                 mdiView.gdvTenant.RefreshData();
-                closeDialog(view);
             };
 
             view.ShowDialog();
@@ -98,7 +96,6 @@ namespace Insight.MTP.Client.Platform.Tenants
             var tenant = Util.clone(mdiModel.item);
             var model = new TenantModel(tenant, "编辑租户");
             var view = model.view;
-            subCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
                 showWaitForm();
@@ -107,7 +104,6 @@ namespace Insight.MTP.Client.Platform.Tenants
                 if (tenant == null) return;
 
                 mdiModel.update(tenant);
-                closeDialog(view);
             };
 
             view.ShowDialog();
@@ -121,7 +117,6 @@ namespace Insight.MTP.Client.Platform.Tenants
             var tenant = Util.clone(mdiModel.item);
             var model = new BindModel(tenant, "绑定应用");
             var view = model.view;
-            subCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
                 showWaitForm();
@@ -130,7 +125,6 @@ namespace Insight.MTP.Client.Platform.Tenants
                 if (tenant == null) return;
 
                 mdiModel.update(tenant);
-                closeDialog(view);
             };
 
             view.ShowDialog();
@@ -144,7 +138,6 @@ namespace Insight.MTP.Client.Platform.Tenants
             var tenant = Util.clone(mdiModel.item);
             var model = new ExtendModel(tenant, "续租");
             var view = model.view;
-            subCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
                 showWaitForm();
@@ -153,7 +146,6 @@ namespace Insight.MTP.Client.Platform.Tenants
                 if (tenant == null) return;
 
                 mdiModel.update(tenant);
-                closeDialog(view);
             };
 
             view.ShowDialog();

@@ -6,7 +6,7 @@ using Insight.Utils.Client;
 
 namespace Insight.MTP.Client.Base.Tenants.Models
 {
-    public class ExtendModel : BaseDialogModel<ExtendDialog>
+    public class ExtendModel : BaseDialogModel<object, ExtendDialog>
     {
 
         private readonly Tenant tenant;

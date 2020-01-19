@@ -10,7 +10,7 @@ using Insight.Utils.Entity;
 
 namespace Insight.MTP.Client.Base.Tenants.Models
 {
-    public class TenantModel : BaseDialogModel<TenantDialog>
+    public class TenantModel : BaseDialogModel<Tenant, TenantDialog>
     {
 
         private readonly Tenant tenant;

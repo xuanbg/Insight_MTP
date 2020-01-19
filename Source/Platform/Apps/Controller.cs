@@ -57,7 +57,6 @@ namespace Insight.MTP.Client.Platform.Apps
             var app = new App();
             var model = new AppModel(app, "新建应用");
             var view = model.view;
-            subCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
                 showWaitForm();
@@ -67,7 +66,6 @@ namespace Insight.MTP.Client.Platform.Apps
 
                 mdiModel.addItem(app);
                 mdiView.gdvApp.RefreshData();
-                closeDialog(view);
             };
 
             view.ShowDialog();
@@ -83,7 +81,6 @@ namespace Insight.MTP.Client.Platform.Apps
             var app = Util.clone(mdiModel.item);
             var model = new AppModel(app, "编辑应用");
             var view = model.view;
-            subCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
                 showWaitForm();
@@ -92,7 +89,6 @@ namespace Insight.MTP.Client.Platform.Apps
                 if (app == null) return;
 
                 mdiModel.update(app);
-                closeDialog(view);
             };
 
             view.ShowDialog();
@@ -107,7 +103,6 @@ namespace Insight.MTP.Client.Platform.Apps
             var navs = mdiModel.item.navs.Select(i => new TreeLookUpMember {id = i.id, parentId = i.parentId, name = i.name});
             var model = new NavModel(nav, "新建导航") {navs = navs.ToList()};
             var view = model.view;
-            subCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
                 showWaitForm();
@@ -117,7 +112,6 @@ namespace Insight.MTP.Client.Platform.Apps
 
                 mdiModel.addItem(nav);
                 mdiView.TreNav.RefreshDataSource();
-                closeDialog(view);
             };
 
             view.ShowDialog();
@@ -135,7 +129,6 @@ namespace Insight.MTP.Client.Platform.Apps
                 .Select(i => new TreeLookUpMember { id = i.id, parentId = i.parentId, name = i.name });
             var model = new NavModel(nav, "编辑导航") { navs = navs.ToList() };
             var view = model.view;
-            subCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
                 showWaitForm();
@@ -144,7 +137,6 @@ namespace Insight.MTP.Client.Platform.Apps
                 if (nav == null) return;
 
                 mdiModel.update(nav);
-                closeDialog(view);
             };
 
             view.ShowDialog();
@@ -158,7 +150,6 @@ namespace Insight.MTP.Client.Platform.Apps
             var app = new Function{navId = mdiModel.nav.id};
             var model = new FunModel(app, "新建功能");
             var view = model.view;
-            subCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
                 showWaitForm();
@@ -168,7 +159,6 @@ namespace Insight.MTP.Client.Platform.Apps
 
                 mdiModel.addItem(app);
                 mdiView.gdvFunc.RefreshData();
-                closeDialog(view);
             };
 
             view.ShowDialog();
@@ -184,7 +174,6 @@ namespace Insight.MTP.Client.Platform.Apps
             var fun = Util.clone(mdiModel.fun);
             var model = new FunModel(fun, "编辑功能");
             var view = model.view;
-            subCloseEvent(view);
             view.Confirm.Click += (sender, args) =>
             {
                 showWaitForm();
@@ -193,7 +182,6 @@ namespace Insight.MTP.Client.Platform.Apps
                 if (fun == null) return;
 
                 mdiModel.update(fun);
-                closeDialog(view);
             };
 
             view.ShowDialog();
