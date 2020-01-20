@@ -44,17 +44,6 @@
             this.panel.Controls.Add(this.labUnlockPw);
             this.panel.Controls.Add(this.speDays);
             // 
-            // Cancel
-            // 
-            this.Cancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Cancel.Appearance.Options.UseFont = true;
-            this.Cancel.Visible = false;
-            // 
-            // Confirm
-            // 
-            this.Confirm.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Confirm.Appearance.Options.UseFont = true;
-            // 
             // FolderNode
             // 
             this.FolderNode.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("FolderNode.ImageStream")));

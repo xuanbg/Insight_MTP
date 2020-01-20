@@ -54,18 +54,6 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.panel.Controls.Add(this.grdApp);
             this.panel.Size = new System.Drawing.Size(510, 300);
             // 
-            // Cancel
-            // 
-            this.Cancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Cancel.Appearance.Options.UseFont = true;
-            this.Cancel.Location = new System.Drawing.Point(340, 324);
-            // 
-            // Confirm
-            // 
-            this.Confirm.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Confirm.Appearance.Options.UseFont = true;
-            this.Confirm.Location = new System.Drawing.Point(430, 324);
-            // 
             // FolderNode
             // 
             this.FolderNode.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("FolderNode.ImageStream")));

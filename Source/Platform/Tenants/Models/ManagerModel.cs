@@ -9,10 +9,7 @@ namespace Insight.MTP.Client.Base.Tenants.Models
 {
     public class ManagerModel : BaseMdiModel<Tenant, Manager>
     {
-        public Tenant item;
-        public int handle = 0;
 
-        public List<Tenant> list;
         public int rows = 20;
         public int total;
         public string key;
