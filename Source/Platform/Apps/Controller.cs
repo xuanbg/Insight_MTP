@@ -1,12 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using DevExpress.XtraTreeList.Nodes;
-using Insight.MTP.Client.Common.Entity;
+﻿using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Apps.Models;
 using Insight.MTP.Client.Platform.Apps.Views;
 using Insight.Utils.BaseControllers;
 using Insight.Utils.Common;
-using Insight.Utils.Controls;
 using Insight.Utils.Entity;
 
 namespace Insight.MTP.Client.Platform.Apps
@@ -19,19 +15,6 @@ namespace Insight.MTP.Client.Platform.Apps
         /// <param name="info">模块信息</param>
         public Controller(ModuleDto info):base(info)
         {
-            // 订阅界面事件
-            mdiView.gdvApp.DoubleClick += (sender, args) => editApp();
-            mdiView.TreNav.DoubleClick += (sender, args) => editNav();
-            mdiView.gdvFunc.DoubleClick += (sender, args) => editFun();
-
-            mdiView.gdvApp.FocusedRowObjectChanged += (sender, args) => itemChanged(args.FocusedRowHandle);
-            mdiView.TreNav.FocusedNodeChanged += (sender, args) => navChanged(args.Node);
-            mdiView.gdvFunc.FocusedRowObjectChanged += (sender, args) => funChanged(args.FocusedRowHandle);
-
-            // 设置界面样式
-            Format.gridFormat(mdiView.gdvApp);
-            Format.treeFormat(mdiView.TreNav);
-            Format.gridFormat(mdiView.gdvFunc);
 
             // 加载数据
 
@@ -41,11 +24,7 @@ namespace Insight.MTP.Client.Platform.Apps
         /// </summary>
         public void refresh()
         {
-            showWaitForm();
             mdiModel.loadData();
-            mdiView.grdApp.DataSource = mdiModel.list;
-            mdiView.gdvApp.FocusedRowHandle = mdiModel.handle;
-            closeWaitForm();
         }
 
 
@@ -63,10 +42,9 @@ namespace Insight.MTP.Client.Platform.Apps
         /// </summary>
         public void editApp()
         {
-            if (!allowDoubleClick("editApp")) return;
+            if (!mdiModel.allowDoubleClick("editApp")) return;
 
-            var app = Util.clone(mdiModel.item);
-            var model = new AppModel(app, "编辑应用");
+            var model = new AppModel(null, "编辑应用");
         }
 
         /// <summary>
@@ -74,9 +52,9 @@ namespace Insight.MTP.Client.Platform.Apps
         /// </summary>
         public void newNav()
         {
-            var nav = new Navigation{id = mdiModel.item.id};
-            var navs = mdiModel.item.navs.Select(i => new TreeLookUpMember {id = i.id, parentId = i.parentId, name = i.name});
-            var model = new NavModel(nav, "新建导航") {navs = navs.ToList()};
+            var nav = new Navigation();
+            var navs =  new TreeLookUpMember();
+            var model = new NavModel(nav, "新建导航");
         }
 
         /// <summary>
@@ -84,12 +62,10 @@ namespace Insight.MTP.Client.Platform.Apps
         /// </summary>
         public void editNav()
         {
-            if (!allowDoubleClick("editNav")) return;
+            if (!mdiModel.allowDoubleClick("editNav")) return;
 
             var nav = Util.clone(mdiModel.nav);
-            var navs = mdiModel.item.navs.Where(i => i.id != nav.id && i.parentId != nav.id)
-                .Select(i => new TreeLookUpMember { id = i.id, parentId = i.parentId, name = i.name });
-            var model = new NavModel(nav, "编辑导航") { navs = navs.ToList() };
+            var model = new NavModel(nav, "编辑导航");
         }
 
         /// <summary>
@@ -106,76 +82,10 @@ namespace Insight.MTP.Client.Platform.Apps
         /// </summary>
         public void editFun()
         {
-            if (!allowDoubleClick("editFun")) return;
+            if (!mdiModel.allowDoubleClick("editFun")) return;
 
             var fun = Util.clone(mdiModel.fun);
             var model = new FunModel(fun, "编辑功能");
-        }
-
-        /// <summary>
-        /// 列表所选数据改变
-        /// </summary>
-        /// <param name="index">List下标</param>
-        private void itemChanged(int index)
-        {
-            mdiModel.handle = index;
-            mdiModel.item = index < 0 ? null : mdiModel.list[index];
-            if (mdiModel.item != null && mdiModel.item.navs == null) mdiModel.getDetail();
-
-            mdiView.TreNav.DataSource = mdiModel.item?.navs;
-            mdiView.TreNav.FocusedNode = mdiView.TreNav.Nodes.FirstNode;
-            mdiView.TreNav.ExpandAll();
-            if (!(mdiModel.item?.navs?.Any() ?? false)) mdiModel.nav = null;
-
-            refreshToolBar();
-        }
-
-        /// <summary>
-        /// 导航节点改变
-        /// </summary>
-        /// <param name="node">导航节点</param>
-        private void navChanged(TreeListNode node)
-        {
-            if (node != null)
-            {
-                var id = node.GetValue("id").ToString();
-                mdiModel.nav = mdiModel.item.navs.SingleOrDefault(m => m.id == id);
-                if (node.HasChildren) mdiModel.fun = null;
-                else if (mdiModel.nav != null) mdiModel.getFuns(id);
-            }
-
-            mdiView.grdFunc.DataSource = mdiModel.nav?.functions;
-            refreshToolBar();
-        }
-
-        /// <summary>
-        /// 列表所选数据改变
-        /// </summary>
-        /// <param name="index">List下标</param>
-        private void funChanged(int index)
-        {
-            mdiModel.fun = index < 0 ? null : mdiModel.nav.functions[index];
-
-            refreshToolBar();
-        }
-
-        /// <summary>
-        /// 刷新工具条按钮状态
-        /// </summary>
-        private void refreshToolBar()
-        {
-            var dict = new Dictionary<string, bool>
-            {
-                ["editApp"] = mdiModel.item != null,
-                ["deleteApp"] = mdiModel.item != null,
-                ["newNav"] = mdiModel.item != null,
-                ["editNav"] = mdiModel.nav != null,
-                ["deleteNav"] = mdiModel.nav != null,
-                ["newFun"] = mdiModel.nav != null,
-                ["editFun"] = mdiModel.fun != null,
-                ["deleteFun"] = mdiModel.fun != null,
-            };
-            switchItemStatus(dict);
         }
 
     }
