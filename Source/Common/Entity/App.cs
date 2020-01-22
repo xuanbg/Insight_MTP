@@ -73,7 +73,7 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 创建时间
         /// </summary>
-        public DateTime createTime { get; set; }
+        public DateTime createdTime { get; set; }
 
         /// <summary>
         /// 导航集合
