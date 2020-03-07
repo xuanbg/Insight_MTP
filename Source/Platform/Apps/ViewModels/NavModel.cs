@@ -8,7 +8,7 @@ using Insight.Utils.Common;
 using Insight.Utils.Controls;
 using Insight.Utils.Entity;
 
-namespace Insight.MTP.Client.Platform.Apps.Models
+namespace Insight.MTP.Client.Platform.Apps.ViewModels
 {
     public class NavModel : BaseDialogModel<Navigation, NavDialog>
     {

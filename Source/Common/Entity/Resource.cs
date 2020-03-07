@@ -17,12 +17,10 @@
         /// </summary>
         public int type { get; set; }
 
-
         /// <summary>
         /// 序号
         /// </summary>
         public int index { get; set; }
-
 
         /// <summary>
         /// 应用名称

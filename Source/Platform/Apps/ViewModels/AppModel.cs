@@ -6,7 +6,7 @@ using Insight.Utils.BaseViewModels;
 using Insight.Utils.Client;
 using Insight.Utils.Common;
 
-namespace Insight.MTP.Client.Platform.Apps.Models
+namespace Insight.MTP.Client.Platform.Apps.ViewModels
 {
     public class AppModel : BaseDialogModel<App, AppDialog>
     {

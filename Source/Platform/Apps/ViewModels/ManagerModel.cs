@@ -8,10 +8,14 @@ using Insight.Utils.Client;
 using Insight.Utils.Common;
 using Insight.Utils.Controls;
 
-namespace Insight.MTP.Client.Platform.Apps.Models
+namespace Insight.MTP.Client.Platform.Apps.ViewModels
 {
     public class ManagerModel : BaseMdiModel<App, Manager>
     {
+        private readonly DataModel dataModel = new DataModel();
+        private int rows = 20;
+        private string key;
+
         public Navigation nav;
         public Function fun;
 
@@ -20,20 +24,32 @@ namespace Insight.MTP.Client.Platform.Apps.Models
         /// </summary>
         public ManagerModel()
         {
+            tab = view.pccApp;
+
             // 订阅界面事件
             view.gdvApp.DoubleClick += (sender, args) => callback("editApp");
             view.TreNav.DoubleClick += (sender, args) => callback("editNav");
             view.gdvFunc.DoubleClick += (sender, args) => callback("editFun");
 
-            view.gdvApp.FocusedRowObjectChanged += (sender, args) => itemChanged(args.FocusedRowHandle);
+            //view.gdvApp.FocusedRowObjectChanged += (sender, args) => itemChanged(args.FocusedRowHandle);
+            view.gdvApp.FocusedRowChanged += (sender, args) => itemChanged(args.FocusedRowHandle);
             view.TreNav.FocusedNodeChanged += (sender, args) => navChanged(args.Node);
             view.gdvFunc.FocusedRowObjectChanged += (sender, args) => funChanged(args.FocusedRowHandle);
+
+            view.Search.Click += (sender, args) => loadData();
+            view.KeyInput.Properties.Click += (sender, args) => view.KeyInput.EditValue = null;
+            view.KeyInput.EditValueChanged += (sender, args) => key = view.KeyInput.EditValue as string;
+            view.KeyInput.KeyPress += (sender, args) =>
+            {
+                if (args.KeyChar != 13) return;
+
+                loadData();
+            };
 
             // 设置界面样式
             Format.gridFormat(view.gdvApp);
             Format.treeFormat(view.TreNav);
             Format.gridFormat(view.gdvFunc);
-
         }
 
         /// <summary>
@@ -42,17 +58,13 @@ namespace Insight.MTP.Client.Platform.Apps.Models
         public void loadData()
         {
             showWaitForm();
-            view.grdApp.DataSource = list;
-            view.gdvApp.FocusedRowHandle = handle;
+            var result = dataModel.getApps(key, tab.currentPage, rows);
+            list = result.data;
             closeWaitForm();
-            var url = $"/base/resource/v1.0/apps";
-            var client = new HttpClient<List<App>>();
-            if (!client.get(url))
-            {
-                return;
-            }
 
-            list = client.data;
+            tab.totalRows = int.Parse(result.option.ToString()) ;
+            view.grdApp.DataSource = list;
+            view.gdvApp.FocusedRowHandle = tab.focusedRowHandle;
         }
 
         /// <summary>
@@ -170,45 +182,33 @@ namespace Insight.MTP.Client.Platform.Apps.Models
         }
 
         /// <summary>
-        /// 获取明细数据
-        /// </summary>
-        public void getDetail()
-        {
-            var url = $"/appapi/v1.0/apps/{item.id}/navigations";
-            var client = new HttpClient<List<Navigation>>();
-            if (!client.get(url)) return;
-
-            item.navs = client.data;
-        }
-
-        /// <summary>
-        /// 获取模块功能
-        /// </summary>
-        /// <param name="id">导航ID</param>
-        public void getFuns(string id)
-        {
-            var url = $"/appapi/v1.0/apps/navigations/{id}/functions";
-            var client = new HttpClient<List<Function>>();
-            if (!client.get(url)) return;
-
-            nav.functions = client.data;
-        }
-
-
-        /// <summary>
         /// 列表所选数据改变
         /// </summary>
         /// <param name="index">List下标</param>
         private void itemChanged(int index)
         {
-            handle = index;
-            item = index < 0 ? null : list[index];
-            if (item != null && item.navs == null) getDetail();
+            if (index < 0)
+            {
+                item = null;
+                nav = null;
+            }
+            else
+            {
+                tab.focusedRowHandle = index;
+                var obj = list[index];
+                if (obj.id != item?.id)
+                {
+                    item = obj;
+                    if (item.navs == null)
+                    {
+                        item.navs = dataModel.getNavs(item.id);
+                    }
+                }
+            }
 
             view.TreNav.DataSource = item?.navs;
             view.TreNav.FocusedNode = view.TreNav.Nodes.FirstNode;
             view.TreNav.ExpandAll();
-            if (!(item?.navs?.Any() ?? false)) nav = null;
 
             refreshToolBar();
         }
@@ -219,15 +219,20 @@ namespace Insight.MTP.Client.Platform.Apps.Models
         /// <param name="node">导航节点</param>
         private void navChanged(TreeListNode node)
         {
-            if (node != null)
+            var id = node.GetValue("id").ToString();
+            nav = item.navs.SingleOrDefault(m => m.id == id);
+            if (nav == null) return;
+
+            if (node.HasChildren)
             {
-                var id = node.GetValue("id").ToString();
-                nav = item.navs.SingleOrDefault(m => m.id == id);
-                if (node.HasChildren) fun = null;
-                else if (nav != null) getFuns(id);
+                fun = null;
+            }
+            else if (nav.functions == null)
+            {
+                nav.functions = dataModel.getFuncs(nav.id);
             }
 
-            view.grdFunc.DataSource = nav?.functions;
+            view.grdFunc.DataSource = nav.functions;
             refreshToolBar();
         }
 
@@ -251,15 +256,14 @@ namespace Insight.MTP.Client.Platform.Apps.Models
             {
                 ["editApp"] = item != null,
                 ["deleteApp"] = item != null,
-                ["newNav"] = item != null,
+                ["newNav"] = item != null && (nav == null || nav.type == 1),
                 ["editNav"] = nav != null,
                 ["deleteNav"] = nav != null,
-                ["newFun"] = nav != null,
+                ["newFun"] = nav != null && nav.type == 2,
                 ["editFun"] = fun != null,
                 ["deleteFun"] = fun != null,
             };
             switchItemStatus(dict);
         }
-
     }
 }

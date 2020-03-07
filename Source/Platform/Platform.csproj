@@ -93,10 +93,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apps\Controller.cs" />
-    <Compile Include="Apps\Models\FunModel.cs" />
-    <Compile Include="Apps\Models\NavModel.cs" />
-    <Compile Include="Apps\Models\ManagerModel.cs" />
-    <Compile Include="Apps\Models\AppModel.cs" />
+    <Compile Include="Apps\DataModel.cs" />
+    <Compile Include="Apps\ViewModels\FunModel.cs" />
+    <Compile Include="Apps\ViewModels\NavModel.cs" />
+    <Compile Include="Apps\ViewModels\ManagerModel.cs" />
+    <Compile Include="Apps\ViewModels\AppModel.cs" />
     <Compile Include="Apps\Views\FunDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +166,7 @@
     <EmbeddedResource Include="Apps\Views\Manager.resx">
       <DependentUpon>Manager.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Tenants\Views\BindDialog.resx">
       <DependentUpon>BindDialog.cs</DependentUpon>
     </EmbeddedResource>

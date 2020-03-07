@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Insight.MTP.Client.Common.Entity
 {
@@ -59,22 +58,7 @@ namespace Insight.MTP.Client.Common.Entity
         /// 是否自动加载租户
         /// </summary>
         public bool autoTenant { get; set; }
-
-        /// <summary>
-        /// 创建人
-        /// </summary>
-        public string creator { get; set; }
-
-        /// <summary>
-        /// 创建人ID
-        /// </summary>
-        public string creatorId { get; set; }
-
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        public DateTime createdTime { get; set; }
-
+        
         /// <summary>
         /// 导航集合
         /// </summary>

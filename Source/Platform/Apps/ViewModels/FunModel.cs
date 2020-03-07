@@ -6,7 +6,7 @@ using Insight.Utils.Client;
 using Insight.Utils.Common;
 using Insight.Utils.Entity;
 
-namespace Insight.MTP.Client.Platform.Apps.Models
+namespace Insight.MTP.Client.Platform.Apps.ViewModels
 {
     public class FunModel : BaseDialogModel<Function, FunDialog>
     {

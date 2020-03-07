@@ -1,5 +1,5 @@
 ﻿using Insight.MTP.Client.Common.Entity;
-using Insight.MTP.Client.Platform.Apps.Models;
+using Insight.MTP.Client.Platform.Apps.ViewModels;
 using Insight.MTP.Client.Platform.Apps.Views;
 using Insight.Utils.BaseControllers;
 using Insight.Utils.Common;
@@ -15,10 +15,9 @@ namespace Insight.MTP.Client.Platform.Apps
         /// <param name="info">模块信息</param>
         public Controller(ModuleDto info):base(info)
         {
-
-            // 加载数据
-
+            refresh();
         }
+
         /// <summary>
         /// 刷新列表
         /// </summary>
