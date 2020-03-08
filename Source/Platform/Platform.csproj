@@ -123,6 +123,7 @@
       <DependentUpon>Manager.cs</DependentUpon>
     </Compile>
     <Compile Include="Tenants\Controller.cs" />
+    <Compile Include="Tenants\DataModel.cs" />
     <Compile Include="Tenants\Models\ExtendModel.cs" />
     <Compile Include="Tenants\Models\BindModel.cs" />
     <Compile Include="Tenants\Models\TenantModel.cs" />

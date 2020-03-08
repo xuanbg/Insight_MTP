@@ -4,20 +4,17 @@ using DevExpress.XtraTreeList.Nodes;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Apps.Views;
 using Insight.Utils.BaseViewModels;
-using Insight.Utils.Client;
 using Insight.Utils.Common;
 using Insight.Utils.Controls;
 
 namespace Insight.MTP.Client.Platform.Apps.ViewModels
 {
-    public class ManagerModel : BaseMdiModel<App, Manager>
+    public class ManagerModel : BaseMdiModel<App, Manager, DataModel>
     {
-        private readonly DataModel dataModel = new DataModel();
-        private int rows = 20;
         private string key;
 
         public Navigation nav;
-        public Function fun;
+        public Function func;
 
         /// <summary>
         /// 构造ff
@@ -25,13 +22,16 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
         public ManagerModel()
         {
             tab = view.pccApp;
+            tab.currentPageChanged += (sender, args) => loadData();
+            tab.pageSizeChanged += (sender, args) => loadData(tab.focusedRowHandle);
+            tab.totalRowsChanged += (sender, args) => view.gdvApp.FocusedRowHandle = args.rowHandle;
 
             // 订阅界面事件
             view.gdvApp.DoubleClick += (sender, args) => callback("editApp");
             view.TreNav.DoubleClick += (sender, args) => callback("editNav");
             view.gdvFunc.DoubleClick += (sender, args) => callback("editFun");
 
-            //view.gdvApp.FocusedRowObjectChanged += (sender, args) => itemChanged(args.FocusedRowHandle);
+            view.gdvApp.FocusedRowObjectChanged += (sender, args) => itemChanged(args.FocusedRowHandle);
             view.gdvApp.FocusedRowChanged += (sender, args) => itemChanged(args.FocusedRowHandle);
             view.TreNav.FocusedNodeChanged += (sender, args) => navChanged(args.Node);
             view.gdvFunc.FocusedRowObjectChanged += (sender, args) => funChanged(args.FocusedRowHandle);
@@ -55,134 +55,21 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
         /// <summary>
         /// 加载列表数据
         /// </summary>
-        public void loadData()
+        /// <param name="handle">行号</param>
+        public void loadData(int handle = 0)
         {
             showWaitForm();
-            var result = dataModel.getApps(key, tab.currentPage, rows);
+            var result = dataModel.getApps(key, tab.page, tab.size);
             list = result.data;
             closeWaitForm();
 
             tab.totalRows = int.Parse(result.option.ToString()) ;
             view.grdApp.DataSource = list;
-            view.gdvApp.FocusedRowHandle = tab.focusedRowHandle;
+            view.gdvApp.FocusedRowHandle = handle;
         }
 
         /// <summary>
-        /// 新增数据
-        /// </summary>
-        /// <param name="data">App</param>
-        public void addItem(App data)
-        {
-            list.Add(data);
-        }
-
-        /// <summary>
-        /// 更新数据
-        /// </summary>
-        /// <param name="data">App</param>
-        public void update(App data)
-        {
-            Util.copyValue(data, item);
-        }
-
-        /// <summary>
-        /// 新增数据
-        /// </summary>
-        /// <param name="data">Navigation</param>
-        public void addItem(Navigation data)
-        {
-            item.navs.Add(data);
-        }
-
-        /// <summary>
-        /// 更新数据
-        /// </summary>
-        /// <param name="data">Navigation</param>
-        public void update(Navigation data)
-        {
-            Util.copyValue(data, nav);
-        }
-
-        /// <summary>
-        /// 新增数据
-        /// </summary>
-        /// <param name="data">Function</param>
-        public void addItem(Function data)
-        {
-            nav.functions.Add(data);
-        }
-
-        /// <summary>
-        /// 更新数据
-        /// </summary>
-        /// <param name="data">Function</param>
-        public void update(Function data)
-        {
-            Util.copyValue(data, fun);
-        }
-
-        /// <summary>
-        /// 删除当前选中数据
-        /// </summary>
-        public void deleteItem()
-        {
-            var msg = $"您确定要删除应用【{item.name}】吗？\r\n数据删除后将无法恢复！";
-            if (!Messages.showConfirm(msg)) return;
-
-            msg = $"对不起，无法删除应用【{item.name}】！";
-            var url = $"/appapi/v1.0/apps/{item.id}";
-            var client = new HttpClient<object>();
-            if (!client.delete(url, null, msg))
-            {
-                return;
-            }
-
-            list.Remove(item);
-            //view.gdvApp.RefreshData();
-        }
-
-        /// <summary>
-        /// 删除当前选中数据
-        /// </summary>
-        public void deleteNav()
-        {
-            var msg = $"您确定要删除导航【{nav.name}】吗？\r\n数据删除后将无法恢复！";
-            if (!Messages.showConfirm(msg)) return;
-
-            msg = $"对不起，无法删除导航【{nav.name}】！";
-            var url = $"/appapi/v1.0/apps/navigations/{nav.id}";
-            var client = new HttpClient<object>();
-            if (!client.delete(url, null, msg))
-            {
-                return;
-            }
-
-            item.navs.Remove(nav);
-            //view.TreNav.RefreshDataSource();
-        }
-
-        /// <summary>
-        /// 删除当前选中数据
-        /// </summary>
-        public void deleteFun()
-        {
-            var msg = $"您确定要删除功能【{fun.name}】吗？\r\n数据删除后将无法恢复！";
-            if (!Messages.showConfirm(msg)) return;
-
-            msg = $"对不起，无法删除功能【{fun.name}】！";
-            var url = $"/appapi/v1.0/apps/navigations/functions/{fun.id}";
-            var client = new HttpClient<object>();
-            if (!client.delete(url, null, msg))
-            {
-                return;
-            }
-
-            nav.functions.Remove(fun);
-            //view.gdvFunc.RefreshData();
-        }
-
-        /// <summary>
-        /// 列表所选数据改变
+        /// 主列表所选数据改变
         /// </summary>
         /// <param name="index">List下标</param>
         private void itemChanged(int index)
@@ -191,10 +78,13 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
             {
                 item = null;
                 nav = null;
+                func = null;
+                view.grdFunc.DataSource = null;
             }
             else
             {
                 tab.focusedRowHandle = index;
+                handle = index;
                 var obj = list[index];
                 if (obj.id != item?.id)
                 {
@@ -207,8 +97,11 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
             }
 
             view.TreNav.DataSource = item?.navs;
-            view.TreNav.FocusedNode = view.TreNav.Nodes.FirstNode;
-            view.TreNav.ExpandAll();
+            if (item?.navs.Any() ?? false)
+            {
+                view.TreNav.FocusedNode = view.TreNav.Nodes.FirstNode;
+                view.TreNav.ExpandAll();
+            }
 
             refreshToolBar();
         }
@@ -225,7 +118,7 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
 
             if (node.HasChildren)
             {
-                fun = null;
+                func = null;
             }
             else if (nav.functions == null)
             {
@@ -237,12 +130,12 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
         }
 
         /// <summary>
-        /// 列表所选数据改变
+        /// 功能列表所选数据改变
         /// </summary>
         /// <param name="index">List下标</param>
         private void funChanged(int index)
         {
-            fun = index < 0 ? null : nav.functions[index];
+            func = index < 0 ? null : nav.functions[index];
 
             refreshToolBar();
         }
@@ -259,11 +152,117 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
                 ["newNav"] = item != null && (nav == null || nav.type == 1),
                 ["editNav"] = nav != null,
                 ["deleteNav"] = nav != null,
-                ["newFun"] = nav != null && nav.type == 2,
-                ["editFun"] = fun != null,
-                ["deleteFun"] = fun != null,
+                ["newFunc"] = nav != null && nav.type == 2,
+                ["editFunc"] = func != null,
+                ["deleteFunc"] = func != null,
             };
             switchItemStatus(dict);
+        }
+
+        /// <summary>
+        /// 新增应用
+        /// </summary>
+        /// <param name="app">App</param>
+        public bool addIApp(App app)
+        {
+            var id = dataModel.addApp(app);
+            if (id == null) return false;
+
+            list.Add(app);
+            tab.addItems();
+
+            return true;
+        }
+
+        /// <summary>
+        /// 更新应用
+        /// </summary>
+        /// <param name="app">App</param>
+        public bool updateApp(App app)
+        {
+            if (!dataModel.updateApp(app)) return false;
+
+            Util.copyValue(app, item);
+            return true;
+        }
+
+        /// <summary>
+        /// 删除当前选中应用
+        /// </summary>
+        public void deleteApp()
+        {
+            var msg = $"您确定要删除应用【{item.name}】吗？\r\n数据删除后将无法恢复！";
+            if (!Messages.showConfirm(msg)) return;
+
+            if (dataModel.deleteApp(item))
+            {
+                list.Remove(item);
+            }
+        }
+
+        /// <summary>
+        /// 新增导航数据
+        /// </summary>
+        /// <param name="data">Navigation</param>
+        public void addItem(Navigation data)
+        {
+            item.navs.Add(data);
+        }
+
+        /// <summary>
+        /// 更新导航数据
+        /// </summary>
+        /// <param name="data">Navigation</param>
+        public void update(Navigation data)
+        {
+            Util.copyValue(data, nav);
+        }
+
+        /// <summary>
+        /// 删除当前选中导航
+        /// </summary>
+        public void deleteNav()
+        {
+            var msg = $"您确定要删除导航【{nav.name}】吗？\r\n数据删除后将无法恢复！";
+            if (!Messages.showConfirm(msg)) return;
+
+            if (dataModel.deleteNav(nav))
+            {
+                item.navs.Remove(nav);
+                tab.removeItems();
+            }
+        }
+
+        /// <summary>
+        /// 新增功能数据
+        /// </summary>
+        /// <param name="func">Function</param>
+        public void addItem(Function func)
+        {
+            nav.functions.Add(func);
+        }
+
+        /// <summary>
+        /// 更新功能数据
+        /// </summary>
+        /// <param name="func">Function</param>
+        public void update(Function func)
+        {
+            Util.copyValue(func, this.func);
+        }
+
+        /// <summary>
+        /// 删除当前选中功能
+        /// </summary>
+        public void deleteFunc()
+        {
+            var msg = $"您确定要删除功能【{func.name}】吗？\r\n数据删除后将无法恢复！";
+            if (!Messages.showConfirm(msg)) return;
+
+            if (dataModel.deleteFunc(func))
+            {
+                nav.functions.Remove(func);
+            }
         }
     }
 }

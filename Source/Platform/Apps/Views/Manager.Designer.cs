@@ -36,7 +36,6 @@ namespace Insight.MTP.Client.Platform.Apps.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -62,7 +61,7 @@ namespace Insight.MTP.Client.Platform.Apps.Views
             this.TreNav = new DevExpress.XtraTreeList.TreeList();
             this.colNavType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colNavName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.imgNav = new DevExpress.Utils.ImageCollection(this.components);
+            this.imgNav = new DevExpress.Utils.ImageCollection();
             this.grpUser = new DevExpress.XtraEditors.GroupControl();
             this.grdFunc = new DevExpress.XtraGrid.GridControl();
             this.gdvFunc = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -288,7 +287,6 @@ namespace Insight.MTP.Client.Platform.Apps.Views
             this.pccApp.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("pccApp.pageSizeItems")));
             this.pccApp.Size = new System.Drawing.Size(1070, 22);
             this.pccApp.TabIndex = 0;
-            this.pccApp.totalRows = 0;
             // 
             // splMember
             // 
@@ -350,9 +348,7 @@ namespace Insight.MTP.Client.Platform.Apps.Views
             this.imgNav.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imgNav.ImageStream")));
             this.imgNav.InsertGalleryImage("properties_16x16.png", "images/setup/properties_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/setup/properties_16x16.png"), 0);
             this.imgNav.Images.SetKeyName(0, "properties_16x16.png");
-            this.imgNav.InsertGalleryImage("openhyperlink_16x16.png", "images/actions/openhyperlink_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/openhyperlink_16x16.png"), 1);
-            this.imgNav.Images.SetKeyName(1, "openhyperlink_16x16.png");
-            this.imgNav.InsertGalleryImage("openhyperlink_16x16.png", "images/actions/openhyperlink_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/openhyperlink_16x16.png"), 2);
+            this.imgNav.Images.SetKeyName(1, "open_16x16.png");
             this.imgNav.Images.SetKeyName(2, "openhyperlink_16x16.png");
             // 
             // grpUser

@@ -8,7 +8,7 @@ using Insight.Utils.Controls;
 
 namespace Insight.MTP.Client.Platform.Tenants.Models
 {
-    public class ManagerModel : BaseMdiModel<Tenant, Manager>
+    public class ManagerModel : BaseMdiModel<Tenant, Manager, DataModel>
     {
 
         public int rows = 20;
@@ -21,12 +21,12 @@ namespace Insight.MTP.Client.Platform.Tenants.Models
             view.gdvTenant.DoubleClick += (sender, args) => callback("edit");
             // 订阅租户列表分页控件事件
             view.tabTenant.pageSizeChanged += (sender, args) => rows = args.pageSize;
-            view.tabTenant.currentPageChanged += (sender, args) => loadData(view.tabTenant.currentPage, args.rowHandle);
+            view.tabTenant.currentPageChanged += (sender, args) => loadData(view.tabTenant.page, args.rowHandle);
             view.tabTenant.totalRowsChanged += (sender, args) => view.gdvTenant.FocusedRowHandle = args.rowHandle;
 
             // 订阅用户列表分页控件事件
             view.tabUser.pageSizeChanged += (sender, args) => rows = args.pageSize;
-            view.tabUser.currentPageChanged += (sender, args) => loadData(view.tabUser.currentPage, args.rowHandle);
+            view.tabUser.currentPageChanged += (sender, args) => loadData(view.tabUser.page, args.rowHandle);
             view.tabUser.totalRowsChanged += (sender, args) => view.gdvUser.FocusedRowHandle = args.rowHandle;
 
             // 订阅界面事件
