@@ -35,10 +35,13 @@ namespace Insight.MTP.Client.Platform.Apps
             var model = new AppModel(app, "新建应用");
             model.callbackEvent += (sender, args) =>
             {
-                if (mdiModel.addIApp((App) args.param[0]))
-                {
+                app.id = dataModel.addApp(app);
+                if (app.id == null) return;
 
-                }
+                mdiModel.list.Add(app);
+                mdiModel.tab.addItems();
+
+                model.close();
             };
 
             model.showDialog();
@@ -51,7 +54,15 @@ namespace Insight.MTP.Client.Platform.Apps
         {
             if (!mdiModel.allowDoubleClick("editApp")) return;
 
-            var model = new AppModel(null, "编辑应用");
+            var model = new AppModel(mdiModel.item, "编辑应用");
+            model.callbackEvent += (sender, args) =>
+            {
+                if (!dataModel.updateApp(mdiModel.item)) return;
+
+                model.close();
+            };
+
+            model.showDialog();
         }
 
         /// <summary>
@@ -59,7 +70,13 @@ namespace Insight.MTP.Client.Platform.Apps
         /// </summary>
         public void deleteApp()
         {
-            mdiModel.deleteApp();
+            var msg = $"您确定要删除应用【{mdiModel.item.name}】吗？\r\n数据删除后将无法恢复！";
+            if (!Messages.showConfirm(msg)) return;
+
+            if (dataModel.deleteApp(mdiModel.item))
+            {
+                mdiModel.list.Remove(mdiModel.item);
+            }
         }
 
         /// <summary>
@@ -68,8 +85,17 @@ namespace Insight.MTP.Client.Platform.Apps
         public void newNav()
         {
             var nav = new Navigation();
-            var navs =  new TreeLookUpMember();
             var model = new NavModel(nav, "新建导航");
+            model.callbackEvent += (sender, args) =>
+            {
+                nav.id = dataModel.addNav(nav);
+                if (nav.id == null) return;
+
+                mdiModel.item.navs.Add(nav);
+                model.close();
+            };
+
+            model.showDialog();
         }
 
         /// <summary>
@@ -79,8 +105,15 @@ namespace Insight.MTP.Client.Platform.Apps
         {
             if (!mdiModel.allowDoubleClick("editNav")) return;
 
-            var nav = Util.clone(mdiModel.nav);
-            var model = new NavModel(nav, "编辑导航");
+            var model = new NavModel(mdiModel.nav, "编辑导航");
+            model.callbackEvent += (sender, args) =>
+            {
+                if (!dataModel.updateNav(mdiModel.nav)) return;
+
+                model.close();
+            };
+
+            model.showDialog();
         }
 
         /// <summary>
@@ -88,7 +121,13 @@ namespace Insight.MTP.Client.Platform.Apps
         /// </summary>
         public void deleteNav()
         {
-            mdiModel.deleteNav();
+            var msg = $"您确定要删除导航【{mdiModel.nav.name}】吗？\r\n数据删除后将无法恢复！";
+            if (!Messages.showConfirm(msg)) return;
+
+            if (dataModel.deleteNav(mdiModel.nav))
+            {
+                mdiModel.item.navs.Remove(mdiModel.nav);
+            }
         }
 
         /// <summary>
@@ -96,8 +135,18 @@ namespace Insight.MTP.Client.Platform.Apps
         /// </summary>
         public void newFunc()
         {
-            var app = new Function{navId = mdiModel.nav.id};
-            var model = new FunModel(app, "新建功能");
+            var func = new Function{navId = mdiModel.nav.id};
+            var model = new FunModel(func, "新建功能");
+            model.callbackEvent += (sender, args) =>
+            {
+                func.id = dataModel.addFunc(func);
+                if (func.id == null) return;
+
+                mdiModel.nav.functions.Add(func);
+                model.close();
+            };
+
+            model.showDialog();
         }
 
         /// <summary>
@@ -107,8 +156,15 @@ namespace Insight.MTP.Client.Platform.Apps
         {
             if (!mdiModel.allowDoubleClick("editFun")) return;
 
-            var fun = Util.clone(mdiModel.func);
-            var model = new FunModel(fun, "编辑功能");
+            var model = new FunModel(mdiModel.func, "编辑功能");
+            model.callbackEvent += (sender, args) =>
+            {
+                if (!dataModel.updateFunc(mdiModel.func)) return;
+
+                model.close();
+            };
+
+            model.showDialog();
         }
 
         /// <summary>
@@ -116,7 +172,13 @@ namespace Insight.MTP.Client.Platform.Apps
         /// </summary>
         public void deleteFunc()
         {
-            mdiModel.deleteFunc();
+            var msg = $"您确定要删除功能【{mdiModel.func.name}】吗？\r\n数据删除后将无法恢复！";
+            if (!Messages.showConfirm(msg)) return;
+
+            if (dataModel.deleteFunc(mdiModel.func))
+            {
+                mdiModel.nav.functions.Remove(mdiModel.func);
+            }
         }
     }
 }
