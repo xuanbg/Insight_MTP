@@ -11,44 +11,22 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
 {
     public class ManagerModel : BaseMdiModel<App, Manager, DataModel>
     {
-        private string key;
-
         public Navigation nav;
         public Function func;
 
         /// <summary>
-        /// 构造ff
+        /// 构造方法
         /// </summary>
         public ManagerModel()
         {
-            tab = view.pccApp;
-            tab.currentPageChanged += (sender, args) => loadData();
-            tab.pageSizeChanged += (sender, args) => loadData(tab.focusedRowHandle);
-            tab.totalRowsChanged += (sender, args) => view.gdvApp.FocusedRowHandle = args.rowHandle;
+            init(view.gdvApp, "editApp", view.pccApp, view.KeyInput, view.Search);
 
-            // 订阅界面事件
-            view.gdvApp.DoubleClick += (sender, args) => callback("editApp");
             view.TreNav.DoubleClick += (sender, args) => callback("editNav");
-            view.gdvFunc.DoubleClick += (sender, args) => callback("editFun");
-
-            view.gdvApp.FocusedRowObjectChanged += (sender, args) => itemChanged(args.FocusedRowHandle);
-            view.gdvApp.FocusedRowChanged += (sender, args) => itemChanged(args.FocusedRowHandle);
             view.TreNav.FocusedNodeChanged += (sender, args) => navChanged(args.Node);
-            view.gdvFunc.FocusedRowObjectChanged += (sender, args) => funChanged(args.FocusedRowHandle);
-
-            view.Search.Click += (sender, args) => loadData();
-            view.KeyInput.Properties.Click += (sender, args) => view.KeyInput.EditValue = null;
-            view.KeyInput.EditValueChanged += (sender, args) => key = view.KeyInput.EditValue as string;
-            view.KeyInput.KeyPress += (sender, args) =>
-            {
-                if (args.KeyChar != 13) return;
-
-                loadData();
-            };
-
-            // 设置界面样式
-            Format.gridFormat(view.gdvApp);
             Format.treeFormat(view.TreNav);
+
+            view.gdvFunc.DoubleClick += (sender, args) => callback("editFun");
+            view.gdvFunc.FocusedRowObjectChanged += (sender, args) => funChanged(args.FocusedRowHandle);
             Format.gridFormat(view.gdvFunc);
         }
 
@@ -59,7 +37,7 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
         public void loadData(int handle = 0)
         {
             showWaitForm();
-            var result = dataModel.getApps(key, tab.page, tab.size);
+            var result = dataModel.getApps(keyWord, tab.page, tab.size);
             list = result.data;
             closeWaitForm();
 
@@ -72,7 +50,7 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
         /// 主列表所选数据改变
         /// </summary>
         /// <param name="index">List下标</param>
-        private void itemChanged(int index)
+        public void itemChanged(int index)
         {
             if (index < 0)
             {

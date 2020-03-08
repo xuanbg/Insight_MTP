@@ -10,10 +10,8 @@ namespace Insight.MTP.Client.Platform.Tenants.Models
 {
     public class ManagerModel : BaseMdiModel<Tenant, Manager, DataModel>
     {
-
         public int rows = 20;
         public int total;
-        public string key;
 
         public ManagerModel()
         {
@@ -33,7 +31,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Models
             view.gdvTenant.FocusedRowObjectChanged += (sender, args) => itemChanged(args.FocusedRowHandle);
             view.Search.Click += (sender, args) => loadData();
             view.KeyInput.Properties.Click += (sender, args) => view.KeyInput.EditValue = null;
-            view.KeyInput.EditValueChanged += (sender, args) => key = view.KeyInput.Text.Trim();
+            view.KeyInput.EditValueChanged += (sender, args) => keyWord = view.KeyInput.Text.Trim();
             view.KeyInput.KeyPress += (sender, args) =>
             {
                 if (args.KeyChar != 13) return;
@@ -62,7 +60,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Models
             var url = $"/tenantapi/v1.0/tenants";
             var dict = new Dictionary<string, object>
             {
-                {"key", key},
+                {"key", keyWord},
                 {"page", page},
                 {"rows", rows}
             };
