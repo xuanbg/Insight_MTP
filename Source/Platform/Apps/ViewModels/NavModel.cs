@@ -1,34 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Windows.Forms;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Apps.Views;
 using Insight.Utils.BaseViewModels;
-using Insight.Utils.Client;
 using Insight.Utils.Common;
-using Insight.Utils.Controls;
 using Insight.Utils.Entity;
 
 namespace Insight.MTP.Client.Platform.Apps.ViewModels
 {
     public class NavModel : BaseDialogModel<Navigation, NavDialog>
     {
-
-        private List<TreeLookUpMember> navList;
-        private Navigation nav;
-
-        /// <summary>
-        /// 导航集合
-        /// </summary>
-        public List<TreeLookUpMember> navs
-        {
-            private get { return navList; }
-            set
-            {
-                navList = value;
-                Format.initTreeListLookUpEdit(view.lueParent, navList);
-            }
-        }
-
         /// <summary>
         /// 构造函数
         /// 通过订阅事件实现双向数据绑定
@@ -37,75 +17,43 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
         /// <param name="title">View标题</param>
         public NavModel(Navigation data, string title) : base(title)
         {
-            nav = data;
-            view.lueParent.EditValue = data.parentId;
-            view.speIndex.EditValue = data.index;
-            view.txtName.EditValue = data.name;
+            item = data;
+            if (item.moduleInfo == null) item.moduleInfo = new ModuleInfo();
 
-            view.picIcon.Click += (sender, args) => view.picIcon.LoadImage();
+            var isGroup = item.type == 1;
+            view.chkGroup.Checked = isGroup;
+            view.txtModule.Enabled = !isGroup;
+            view.txtFile.Enabled = !isGroup;
+            view.cheLoad.Enabled = !isGroup;
 
-            // 订阅控件事件实现数据双向绑定
-            view.lueParent.EditValueChanged += (sender, args) =>
-            {
-                var pid = view.lueParent.EditValue.ToString();
-                nav.parentId = pid;
-                view.speIndex.Value = navs.Count(i => i.parentId == pid) + 1;
-            };
-            view.speIndex.EditValueChanged += (sender, args) => nav.index = (int) view.speIndex.Value;
-            view.txtName.EditValueChanged += (sender, args) => nav.name = view.txtName.Text.Trim();
-            view.picIcon.ImageChanged += (sender, args) =>
-            {
-                var size = string.IsNullOrEmpty(nav.parentId) ? 32 : 24;
-            };
-            view.memRemark.EditValueChanged += (sender, args) =>
-            {
-                var text = view.memRemark.EditValue?.ToString().Trim();
-            };
+            view.speIndex.EditValue = item.index;
+            view.txtName.EditValue = item.name;
+            view.txtModule.EditValue = item.moduleInfo.module;
+            view.txtFile.EditValue = item.moduleInfo.file;
+            view.txtIcon.EditValue = item.moduleInfo.iconUrl;
+            view.cheLoad.Checked = item.moduleInfo.autoLoad ?? false;
 
-        }
-
-        /// <summary>
-        /// 新增
-        /// </summary>
-        public Navigation add()
-        {
-            if (!inputExamine()) return null;
-
-            var msg = $"新建应用【{nav.name}】失败！";
-            var url = $"/appapi/v1.0/apps/navigations";
-            var dict = new Dictionary<string, object> {{"nav", nav}};
-            var client = new HttpClient<Navigation>();
-            return client.post(url, dict, msg) ? client.data : null;
-        }
-
-        /// <summary>
-        /// 编辑
-        /// </summary>
-        public Navigation edit()
-        {
-            if (!inputExamine()) return null;
-
-            var msg = $"没有更新应用【{nav.name}】的任何信息！";
-            var url = $"/appapi/v1.0/apps/navigations/{nav.id}";
-            var dict = new Dictionary<string, object> {{"nav", nav}};
-            var client = new HttpClient<Navigation>();
-            return client.put(url, dict, msg) ? nav : null;
+            view.speIndex.EditValueChanged += (sender, args) => item.index = (int) view.speIndex.Value;
+            view.txtName.EditValueChanged += (sender, args) => item.name = view.txtName.Text.Trim();
+            view.txtModule.EditValueChanged += (sender, args) => item.moduleInfo.module = view.txtModule.Text.Trim();
+            view.txtFile.EditValueChanged += (sender, args) => item.moduleInfo.file = view.txtFile.Text.Trim();
+            view.txtIcon.EditValueChanged += (sender, args) => item.moduleInfo.iconUrl = view.txtIcon.Text.Trim();
+            view.cheLoad.CheckedChanged += (sender, args) => item.moduleInfo.autoLoad = view.cheLoad.Checked;
         }
 
         /// <summary>
         /// 输入合法性检查
         /// </summary>
-        /// <returns>bool 是否通过</returns>
-        private new bool inputExamine()
+        public new void confirm()
         {
-            if (string.IsNullOrEmpty(nav.name))
+            if (string.IsNullOrEmpty(item.name))
             {
                 Messages.showWarning("必须输入导航名称！");
                 view.txtName.Focus();
-                return false;
+                return;
             }
 
-            return true;
+            base.confirm();
         }
     }
 }

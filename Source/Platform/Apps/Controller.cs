@@ -1,4 +1,5 @@
-﻿using Insight.MTP.Client.Common.Entity;
+﻿using System.Linq;
+using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Apps.ViewModels;
 using Insight.MTP.Client.Platform.Apps.Views;
 using Insight.Utils.BaseControllers;
@@ -31,7 +32,8 @@ namespace Insight.MTP.Client.Platform.Apps
         /// </summary>
         public void newApp()
         {
-            var app = new App();
+            var count = dataModel.getApps(null, 1, 1).option;
+            var app = new App{index = int.Parse(count.ToString()) + 1};
             var model = new AppModel(app, "新建应用");
             model.callbackEvent += (sender, args) =>
             {
@@ -52,8 +54,6 @@ namespace Insight.MTP.Client.Platform.Apps
         /// </summary>
         public void editApp()
         {
-            if (!mdiModel.allowDoubleClick("editApp")) return;
-
             var model = new AppModel(mdiModel.item, "编辑应用");
             model.callbackEvent += (sender, args) =>
             {
@@ -76,6 +76,7 @@ namespace Insight.MTP.Client.Platform.Apps
             if (dataModel.deleteApp(mdiModel.item))
             {
                 mdiModel.list.Remove(mdiModel.item);
+                mdiModel.tab.removeItems();
             }
         }
 
@@ -84,14 +85,23 @@ namespace Insight.MTP.Client.Platform.Apps
         /// </summary>
         public void newNav()
         {
-            var nav = new Navigation();
+            var type = mdiModel.nav?.type == 1 ? 2 : 1;
+            var parentId = type == 1 ? null : mdiModel.nav?.id;
+            var nav = new Navigation
+            {
+                parentId = parentId,
+                appId = mdiModel.item.id,
+                type = type,
+                index = mdiModel.item.navigations.Count(i => i.parentId == parentId) + 1
+            };
             var model = new NavModel(nav, "新建导航");
             model.callbackEvent += (sender, args) =>
             {
                 nav.id = dataModel.addNav(nav);
                 if (nav.id == null) return;
 
-                mdiModel.item.navs.Add(nav);
+                mdiModel.item.navigations.Add(nav);
+                mdiModel.refreshTree();
                 model.close();
             };
 
@@ -103,13 +113,12 @@ namespace Insight.MTP.Client.Platform.Apps
         /// </summary>
         public void editNav()
         {
-            if (!mdiModel.allowDoubleClick("editNav")) return;
-
             var model = new NavModel(mdiModel.nav, "编辑导航");
             model.callbackEvent += (sender, args) =>
             {
                 if (!dataModel.updateNav(mdiModel.nav)) return;
 
+                mdiModel.refreshTree();
                 model.close();
             };
 
@@ -126,7 +135,9 @@ namespace Insight.MTP.Client.Platform.Apps
 
             if (dataModel.deleteNav(mdiModel.nav))
             {
-                mdiModel.item.navs.Remove(mdiModel.nav);
+                var id = mdiModel.nav.id;
+                mdiModel.item.navigations.RemoveAll(i => i.id == id || i.parentId == id);
+                mdiModel.refreshTree();
             }
         }
 
@@ -143,6 +154,8 @@ namespace Insight.MTP.Client.Platform.Apps
                 if (func.id == null) return;
 
                 mdiModel.nav.functions.Add(func);
+                mdiModel.refreshGrid();
+
                 model.close();
             };
 
@@ -154,8 +167,6 @@ namespace Insight.MTP.Client.Platform.Apps
         /// </summary>
         public void editFunc()
         {
-            if (!mdiModel.allowDoubleClick("editFun")) return;
-
             var model = new FunModel(mdiModel.func, "编辑功能");
             model.callbackEvent += (sender, args) =>
             {
@@ -178,6 +189,7 @@ namespace Insight.MTP.Client.Platform.Apps
             if (dataModel.deleteFunc(mdiModel.func))
             {
                 mdiModel.nav.functions.Remove(mdiModel.func);
+                mdiModel.refreshGrid();
             }
         }
     }

@@ -4,8 +4,6 @@ using DevExpress.XtraTreeList.Nodes;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Apps.Views;
 using Insight.Utils.BaseViewModels;
-using Insight.Utils.Common;
-using Insight.Utils.Controls;
 
 namespace Insight.MTP.Client.Platform.Apps.ViewModels
 {
@@ -20,14 +18,8 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
         public ManagerModel()
         {
             init(view.gdvApp, "editApp", view.pccApp, view.KeyInput, view.Search);
-
-            view.TreNav.DoubleClick += (sender, args) => callback("editNav");
-            view.TreNav.FocusedNodeChanged += (sender, args) => navChanged(args.Node);
-            Format.treeFormat(view.TreNav);
-
-            view.gdvFunc.DoubleClick += (sender, args) => callback("editFun");
-            view.gdvFunc.FocusedRowObjectChanged += (sender, args) => funChanged(args.FocusedRowHandle);
-            Format.gridFormat(view.gdvFunc);
+            initTree(view.TreNav, "editNav", "navChanged");
+            initGrid(view.gdvFunc, "editFunc", "funChanged");
         }
 
         /// <summary>
@@ -67,18 +59,22 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
                 if (obj.id != item?.id)
                 {
                     item = obj;
-                    if (item.navs == null)
+                    if (item.navigations == null)
                     {
-                        item.navs = dataModel.getNavs(item.id);
+                        item.navigations = dataModel.getNavs(item.id);
                     }
                 }
             }
 
-            view.TreNav.DataSource = item?.navs;
-            if (item?.navs.Any() ?? false)
+            view.TreNav.DataSource = item?.navigations;
+            if (item?.navigations.Any() ?? false)
             {
                 view.TreNav.FocusedNode = view.TreNav.Nodes.FirstNode;
                 view.TreNav.ExpandAll();
+            }
+            else
+            {
+                nav = null;
             }
 
             refreshToolBar();
@@ -88,10 +84,17 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
         /// 导航节点改变
         /// </summary>
         /// <param name="node">导航节点</param>
-        private void navChanged(TreeListNode node)
+        public void navChanged(TreeListNode node)
         {
+            if (node == null)
+            {
+                nav = null;
+                func = null;
+                return;
+            }
+
             var id = node.GetValue("id").ToString();
-            nav = item.navs.SingleOrDefault(m => m.id == id);
+            nav = item.navigations.SingleOrDefault(m => m.id == id);
             if (nav == null) return;
 
             if (node.HasChildren)
@@ -111,11 +114,27 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
         /// 功能列表所选数据改变
         /// </summary>
         /// <param name="index">List下标</param>
-        private void funChanged(int index)
+        public void funChanged(int index)
         {
             func = index < 0 ? null : nav.functions[index];
 
             refreshToolBar();
+        }
+
+        /// <summary>
+        /// 刷新树数据
+        /// </summary>
+        public void refreshTree()
+        {
+            view.TreNav.RefreshDataSource();
+        }
+
+        /// <summary>
+        /// 刷新列表数据
+        /// </summary>
+        public void refreshGrid()
+        {
+            view.gdvFunc.RefreshData();
         }
 
         /// <summary>
@@ -127,7 +146,7 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
             {
                 ["editApp"] = item != null,
                 ["deleteApp"] = item != null,
-                ["newNav"] = item != null && (nav == null || nav.type == 1),
+                ["newNav"] = item != null,
                 ["editNav"] = nav != null,
                 ["deleteNav"] = nav != null,
                 ["newFunc"] = nav != null && nav.type == 2,

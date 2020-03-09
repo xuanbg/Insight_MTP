@@ -37,12 +37,12 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 授权码生命周期(毫秒)
         /// </summary>
-        public int permitLife { get; set; }
+        public int permitLife { get; set; } = 300;
 
         /// <summary>
         /// 令牌生命周期(毫秒)
         /// </summary>
-        public int tokenLife { get; set; }
+        public int tokenLife { get; set; } = 7200;
 
         /// <summary>
         /// 是否单设备登录
@@ -62,6 +62,6 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 导航集合
         /// </summary>
-        public List<Navigation> navs { get; set; }
+        public List<Navigation> navigations { get; set; }
     }
 }

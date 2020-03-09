@@ -42,7 +42,6 @@ namespace Insight.MTP.Client.Platform.Tenants
         /// </summary>
         private void edit()
         {
-            if (!mdiModel.allowDoubleClick("editTenant")) return;
 
             var model = new TenantModel(new Tenant(), "编辑租户");
         }

@@ -28,55 +28,74 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppDialog));
-            this.picIcon = new DevExpress.XtraEditors.PictureEdit();
             this.labName = new DevExpress.XtraEditors.LabelControl();
             this.txtName = new DevExpress.XtraEditors.TextEdit();
             this.labAlias = new DevExpress.XtraEditors.LabelControl();
             this.txtAlias = new DevExpress.XtraEditors.TextEdit();
             this.labHost = new DevExpress.XtraEditors.LabelControl();
             this.txtHost = new DevExpress.XtraEditors.TextEdit();
-            this.labLife = new DevExpress.XtraEditors.LabelControl();
-            this.labRemark = new DevExpress.XtraEditors.LabelControl();
-            this.memRemark = new DevExpress.XtraEditors.MemoEdit();
-            this.txtlife = new DevExpress.XtraEditors.TextEdit();
+            this.labPermitLife = new DevExpress.XtraEditors.LabelControl();
+            this.txtPermitLife = new DevExpress.XtraEditors.TextEdit();
             this.labSecond = new DevExpress.XtraEditors.LabelControl();
+            this.labTokenLife = new DevExpress.XtraEditors.LabelControl();
+            this.txtTokenLife = new DevExpress.XtraEditors.TextEdit();
+            this.labSecond2 = new DevExpress.XtraEditors.LabelControl();
+            this.cheSigninOne = new DevExpress.XtraEditors.CheckEdit();
+            this.cheAutoRefresh = new DevExpress.XtraEditors.CheckEdit();
+            this.cheAutoTenant = new DevExpress.XtraEditors.CheckEdit();
+            this.labIndex = new DevExpress.XtraEditors.LabelControl();
+            this.spiIndex = new DevExpress.XtraEditors.SpinEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picIcon.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAlias.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHost.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memRemark.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtlife.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPermitLife.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTokenLife.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cheSigninOne.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cheAutoRefresh.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cheAutoTenant.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spiIndex.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.spiIndex);
+            this.panel.Controls.Add(this.cheAutoTenant);
+            this.panel.Controls.Add(this.cheAutoRefresh);
+            this.panel.Controls.Add(this.cheSigninOne);
+            this.panel.Controls.Add(this.labSecond2);
             this.panel.Controls.Add(this.labSecond);
-            this.panel.Controls.Add(this.memRemark);
-            this.panel.Controls.Add(this.txtlife);
-            this.panel.Controls.Add(this.labLife);
+            this.panel.Controls.Add(this.txtTokenLife);
+            this.panel.Controls.Add(this.labIndex);
+            this.panel.Controls.Add(this.labTokenLife);
+            this.panel.Controls.Add(this.txtPermitLife);
+            this.panel.Controls.Add(this.labPermitLife);
             this.panel.Controls.Add(this.txtAlias);
             this.panel.Controls.Add(this.txtHost);
-            this.panel.Controls.Add(this.labRemark);
             this.panel.Controls.Add(this.labAlias);
             this.panel.Controls.Add(this.labHost);
             this.panel.Controls.Add(this.txtName);
             this.panel.Controls.Add(this.labName);
-            this.panel.Controls.Add(this.picIcon);
-            this.panel.Size = new System.Drawing.Size(370, 200);
+            this.panel.Size = new System.Drawing.Size(370, 210);
             // 
-            // picIcon
+            // cancel
             // 
-            this.picIcon.Cursor = System.Windows.Forms.Cursors.Default;
-            this.picIcon.Location = new System.Drawing.Point(286, 114);
-            this.picIcon.Name = "picIcon";
-            this.picIcon.Properties.NullText = "单击上传";
-            this.picIcon.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.picIcon.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.picIcon.Size = new System.Drawing.Size(64, 64);
-            this.picIcon.TabIndex = 0;
+            this.cancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cancel.Appearance.Options.UseFont = true;
+            this.cancel.Location = new System.Drawing.Point(200, 234);
+            // 
+            // confirm
+            // 
+            this.confirm.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.confirm.Appearance.Options.UseFont = true;
+            this.confirm.Location = new System.Drawing.Point(290, 234);
+            // 
+            // close
+            // 
+            this.close.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.close.Appearance.Options.UseFont = true;
+            this.close.Location = new System.Drawing.Point(290, 184);
             // 
             // labName
             // 
@@ -91,6 +110,7 @@
             // 
             // txtName
             // 
+            this.txtName.EnterMoveNextControl = true;
             this.txtName.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtName.Location = new System.Drawing.Point(60, 23);
             this.txtName.Name = "txtName";
@@ -110,6 +130,7 @@
             // 
             // txtAlias
             // 
+            this.txtAlias.EnterMoveNextControl = true;
             this.txtAlias.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.txtAlias.Location = new System.Drawing.Point(60, 53);
             this.txtAlias.Name = "txtAlias";
@@ -129,49 +150,34 @@
             // 
             // txtHost
             // 
+            this.txtHost.EnterMoveNextControl = true;
             this.txtHost.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.txtHost.Location = new System.Drawing.Point(60, 83);
             this.txtHost.Name = "txtHost";
-            this.txtHost.Size = new System.Drawing.Size(290, 20);
-            this.txtHost.TabIndex = 4;
+            this.txtHost.Size = new System.Drawing.Size(150, 20);
+            this.txtHost.TabIndex = 3;
             // 
-            // labLife
+            // labPermitLife
             // 
-            this.labLife.Appearance.Options.UseTextOptions = true;
-            this.labLife.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labLife.Location = new System.Drawing.Point(230, 55);
-            this.labLife.Name = "labLife";
-            this.labLife.Size = new System.Drawing.Size(60, 14);
-            this.labLife.TabIndex = 0;
-            this.labLife.Text = "令牌周期：";
+            this.labPermitLife.Appearance.Options.UseTextOptions = true;
+            this.labPermitLife.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.labPermitLife.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labPermitLife.Location = new System.Drawing.Point(230, 55);
+            this.labPermitLife.Name = "labPermitLife";
+            this.labPermitLife.Size = new System.Drawing.Size(60, 14);
+            this.labPermitLife.TabIndex = 0;
+            this.labPermitLife.Text = "授权周期：";
             // 
-            // labRemark
+            // txtPermitLife
             // 
-            this.labRemark.Appearance.Options.UseTextOptions = true;
-            this.labRemark.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labRemark.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labRemark.Location = new System.Drawing.Point(0, 115);
-            this.labRemark.Name = "labRemark";
-            this.labRemark.Size = new System.Drawing.Size(60, 14);
-            this.labRemark.TabIndex = 0;
-            this.labRemark.Text = "备注：";
-            // 
-            // memRemark
-            // 
-            this.memRemark.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.memRemark.Location = new System.Drawing.Point(60, 113);
-            this.memRemark.Name = "memRemark";
-            this.memRemark.Size = new System.Drawing.Size(213, 65);
-            this.memRemark.TabIndex = 5;
-            // 
-            // txtlife
-            // 
-            this.txtlife.Location = new System.Drawing.Point(290, 53);
-            this.txtlife.Name = "txtlife";
-            this.txtlife.Properties.Mask.EditMask = "d";
-            this.txtlife.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtlife.Size = new System.Drawing.Size(40, 20);
-            this.txtlife.TabIndex = 3;
+            this.txtPermitLife.EditValue = "300";
+            this.txtPermitLife.EnterMoveNextControl = true;
+            this.txtPermitLife.Location = new System.Drawing.Point(290, 53);
+            this.txtPermitLife.Name = "txtPermitLife";
+            this.txtPermitLife.Properties.Mask.EditMask = "d";
+            this.txtPermitLife.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtPermitLife.Size = new System.Drawing.Size(40, 20);
+            this.txtPermitLife.TabIndex = 4;
             // 
             // labSecond
             // 
@@ -181,35 +187,127 @@
             this.labSecond.TabIndex = 0;
             this.labSecond.Text = "秒";
             // 
+            // labTokenLife
+            // 
+            this.labTokenLife.Appearance.Options.UseTextOptions = true;
+            this.labTokenLife.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.labTokenLife.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labTokenLife.Location = new System.Drawing.Point(230, 85);
+            this.labTokenLife.Name = "labTokenLife";
+            this.labTokenLife.Size = new System.Drawing.Size(60, 14);
+            this.labTokenLife.TabIndex = 0;
+            this.labTokenLife.Text = "令牌周期：";
+            // 
+            // txtTokenLife
+            // 
+            this.txtTokenLife.EditValue = "7200";
+            this.txtTokenLife.EnterMoveNextControl = true;
+            this.txtTokenLife.Location = new System.Drawing.Point(290, 82);
+            this.txtTokenLife.Name = "txtTokenLife";
+            this.txtTokenLife.Properties.Mask.EditMask = "d";
+            this.txtTokenLife.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtTokenLife.Size = new System.Drawing.Size(40, 20);
+            this.txtTokenLife.TabIndex = 5;
+            // 
+            // labSecond2
+            // 
+            this.labSecond2.Location = new System.Drawing.Point(337, 85);
+            this.labSecond2.Name = "labSecond2";
+            this.labSecond2.Size = new System.Drawing.Size(12, 14);
+            this.labSecond2.TabIndex = 0;
+            this.labSecond2.Text = "秒";
+            // 
+            // cheSigninOne
+            // 
+            this.cheSigninOne.EnterMoveNextControl = true;
+            this.cheSigninOne.Location = new System.Drawing.Point(20, 115);
+            this.cheSigninOne.Name = "cheSigninOne";
+            this.cheSigninOne.Properties.Caption = "仅允许单设备登录";
+            this.cheSigninOne.Size = new System.Drawing.Size(135, 19);
+            this.cheSigninOne.TabIndex = 7;
+            // 
+            // cheAutoRefresh
+            // 
+            this.cheAutoRefresh.EnterMoveNextControl = true;
+            this.cheAutoRefresh.Location = new System.Drawing.Point(20, 145);
+            this.cheAutoRefresh.Name = "cheAutoRefresh";
+            this.cheAutoRefresh.Properties.Caption = "自动刷新令牌";
+            this.cheAutoRefresh.Size = new System.Drawing.Size(136, 19);
+            this.cheAutoRefresh.TabIndex = 8;
+            // 
+            // cheAutoTenant
+            // 
+            this.cheAutoTenant.Location = new System.Drawing.Point(20, 175);
+            this.cheAutoTenant.Name = "cheAutoTenant";
+            this.cheAutoTenant.Properties.Caption = "令牌自动绑定租户";
+            this.cheAutoTenant.Size = new System.Drawing.Size(136, 19);
+            this.cheAutoTenant.TabIndex = 9;
+            // 
+            // labIndex
+            // 
+            this.labIndex.Appearance.Options.UseTextOptions = true;
+            this.labIndex.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.labIndex.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labIndex.Location = new System.Drawing.Point(230, 115);
+            this.labIndex.Name = "labIndex";
+            this.labIndex.Size = new System.Drawing.Size(60, 14);
+            this.labIndex.TabIndex = 0;
+            this.labIndex.Text = "序号：";
+            // 
+            // spiIndex
+            // 
+            this.spiIndex.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spiIndex.EnterMoveNextControl = true;
+            this.spiIndex.Location = new System.Drawing.Point(290, 115);
+            this.spiIndex.Name = "spiIndex";
+            this.spiIndex.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spiIndex.Properties.IsFloatValue = false;
+            this.spiIndex.Properties.Mask.EditMask = "N00";
+            this.spiIndex.Size = new System.Drawing.Size(60, 20);
+            this.spiIndex.TabIndex = 6;
+            // 
             // AppDialog
             // 
-            this.ClientSize = new System.Drawing.Size(384, 262);
+            this.ClientSize = new System.Drawing.Size(384, 272);
             this.Name = "AppDialog";
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picIcon.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAlias.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHost.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memRemark.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtlife.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPermitLife.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTokenLife.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cheSigninOne.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cheAutoRefresh.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cheAutoTenant.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spiIndex.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private DevExpress.XtraEditors.LabelControl labLife;
-        private DevExpress.XtraEditors.LabelControl labRemark;
+        private DevExpress.XtraEditors.LabelControl labPermitLife;
         private DevExpress.XtraEditors.LabelControl labAlias;
         private DevExpress.XtraEditors.LabelControl labHost;
         private DevExpress.XtraEditors.LabelControl labName;
         private DevExpress.XtraEditors.LabelControl labSecond;
-        internal DevExpress.XtraEditors.PictureEdit picIcon;
-        internal DevExpress.XtraEditors.TextEdit txtAlias;
-        internal DevExpress.XtraEditors.TextEdit txtName;
-        internal DevExpress.XtraEditors.TextEdit txtlife;
-        internal DevExpress.XtraEditors.MemoEdit memRemark;
-        internal DevExpress.XtraEditors.TextEdit txtHost;
+        private DevExpress.XtraEditors.LabelControl labSecond2;
+        private DevExpress.XtraEditors.LabelControl labTokenLife;
+        private DevExpress.XtraEditors.LabelControl labIndex;
+        public DevExpress.XtraEditors.TextEdit txtTokenLife;
+        public DevExpress.XtraEditors.CheckEdit cheAutoTenant;
+        public DevExpress.XtraEditors.CheckEdit cheAutoRefresh;
+        public DevExpress.XtraEditors.CheckEdit cheSigninOne;
+        public DevExpress.XtraEditors.SpinEdit spiIndex;
+        public DevExpress.XtraEditors.TextEdit txtAlias;
+        public DevExpress.XtraEditors.TextEdit txtName;
+        public DevExpress.XtraEditors.TextEdit txtPermitLife;
+        public DevExpress.XtraEditors.TextEdit txtHost;
     }
 }
