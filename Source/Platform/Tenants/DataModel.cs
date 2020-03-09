@@ -8,53 +8,60 @@ namespace Insight.MTP.Client.Platform.Tenants
 {
     public class DataModel
     {
-        private const string resourceService = "/base/resource";
+        private const string resourceService = "/base/tenant";
 
         /// <summary>
-        /// 获取应用集合
+        /// 获取租户集合
         /// </summary>
         /// <param name="keyword">查询关键词</param>
         /// <param name="page">页码</param>
         /// <param name="size">每页行数</param>
         /// <returns>应用集合</returns>
-        public Result<List<App>> getApps(string keyword, int page, int size)
+        public Result<List<Tenant>> getTenants(string keyword, int page, int size)
         {
-            var url = $"{resourceService}/v1.0/apps";
+            var url = $"{resourceService}/v1.0/tenants";
             var dict = new Dictionary<string, object>
             {
                 {"keyword", keyword},
                 {"page", page},
                 {"size", size}
             };
-            var client = new HttpClient<List<App>>();
+            var client = new HttpClient<List<Tenant>>();
 
             return client.getResult(url, dict);
         }
 
         /// <summary>
-        /// 获取指定应用的导航集合
+        /// 获取指定租户绑定的应用集合
         /// </summary>
-        /// <param name="id">应用ID</param>
-        /// <returns>导航集合</returns>
-        public List<Navigation> getNavs(string id)
+        /// <param name="id">租户ID</param>
+        /// <returns>绑定的应用集合</returns>
+        public List<TenantApp> getTenantApps(string id)
         {
-            var url = $"{resourceService}/v1.0/apps/{id}/navigators";
-            var client = new HttpClient<List<Navigation>>();
+            var url = $"{resourceService}/v1.0/tenants/{id}/apps";
+            var client = new HttpClient<List<TenantApp>>();
 
             return client.getData(url);
         }
 
         /// <summary>
-        /// 获取指定模块的功能集合
+        /// 获取指定租户绑定的用户集合
         /// </summary>
-        /// <param name="id">模块ID</param>
-        /// <returns>功能集合</returns>
-        public List<Function> getFuncs(string id)
+        /// <param name="id">租户ID</param>
+        /// <param name="page">页码</param>
+        /// <param name="size">每页行数</param>
+        /// <returns>绑定的用户集合</returns>
+        public Result<List<TenantUser>> getTenantUsers(string id, int page, int size)
         {
-            var url = $"{resourceService}/v1.0/navigators/{id}/functions";
-            var client = new HttpClient<List<Function>>();
+            var url = $"{resourceService}/v1.0/tenants/{id}/users";
+            var dict = new Dictionary<string, object>
+            {
+                {"page", page},
+                {"size", size}
+            };
+            var client = new HttpClient<List<TenantUser>>();
 
-            return client.getData(url);
+            return client.getResult(url, dict);
         }
 
         /// <summary>

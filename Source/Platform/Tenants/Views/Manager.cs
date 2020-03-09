@@ -1,6 +1,8 @@
-﻿using Insight.Utils.BaseForms;
+﻿using System.Collections.Generic;
+using Insight.Utils.BaseForms;
+using Insight.Utils.Entity;
 
-namespace Insight.MTP.Client.Base.Tenants.Views
+namespace Insight.MTP.Client.Platform.Tenants.Views
 {
     public partial class Manager : BaseMdi
     {
@@ -10,6 +12,13 @@ namespace Insight.MTP.Client.Base.Tenants.Views
         public Manager()
         {
             InitializeComponent();
+            var list = new List<LookUpMember>
+            {
+                new LookUpMember {id = "0", name = "待审核"},
+                new LookUpMember {id = "1", name = "已审核"},
+                new LookUpMember {id = "2", name = "未通过"}
+            };
+            repStatus.DataSource = list;
         }
     }
 }

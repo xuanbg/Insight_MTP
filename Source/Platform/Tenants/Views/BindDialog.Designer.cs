@@ -1,11 +1,8 @@
 ﻿using System.ComponentModel;
-using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraTab;
-using DevExpress.XtraTreeList;
 
-namespace Insight.MTP.Client.Base.Tenants.Views
+namespace Insight.MTP.Client.Platform.Tenants.Views
 {
     partial class BindDialog
     {

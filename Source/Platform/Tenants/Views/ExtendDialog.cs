@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using Insight.Utils.BaseForms;
 
-namespace Insight.MTP.Client.Base.Tenants.Views
+namespace Insight.MTP.Client.Platform.Tenants.Views
 {
     public partial class ExtendDialog : BaseDialog
     {

@@ -1,13 +1,10 @@
 ﻿using System.ComponentModel;
-using DevExpress.Utils;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraTab;
-using DevExpress.XtraTreeList;
 
-namespace Insight.MTP.Client.Base.Tenants.Views
+namespace Insight.MTP.Client.Platform.Tenants.Views
 {
     partial class Manager
     {
@@ -46,14 +43,14 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.palTenant = new DevExpress.XtraEditors.PanelControl();
             this.grdTenant = new DevExpress.XtraGrid.GridControl();
             this.gdvTenant = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colexpireDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colid = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colcode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colname = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colalias = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colcontact = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colmobile = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colemail = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colfullAdd = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colremark = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colstatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repStatus = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colisInvalid = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tabTenant = new Insight.Utils.Controls.PageControl();
             this.panSpace = new DevExpress.XtraEditors.PanelControl();
             this.panSearch = new DevExpress.XtraEditors.PanelControl();
@@ -63,16 +60,24 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.grpMember = new DevExpress.XtraEditors.GroupControl();
             this.grdApp = new DevExpress.XtraGrid.GridControl();
             this.gdvApp = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colid1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coltenantId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colappId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colname2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colalias1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colexpireDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grpUser = new DevExpress.XtraEditors.GroupControl();
             this.grdUser = new DevExpress.XtraGrid.GridControl();
             this.gdvUser = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colName1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colLoginName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescription1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colValidity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tabUser = new Insight.Utils.Controls.PageControl();
+            this.tenantUserBindingSource = new System.Windows.Forms.BindingSource();
+            this.colid2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colcode1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colname1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colaccount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colmobile = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colemail = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colremark1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colisInvalid1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMain)).BeginInit();
@@ -81,6 +86,7 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.palTenant.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdTenant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvTenant)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSpace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSearch)).BeginInit();
             this.panSearch.SuspendLayout();
@@ -95,6 +101,7 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.grpUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvUser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tenantUserBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraScrollable
@@ -173,6 +180,8 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.grdTenant.Location = new System.Drawing.Point(2, 2);
             this.grdTenant.MainView = this.gdvTenant;
             this.grdTenant.Name = "grdTenant";
+            this.grdTenant.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repStatus});
             this.grdTenant.Size = new System.Drawing.Size(1066, 230);
             this.grdTenant.TabIndex = 0;
             this.grdTenant.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -182,26 +191,30 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             // 
             this.gdvTenant.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.gdvTenant.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colexpireDate,
+            this.colid,
+            this.colcode,
             this.colname,
             this.colalias,
-            this.colcontact,
-            this.colmobile,
-            this.colemail,
-            this.colfullAdd,
-            this.colremark});
+            this.colremark,
+            this.colstatus,
+            this.colisInvalid});
             this.gdvTenant.GridControl = this.grdTenant;
             this.gdvTenant.Name = "gdvTenant";
             this.gdvTenant.OptionsDetail.EnableMasterViewMode = false;
             // 
-            // colexpireDate
+            // colid
             // 
-            this.colexpireDate.Caption = "到期日期";
-            this.colexpireDate.FieldName = "expireDate";
-            this.colexpireDate.Name = "colexpireDate";
-            this.colexpireDate.Visible = true;
-            this.colexpireDate.VisibleIndex = 0;
-            this.colexpireDate.Width = 80;
+            this.colid.FieldName = "id";
+            this.colid.Name = "colid";
+            // 
+            // colcode
+            // 
+            this.colcode.Caption = "编号";
+            this.colcode.FieldName = "code";
+            this.colcode.Name = "colcode";
+            this.colcode.Visible = true;
+            this.colcode.VisibleIndex = 0;
+            this.colcode.Width = 80;
             // 
             // colname
             // 
@@ -210,7 +223,7 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.colname.Name = "colname";
             this.colname.Visible = true;
             this.colname.VisibleIndex = 1;
-            this.colname.Width = 240;
+            this.colname.Width = 320;
             // 
             // colalias
             // 
@@ -219,41 +232,7 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.colalias.Name = "colalias";
             this.colalias.Visible = true;
             this.colalias.VisibleIndex = 2;
-            this.colalias.Width = 120;
-            // 
-            // colcontact
-            // 
-            this.colcontact.Caption = "联系人";
-            this.colcontact.FieldName = "contact";
-            this.colcontact.Name = "colcontact";
-            this.colcontact.Visible = true;
-            this.colcontact.VisibleIndex = 3;
-            this.colcontact.Width = 60;
-            // 
-            // colmobile
-            // 
-            this.colmobile.Caption = "联系电话";
-            this.colmobile.FieldName = "mobile";
-            this.colmobile.Name = "colmobile";
-            this.colmobile.Visible = true;
-            this.colmobile.VisibleIndex = 4;
-            this.colmobile.Width = 100;
-            // 
-            // colemail
-            // 
-            this.colemail.Caption = "邮箱";
-            this.colemail.FieldName = "email";
-            this.colemail.Name = "colemail";
-            // 
-            // colfullAdd
-            // 
-            this.colfullAdd.Caption = "地址";
-            this.colfullAdd.FieldName = "fullAdd";
-            this.colfullAdd.Name = "colfullAdd";
-            this.colfullAdd.OptionsColumn.ReadOnly = true;
-            this.colfullAdd.Visible = true;
-            this.colfullAdd.VisibleIndex = 5;
-            this.colfullAdd.Width = 300;
+            this.colalias.Width = 160;
             // 
             // colremark
             // 
@@ -261,8 +240,36 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.colremark.FieldName = "remark";
             this.colremark.Name = "colremark";
             this.colremark.Visible = true;
-            this.colremark.VisibleIndex = 6;
-            this.colremark.Width = 114;
+            this.colremark.VisibleIndex = 3;
+            this.colremark.Width = 374;
+            // 
+            // colstatus
+            // 
+            this.colstatus.Caption = "状态";
+            this.colstatus.ColumnEdit = this.repStatus;
+            this.colstatus.FieldName = "status";
+            this.colstatus.Name = "colstatus";
+            this.colstatus.Visible = true;
+            this.colstatus.VisibleIndex = 4;
+            this.colstatus.Width = 60;
+            // 
+            // repStatus
+            // 
+            this.repStatus.AutoHeight = false;
+            this.repStatus.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repStatus.DisplayMember = "name";
+            this.repStatus.Name = "repStatus";
+            this.repStatus.ValueMember = "id";
+            // 
+            // colisInvalid
+            // 
+            this.colisInvalid.Caption = "禁用";
+            this.colisInvalid.FieldName = "isInvalid";
+            this.colisInvalid.Name = "colisInvalid";
+            this.colisInvalid.Visible = true;
+            this.colisInvalid.VisibleIndex = 5;
+            this.colisInvalid.Width = 40;
             // 
             // tabTenant
             // 
@@ -272,10 +279,9 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.tabTenant.MaximumSize = new System.Drawing.Size(0, 22);
             this.tabTenant.MinimumSize = new System.Drawing.Size(300, 22);
             this.tabTenant.Name = "tabTenant";
-            this.tabTenant.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("tabTenant.PageSizeItems")));
+            this.tabTenant.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("tabTenant.pageSizeItems")));
             this.tabTenant.Size = new System.Drawing.Size(1066, 22);
             this.tabTenant.TabIndex = 0;
-            this.tabTenant.totalRows = 0;
             // 
             // panSpace
             // 
@@ -334,7 +340,7 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.splMember.Panel2.Controls.Add(this.grpUser);
             this.splMember.Panel2.MinSize = 500;
             this.splMember.Size = new System.Drawing.Size(1070, 285);
-            this.splMember.SplitterPosition = 480;
+            this.splMember.SplitterPosition = 400;
             this.splMember.TabIndex = 0;
             // 
             // grpMember
@@ -343,7 +349,7 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.grpMember.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpMember.Location = new System.Drawing.Point(0, 0);
             this.grpMember.Name = "grpMember";
-            this.grpMember.Size = new System.Drawing.Size(481, 285);
+            this.grpMember.Size = new System.Drawing.Size(400, 285);
             this.grpMember.TabIndex = 0;
             this.grpMember.Text = "绑定应用";
             // 
@@ -353,7 +359,7 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.grdApp.Location = new System.Drawing.Point(2, 21);
             this.grdApp.MainView = this.gdvApp;
             this.grdApp.Name = "grdApp";
-            this.grdApp.Size = new System.Drawing.Size(477, 262);
+            this.grdApp.Size = new System.Drawing.Size(396, 262);
             this.grdApp.TabIndex = 0;
             this.grdApp.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvApp});
@@ -361,29 +367,47 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             // gdvApp
             // 
             this.gdvApp.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colid1,
+            this.coltenantId,
+            this.colappId,
             this.colname2,
-            this.colalias1});
+            this.colexpireDate});
             this.gdvApp.GridControl = this.grdApp;
             this.gdvApp.Name = "gdvApp";
             this.gdvApp.OptionsDetail.EnableMasterViewMode = false;
             // 
+            // colid1
+            // 
+            this.colid1.FieldName = "id";
+            this.colid1.Name = "colid1";
+            // 
+            // coltenantId
+            // 
+            this.coltenantId.FieldName = "tenantId";
+            this.coltenantId.Name = "coltenantId";
+            // 
+            // colappId
+            // 
+            this.colappId.FieldName = "appId";
+            this.colappId.Name = "colappId";
+            // 
             // colname2
             // 
-            this.colname2.Caption = "名称";
+            this.colname2.Caption = "应用名称";
             this.colname2.FieldName = "name";
             this.colname2.Name = "colname2";
             this.colname2.Visible = true;
             this.colname2.VisibleIndex = 0;
-            this.colname2.Width = 280;
+            this.colname2.Width = 284;
             // 
-            // colalias1
+            // colexpireDate
             // 
-            this.colalias1.Caption = "简称";
-            this.colalias1.FieldName = "alias";
-            this.colalias1.Name = "colalias1";
-            this.colalias1.Visible = true;
-            this.colalias1.VisibleIndex = 1;
-            this.colalias1.Width = 145;
+            this.colexpireDate.Caption = "到期日期";
+            this.colexpireDate.FieldName = "expireDate";
+            this.colexpireDate.Name = "colexpireDate";
+            this.colexpireDate.Visible = true;
+            this.colexpireDate.VisibleIndex = 1;
+            this.colexpireDate.Width = 80;
             // 
             // grpUser
             // 
@@ -392,17 +416,18 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.grpUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpUser.Location = new System.Drawing.Point(0, 0);
             this.grpUser.Name = "grpUser";
-            this.grpUser.Size = new System.Drawing.Size(584, 285);
+            this.grpUser.Size = new System.Drawing.Size(665, 285);
             this.grpUser.TabIndex = 0;
             this.grpUser.Text = "关联用户";
             // 
             // grdUser
             // 
+            this.grdUser.DataSource = this.tenantUserBindingSource;
             this.grdUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdUser.Location = new System.Drawing.Point(2, 21);
             this.grdUser.MainView = this.gdvUser;
             this.grdUser.Name = "grdUser";
-            this.grdUser.Size = new System.Drawing.Size(580, 240);
+            this.grdUser.Size = new System.Drawing.Size(661, 240);
             this.grdUser.TabIndex = 0;
             this.grdUser.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvUser});
@@ -410,49 +435,17 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             // gdvUser
             // 
             this.gdvUser.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colName1,
-            this.colLoginName,
-            this.colDescription1,
-            this.colValidity});
+            this.colid2,
+            this.colcode1,
+            this.colname1,
+            this.colaccount,
+            this.colmobile,
+            this.colemail,
+            this.colremark1,
+            this.colisInvalid1});
             this.gdvUser.GridControl = this.grdUser;
             this.gdvUser.Name = "gdvUser";
             this.gdvUser.OptionsDetail.EnableMasterViewMode = false;
-            // 
-            // colName1
-            // 
-            this.colName1.Caption = "用户姓名";
-            this.colName1.FieldName = "name";
-            this.colName1.Name = "colName1";
-            this.colName1.Visible = true;
-            this.colName1.VisibleIndex = 0;
-            this.colName1.Width = 120;
-            // 
-            // colLoginName
-            // 
-            this.colLoginName.Caption = "登录账号";
-            this.colLoginName.FieldName = "account";
-            this.colLoginName.Name = "colLoginName";
-            this.colLoginName.Visible = true;
-            this.colLoginName.VisibleIndex = 1;
-            this.colLoginName.Width = 100;
-            // 
-            // colDescription1
-            // 
-            this.colDescription1.Caption = "描述";
-            this.colDescription1.FieldName = "remark";
-            this.colDescription1.Name = "colDescription1";
-            this.colDescription1.Visible = true;
-            this.colDescription1.VisibleIndex = 2;
-            this.colDescription1.Width = 205;
-            // 
-            // colValidity
-            // 
-            this.colValidity.Caption = "封禁";
-            this.colValidity.FieldName = "isInvalid";
-            this.colValidity.Name = "colValidity";
-            this.colValidity.Visible = true;
-            this.colValidity.VisibleIndex = 3;
-            this.colValidity.Width = 40;
             // 
             // tabUser
             // 
@@ -462,10 +455,77 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.tabUser.MaximumSize = new System.Drawing.Size(0, 22);
             this.tabUser.MinimumSize = new System.Drawing.Size(320, 22);
             this.tabUser.Name = "tabUser";
-            this.tabUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("tabUser.PageSizeItems")));
-            this.tabUser.Size = new System.Drawing.Size(580, 22);
+            this.tabUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("tabUser.pageSizeItems")));
+            this.tabUser.Size = new System.Drawing.Size(661, 22);
             this.tabUser.TabIndex = 0;
-            this.tabUser.totalRows = 0;
+            // 
+            // tenantUserBindingSource
+            // 
+            this.tenantUserBindingSource.DataSource = typeof(Insight.MTP.Client.Common.Entity.TenantUser);
+            // 
+            // colid2
+            // 
+            this.colid2.FieldName = "id";
+            this.colid2.Name = "colid2";
+            // 
+            // colcode1
+            // 
+            this.colcode1.Caption = "用户编码";
+            this.colcode1.FieldName = "code";
+            this.colcode1.Name = "colcode1";
+            this.colcode1.Visible = true;
+            this.colcode1.VisibleIndex = 0;
+            this.colcode1.Width = 80;
+            // 
+            // colname1
+            // 
+            this.colname1.Caption = "姓名";
+            this.colname1.FieldName = "name";
+            this.colname1.Name = "colname1";
+            this.colname1.Visible = true;
+            this.colname1.VisibleIndex = 1;
+            this.colname1.Width = 100;
+            // 
+            // colaccount
+            // 
+            this.colaccount.Caption = "账号";
+            this.colaccount.FieldName = "account";
+            this.colaccount.Name = "colaccount";
+            this.colaccount.Visible = true;
+            this.colaccount.VisibleIndex = 2;
+            this.colaccount.Width = 120;
+            // 
+            // colmobile
+            // 
+            this.colmobile.Caption = "手机号";
+            this.colmobile.FieldName = "mobile";
+            this.colmobile.Name = "colmobile";
+            this.colmobile.Visible = true;
+            this.colmobile.VisibleIndex = 3;
+            this.colmobile.Width = 120;
+            // 
+            // colemail
+            // 
+            this.colemail.FieldName = "email";
+            this.colemail.Name = "colemail";
+            // 
+            // colremark1
+            // 
+            this.colremark1.Caption = "备注";
+            this.colremark1.FieldName = "remark";
+            this.colremark1.Name = "colremark1";
+            this.colremark1.Visible = true;
+            this.colremark1.VisibleIndex = 4;
+            this.colremark1.Width = 165;
+            // 
+            // colisInvalid1
+            // 
+            this.colisInvalid1.Caption = "封禁";
+            this.colisInvalid1.FieldName = "invalid";
+            this.colisInvalid1.Name = "colisInvalid1";
+            this.colisInvalid1.Visible = true;
+            this.colisInvalid1.VisibleIndex = 5;
+            this.colisInvalid1.Width = 40;
             // 
             // Manager
             // 
@@ -480,6 +540,7 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.palTenant.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdTenant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvTenant)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSpace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSearch)).EndInit();
             this.panSearch.ResumeLayout(false);
@@ -494,6 +555,7 @@ namespace Insight.MTP.Client.Base.Tenants.Views
             this.grpUser.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvUser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tenantUserBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -511,10 +573,6 @@ namespace Insight.MTP.Client.Base.Tenants.Views
         private GroupControl grpUser;
         private SplitContainerControl splMain;
         private SplitContainerControl splMember;
-        private DevExpress.XtraGrid.Columns.GridColumn colName1;
-        private DevExpress.XtraGrid.Columns.GridColumn colLoginName;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescription1;
-        private DevExpress.XtraGrid.Columns.GridColumn colValidity;
         private PanelControl palTenant;
         internal GridControl grdTenant;
         internal GridView gdvTenant;
@@ -525,15 +583,27 @@ namespace Insight.MTP.Client.Base.Tenants.Views
         private PanelControl panSearch;
         internal SimpleButton Search;
         internal ButtonEdit KeyInput;
-        private DevExpress.XtraGrid.Columns.GridColumn colname2;
-        private DevExpress.XtraGrid.Columns.GridColumn colalias1;
+        private DevExpress.XtraGrid.Columns.GridColumn colid;
+        private DevExpress.XtraGrid.Columns.GridColumn colcode;
         private DevExpress.XtraGrid.Columns.GridColumn colname;
         private DevExpress.XtraGrid.Columns.GridColumn colalias;
+        private DevExpress.XtraGrid.Columns.GridColumn colremark;
+        private DevExpress.XtraGrid.Columns.GridColumn colstatus;
+        private DevExpress.XtraGrid.Columns.GridColumn colisInvalid;
+        public DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repStatus;
+        private DevExpress.XtraGrid.Columns.GridColumn colid1;
+        private DevExpress.XtraGrid.Columns.GridColumn coltenantId;
+        private DevExpress.XtraGrid.Columns.GridColumn colappId;
+        private DevExpress.XtraGrid.Columns.GridColumn colname2;
         private DevExpress.XtraGrid.Columns.GridColumn colexpireDate;
-        private DevExpress.XtraGrid.Columns.GridColumn colcontact;
+        private System.Windows.Forms.BindingSource tenantUserBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colid2;
+        private DevExpress.XtraGrid.Columns.GridColumn colcode1;
+        private DevExpress.XtraGrid.Columns.GridColumn colname1;
+        private DevExpress.XtraGrid.Columns.GridColumn colaccount;
         private DevExpress.XtraGrid.Columns.GridColumn colmobile;
         private DevExpress.XtraGrid.Columns.GridColumn colemail;
-        private DevExpress.XtraGrid.Columns.GridColumn colfullAdd;
-        private DevExpress.XtraGrid.Columns.GridColumn colremark;
+        private DevExpress.XtraGrid.Columns.GridColumn colremark1;
+        private DevExpress.XtraGrid.Columns.GridColumn colisInvalid1;
     }
 }

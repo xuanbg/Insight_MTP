@@ -1,4 +1,4 @@
-﻿namespace Insight.MTP.Client.Base.Tenants.Views
+﻿namespace Insight.MTP.Client.Platform.Tenants.Views
 {
     partial class TenantDialog
     {

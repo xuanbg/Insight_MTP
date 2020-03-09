@@ -11,59 +11,24 @@ namespace Insight.MTP.Client.Common.Entity
         public string id { get; set; }
 
         /// <summary>
+        /// 租户编码
+        /// </summary>
+        public string code { get; set; }
+
+        /// <summary>
         /// 名称
         /// </summary>
         public string name { get; set; }
 
         /// <summary>
-        /// 简称
+        /// 租户别名
         /// </summary>
         public string alias { get; set; }
 
         /// <summary>
-        /// 图标
+        /// 企业信息
         /// </summary>
-        public byte[] icon { get; set; }
-
-        /// <summary>
-        /// 联系人
-        /// </summary>
-        public string contact { get; set; }
-
-        /// <summary>
-        /// 手机号
-        /// </summary>
-        public string mobile { get; set; }
-
-        /// <summary>
-        /// 邮箱
-        /// </summary>
-        public string email { get; set; }
-
-        /// <summary>
-        /// 全地址
-        /// </summary>
-        public string fullAdd => province + city + county + address;
-
-        /// <summary>
-        /// 所在省/直辖市
-        /// </summary>
-        public string province { get; set; }
-
-        /// <summary>
-        /// 所在市/地区
-        /// </summary>
-        public string city { get; set; }
-
-        /// <summary>
-        /// 所在区/县
-        /// </summary>
-        public string county { get; set; }
-
-        /// <summary>
-        /// 街道楼门号
-        /// </summary>
-        public string address { get; set; }
+        public CompanyInfo companyInfo { get; set; }
 
         /// <summary>
         /// 描述
@@ -71,38 +36,23 @@ namespace Insight.MTP.Client.Common.Entity
         public string remark { get; set; }
 
         /// <summary>
-        /// 租户到期时间
+        /// 租户状态：0、待审核；1、已通过；2、未通过
         /// </summary>
-        public DateTime expireDate { get; set; }
+        public int status { get; set; }
 
         /// <summary>
-        /// 是否预置：0、自定；1、预置
+        /// 是否失效：0、正常；1、失效
         /// </summary>
-        public bool isBuiltin { get; set; }
-
-        /// <summary>
-        /// 是否可见：0、不可见；1、可见
-        /// </summary>
-        public bool isVisible { get; set; }
-
+        public bool isInvalid { get; set; }
+        
         /// <summary>
         /// 创建人ID
         /// </summary>
-        public string creatorId { get; set; }
+        public List<TenantApp> apps { get; set; }
 
         /// <summary>
         /// 创建时间
         /// </summary>
-        public DateTime createTime { get; set; }
-
-        /// <summary>
-        /// 创建人ID
-        /// </summary>
-        public List<App> apps { get; set; }
-
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        public List<User> users { get; set; }
+        public List<TenantUser> users { get; set; }
     }
 }
