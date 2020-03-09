@@ -90,23 +90,25 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
             {
                 nav = null;
                 func = null;
-                return;
             }
-
-            var id = node.GetValue("id").ToString();
-            nav = item.navigations.SingleOrDefault(m => m.id == id);
-            if (nav == null) return;
-
-            if (node.HasChildren)
+            else
             {
-                func = null;
-            }
-            else if (nav.functions == null)
-            {
-                nav.functions = dataModel.getFuncs(nav.id);
+
+                var id = node.GetValue("id").ToString();
+                nav = item.navigations.SingleOrDefault(m => m.id == id);
+                if (nav == null) return;
+
+                if (node.HasChildren)
+                {
+                    func = null;
+                }
+                else if (nav.functions == null)
+                {
+                    nav.functions = dataModel.getFuncs(nav.id);
+                }
             }
 
-            view.grdFunc.DataSource = nav.functions;
+            view.grdFunc.DataSource = nav?.functions;
             refreshToolBar();
         }
 

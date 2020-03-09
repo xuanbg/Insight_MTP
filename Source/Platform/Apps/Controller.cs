@@ -146,7 +146,7 @@ namespace Insight.MTP.Client.Platform.Apps
         /// </summary>
         public void newFunc()
         {
-            var func = new Function{navId = mdiModel.nav.id};
+            var func = new Function{navId = mdiModel.nav.id, index = mdiModel.nav.functions.Count + 1};
             var model = new FunModel(func, "新建功能");
             model.callbackEvent += (sender, args) =>
             {

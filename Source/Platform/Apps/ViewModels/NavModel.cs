@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using Insight.MTP.Client.Common.Entity;
+﻿using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Apps.Views;
 using Insight.Utils.BaseViewModels;
 using Insight.Utils.Common;

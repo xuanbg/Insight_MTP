@@ -179,6 +179,7 @@
             // 
             // cheLoad
             // 
+            this.cheLoad.EnterMoveNextControl = true;
             this.cheLoad.Location = new System.Drawing.Point(285, 93);
             this.cheLoad.Name = "cheLoad";
             this.cheLoad.Properties.Caption = "默认启动";

@@ -28,71 +28,70 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FunDialog));
-            this.picIcon = new DevExpress.XtraEditors.PictureEdit();
             this.labName = new DevExpress.XtraEditors.LabelControl();
             this.txtName = new DevExpress.XtraEditors.TextEdit();
-            this.labUrl = new DevExpress.XtraEditors.LabelControl();
-            this.txtUrl = new DevExpress.XtraEditors.TextEdit();
+            this.labIcon = new DevExpress.XtraEditors.LabelControl();
+            this.txtIcon = new DevExpress.XtraEditors.TextEdit();
             this.labAlias = new DevExpress.XtraEditors.LabelControl();
-            this.txtAlias = new DevExpress.XtraEditors.TextEdit();
+            this.txtAuthCode = new DevExpress.XtraEditors.TextEdit();
             this.labIndex = new DevExpress.XtraEditors.LabelControl();
-            this.labRemark = new DevExpress.XtraEditors.LabelControl();
-            this.memRemark = new DevExpress.XtraEditors.MemoEdit();
             this.speIndex = new DevExpress.XtraEditors.SpinEdit();
-            this.labRoute = new DevExpress.XtraEditors.LabelControl();
-            this.txtRoute = new DevExpress.XtraEditors.TextEdit();
+            this.labMethod = new DevExpress.XtraEditors.LabelControl();
+            this.txtMethod = new DevExpress.XtraEditors.TextEdit();
             this.chkGroup = new DevExpress.XtraEditors.CheckEdit();
-            this.chkShow = new DevExpress.XtraEditors.CheckEdit();
+            this.chkHideText = new DevExpress.XtraEditors.CheckEdit();
+            this.labType = new DevExpress.XtraEditors.LabelControl();
+            this.comType = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picIcon.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtUrl.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAlias.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memRemark.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIcon.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAuthCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.speIndex.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRoute.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMethod.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkGroup.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkShow.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkHideText.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comType.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel
             // 
-            this.panel.Controls.Add(this.chkShow);
+            this.panel.Controls.Add(this.comType);
+            this.panel.Controls.Add(this.chkHideText);
             this.panel.Controls.Add(this.chkGroup);
-            this.panel.Controls.Add(this.memRemark);
             this.panel.Controls.Add(this.labIndex);
-            this.panel.Controls.Add(this.txtUrl);
-            this.panel.Controls.Add(this.txtRoute);
-            this.panel.Controls.Add(this.txtAlias);
-            this.panel.Controls.Add(this.labRemark);
-            this.panel.Controls.Add(this.labRoute);
-            this.panel.Controls.Add(this.labUrl);
+            this.panel.Controls.Add(this.txtIcon);
+            this.panel.Controls.Add(this.txtMethod);
+            this.panel.Controls.Add(this.txtAuthCode);
+            this.panel.Controls.Add(this.labMethod);
+            this.panel.Controls.Add(this.labIcon);
             this.panel.Controls.Add(this.labAlias);
             this.panel.Controls.Add(this.txtName);
+            this.panel.Controls.Add(this.labType);
             this.panel.Controls.Add(this.labName);
-            this.panel.Controls.Add(this.picIcon);
             this.panel.Controls.Add(this.speIndex);
-            this.panel.Size = new System.Drawing.Size(370, 200);
             // 
-            // picIcon
+            // cancel
             // 
-            this.picIcon.Cursor = System.Windows.Forms.Cursors.Default;
-            this.picIcon.EditValue = ((object)(resources.GetObject("picIcon.EditValue")));
-            this.picIcon.Location = new System.Drawing.Point(165, 24);
-            this.picIcon.Name = "picIcon";
-            this.picIcon.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.picIcon.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.picIcon.Size = new System.Drawing.Size(16, 16);
-            this.picIcon.TabIndex = 0;
+            this.cancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cancel.Appearance.Options.UseFont = true;
+            // 
+            // confirm
+            // 
+            this.confirm.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.confirm.Appearance.Options.UseFont = true;
+            // 
+            // close
+            // 
+            this.close.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.close.Appearance.Options.UseFont = true;
             // 
             // labName
             // 
             this.labName.Appearance.Options.UseTextOptions = true;
             this.labName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labName.Location = new System.Drawing.Point(0, 25);
+            this.labName.Location = new System.Drawing.Point(0, 50);
             this.labName.Name = "labName";
             this.labName.Size = new System.Drawing.Size(60, 14);
             this.labName.TabIndex = 0;
@@ -100,162 +99,177 @@
             // 
             // txtName
             // 
+            this.txtName.EnterMoveNextControl = true;
             this.txtName.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtName.Location = new System.Drawing.Point(60, 22);
+            this.txtName.Location = new System.Drawing.Point(60, 47);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(100, 20);
-            this.txtName.TabIndex = 1;
+            this.txtName.Size = new System.Drawing.Size(160, 20);
+            this.txtName.TabIndex = 3;
             // 
-            // labUrl
+            // labIcon
             // 
-            this.labUrl.Appearance.Options.UseTextOptions = true;
-            this.labUrl.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labUrl.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labUrl.Location = new System.Drawing.Point(100, 55);
-            this.labUrl.Name = "labUrl";
-            this.labUrl.Size = new System.Drawing.Size(60, 14);
-            this.labUrl.TabIndex = 0;
-            this.labUrl.Text = "Url：";
+            this.labIcon.Appearance.Options.UseTextOptions = true;
+            this.labIcon.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.labIcon.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labIcon.Location = new System.Drawing.Point(0, 115);
+            this.labIcon.Name = "labIcon";
+            this.labIcon.Size = new System.Drawing.Size(60, 14);
+            this.labIcon.TabIndex = 0;
+            this.labIcon.Text = "图标Url：";
             // 
-            // txtUrl
+            // txtIcon
             // 
-            this.txtUrl.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtUrl.Location = new System.Drawing.Point(160, 52);
-            this.txtUrl.Name = "txtUrl";
-            this.txtUrl.Size = new System.Drawing.Size(190, 20);
-            this.txtUrl.TabIndex = 5;
+            this.txtIcon.EnterMoveNextControl = true;
+            this.txtIcon.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtIcon.Location = new System.Drawing.Point(60, 112);
+            this.txtIcon.Name = "txtIcon";
+            this.txtIcon.Size = new System.Drawing.Size(160, 20);
+            this.txtIcon.TabIndex = 6;
             // 
             // labAlias
             // 
             this.labAlias.Appearance.Options.UseTextOptions = true;
             this.labAlias.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labAlias.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labAlias.Location = new System.Drawing.Point(0, 85);
+            this.labAlias.Location = new System.Drawing.Point(220, 50);
             this.labAlias.Name = "labAlias";
             this.labAlias.Size = new System.Drawing.Size(60, 14);
             this.labAlias.TabIndex = 0;
             this.labAlias.Text = "标识码：";
             // 
-            // txtAlias
+            // txtAuthCode
             // 
-            this.txtAlias.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtAlias.Location = new System.Drawing.Point(60, 83);
-            this.txtAlias.Name = "txtAlias";
-            this.txtAlias.Size = new System.Drawing.Size(290, 20);
-            this.txtAlias.TabIndex = 6;
+            this.txtAuthCode.EnterMoveNextControl = true;
+            this.txtAuthCode.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtAuthCode.Location = new System.Drawing.Point(280, 47);
+            this.txtAuthCode.Name = "txtAuthCode";
+            this.txtAuthCode.Size = new System.Drawing.Size(70, 20);
+            this.txtAuthCode.TabIndex = 4;
             // 
             // labIndex
             // 
             this.labIndex.Appearance.Options.UseTextOptions = true;
             this.labIndex.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labIndex.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labIndex.Location = new System.Drawing.Point(0, 55);
+            this.labIndex.Location = new System.Drawing.Point(220, 21);
             this.labIndex.Name = "labIndex";
             this.labIndex.Size = new System.Drawing.Size(60, 14);
             this.labIndex.TabIndex = 0;
             this.labIndex.Text = "序号：";
             // 
-            // labRemark
-            // 
-            this.labRemark.Appearance.Options.UseTextOptions = true;
-            this.labRemark.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labRemark.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labRemark.Location = new System.Drawing.Point(0, 145);
-            this.labRemark.Name = "labRemark";
-            this.labRemark.Size = new System.Drawing.Size(60, 14);
-            this.labRemark.TabIndex = 0;
-            this.labRemark.Text = "备注：";
-            // 
-            // memRemark
-            // 
-            this.memRemark.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.memRemark.Location = new System.Drawing.Point(60, 143);
-            this.memRemark.Name = "memRemark";
-            this.memRemark.Size = new System.Drawing.Size(290, 40);
-            this.memRemark.TabIndex = 8;
-            // 
             // speIndex
             // 
-            this.speIndex.Location = new System.Drawing.Point(60, 52);
+            this.speIndex.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.speIndex.EnterMoveNextControl = true;
+            this.speIndex.Location = new System.Drawing.Point(280, 18);
             this.speIndex.Name = "speIndex";
             this.speIndex.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.speIndex.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.speIndex.Properties.IsFloatValue = false;
             this.speIndex.Properties.Mask.EditMask = "d";
-            this.speIndex.Size = new System.Drawing.Size(40, 20);
-            this.speIndex.TabIndex = 3;
+            this.speIndex.Size = new System.Drawing.Size(70, 20);
+            this.speIndex.TabIndex = 2;
             // 
-            // labRoute
+            // labMethod
             // 
-            this.labRoute.Appearance.Options.UseTextOptions = true;
-            this.labRoute.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labRoute.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labRoute.Location = new System.Drawing.Point(0, 115);
-            this.labRoute.Name = "labRoute";
-            this.labRoute.Size = new System.Drawing.Size(60, 14);
-            this.labRoute.TabIndex = 0;
-            this.labRoute.Text = "路由：";
+            this.labMethod.Appearance.Options.UseTextOptions = true;
+            this.labMethod.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.labMethod.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labMethod.Location = new System.Drawing.Point(0, 85);
+            this.labMethod.Name = "labMethod";
+            this.labMethod.Size = new System.Drawing.Size(60, 14);
+            this.labMethod.TabIndex = 0;
+            this.labMethod.Text = "方法名：";
             // 
-            // txtRoute
+            // txtMethod
             // 
-            this.txtRoute.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtRoute.Location = new System.Drawing.Point(60, 113);
-            this.txtRoute.Name = "txtRoute";
-            this.txtRoute.Size = new System.Drawing.Size(290, 20);
-            this.txtRoute.TabIndex = 7;
+            this.txtMethod.EnterMoveNextControl = true;
+            this.txtMethod.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtMethod.Location = new System.Drawing.Point(60, 82);
+            this.txtMethod.Name = "txtMethod";
+            this.txtMethod.Size = new System.Drawing.Size(160, 20);
+            this.txtMethod.TabIndex = 5;
             // 
             // chkGroup
             // 
-            this.chkGroup.Location = new System.Drawing.Point(195, 23);
+            this.chkGroup.EnterMoveNextControl = true;
+            this.chkGroup.Location = new System.Drawing.Point(280, 83);
             this.chkGroup.Name = "chkGroup";
             this.chkGroup.Properties.Caption = "开始分组";
             this.chkGroup.Size = new System.Drawing.Size(75, 19);
-            this.chkGroup.TabIndex = 2;
+            this.chkGroup.TabIndex = 7;
             // 
-            // chkShow
+            // chkHideText
             // 
-            this.chkShow.EditValue = true;
-            this.chkShow.Location = new System.Drawing.Point(275, 23);
-            this.chkShow.Name = "chkShow";
-            this.chkShow.Properties.Caption = "显示文字";
-            this.chkShow.Size = new System.Drawing.Size(75, 19);
-            this.chkShow.TabIndex = 3;
+            this.chkHideText.EnterMoveNextControl = true;
+            this.chkHideText.Location = new System.Drawing.Point(280, 113);
+            this.chkHideText.Name = "chkHideText";
+            this.chkHideText.Properties.Caption = "隐藏文字";
+            this.chkHideText.Size = new System.Drawing.Size(75, 19);
+            this.chkHideText.TabIndex = 8;
+            // 
+            // labType
+            // 
+            this.labType.Appearance.Options.UseTextOptions = true;
+            this.labType.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.labType.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labType.Location = new System.Drawing.Point(0, 20);
+            this.labType.Name = "labType";
+            this.labType.Size = new System.Drawing.Size(60, 14);
+            this.labType.TabIndex = 0;
+            this.labType.Text = "类型：";
+            // 
+            // comType
+            // 
+            this.comType.EnterMoveNextControl = true;
+            this.comType.Location = new System.Drawing.Point(60, 17);
+            this.comType.Name = "comType";
+            this.comType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comType.Properties.Items.AddRange(new object[] {
+            "全局功能",
+            "数据项功能",
+            "其他功能"});
+            this.comType.Size = new System.Drawing.Size(160, 20);
+            this.comType.TabIndex = 1;
             // 
             // FunDialog
             // 
-            this.ClientSize = new System.Drawing.Size(384, 262);
+            this.ClientSize = new System.Drawing.Size(384, 212);
             this.Name = "FunDialog";
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picIcon.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtUrl.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAlias.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memRemark.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIcon.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAuthCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.speIndex.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRoute.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMethod.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkGroup.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkShow.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkHideText.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comType.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private DevExpress.XtraEditors.LabelControl labIndex;
-        private DevExpress.XtraEditors.LabelControl labRemark;
-        private DevExpress.XtraEditors.LabelControl labUrl;
+        private DevExpress.XtraEditors.LabelControl labIcon;
         private DevExpress.XtraEditors.LabelControl labAlias;
         private DevExpress.XtraEditors.LabelControl labName;
-        internal DevExpress.XtraEditors.PictureEdit picIcon;
-        internal DevExpress.XtraEditors.TextEdit txtUrl;
-        internal DevExpress.XtraEditors.TextEdit txtName;
-        internal DevExpress.XtraEditors.MemoEdit memRemark;
-        internal DevExpress.XtraEditors.TextEdit txtAlias;
-        internal DevExpress.XtraEditors.TextEdit txtRoute;
-        private DevExpress.XtraEditors.LabelControl labRoute;
-        internal DevExpress.XtraEditors.CheckEdit chkShow;
-        internal DevExpress.XtraEditors.CheckEdit chkGroup;
-        internal DevExpress.XtraEditors.SpinEdit speIndex;
+        private DevExpress.XtraEditors.LabelControl labMethod;
+        private DevExpress.XtraEditors.LabelControl labType;
+        public DevExpress.XtraEditors.TextEdit txtIcon;
+        public DevExpress.XtraEditors.TextEdit txtMethod;
+        public DevExpress.XtraEditors.CheckEdit chkHideText;
+        public DevExpress.XtraEditors.CheckEdit chkGroup;
+        public DevExpress.XtraEditors.ComboBoxEdit comType;
+        public DevExpress.XtraEditors.TextEdit txtName;
+        public DevExpress.XtraEditors.TextEdit txtAuthCode;
+        public DevExpress.XtraEditors.SpinEdit speIndex;
     }
 }

@@ -237,6 +237,7 @@
             // 
             // cheAutoTenant
             // 
+            this.cheAutoTenant.EnterMoveNextControl = true;
             this.cheAutoTenant.Location = new System.Drawing.Point(20, 175);
             this.cheAutoTenant.Name = "cheAutoTenant";
             this.cheAutoTenant.Properties.Caption = "令牌自动绑定租户";
