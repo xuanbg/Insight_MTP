@@ -57,7 +57,7 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 是否自动加载租户
         /// </summary>
-        public bool autoTenant { get; set; }
+        public bool? autoTenant { get; set; }
         
         /// <summary>
         /// 导航集合

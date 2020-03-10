@@ -4,7 +4,6 @@ using Insight.MTP.Client.Platform.Tenants.Views;
 using Insight.Utils.BaseViewModels;
 using Insight.Utils.Common;
 using Insight.Utils.Controls;
-using Insight.Utils.Entity;
 
 namespace Insight.MTP.Client.Platform.Tenants.ViewModels
 {
@@ -12,7 +11,6 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
     {
 
         private readonly Tenant tenant;
-        private List<LookUpMember> citys;
 
         /// <summary>
         /// 构造函数
@@ -39,7 +37,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
 
                 Format.initComboBoxEdit(view.cbeCounty, null);
                 view.cbeCounty.EditValue = null;
-                Format.initComboBoxEdit(view.cbeCity, citys);
+                //Format.initComboBoxEdit(view.cbeCity, citys);
                 view.cbeCity.EditValue = null;
             };
             view.cbeCity.SelectedIndexChanged += (sender, args) =>

@@ -42,7 +42,6 @@ namespace Insight.MTP.Client.Platform.Apps
 
                 mdiModel.list.Add(app);
                 mdiModel.tab.addItems();
-
                 model.close();
             };
 
@@ -59,6 +58,7 @@ namespace Insight.MTP.Client.Platform.Apps
             {
                 if (!dataModel.updateApp(mdiModel.item)) return;
 
+                mdiModel.refreshGrid();
                 model.close();
             };
 
@@ -155,7 +155,6 @@ namespace Insight.MTP.Client.Platform.Apps
 
                 mdiModel.nav.functions.Add(func);
                 mdiModel.refreshGrid();
-
                 model.close();
             };
 
@@ -172,6 +171,7 @@ namespace Insight.MTP.Client.Platform.Apps
             {
                 if (!dataModel.updateFunc(mdiModel.func)) return;
 
+                mdiModel.refreshGrid();
                 model.close();
             };
 

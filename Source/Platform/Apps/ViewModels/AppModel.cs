@@ -26,7 +26,9 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
             view.spiIndex.EditValue = item.index;
             view.cheSigninOne.Checked = item.signinOne;
             view.cheAutoRefresh.Checked = item.autoRefresh;
-            view.cheAutoTenant.Checked = item.autoTenant;
+            view.cheNeedAuth.Checked = item.autoTenant != null;
+            view.cheAutoTenant.Enabled = item.autoTenant != null;
+            view.cheAutoTenant.Checked = item.autoTenant ?? false;
 
             // 订阅控件事件实现数据双向绑定
             view.txtName.EditValueChanged += (sender, args) => item.name = view.txtName.Text.Trim();
@@ -37,6 +39,13 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
             view.spiIndex.ValueChanged += (sender, args) => item.index = (int) view.spiIndex.Value;
             view.cheSigninOne.CheckedChanged += (sender, args) => item.signinOne = view.cheSigninOne.Checked;
             view.cheAutoRefresh.CheckedChanged += (sender, args) => item.autoRefresh = view.cheAutoRefresh.Checked;
+            view.cheNeedAuth.CheckedChanged += (sender, args) =>
+            {
+                var needAuth = view.cheNeedAuth.Checked;
+                if (!needAuth) item.autoTenant = null;
+
+                view.cheAutoTenant.Enabled = needAuth;
+            };
             view.cheAutoTenant.CheckedChanged += (sender, args) => item.autoTenant = view.cheAutoTenant.Checked;
         }
 

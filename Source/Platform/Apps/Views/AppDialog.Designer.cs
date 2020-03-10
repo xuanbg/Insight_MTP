@@ -45,6 +45,7 @@
             this.cheAutoTenant = new DevExpress.XtraEditors.CheckEdit();
             this.labIndex = new DevExpress.XtraEditors.LabelControl();
             this.spiIndex = new DevExpress.XtraEditors.SpinEdit();
+            this.cheNeedAuth = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
@@ -56,11 +57,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.cheAutoRefresh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cheAutoTenant.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spiIndex.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cheNeedAuth.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel
             // 
             this.panel.Controls.Add(this.spiIndex);
+            this.panel.Controls.Add(this.cheNeedAuth);
             this.panel.Controls.Add(this.cheAutoTenant);
             this.panel.Controls.Add(this.cheAutoRefresh);
             this.panel.Controls.Add(this.cheSigninOne);
@@ -223,7 +226,7 @@
             this.cheSigninOne.Location = new System.Drawing.Point(20, 115);
             this.cheSigninOne.Name = "cheSigninOne";
             this.cheSigninOne.Properties.Caption = "仅允许单设备登录";
-            this.cheSigninOne.Size = new System.Drawing.Size(135, 19);
+            this.cheSigninOne.Size = new System.Drawing.Size(120, 19);
             this.cheSigninOne.TabIndex = 7;
             // 
             // cheAutoRefresh
@@ -232,17 +235,17 @@
             this.cheAutoRefresh.Location = new System.Drawing.Point(20, 145);
             this.cheAutoRefresh.Name = "cheAutoRefresh";
             this.cheAutoRefresh.Properties.Caption = "自动刷新令牌";
-            this.cheAutoRefresh.Size = new System.Drawing.Size(136, 19);
+            this.cheAutoRefresh.Size = new System.Drawing.Size(100, 19);
             this.cheAutoRefresh.TabIndex = 8;
             // 
             // cheAutoTenant
             // 
             this.cheAutoTenant.EnterMoveNextControl = true;
-            this.cheAutoTenant.Location = new System.Drawing.Point(20, 175);
+            this.cheAutoTenant.Location = new System.Drawing.Point(150, 175);
             this.cheAutoTenant.Name = "cheAutoTenant";
             this.cheAutoTenant.Properties.Caption = "令牌自动绑定租户";
-            this.cheAutoTenant.Size = new System.Drawing.Size(136, 19);
-            this.cheAutoTenant.TabIndex = 9;
+            this.cheAutoTenant.Size = new System.Drawing.Size(120, 19);
+            this.cheAutoTenant.TabIndex = 10;
             // 
             // labIndex
             // 
@@ -272,6 +275,15 @@
             this.spiIndex.Size = new System.Drawing.Size(60, 20);
             this.spiIndex.TabIndex = 6;
             // 
+            // cheNeedAuth
+            // 
+            this.cheNeedAuth.EnterMoveNextControl = true;
+            this.cheNeedAuth.Location = new System.Drawing.Point(20, 175);
+            this.cheNeedAuth.Name = "cheNeedAuth";
+            this.cheNeedAuth.Properties.Caption = "用户需要授权";
+            this.cheNeedAuth.Size = new System.Drawing.Size(100, 19);
+            this.cheNeedAuth.TabIndex = 9;
+            // 
             // AppDialog
             // 
             this.ClientSize = new System.Drawing.Size(384, 272);
@@ -288,6 +300,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cheAutoRefresh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cheAutoTenant.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spiIndex.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cheNeedAuth.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -310,5 +323,6 @@
         public DevExpress.XtraEditors.TextEdit txtName;
         public DevExpress.XtraEditors.TextEdit txtPermitLife;
         public DevExpress.XtraEditors.TextEdit txtHost;
+        public DevExpress.XtraEditors.CheckEdit cheNeedAuth;
     }
 }
