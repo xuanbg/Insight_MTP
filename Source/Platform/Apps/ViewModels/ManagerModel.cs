@@ -32,6 +32,7 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
             var result = dataModel.getApps(keyWord, tab.page, tab.size);
             list = result.data;
             closeWaitForm();
+            if (!result.success) return;
 
             tab.totalRows = int.Parse(result.option.ToString()) ;
             view.grdApp.DataSource = list;
@@ -129,6 +130,7 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
         public void refreshTree()
         {
             view.TreNav.RefreshDataSource();
+            refreshToolBar();
         }
 
         /// <summary>
@@ -137,6 +139,7 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
         public void refreshGrid()
         {
             view.gdvFunc.RefreshData();
+            refreshToolBar();
         }
 
         /// <summary>

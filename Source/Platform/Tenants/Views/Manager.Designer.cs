@@ -68,8 +68,6 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.grpUser = new DevExpress.XtraEditors.GroupControl();
             this.grdUser = new DevExpress.XtraGrid.GridControl();
             this.gdvUser = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.tabUser = new Insight.Utils.Controls.PageControl();
-            this.tenantUserBindingSource = new System.Windows.Forms.BindingSource();
             this.colid2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colcode1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colname1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -78,6 +76,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.colemail = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colremark1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colisInvalid1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.tabUser = new Insight.Utils.Controls.PageControl();
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMain)).BeginInit();
@@ -101,7 +100,6 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.grpUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvUser)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tenantUserBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraScrollable
@@ -265,7 +263,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             // colisInvalid
             // 
             this.colisInvalid.Caption = "禁用";
-            this.colisInvalid.FieldName = "isInvalid";
+            this.colisInvalid.FieldName = "invalid";
             this.colisInvalid.Name = "colisInvalid";
             this.colisInvalid.Visible = true;
             this.colisInvalid.VisibleIndex = 5;
@@ -422,7 +420,6 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             // 
             // grdUser
             // 
-            this.grdUser.DataSource = this.tenantUserBindingSource;
             this.grdUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdUser.Location = new System.Drawing.Point(2, 21);
             this.grdUser.MainView = this.gdvUser;
@@ -446,22 +443,6 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.gdvUser.GridControl = this.grdUser;
             this.gdvUser.Name = "gdvUser";
             this.gdvUser.OptionsDetail.EnableMasterViewMode = false;
-            // 
-            // tabUser
-            // 
-            this.tabUser.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabUser.focusedRowHandle = 0;
-            this.tabUser.Location = new System.Drawing.Point(2, 261);
-            this.tabUser.MaximumSize = new System.Drawing.Size(0, 22);
-            this.tabUser.MinimumSize = new System.Drawing.Size(320, 22);
-            this.tabUser.Name = "tabUser";
-            this.tabUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("tabUser.pageSizeItems")));
-            this.tabUser.Size = new System.Drawing.Size(661, 22);
-            this.tabUser.TabIndex = 0;
-            // 
-            // tenantUserBindingSource
-            // 
-            this.tenantUserBindingSource.DataSource = typeof(Insight.MTP.Client.Common.Entity.TenantUser);
             // 
             // colid2
             // 
@@ -527,6 +508,18 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.colisInvalid1.VisibleIndex = 5;
             this.colisInvalid1.Width = 40;
             // 
+            // tabUser
+            // 
+            this.tabUser.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tabUser.focusedRowHandle = 0;
+            this.tabUser.Location = new System.Drawing.Point(2, 261);
+            this.tabUser.MaximumSize = new System.Drawing.Size(0, 22);
+            this.tabUser.MinimumSize = new System.Drawing.Size(320, 22);
+            this.tabUser.Name = "tabUser";
+            this.tabUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("tabUser.pageSizeItems")));
+            this.tabUser.Size = new System.Drawing.Size(661, 22);
+            this.tabUser.TabIndex = 0;
+            // 
             // Manager
             // 
             this.Appearance.Options.UseFont = true;
@@ -555,7 +548,6 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.grpUser.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvUser)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tenantUserBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -596,7 +588,6 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
         private DevExpress.XtraGrid.Columns.GridColumn colappId;
         private DevExpress.XtraGrid.Columns.GridColumn colname2;
         private DevExpress.XtraGrid.Columns.GridColumn colexpireDate;
-        private System.Windows.Forms.BindingSource tenantUserBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colid2;
         private DevExpress.XtraGrid.Columns.GridColumn colcode1;
         private DevExpress.XtraGrid.Columns.GridColumn colname1;

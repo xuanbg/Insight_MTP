@@ -29,6 +29,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
             var result = dataModel.getTenants(keyWord, tab.page, tab.size);
             list = result.data;
             closeWaitForm();
+            if (!result.success) return;
 
             tab.totalRows = int.Parse(result.option.ToString());
             view.grdTenant.DataSource = list;
@@ -87,20 +88,29 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         }
 
         /// <summary>
+        /// 刷新列表数据
+        /// </summary>
+        public void refreshGrid()
+        {
+            view.gdvTenant.RefreshData();
+            refreshToolBar();
+        }
+
+        /// <summary>
         /// 刷新工具条按钮状态
         /// </summary>
         private void refreshToolBar()
         {
             var dict = new Dictionary<string, bool>
             {
-                ["editTenant"] = item != null,
-                ["auditTenant"] = item != null,
-                ["rentTenant"] = item != null,
-                ["deleteTenant"] = item != null,
-                ["disableTenant"] = item != null && !item.isInvalid,
-                ["enableTenant"] = item != null && item.isInvalid,
-                ["bindApps"] = item != null,
-                ["unbindApps"] = item != null && app != null,
+                ["editItem"] = item != null,
+                ["deleteItem"] = item != null,
+                ["audit"] = item != null && item.status != 1,
+                ["disable"] = item != null && !item.invalid,
+                ["enable"] = item != null && item.invalid,
+                ["bind"] = item != null,
+                ["unbind"] = item != null && app != null,
+                ["rent"] = item != null && app != null
             };
             switchItemStatus(dict);
         }

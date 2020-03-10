@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Insight.MTP.Client.Common.Entity
 {
@@ -43,7 +42,7 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 是否失效：0、正常；1、失效
         /// </summary>
-        public bool isInvalid { get; set; }
+        public bool invalid { get; set; }
         
         /// <summary>
         /// 创建人ID
