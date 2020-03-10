@@ -132,5 +132,22 @@ namespace Insight.MTP.Client.Platform.Tenants
             }
         }
 
+        /// <summary>
+        /// 续租应用
+        /// </summary>
+        public void rent()
+        {
+            var model = new RentModel(mdiModel.app, "续租应用");
+            model.callbackEvent += (sender, args) =>
+            {
+                if (!dataModel.rentApp(mdiModel.app)) return;
+
+                mdiModel.refreshApp();
+                model.close();
+            };
+
+            model.showDialog();
+        }
+
     }
 }

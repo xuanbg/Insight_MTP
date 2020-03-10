@@ -3,12 +3,12 @@ using Insight.Utils.BaseForms;
 
 namespace Insight.MTP.Client.Platform.Tenants.Views
 {
-    public partial class ExtendDialog : BaseDialog
+    public partial class RentDialog : BaseDialog
     {
         /// <summary>
         /// 构造函数
         /// </summary>
-        public ExtendDialog()
+        public RentDialog()
         {
             InitializeComponent();
         }

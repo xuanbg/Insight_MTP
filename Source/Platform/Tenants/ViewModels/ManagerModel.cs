@@ -97,6 +97,14 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         }
 
         /// <summary>
+        /// 刷新列表数据
+        /// </summary>
+        public void refreshApp()
+        {
+            view.gdvApp.RefreshData();
+        }
+
+        /// <summary>
         /// 刷新工具条按钮状态
         /// </summary>
         private void refreshToolBar()

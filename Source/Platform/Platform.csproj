@@ -124,7 +124,7 @@
     </Compile>
     <Compile Include="Tenants\Controller.cs" />
     <Compile Include="Tenants\DataModel.cs" />
-    <Compile Include="Tenants\ViewModels\ExtendModel.cs" />
+    <Compile Include="Tenants\ViewModels\RentModel.cs" />
     <Compile Include="Tenants\ViewModels\BindModel.cs" />
     <Compile Include="Tenants\ViewModels\TenantModel.cs" />
     <Compile Include="Tenants\ViewModels\ManagerModel.cs" />
@@ -134,11 +134,11 @@
     <Compile Include="Tenants\Views\BindDialog.Designer.cs">
       <DependentUpon>BindDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tenants\Views\ExtendDialog.cs">
+    <Compile Include="Tenants\Views\RentDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tenants\Views\ExtendDialog.Designer.cs">
-      <DependentUpon>ExtendDialog.cs</DependentUpon>
+    <Compile Include="Tenants\Views\RentDialog.Designer.cs">
+      <DependentUpon>RentDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Tenants\Views\TenantDialog.cs">
       <SubType>Form</SubType>
@@ -171,8 +171,8 @@
     <EmbeddedResource Include="Tenants\Views\BindDialog.resx">
       <DependentUpon>BindDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tenants\Views\ExtendDialog.resx">
-      <DependentUpon>ExtendDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Tenants\Views\RentDialog.resx">
+      <DependentUpon>RentDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tenants\Views\TenantDialog.resx">
       <DependentUpon>TenantDialog.cs</DependentUpon>

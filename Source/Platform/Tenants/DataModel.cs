@@ -146,47 +146,24 @@ namespace Insight.MTP.Client.Platform.Tenants
 
             return client.put(url, tenant.id, msg);
         }
-
+        
         /// <summary>
-        /// 新增功能信息
+        /// 续租应用
         /// </summary>
-        /// <param name="func">功能实体对象</param>
-        /// <returns>租户ID</returns>
-        public string addFunc(Function func)
+        /// <param name="app">租户应用实体对象</param>
+        /// <returns>是否成功</returns>
+        public bool rentApp(TenantApp app)
         {
-            var msg = $"新建功能【{func.name}】失败！";
-            var url = $"{resourceService}/v1.0/functions";
-            var client = new HttpClient<string>();
-
-            return client.commit(url, func, msg, RequestMethod.POST);
-        }
-
-        /// <summary>
-        /// 更新功能信息
-        /// </summary>
-        /// <param name="func">功能实体对象</param>
-        /// <returns>是否更新成功</returns>
-        public bool updateFunc(Function func)
-        {
-            var msg = $"更新功能【{func.name}】数据失败！";
-            var url = $"{resourceService}/v1.0/functions";
+            var msg = $"对不起，续租应用【{app.name}】失败！";
+            var url = $"{resourceService}/v1.0/tenants/{app.tenantId}/apps";
+            var dict = new Dictionary<string, object>
+            {
+                {"appId", app.id},
+                {"expireDate", app.expireDate}
+            };
             var client = new HttpClient<object>();
 
-            return client.put(url, func, msg);
-        }
-
-        /// <summary>
-        /// 删除功能
-        /// </summary>
-        /// <param name="func">功能实体对象</param>
-        /// <returns>是否删除成功</returns>
-        public bool deleteFunc(Function func)
-        {
-            var msg = $"对不起，无法删除功能【{func.name}】！";
-            var url = $"{resourceService}/v1.0/functions";
-            var client = new HttpClient<object>();
-
-            return client.delete(url, func.id, msg);
+            return client.put(url, dict, msg);
         }
     }
 }

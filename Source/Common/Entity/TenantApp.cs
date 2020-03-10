@@ -8,7 +8,12 @@ namespace Insight.MTP.Client.Common.Entity
         /// 应用ID
         /// </summary>
         public string id { get; set; }
-        
+
+        /// <summary>
+        /// 租户ID
+        /// </summary>
+        public string tenantId { get; set; }
+
         /// <summary>
         /// 应用名称
         /// </summary>

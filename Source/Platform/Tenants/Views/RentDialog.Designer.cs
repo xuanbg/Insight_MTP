@@ -1,6 +1,6 @@
 ﻿namespace Insight.MTP.Client.Platform.Tenants.Views
 {
-    public partial class ExtendDialog
+    public partial class RentDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -28,18 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExtendDialog));
             this.labUnlockPw = new DevExpress.XtraEditors.LabelControl();
-            this.speDays = new DevExpress.XtraEditors.SpinEdit();
+            this.datRent = new DevExpress.XtraEditors.DateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.speDays.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datRent.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datRent.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.datRent);
             this.panel.Controls.Add(this.labUnlockPw);
-            this.panel.Controls.Add(this.speDays);
+            // 
+            // cancel
+            // 
+            this.cancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cancel.Appearance.Options.UseFont = true;
+            // 
+            // confirm
+            // 
+            this.confirm.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.confirm.Appearance.Options.UseFont = true;
+            // 
+            // close
+            // 
+            this.close.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.close.Appearance.Options.UseFont = true;
             // 
             // labUnlockPw
             // 
@@ -51,36 +66,19 @@
             this.labUnlockPw.Name = "labUnlockPw";
             this.labUnlockPw.Size = new System.Drawing.Size(80, 21);
             this.labUnlockPw.TabIndex = 3;
-            this.labUnlockPw.Text = "续租天数：";
+            this.labUnlockPw.Text = "续租至：";
             // 
-            // speDays
+            // datRent
             // 
-            this.speDays.EditValue = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.speDays.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.speDays.Location = new System.Drawing.Point(145, 65);
-            this.speDays.Name = "speDays";
-            this.speDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.datRent.EditValue = null;
+            this.datRent.Location = new System.Drawing.Point(150, 65);
+            this.datRent.Name = "datRent";
+            this.datRent.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.speDays.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.speDays.Properties.IsFloatValue = false;
-            this.speDays.Properties.Mask.EditMask = "N00";
-            this.speDays.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.speDays.Properties.MaxValue = new decimal(new int[] {
-            30000,
-            0,
-            0,
-            0});
-            this.speDays.Properties.MinValue = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.speDays.Size = new System.Drawing.Size(100, 20);
-            this.speDays.TabIndex = 1;
+            this.datRent.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.datRent.Size = new System.Drawing.Size(100, 20);
+            this.datRent.TabIndex = 1;
             // 
             // ExtendDialog
             // 
@@ -89,13 +87,14 @@
             this.Text = "锁定";
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.speDays.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datRent.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datRent.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private DevExpress.XtraEditors.LabelControl labUnlockPw;
-        internal DevExpress.XtraEditors.SpinEdit speDays;
+        public DevExpress.XtraEditors.DateEdit datRent;
     }
 }
