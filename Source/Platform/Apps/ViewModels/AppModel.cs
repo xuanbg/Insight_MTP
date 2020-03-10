@@ -42,9 +42,9 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
             view.cheNeedAuth.CheckedChanged += (sender, args) =>
             {
                 var needAuth = view.cheNeedAuth.Checked;
-                if (!needAuth) item.autoTenant = null;
-
                 view.cheAutoTenant.Enabled = needAuth;
+                view.cheAutoTenant.Checked = false;
+                item.autoTenant = needAuth ? false : (bool?) null;
             };
             view.cheAutoTenant.CheckedChanged += (sender, args) => item.autoTenant = view.cheAutoTenant.Checked;
         }
