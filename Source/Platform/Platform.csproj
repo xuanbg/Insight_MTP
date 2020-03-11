@@ -167,7 +167,6 @@
     <EmbeddedResource Include="Apps\Views\Manager.resx">
       <DependentUpon>Manager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Tenants\Views\BindDialog.resx">
       <DependentUpon>BindDialog.cs</DependentUpon>
     </EmbeddedResource>

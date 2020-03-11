@@ -32,7 +32,6 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BindDialog));
             this.grdApp = new DevExpress.XtraGrid.GridControl();
             this.gdvApp = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -47,6 +46,24 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             // 
             this.panel.Controls.Add(this.grdApp);
             this.panel.Size = new System.Drawing.Size(510, 300);
+            // 
+            // cancel
+            // 
+            this.cancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cancel.Appearance.Options.UseFont = true;
+            this.cancel.Location = new System.Drawing.Point(340, 324);
+            // 
+            // confirm
+            // 
+            this.confirm.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.confirm.Appearance.Options.UseFont = true;
+            this.confirm.Location = new System.Drawing.Point(430, 324);
+            // 
+            // close
+            // 
+            this.close.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.close.Appearance.Options.UseFont = true;
+            this.close.Location = new System.Drawing.Point(430, 324);
             // 
             // grdApp
             // 

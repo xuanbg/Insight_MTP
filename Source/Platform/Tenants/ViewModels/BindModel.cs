@@ -3,15 +3,14 @@ using System.Linq;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Tenants.Views;
 using Insight.Utils.BaseViewModels;
-using Insight.Utils.Client;
+using Insight.Utils.Common;
 using Insight.Utils.Controls;
 
 namespace Insight.MTP.Client.Platform.Tenants.ViewModels
 {
     public class BindModel : BaseDialogModel<object, BindDialog>
     {
-
-        private readonly Tenant tenant;
+        public List<TenantApp> apps;
 
         /// <summary>
         /// 构造函数，初始化视图
@@ -19,31 +18,27 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         /// </summary>
         /// <param name="data"></param>
         /// <param name="title"></param>
-        public BindModel(Tenant data, string title) : base(title)
+        public BindModel(List<TenantApp> data, string title) : base(title)
         {
-            tenant = data;
-
-            Format.gridFormat(view.gdvApp, 0);
-            getApps();
+            view.grdApp.DataSource = data;
+            Format.gridFormat(view.gdvApp);
         }
-        
+
         /// <summary>
-        /// 加载应用列表数据
+        /// 输入合法性检查
         /// </summary>
-        private void getApps()
+        public new void confirm()
         {
-            var url = $"/appapi/v1.0/apps/all";
-            var client = new HttpClient<List<App>>();
-            client.get(url);
-
-            view.grdApp.DataSource = client.data;
-            for (var i = 0; i < view.gdvApp.RowCount; i++)
+            var list = from r in view.gdvApp.GetSelectedRows()
+                select (TenantApp) view.gdvApp.GetRow(r);
+            apps = list.ToList();
+            if (!apps.Any())
             {
-                var row = (App) view.gdvApp.GetRow(i);
-                if (tenant.apps.All(t => t.id != row.id)) continue;
-
-                view.gdvApp.SelectRow(i);
+                Messages.showWarning("请选择需要绑定的应用！");
+                return;
             }
+
+            base.confirm();
         }
     }
 }

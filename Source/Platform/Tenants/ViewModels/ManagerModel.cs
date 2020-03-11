@@ -14,7 +14,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         /// </summary>
         public ManagerModel()
         {
-            init(view.gdvTenant, "editTenant", view.tabTenant, view.KeyInput, view.Search);
+            init(view.gdvTenant, "editItem", view.tabTenant, view.KeyInput, view.Search);
             initGrid(view.gdvApp, null, "appChanged");
             initGrid(view.gdvUser, null, null, view.tabUser);
         }
@@ -60,7 +60,6 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
                     if (item.apps == null)
                     {
                         item.apps = dataModel.getTenantApps(item.id);
-                        view.grdApp.DataSource = item.apps;
                     }
 
                     if (item.users == null)
@@ -68,11 +67,12 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
                         var result = dataModel.getTenantUsers(item.id, view.tabUser.page, view.tabUser.size);
                         item.users = result.data;
                         view.tabUser.totalRows = int.Parse(result.option.ToString());
-                        view.grdUser.DataSource = item.users;
                     }
                 }
             }
 
+            view.grdApp.DataSource = item?.apps;
+            view.grdUser.DataSource = item?.users;
             refreshToolBar();
         }
 

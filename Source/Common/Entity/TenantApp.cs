@@ -20,6 +20,11 @@ namespace Insight.MTP.Client.Common.Entity
         public string name { get; set; }
 
         /// <summary>
+        /// 应用简称
+        /// </summary>
+        public string alias { get; set; }
+
+        /// <summary>
         /// 过期日期
         /// </summary>
         public DateTime expireDate { get; set; }

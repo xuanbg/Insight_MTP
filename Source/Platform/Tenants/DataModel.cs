@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Insight.MTP.Client.Common.Entity;
 using Insight.Utils.Client;
 using Insight.Utils.Common;
@@ -146,7 +147,50 @@ namespace Insight.MTP.Client.Platform.Tenants
 
             return client.put(url, tenant.id, msg);
         }
-        
+
+        /// <summary>
+        /// 获取租户可用应用集合
+        /// </summary>
+        /// <param name="id">租户ID</param>
+        /// <returns>应用集合</returns>
+        public List<TenantApp> getApps(string id)
+        {
+            var url = $"{resourceService}/v1.0/tenants/{id}/unbounds";
+            var client = new HttpClient<List<TenantApp>>();
+
+            return client.getData(url);
+        }
+
+        /// <summary>
+        /// 绑定应用
+        /// </summary>
+        /// <param name="id">租户ID</param>
+        /// <param name="apps">租户应用实体对象集合</param>
+        /// <returns>是否成功</returns>
+        public bool bindApps(string id, IEnumerable<TenantApp> apps)
+        {
+            var url = $"{resourceService}/v1.0/tenants/{id}/apps";
+            var data = apps.Select(i => i.id).ToList();
+            var client = new HttpClient<object>();
+
+            return client.post(url, data);
+        }
+
+        /// <summary>
+        /// 解绑应用
+        /// </summary>
+        /// <param name="app">租户应用实体对象</param>
+        /// <returns>是否成功</returns>
+        public bool unbindApp(TenantApp app)
+        {
+            var msg = $"对不起，应用【{app.name}】解除绑定失败！";
+            var url = $"{resourceService}/v1.0/tenants/{app.tenantId}/apps";
+            var data = new List<string> {app.id};
+            var client = new HttpClient<object>();
+
+            return client.delete(url,data, msg);
+        }
+
         /// <summary>
         /// 续租应用
         /// </summary>

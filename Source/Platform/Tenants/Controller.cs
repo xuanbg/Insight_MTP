@@ -133,6 +133,40 @@ namespace Insight.MTP.Client.Platform.Tenants
         }
 
         /// <summary>
+        /// 绑定应用
+        /// </summary>
+        public void bind()
+        {
+            var apps = dataModel.getApps(mdiModel.item.id);
+            var model = new BindModel(apps, "绑定应用");
+            model.callbackEvent += (sender, args) =>
+            {
+                if (!dataModel.bindApps(mdiModel.item.id, model.apps)) return;
+
+                mdiModel.item.apps.AddRange(model.apps);
+                mdiModel.refreshApp();
+                model.close();
+            };
+
+            model.showDialog();
+        }
+
+        /// <summary>
+        /// 解绑应用
+        /// </summary>
+        public void unbind()
+        {
+            var msg = $"您确定要解绑应用【{mdiModel.app.name}】吗？\r\n解绑后该租户的用户将使用该应用！";
+            if (!Messages.showConfirm(msg)) return;
+
+            if (dataModel.unbindApp(mdiModel.app))
+            {
+                mdiModel.item.apps.Remove(mdiModel.app);
+                mdiModel.refreshApp();
+            }
+        }
+
+        /// <summary>
         /// 续租应用
         /// </summary>
         public void rent()
@@ -148,6 +182,5 @@ namespace Insight.MTP.Client.Platform.Tenants
 
             model.showDialog();
         }
-
     }
 }
