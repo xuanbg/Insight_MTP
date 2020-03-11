@@ -122,6 +122,15 @@
     <Compile Include="Apps\Views\Manager.Designer.cs">
       <DependentUpon>Manager.cs</DependentUpon>
     </Compile>
+    <Compile Include="Schedules\Controller.cs" />
+    <Compile Include="Schedules\DataModel.cs" />
+    <Compile Include="Schedules\ViewModels\ManagerModel.cs" />
+    <Compile Include="Schedules\Views\Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedules\Views\Manager.Designer.cs">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tenants\Controller.cs" />
     <Compile Include="Tenants\DataModel.cs" />
     <Compile Include="Tenants\ViewModels\RentModel.cs" />
@@ -153,6 +162,15 @@
       <DependentUpon>Manager.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\Controller.cs" />
+    <Compile Include="Users\DataModel.cs" />
+    <Compile Include="Users\ViewModels\ManagerModel.cs" />
+    <Compile Include="Users\Views\Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\Views\Manager.Designer.cs">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Apps\Views\FunDialog.resx">
@@ -167,6 +185,10 @@
     <EmbeddedResource Include="Apps\Views\Manager.resx">
       <DependentUpon>Manager.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Schedules\Views\Manager.resx">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tenants\Views\BindDialog.resx">
       <DependentUpon>BindDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +199,9 @@
       <DependentUpon>TenantDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tenants\Views\Manager.resx">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\Views\Manager.resx">
       <DependentUpon>Manager.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -204,6 +229,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
