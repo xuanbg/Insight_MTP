@@ -18,8 +18,8 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
         public ManagerModel()
         {
             init(view.gdvApp, "editApp", view.pccApp, view.KeyInput, view.Search);
-            initTree(view.TreNav, "editNav", "navChanged");
-            initGrid(view.gdvFunc, "editFunc", "funChanged");
+            initTree(view.TreNav, "navChanged", "editNav");
+            initGrid(view.gdvFunc, "funChanged", "editFunc");
         }
 
         /// <summary>

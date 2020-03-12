@@ -7,7 +7,7 @@ namespace Insight.MTP.Client.Platform.Schedules
 {
     public class DataModel
     {
-        private const string resourceService = "/base/message";
+        private const string service = "/base/message";
 
         /// <summary>
         /// 获取计划任务集合
@@ -18,7 +18,7 @@ namespace Insight.MTP.Client.Platform.Schedules
         /// <returns>计划任务集合</returns>
         public Result<List<Schedule>> getSchedules(string keyword, int page, int size)
         {
-            var url = $"{resourceService}/v1.0/schedules";
+            var url = $"{service}/v1.0/schedules";
             var dict = new Dictionary<string, object>
             {
                 {"keyword", keyword},
@@ -38,7 +38,7 @@ namespace Insight.MTP.Client.Platform.Schedules
         public bool executeSchedule(string id)
         {
             const string msg = "对不起，无法执行选中的计划任务！";
-            var url = $"{resourceService}/v1.0/schedules";
+            var url = $"{service}/v1.0/schedules";
             var client = new HttpClient<List<Navigation>>();
 
             return client.put(url, id, msg);
@@ -52,7 +52,7 @@ namespace Insight.MTP.Client.Platform.Schedules
         public bool deleteSchedule(string id)
         {
             const string msg = "对不起，无法删除选中的计划任务！";
-            var url = $"{resourceService}/v1.0/schedules";
+            var url = $"{service}/v1.0/schedules";
             var client = new HttpClient<object>();
 
             return client.delete(url, id, msg);
@@ -66,7 +66,7 @@ namespace Insight.MTP.Client.Platform.Schedules
         public bool disableSchedule(string id)
         {
             const string msg = "对不起，无法禁用选中的计划任务！";
-            var url = $"{resourceService}/v1.0/schedules/disable";
+            var url = $"{service}/v1.0/schedules/disable";
             var client = new HttpClient<object>();
 
             return client.put(url, id, msg);
@@ -80,7 +80,7 @@ namespace Insight.MTP.Client.Platform.Schedules
         public bool enableSchedule(string id)
         {
             const string msg = "对不起，无法启用选中的计划任务！";
-            var url = $"{resourceService}/v1.0/schedules/enable";
+            var url = $"{service}/v1.0/schedules/enable";
             var client = new HttpClient<object>();
 
             return client.put(url, id, msg);

@@ -12,7 +12,8 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
         /// </summary>
         public ManagerModel()
         {
-            init(view.gdvUser, "editApp", view.ppcUser, view.KeyInput, view.Search);
+            init(view.gdvUser, "editItem", view.ppcUser, view.KeyInput, view.Search);
+            initTree(view.treAction);
         }
 
         /// <summary>
@@ -38,11 +39,32 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
         /// <param name="index">List下标</param>
         public void itemChanged(int index)
         {
-         
+            if (index < 0)
+            {
+                item = null;
+                view.grdUser.DataSource = null;
+            }
+            else
+            {
+                tab.focusedRowHandle = index;
+                handle = index;
+                var obj = list[index];
+                if (obj.id != item?.id)
+                {
+                    item = obj;
+                    if (item.funcs == null)
+                    {
+                        item.funcs = dataModel.getFuncs(item.id);
+                    }
+                }
+            }
+
+            view.treAction.DataSource = item?.funcs;
+            view.treAction.ExpandToLevel(1);
 
             refreshToolBar();
         }
-        
+
         /// <summary>
         /// 刷新树数据
         /// </summary>
@@ -67,8 +89,11 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
         {
             var dict = new Dictionary<string, bool>
             {
-                ["editApp"] = item != null,
-                ["deleteApp"] = item != null,
+                ["editItem"] = item != null,
+                ["deleteItem"] = item != null,
+                ["disable"] = item != null && !item.invalid,
+                ["enable"] = item != null && item.invalid,
+                ["reset"] = item != null,
             };
             switchItemStatus(dict);
         }

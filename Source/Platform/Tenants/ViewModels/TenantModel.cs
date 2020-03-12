@@ -11,7 +11,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         /// 构造函数
         /// 通过订阅事件实现双向数据绑定
         /// </summary>
-        /// <param name="data">UserInfo</param>
+        /// <param name="data">初始化数据</param>
         /// <param name="title">View标题</param>
         public TenantModel(Tenant data, string title) : base(title)
         {

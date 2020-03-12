@@ -8,20 +8,21 @@ namespace Insight.MTP.Client.Platform.Users
 {
     public class DataModel
     {
-        private const string resourceService = "/base/resource";
+        private const string service = "/base/user/manage";
 
         /// <summary>
-        /// 获取应用集合
+        /// 获取用户集合
         /// </summary>
         /// <param name="keyword">查询关键词</param>
         /// <param name="page">页码</param>
         /// <param name="size">每页行数</param>
-        /// <returns>应用集合</returns>
+        /// <returns>用户集合</returns>
         public Result<List<User>> getUsers(string keyword, int page, int size)
         {
-            var url = $"{resourceService}/v1.0/users";
+            var url = $"{service}/v1.0/users";
             var dict = new Dictionary<string, object>
             {
+                {"all", true},
                 {"keyword", keyword},
                 {"page", page},
                 {"size", size}
@@ -32,155 +33,100 @@ namespace Insight.MTP.Client.Platform.Users
         }
 
         /// <summary>
-        /// 获取指定应用的导航集合
+        /// 获取指定用户的授权功能集合
         /// </summary>
-        /// <param name="id">应用ID</param>
-        /// <returns>导航集合</returns>
-        public List<Navigation> getNavs(string id)
+        /// <param name="id">用户ID</param>
+        /// <returns>授权功能集合</returns>
+        public List<AppTree> getFuncs(string id)
         {
-            var url = $"{resourceService}/v1.0/apps/{id}/navigators";
-            var client = new HttpClient<List<Navigation>>();
+            var url = $"{service}/v1.0/users/{id}/functions";
+            var client = new HttpClient<List<AppTree>>();
 
             return client.getData(url);
         }
 
         /// <summary>
-        /// 获取指定模块的功能集合
+        /// 新增用户信息
         /// </summary>
-        /// <param name="id">模块ID</param>
-        /// <returns>功能集合</returns>
-        public List<Function> getFuncs(string id)
+        /// <param name="user">用户实体对象</param>
+        /// <returns>用户ID</returns>
+        public string addUser(User user)
         {
-            var url = $"{resourceService}/v1.0/navigators/{id}/functions";
-            var client = new HttpClient<List<Function>>();
-
-            return client.getData(url);
-        }
-
-        /// <summary>
-        /// 新增应用信息
-        /// </summary>
-        /// <param name="app">应用实体对象</param>
-        /// <returns>应用ID</returns>
-        public string addApp(App app)
-        {
-            var msg = $"新建应用【{app.name}】失败！";
-            var url = $"{resourceService}/v1.0/apps";
+            var msg = $"新建用户【{user.name}】失败！";
+            var url = $"{service}/v1.0/users";
             var client = new HttpClient<string>();
 
-            return client.commit(url, app, msg, RequestMethod.POST);
+            return client.commit(url, user, msg, RequestMethod.POST);
         }
 
         /// <summary>
-        /// 更新应用信息
+        /// 更新用户信息
         /// </summary>
-        /// <param name="app">应用实体对象</param>
+        /// <param name="user">用户实体对象</param>
         /// <returns>是否更新成功</returns>
-        public bool updateApp(App app)
+        public bool updateUser(User user)
         {
-            var msg = $"更新应用【{app.name}】数据失败！";
-            var url = $"{resourceService}/v1.0/apps";
+            var msg = $"更新用户【{user.name}】数据失败！";
+            var url = $"{service}/v1.0/users";
             var client = new HttpClient<object>();
 
-            return client.put(url, app, msg);
+            return client.put(url, user, msg);
         }
 
         /// <summary>
-        /// 删除应用
+        /// 删除用户
         /// </summary>
-        /// <param name="app">应用实体对象</param>
+        /// <param name="user">用户实体对象</param>
         /// <returns>是否删除成功</returns>
-        public bool deleteApp(App app)
+        public bool deleteUser(User user)
         {
-            var msg = $"对不起，无法删除应用【{app.name}】！";
-            var url = $"{resourceService}/v1.0/apps";
+            var msg = $"对不起，无法删除用户【{user.name}】！";
+            var url = $"{service}/v1.0/users";
             var client = new HttpClient<object>();
 
-            return client.delete(url, app.id, msg);
+            return client.delete(url, user.id, msg);
         }
 
         /// <summary>
-        /// 新增导航信息
+        /// 禁用用户
         /// </summary>
-        /// <param name="nav">导航实体对象</param>
-        /// <returns>导航ID</returns>
-        internal string addNav(Navigation nav)
+        /// <param name="user">用户实体对象</param>
+        /// <returns>是否成功</returns>
+        public bool disableUser(User user)
         {
-            var msg = $"新建导航【{nav.name}】失败！";
-            var url = $"{resourceService}/v1.0/navigators";
-            var client = new HttpClient<string>();
-
-            return client.commit(url, nav, msg, RequestMethod.POST);
-        }
-
-        /// <summary>
-        /// 更新导航信息
-        /// </summary>
-        /// <param name="nav">导航实体对象</param>
-        /// <returns>是否更新成功</returns>
-        public bool updateNav(Navigation nav)
-        {
-            var msg = $"更新导航【{nav.name}】数据失败！";
-            var url = $"{resourceService}/v1.0/navigators";
+            var msg = $"对不起，无法禁用用户{user.name}！";
+            var url = $"{service}/v1.0/users/disable";
             var client = new HttpClient<object>();
 
-            return client.put(url, nav, msg);
+            return client.put(url, user.id, msg);
         }
 
         /// <summary>
-        /// 删除导航
+        /// 启用用户
         /// </summary>
-        /// <param name="nav">导航实体对象</param>
-        /// <returns>是否删除成功</returns>
-        public bool deleteNav(Navigation nav)
+        /// <param name="user">用户实体对象</param>
+        /// <returns>是否成功</returns>
+        public bool enableUser(User user)
         {
-            var msg = $"对不起，无法删除导航【{nav.name}】！";
-            var url = $"{resourceService}/v1.0/navigators";
+            var msg = $"对不起，无法启用用户{user.name}！";
+            var url = $"{service}/v1.0/users/enable";
             var client = new HttpClient<object>();
 
-            return client.delete(url, nav.id, msg);
+            return client.put(url, user.id, msg);
         }
 
         /// <summary>
-        /// 新增功能信息
+        /// 重置用户密码
         /// </summary>
-        /// <param name="func">功能实体对象</param>
-        /// <returns>应用ID</returns>
-        public string addFunc(Function func)
+        /// <param name="user">用户实体对象</param>
+        /// <returns>是否成功</returns>
+        public bool resetPassword(User user)
         {
-            var msg = $"新建功能【{func.name}】失败！";
-            var url = $"{resourceService}/v1.0/functions";
-            var client = new HttpClient<string>();
-
-            return client.commit(url, func, msg, RequestMethod.POST);
-        }
-
-        /// <summary>
-        /// 更新功能信息
-        /// </summary>
-        /// <param name="func">功能实体对象</param>
-        /// <returns>是否更新成功</returns>
-        public bool updateFunc(Function func)
-        {
-            var msg = $"更新功能【{func.name}】数据失败！";
-            var url = $"{resourceService}/v1.0/functions";
+            var msg = $"对不起，无法删除用户{user.name}！";
+            var url = $"{service}/v1.0/users/password";
             var client = new HttpClient<object>();
 
-            return client.put(url, func, msg);
-        }
-
-        /// <summary>
-        /// 删除功能
-        /// </summary>
-        /// <param name="func">功能实体对象</param>
-        /// <returns>是否删除成功</returns>
-        public bool deleteFunc(Function func)
-        {
-            var msg = $"对不起，无法删除功能【{func.name}】！";
-            var url = $"{resourceService}/v1.0/functions";
-            var client = new HttpClient<object>();
-
-            return client.delete(url, func.id, msg);
+            return client.put(url, user.id, msg);
         }
     }
 }

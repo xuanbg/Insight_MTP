@@ -9,7 +9,7 @@ namespace Insight.MTP.Client.Platform.Tenants
 {
     public class DataModel
     {
-        private const string resourceService = "/base/tenant";
+        private const string service = "/base/tenant";
 
         /// <summary>
         /// 获取租户集合
@@ -20,7 +20,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         /// <returns>租户集合</returns>
         public Result<List<Tenant>> getTenants(string keyword, int page, int size)
         {
-            var url = $"{resourceService}/v1.0/tenants";
+            var url = $"{service}/v1.0/tenants";
             var dict = new Dictionary<string, object>
             {
                 {"keyword", keyword},
@@ -39,7 +39,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         /// <returns>绑定的租户集合</returns>
         public List<TenantApp> getTenantApps(string id)
         {
-            var url = $"{resourceService}/v1.0/tenants/{id}/apps";
+            var url = $"{service}/v1.0/tenants/{id}/apps";
             var client = new HttpClient<List<TenantApp>>();
 
             return client.getData(url);
@@ -54,7 +54,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         /// <returns>绑定的用户集合</returns>
         public Result<List<TenantUser>> getTenantUsers(string id, int page, int size)
         {
-            var url = $"{resourceService}/v1.0/tenants/{id}/users";
+            var url = $"{service}/v1.0/tenants/{id}/users";
             var dict = new Dictionary<string, object>
             {
                 {"page", page},
@@ -73,7 +73,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         public string addTenant(Tenant tenant)
         {
             var msg = $"新建租户【{tenant.name}】失败！";
-            var url = $"{resourceService}/v1.0/tenants";
+            var url = $"{service}/v1.0/tenants";
             var client = new HttpClient<string>();
 
             return client.commit(url, tenant, msg, RequestMethod.POST);
@@ -87,7 +87,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         public bool updateTenant(Tenant tenant)
         {
             var msg = $"更新租户【{tenant.name}】数据失败！";
-            var url = $"{resourceService}/v1.0/tenants";
+            var url = $"{service}/v1.0/tenants";
             var client = new HttpClient<object>();
 
             return client.put(url, tenant, msg);
@@ -101,7 +101,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         public bool deleteTenant(Tenant tenant)
         {
             var msg = $"对不起，无法删除租户【{tenant.name}】！";
-            var url = $"{resourceService}/v1.0/tenants";
+            var url = $"{service}/v1.0/tenants";
             var client = new HttpClient<object>();
 
             return client.delete(url, tenant.id, msg);
@@ -114,7 +114,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         /// <returns>是否成功</returns>
         internal bool auditTenant(object dict)
         {
-            var url = $"{resourceService}/v1.0/tenants/status";
+            var url = $"{service}/v1.0/tenants/status";
             var client = new HttpClient<object>();
 
             return client.put(url, dict);
@@ -128,7 +128,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         public bool disableTenant(Tenant tenant)
         {
             var msg = $"禁用租户【{tenant.name}】失败！";
-            var url = $"{resourceService}/v1.0/tenants/disable";
+            var url = $"{service}/v1.0/tenants/disable";
             var client = new HttpClient<object>();
 
             return client.put(url, tenant.id, msg);
@@ -142,7 +142,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         public bool enableTenant(Tenant tenant)
         {
             var msg = $"启用租户【{tenant.name}】失败！";
-            var url = $"{resourceService}/v1.0/tenants/enable";
+            var url = $"{service}/v1.0/tenants/enable";
             var client = new HttpClient<object>();
 
             return client.put(url, tenant.id, msg);
@@ -155,7 +155,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         /// <returns>应用集合</returns>
         public List<TenantApp> getApps(string id)
         {
-            var url = $"{resourceService}/v1.0/tenants/{id}/unbounds";
+            var url = $"{service}/v1.0/tenants/{id}/unbounds";
             var client = new HttpClient<List<TenantApp>>();
 
             return client.getData(url);
@@ -169,7 +169,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         /// <returns>是否成功</returns>
         public bool bindApps(string id, IEnumerable<TenantApp> apps)
         {
-            var url = $"{resourceService}/v1.0/tenants/{id}/apps";
+            var url = $"{service}/v1.0/tenants/{id}/apps";
             var data = apps.Select(i => i.id).ToList();
             var client = new HttpClient<object>();
 
@@ -184,7 +184,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         public bool unbindApp(TenantApp app)
         {
             var msg = $"对不起，应用【{app.name}】解除绑定失败！";
-            var url = $"{resourceService}/v1.0/tenants/{app.tenantId}/apps";
+            var url = $"{service}/v1.0/tenants/{app.tenantId}/apps";
             var data = new List<string> {app.id};
             var client = new HttpClient<object>();
 
@@ -199,7 +199,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         public bool rentApp(TenantApp app)
         {
             var msg = $"对不起，续租应用【{app.name}】失败！";
-            var url = $"{resourceService}/v1.0/tenants/{app.tenantId}/apps";
+            var url = $"{service}/v1.0/tenants/{app.tenantId}/apps";
             var dict = new Dictionary<string, object>
             {
                 {"appId", app.id},

@@ -16,8 +16,8 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         /// 构造函数，初始化视图
         /// 通过订阅事件实现双向数据绑定
         /// </summary>
-        /// <param name="data"></param>
-        /// <param name="title"></param>
+        /// <param name="data">初始化数据</param>
+        /// <param name="title">View标题</param>
         public BindModel(List<TenantApp> data, string title) : base(title)
         {
             view.grdApp.DataSource = data;

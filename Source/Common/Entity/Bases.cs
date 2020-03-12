@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace Insight.MTP.Client.Common.Entity
@@ -41,23 +40,13 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 是否预置：0、自定；1、预置
         /// </summary>
-        public bool isBuiltin { get; set; }
+        public bool builtin { get; set; }
 
         /// <summary>
         /// 是否失效：0、有效；1、失效
         /// </summary>
-        public bool isInvalid { get; set; }
-
-        /// <summary>
-        /// 创建人ID
-        /// </summary>
-        public string creatorId { get; set; }
-
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        public DateTime createTime { get; set; }
-
+        public bool invalid { get; set; }
+        
         /// <summary>
         /// 授予用户的功能权限
         /// </summary>
@@ -87,7 +76,7 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 图标类型
         /// </summary>
-        public int nodeType { get; set; }
+        public int type { get; set; }
 
         /// <summary>
         /// 序号
@@ -105,7 +94,7 @@ namespace Insight.MTP.Client.Common.Entity
         public string remark { get; set; }
 
         /// <summary>
-        /// 授权
+        /// 授权状态
         /// </summary>
         public bool? permit { get; set; }
     }

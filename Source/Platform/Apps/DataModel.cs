@@ -8,7 +8,7 @@ namespace Insight.MTP.Client.Platform.Apps
 {
     public class DataModel
     {
-        private const string resourceService = "/base/resource";
+        private const string service = "/base/resource";
 
         /// <summary>
         /// 获取应用集合
@@ -19,7 +19,7 @@ namespace Insight.MTP.Client.Platform.Apps
         /// <returns>应用集合</returns>
         public Result<List<App>> getApps(string keyword, int page, int size)
         {
-            var url = $"{resourceService}/v1.0/apps";
+            var url = $"{service}/v1.0/apps";
             var dict = new Dictionary<string, object>
             {
                 {"keyword", keyword},
@@ -38,7 +38,7 @@ namespace Insight.MTP.Client.Platform.Apps
         /// <returns>导航集合</returns>
         public List<Navigation> getNavs(string id)
         {
-            var url = $"{resourceService}/v1.0/apps/{id}/navigators";
+            var url = $"{service}/v1.0/apps/{id}/navigators";
             var client = new HttpClient<List<Navigation>>();
 
             return client.getData(url);
@@ -51,7 +51,7 @@ namespace Insight.MTP.Client.Platform.Apps
         /// <returns>功能集合</returns>
         public List<Function> getFuncs(string id)
         {
-            var url = $"{resourceService}/v1.0/navigators/{id}/functions";
+            var url = $"{service}/v1.0/navigators/{id}/functions";
             var client = new HttpClient<List<Function>>();
 
             return client.getData(url);
@@ -65,7 +65,7 @@ namespace Insight.MTP.Client.Platform.Apps
         public string addApp(App app)
         {
             var msg = $"新建应用【{app.name}】失败！";
-            var url = $"{resourceService}/v1.0/apps";
+            var url = $"{service}/v1.0/apps";
             var client = new HttpClient<string>();
 
             return client.commit(url, app, msg, RequestMethod.POST);
@@ -79,7 +79,7 @@ namespace Insight.MTP.Client.Platform.Apps
         public bool updateApp(App app)
         {
             var msg = $"更新应用【{app.name}】数据失败！";
-            var url = $"{resourceService}/v1.0/apps";
+            var url = $"{service}/v1.0/apps";
             var client = new HttpClient<object>();
 
             return client.put(url, app, msg);
@@ -93,7 +93,7 @@ namespace Insight.MTP.Client.Platform.Apps
         public bool deleteApp(App app)
         {
             var msg = $"对不起，无法删除应用【{app.name}】！";
-            var url = $"{resourceService}/v1.0/apps";
+            var url = $"{service}/v1.0/apps";
             var client = new HttpClient<object>();
 
             return client.delete(url, app.id, msg);
@@ -107,7 +107,7 @@ namespace Insight.MTP.Client.Platform.Apps
         internal string addNav(Navigation nav)
         {
             var msg = $"新建导航【{nav.name}】失败！";
-            var url = $"{resourceService}/v1.0/navigators";
+            var url = $"{service}/v1.0/navigators";
             var client = new HttpClient<string>();
 
             return client.commit(url, nav, msg, RequestMethod.POST);
@@ -121,7 +121,7 @@ namespace Insight.MTP.Client.Platform.Apps
         public bool updateNav(Navigation nav)
         {
             var msg = $"更新导航【{nav.name}】数据失败！";
-            var url = $"{resourceService}/v1.0/navigators";
+            var url = $"{service}/v1.0/navigators";
             var client = new HttpClient<object>();
 
             return client.put(url, nav, msg);
@@ -135,7 +135,7 @@ namespace Insight.MTP.Client.Platform.Apps
         public bool deleteNav(Navigation nav)
         {
             var msg = $"对不起，无法删除导航【{nav.name}】！";
-            var url = $"{resourceService}/v1.0/navigators";
+            var url = $"{service}/v1.0/navigators";
             var client = new HttpClient<object>();
 
             return client.delete(url, nav.id, msg);
@@ -149,7 +149,7 @@ namespace Insight.MTP.Client.Platform.Apps
         public string addFunc(Function func)
         {
             var msg = $"新建功能【{func.name}】失败！";
-            var url = $"{resourceService}/v1.0/functions";
+            var url = $"{service}/v1.0/functions";
             var client = new HttpClient<string>();
 
             return client.commit(url, func, msg, RequestMethod.POST);
@@ -163,7 +163,7 @@ namespace Insight.MTP.Client.Platform.Apps
         public bool updateFunc(Function func)
         {
             var msg = $"更新功能【{func.name}】数据失败！";
-            var url = $"{resourceService}/v1.0/functions";
+            var url = $"{service}/v1.0/functions";
             var client = new HttpClient<object>();
 
             return client.put(url, func, msg);
@@ -177,7 +177,7 @@ namespace Insight.MTP.Client.Platform.Apps
         public bool deleteFunc(Function func)
         {
             var msg = $"对不起，无法删除功能【{func.name}】！";
-            var url = $"{resourceService}/v1.0/functions";
+            var url = $"{service}/v1.0/functions";
             var client = new HttpClient<object>();
 
             return client.delete(url, func.id, msg);

@@ -35,25 +35,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
-            this.tabPermission = new DevExpress.XtraTab.XtraTabControl();
-            this.pagData = new DevExpress.XtraTab.XtraTabPage();
-            this.panData = new DevExpress.XtraEditors.PanelControl();
-            this.treData = new DevExpress.XtraTreeList.TreeList();
-            this.colIndexD = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.colModel = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.colDescriptionD = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.colPermit = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.colPermission = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.imgData = new DevExpress.Utils.ImageCollection(this.components);
-            this.pagAction = new DevExpress.XtraTab.XtraTabPage();
-            this.panAction = new DevExpress.XtraEditors.PanelControl();
-            this.treAction = new DevExpress.XtraTreeList.TreeList();
-            this.colIndexA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.colTypeA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.colNameA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.colDescriptionA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.colPermitA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.imgPermission = new DevExpress.Utils.ImageCollection(this.components);
             this.panMain = new DevExpress.XtraEditors.PanelControl();
             this.panUser = new DevExpress.XtraEditors.PanelControl();
@@ -73,19 +55,15 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.Search = new DevExpress.XtraEditors.SimpleButton();
             this.KeyInput = new DevExpress.XtraEditors.ButtonEdit();
             this.spcMain = new DevExpress.XtraEditors.SplitContainerControl();
+            this.panAction = new DevExpress.XtraEditors.PanelControl();
+            this.treAction = new DevExpress.XtraTreeList.TreeList();
+            this.colIndexA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colTypeA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colNameA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colPermitA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPermission)).BeginInit();
-            this.tabPermission.SuspendLayout();
-            this.pagData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panData)).BeginInit();
-            this.panData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.treData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgData)).BeginInit();
-            this.pagAction.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panAction)).BeginInit();
-            this.panAction.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.treAction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgPermission)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panMain)).BeginInit();
             this.panMain.SuspendLayout();
@@ -99,6 +77,9 @@ namespace Insight.MTP.Client.Platform.Users.Views
             ((System.ComponentModel.ISupportInitialize)(this.KeyInput.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).BeginInit();
             this.spcMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panAction)).BeginInit();
+            this.panAction.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treAction)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraScrollable
@@ -114,100 +95,6 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.FolderNode.Images.SetKeyName(0, "Item.png");
             this.FolderNode.Images.SetKeyName(1, "Folder.png");
             this.FolderNode.Images.SetKeyName(2, "FolderOpen.png");
-            // 
-            // tabPermission
-            // 
-            this.tabPermission.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabPermission.Location = new System.Drawing.Point(0, 0);
-            this.tabPermission.Name = "tabPermission";
-            this.tabPermission.SelectedTabPage = this.pagData;
-            this.tabPermission.Size = new System.Drawing.Size(304, 594);
-            this.tabPermission.TabIndex = 0;
-            this.tabPermission.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.pagAction,
-            this.pagData});
-            // 
-            // pagData
-            // 
-            this.pagData.Controls.Add(this.panData);
-            this.pagData.Name = "pagData";
-            this.pagData.Size = new System.Drawing.Size(298, 565);
-            this.pagData.Text = "数据权限";
-            // 
-            // panData
-            // 
-            this.panData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panData.Controls.Add(this.treData);
-            this.panData.Location = new System.Drawing.Point(2, 2);
-            this.panData.Name = "panData";
-            this.panData.Size = new System.Drawing.Size(294, 561);
-            this.panData.TabIndex = 0;
-            // 
-            // treData
-            // 
-            this.treData.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.treData.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.colIndexD,
-            this.treeListColumn1,
-            this.colModel,
-            this.colDescriptionD,
-            this.colPermit,
-            this.colPermission});
-            this.treData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treData.Location = new System.Drawing.Point(2, 2);
-            this.treData.Name = "treData";
-            this.treData.OptionsView.ShowHorzLines = false;
-            this.treData.OptionsView.ShowIndicator = false;
-            this.treData.OptionsView.ShowVertLines = false;
-            this.treData.ParentFieldName = "ParentId";
-            this.treData.SelectImageList = this.imgData;
-            this.treData.Size = new System.Drawing.Size(290, 557);
-            this.treData.TabIndex = 0;
-            // 
-            // colIndexD
-            // 
-            this.colIndexD.FieldName = "Index";
-            this.colIndexD.Name = "colIndexD";
-            this.colIndexD.Width = 50;
-            // 
-            // treeListColumn1
-            // 
-            this.treeListColumn1.FieldName = "nodeType";
-            this.treeListColumn1.Name = "treeListColumn1";
-            this.treeListColumn1.Width = 51;
-            // 
-            // colModel
-            // 
-            this.colModel.FieldName = "Name";
-            this.colModel.MinWidth = 33;
-            this.colModel.Name = "colModel";
-            this.colModel.Visible = true;
-            this.colModel.VisibleIndex = 0;
-            this.colModel.Width = 245;
-            // 
-            // colDescriptionD
-            // 
-            this.colDescriptionD.FieldName = "Description";
-            this.colDescriptionD.Name = "colDescriptionD";
-            this.colDescriptionD.Visible = true;
-            this.colDescriptionD.VisibleIndex = 1;
-            this.colDescriptionD.Width = 60;
-            // 
-            // colPermit
-            // 
-            this.colPermit.FieldName = "Permit";
-            this.colPermit.Name = "colPermit";
-            this.colPermit.Width = 61;
-            // 
-            // colPermission
-            // 
-            this.colPermission.FieldName = "Permission";
-            this.colPermission.Name = "colPermission";
-            this.colPermission.Width = 61;
             // 
             // imgData
             // 
@@ -225,80 +112,6 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.imgData.Images.SetKeyName(6, "NodeOrg.png");
             this.imgData.InsertGalleryImage("documentmap_16x16.png", "images/navigation/documentmap_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/navigation/documentmap_16x16.png"), 7);
             this.imgData.Images.SetKeyName(7, "documentmap_16x16.png");
-            // 
-            // pagAction
-            // 
-            this.pagAction.Controls.Add(this.panAction);
-            this.pagAction.Name = "pagAction";
-            this.pagAction.Size = new System.Drawing.Size(298, 565);
-            this.pagAction.Text = "功能权限";
-            // 
-            // panAction
-            // 
-            this.panAction.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panAction.Controls.Add(this.treAction);
-            this.panAction.Location = new System.Drawing.Point(2, 2);
-            this.panAction.Name = "panAction";
-            this.panAction.Size = new System.Drawing.Size(294, 561);
-            this.panAction.TabIndex = 0;
-            // 
-            // treAction
-            // 
-            this.treAction.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.treAction.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.colIndexA,
-            this.colTypeA,
-            this.colNameA,
-            this.colDescriptionA,
-            this.colPermitA});
-            this.treAction.Cursor = System.Windows.Forms.Cursors.Default;
-            this.treAction.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treAction.Location = new System.Drawing.Point(2, 2);
-            this.treAction.Name = "treAction";
-            this.treAction.OptionsView.ShowHorzLines = false;
-            this.treAction.OptionsView.ShowIndicator = false;
-            this.treAction.OptionsView.ShowVertLines = false;
-            this.treAction.ParentFieldName = "ParentId";
-            this.treAction.SelectImageList = this.imgPermission;
-            this.treAction.Size = new System.Drawing.Size(290, 557);
-            this.treAction.TabIndex = 0;
-            // 
-            // colIndexA
-            // 
-            this.colIndexA.FieldName = "index";
-            this.colIndexA.Name = "colIndexA";
-            this.colIndexA.Width = 50;
-            // 
-            // colTypeA
-            // 
-            this.colTypeA.FieldName = "nodeType";
-            this.colTypeA.Name = "colTypeA";
-            this.colTypeA.Width = 51;
-            // 
-            // colNameA
-            // 
-            this.colNameA.FieldName = "name";
-            this.colNameA.MinWidth = 33;
-            this.colNameA.Name = "colNameA";
-            this.colNameA.Visible = true;
-            this.colNameA.VisibleIndex = 0;
-            this.colNameA.Width = 245;
-            // 
-            // colDescriptionA
-            // 
-            this.colDescriptionA.FieldName = "remark";
-            this.colDescriptionA.Name = "colDescriptionA";
-            this.colDescriptionA.Visible = true;
-            this.colDescriptionA.VisibleIndex = 1;
-            this.colDescriptionA.Width = 60;
-            // 
-            // colPermitA
-            // 
-            this.colPermitA.FieldName = "permit";
-            this.colPermitA.Name = "colPermitA";
-            this.colPermitA.Width = 61;
             // 
             // imgPermission
             // 
@@ -369,7 +182,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             // colBuiltIn1
             // 
             this.colBuiltIn1.Caption = "内置";
-            this.colBuiltIn1.FieldName = "isBuiltin";
+            this.colBuiltIn1.FieldName = "builtin";
             this.colBuiltIn1.Name = "colBuiltIn1";
             this.colBuiltIn1.Visible = true;
             this.colBuiltIn1.VisibleIndex = 0;
@@ -400,15 +213,13 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.colMobile.Name = "colMobile";
             this.colMobile.Visible = true;
             this.colMobile.VisibleIndex = 3;
-            this.colMobile.Width = 100;
+            this.colMobile.Width = 120;
             // 
             // colEmail
             // 
             this.colEmail.Caption = "电子邮箱";
             this.colEmail.FieldName = "email";
             this.colEmail.Name = "colEmail";
-            this.colEmail.Visible = true;
-            this.colEmail.VisibleIndex = 4;
             this.colEmail.Width = 160;
             // 
             // colDescription
@@ -417,16 +228,16 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.colDescription.FieldName = "remark";
             this.colDescription.Name = "colDescription";
             this.colDescription.Visible = true;
-            this.colDescription.VisibleIndex = 5;
-            this.colDescription.Width = 154;
+            this.colDescription.VisibleIndex = 4;
+            this.colDescription.Width = 309;
             // 
             // colValidity
             // 
             this.colValidity.Caption = "封禁";
-            this.colValidity.FieldName = "isInvalid";
+            this.colValidity.FieldName = "invalid";
             this.colValidity.Name = "colValidity";
             this.colValidity.Visible = true;
-            this.colValidity.VisibleIndex = 6;
+            this.colValidity.VisibleIndex = 5;
             this.colValidity.Width = 40;
             // 
             // ppcUser
@@ -495,11 +306,71 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.spcMain.Name = "spcMain";
             this.spcMain.Panel1.Controls.Add(this.panMain);
             this.spcMain.Panel1.MinSize = 750;
-            this.spcMain.Panel2.Controls.Add(this.tabPermission);
+            this.spcMain.Panel2.Controls.Add(this.panAction);
             this.spcMain.Panel2.MinSize = 300;
             this.spcMain.Size = new System.Drawing.Size(1070, 590);
             this.spcMain.SplitterPosition = 300;
             this.spcMain.TabIndex = 1;
+            // 
+            // panAction
+            // 
+            this.panAction.Controls.Add(this.treAction);
+            this.panAction.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panAction.Location = new System.Drawing.Point(0, 0);
+            this.panAction.Name = "panAction";
+            this.panAction.Size = new System.Drawing.Size(300, 590);
+            this.panAction.TabIndex = 0;
+            // 
+            // treAction
+            // 
+            this.treAction.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.treAction.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.colIndexA,
+            this.colTypeA,
+            this.colNameA,
+            this.colPermitA});
+            this.treAction.Cursor = System.Windows.Forms.Cursors.Default;
+            this.treAction.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treAction.KeyFieldName = "id";
+            this.treAction.Location = new System.Drawing.Point(2, 2);
+            this.treAction.Name = "treAction";
+            this.treAction.OptionsView.ShowHorzLines = false;
+            this.treAction.OptionsView.ShowIndicator = false;
+            this.treAction.OptionsView.ShowVertLines = false;
+            this.treAction.ParentFieldName = "parentId";
+            this.treAction.SelectImageList = this.imgPermission;
+            this.treAction.Size = new System.Drawing.Size(296, 586);
+            this.treAction.TabIndex = 0;
+            this.treAction.Tag = "NODE_TYPE";
+            // 
+            // colIndexA
+            // 
+            this.colIndexA.FieldName = "index";
+            this.colIndexA.Name = "colIndexA";
+            this.colIndexA.Width = 50;
+            // 
+            // colTypeA
+            // 
+            this.colTypeA.FieldName = "nodeType";
+            this.colTypeA.Name = "colTypeA";
+            this.colTypeA.Width = 51;
+            // 
+            // colNameA
+            // 
+            this.colNameA.FieldName = "name";
+            this.colNameA.MinWidth = 33;
+            this.colNameA.Name = "colNameA";
+            this.colNameA.Visible = true;
+            this.colNameA.VisibleIndex = 0;
+            this.colNameA.Width = 245;
+            // 
+            // colPermitA
+            // 
+            this.colPermitA.FieldName = "remark";
+            this.colPermitA.Name = "colPermitA";
+            this.colPermitA.Visible = true;
+            this.colPermitA.VisibleIndex = 1;
+            this.colPermitA.Width = 61;
             // 
             // Manager
             // 
@@ -508,17 +379,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.Name = "Manager";
             this.xtraScrollable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPermission)).EndInit();
-            this.tabPermission.ResumeLayout(false);
-            this.pagData.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panData)).EndInit();
-            this.panData.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.treData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgData)).EndInit();
-            this.pagAction.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panAction)).EndInit();
-            this.panAction.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.treAction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgPermission)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panMain)).EndInit();
             this.panMain.ResumeLayout(false);
@@ -532,27 +393,15 @@ namespace Insight.MTP.Client.Platform.Users.Views
             ((System.ComponentModel.ISupportInitialize)(this.KeyInput.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).EndInit();
             this.spcMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panAction)).EndInit();
+            this.panAction.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.treAction)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private DevExpress.XtraTab.XtraTabPage pagData;
-        private PanelControl panData;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn colIndexD;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn colModel;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn colDescriptionD;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn colPermit;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn colPermission;
-        private DevExpress.XtraTab.XtraTabPage pagAction;
-        private PanelControl panAction;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn colIndexA;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn colTypeA;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn colNameA;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn colDescriptionA;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn colPermitA;
         private DevExpress.Utils.ImageCollection imgData;
         private DevExpress.Utils.ImageCollection imgPermission;
         private PanelControl panMain;
@@ -571,10 +420,13 @@ namespace Insight.MTP.Client.Platform.Users.Views
         public GridControl grdUser;
         public GridView gdvUser;
         public Utils.Controls.PageControl ppcUser;
-        public DevExpress.XtraTreeList.TreeList treData;
-        public DevExpress.XtraTreeList.TreeList treAction;
-        public DevExpress.XtraTab.XtraTabControl tabPermission;
         public SimpleButton Search;
         public ButtonEdit KeyInput;
+        private PanelControl panAction;
+        public DevExpress.XtraTreeList.TreeList treAction;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colIndexA;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colTypeA;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colNameA;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colPermitA;
     }
 }

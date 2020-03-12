@@ -15,7 +15,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         public ManagerModel()
         {
             init(view.gdvTenant, "editItem", view.tabTenant, view.KeyInput, view.Search);
-            initGrid(view.gdvApp, null, "appChanged");
+            initGrid(view.gdvApp, "appChanged", "rent");
             initGrid(view.gdvUser, null, null, view.tabUser);
         }
 
