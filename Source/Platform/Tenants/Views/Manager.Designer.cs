@@ -288,7 +288,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.panSpace.Location = new System.Drawing.Point(0, 39);
             this.panSpace.Name = "panSpace";
             this.panSpace.Size = new System.Drawing.Size(1070, 5);
-            this.panSpace.TabIndex = 4;
+            this.panSpace.TabIndex = 0;
             // 
             // panSearch
             // 
@@ -298,7 +298,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.panSearch.Location = new System.Drawing.Point(0, 0);
             this.panSearch.Name = "panSearch";
             this.panSearch.Size = new System.Drawing.Size(1070, 39);
-            this.panSearch.TabIndex = 5;
+            this.panSearch.TabIndex = 0;
             // 
             // Search
             // 

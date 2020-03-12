@@ -239,7 +239,7 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             this.panSearch.Location = new System.Drawing.Point(5, 5);
             this.panSearch.Name = "panSearch";
             this.panSearch.Size = new System.Drawing.Size(1070, 39);
-            this.panSearch.TabIndex = 2;
+            this.panSearch.TabIndex = 0;
             // 
             // Search
             // 
@@ -278,7 +278,7 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             this.pccSchedule.Name = "pccSchedule";
             this.pccSchedule.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("pccSchedule.pageSizeItems")));
             this.pccSchedule.Size = new System.Drawing.Size(1066, 22);
-            this.pccSchedule.TabIndex = 4;
+            this.pccSchedule.TabIndex = 0;
             // 
             // panMain
             // 

@@ -36,6 +36,7 @@ namespace Insight.MTP.Client.Platform.Apps.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -61,7 +62,7 @@ namespace Insight.MTP.Client.Platform.Apps.Views
             this.TreNav = new DevExpress.XtraTreeList.TreeList();
             this.colNavType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colNavName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.imgNav = new DevExpress.Utils.ImageCollection();
+            this.imgNav = new DevExpress.Utils.ImageCollection(this.components);
             this.grpUser = new DevExpress.XtraEditors.GroupControl();
             this.grdFunc = new DevExpress.XtraGrid.GridControl();
             this.gdvFunc = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -475,7 +476,7 @@ namespace Insight.MTP.Client.Platform.Apps.Views
             this.panSearch.Location = new System.Drawing.Point(5, 5);
             this.panSearch.Name = "panSearch";
             this.panSearch.Size = new System.Drawing.Size(1070, 39);
-            this.panSearch.TabIndex = 2;
+            this.panSearch.TabIndex = 0;
             // 
             // Search
             // 

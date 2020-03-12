@@ -168,7 +168,7 @@
     <Compile Include="Users\Views\Manager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Users\Views\Manager.Designer.cs">
+    <Compile Include="Users\Views\Manager.designer.cs">
       <DependentUpon>Manager.cs</DependentUpon>
     </Compile>
   </ItemGroup>

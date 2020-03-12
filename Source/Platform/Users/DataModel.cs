@@ -17,16 +17,16 @@ namespace Insight.MTP.Client.Platform.Users
         /// <param name="page">页码</param>
         /// <param name="size">每页行数</param>
         /// <returns>应用集合</returns>
-        public Result<List<App>> getApps(string keyword, int page, int size)
+        public Result<List<User>> getUsers(string keyword, int page, int size)
         {
-            var url = $"{resourceService}/v1.0/apps";
+            var url = $"{resourceService}/v1.0/users";
             var dict = new Dictionary<string, object>
             {
                 {"keyword", keyword},
                 {"page", page},
                 {"size", size}
             };
-            var client = new HttpClient<List<App>>();
+            var client = new HttpClient<List<User>>();
 
             return client.getResult(url, dict);
         }
