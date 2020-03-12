@@ -5,14 +5,14 @@ using Insight.Utils.BaseViewModels;
 
 namespace Insight.MTP.Client.Platform.Schedules.ViewModels
 {
-    public class ManagerModel : BaseMdiModel<App, Manager, DataModel>
+    public class ManagerModel : BaseMdiModel<Schedule, Manager, DataModel>
     {
         /// <summary>
         /// 构造方法
         /// </summary>
         public ManagerModel()
         {
-            init(view.gdvSchedule, "editApp", view.pccApp, view.KeyInput, view.Search);
+            init(view.gdvSchedule, "execute", view.pccSchedule, view.KeyInput, view.Search);
         }
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace Insight.MTP.Client.Platform.Schedules.ViewModels
         public void loadData(int handle = 0)
         {
             showWaitForm();
-            var result = dataModel.getApps(keyWord, tab.page, tab.size);
+            var result = dataModel.getSchedules(keyWord, tab.page, tab.size);
             list = result.data;
             closeWaitForm();
             if (!result.success) return;
@@ -30,6 +30,8 @@ namespace Insight.MTP.Client.Platform.Schedules.ViewModels
             tab.totalRows = int.Parse(result.option.ToString()) ;
             view.grdSchedule.DataSource = list;
             view.gdvSchedule.FocusedRowHandle = handle;
+
+            refreshToolBar();
         }
 
         /// <summary>
@@ -38,27 +40,20 @@ namespace Insight.MTP.Client.Platform.Schedules.ViewModels
         /// <param name="index">List下标</param>
         public void itemChanged(int index)
         {
-            if (index < 0)
-            {
-                item = null;
-            }
-            else
-            {
-                tab.focusedRowHandle = index;
-                handle = index;
-                var obj = list[index];
-                if (obj.id != item?.id)
-                {
-                    item = obj;
-                    if (item.navigations == null)
-                    {
-                        item.navigations = dataModel.getNavs(item.id);
-                    }
-                }
-            }
+            item = index < 0 ? null : list[index];
+
             refreshToolBar();
         }
-        
+
+        /// <summary>
+        /// 刷新列表数据
+        /// </summary>
+        public void refreshGrid()
+        {
+            view.gdvSchedule.RefreshData();
+            refreshToolBar();
+        }
+
         /// <summary>
         /// 刷新工具条按钮状态
         /// </summary>
@@ -66,9 +61,10 @@ namespace Insight.MTP.Client.Platform.Schedules.ViewModels
         {
             var dict = new Dictionary<string, bool>
             {
-                ["editApp"] = item != null,
-                ["deleteApp"] = item != null,
-                ["newNav"] = item?.autoTenant != null,
+                ["execute"] = item != null && !item.invalid,
+                ["deleteItem"] = item != null && item.invalid,
+                ["disable"] = item != null && !item.invalid,
+                ["enable"] = item != null && item.invalid,
             };
             switchItemStatus(dict);
         }

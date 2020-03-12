@@ -45,27 +45,25 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             this.grdSchedule = new DevExpress.XtraGrid.GridControl();
             this.gdvSchedule = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colid = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colindex = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colname = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colalias = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colicon = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.coldomain = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colpermitLife = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.coltokenLife = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colsigninOne = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colautoRefresh = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colautoTenant = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colinvalid = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coltype = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colmethod = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coltaskTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colcount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colcreatedTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imgNav = new DevExpress.Utils.ImageCollection(this.components);
             this.panSpace = new DevExpress.XtraEditors.PanelControl();
             this.panSearch = new DevExpress.XtraEditors.PanelControl();
             this.Search = new DevExpress.XtraEditors.SimpleButton();
             this.KeyInput = new DevExpress.XtraEditors.ButtonEdit();
-            this.pccApp = new Insight.Utils.Controls.PageControl();
+            this.pccSchedule = new Insight.Utils.Controls.PageControl();
             this.panMain = new DevExpress.XtraEditors.PanelControl();
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSchedule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvSchedule)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgNav)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSpace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSearch)).BeginInit();
@@ -125,6 +123,8 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             this.grdSchedule.Location = new System.Drawing.Point(2, 2);
             this.grdSchedule.MainView = this.gdvSchedule;
             this.grdSchedule.Name = "grdSchedule";
+            this.grdSchedule.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repType});
             this.grdSchedule.Size = new System.Drawing.Size(1066, 520);
             this.grdSchedule.TabIndex = 0;
             this.grdSchedule.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -132,18 +132,15 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             // 
             // gdvSchedule
             // 
+            this.gdvSchedule.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.gdvSchedule.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colid,
-            this.colindex,
-            this.colname,
-            this.colalias,
-            this.colicon,
-            this.coldomain,
-            this.colpermitLife,
-            this.coltokenLife,
-            this.colsigninOne,
-            this.colautoRefresh,
-            this.colautoTenant});
+            this.colinvalid,
+            this.coltype,
+            this.colmethod,
+            this.coltaskTime,
+            this.colcount,
+            this.colcreatedTime});
             this.gdvSchedule.GridControl = this.grdSchedule;
             this.gdvSchedule.Name = "gdvSchedule";
             this.gdvSchedule.OptionsDetail.EnableMasterViewMode = false;
@@ -153,84 +150,69 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             this.colid.FieldName = "id";
             this.colid.Name = "colid";
             // 
-            // colindex
+            // colinvalid
             // 
-            this.colindex.FieldName = "index";
-            this.colindex.Name = "colindex";
+            this.colinvalid.Caption = "终止";
+            this.colinvalid.FieldName = "invalid";
+            this.colinvalid.Name = "colinvalid";
+            this.colinvalid.Visible = true;
+            this.colinvalid.VisibleIndex = 0;
+            this.colinvalid.Width = 40;
             // 
-            // colname
+            // coltype
             // 
-            this.colname.Caption = "名称";
-            this.colname.FieldName = "name";
-            this.colname.Name = "colname";
-            this.colname.Visible = true;
-            this.colname.VisibleIndex = 0;
-            this.colname.Width = 360;
+            this.coltype.Caption = "任务类型";
+            this.coltype.ColumnEdit = this.repType;
+            this.coltype.FieldName = "type";
+            this.coltype.Name = "coltype";
+            this.coltype.Visible = true;
+            this.coltype.VisibleIndex = 1;
+            this.coltype.Width = 80;
             // 
-            // colalias
+            // repType
             // 
-            this.colalias.Caption = "简称";
-            this.colalias.FieldName = "alias";
-            this.colalias.Name = "colalias";
-            this.colalias.Visible = true;
-            this.colalias.VisibleIndex = 1;
-            this.colalias.Width = 160;
+            this.repType.AutoHeight = false;
+            this.repType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repType.DisplayMember = "name";
+            this.repType.Name = "repType";
+            this.repType.ValueMember = "id";
             // 
-            // colicon
+            // colmethod
             // 
-            this.colicon.FieldName = "icon";
-            this.colicon.Name = "colicon";
+            this.colmethod.Caption = "调用方法";
+            this.colmethod.FieldName = "method";
+            this.colmethod.Name = "colmethod";
+            this.colmethod.Visible = true;
+            this.colmethod.VisibleIndex = 2;
+            this.colmethod.Width = 554;
             // 
-            // coldomain
+            // coltaskTime
             // 
-            this.coldomain.Caption = "域名";
-            this.coldomain.FieldName = "domain";
-            this.coldomain.Name = "coldomain";
-            this.coldomain.Visible = true;
-            this.coldomain.VisibleIndex = 2;
-            this.coldomain.Width = 234;
+            this.coltaskTime.Caption = "执行时间";
+            this.coltaskTime.FieldName = "taskTime";
+            this.coltaskTime.Name = "coltaskTime";
+            this.coltaskTime.Visible = true;
+            this.coltaskTime.VisibleIndex = 3;
+            this.coltaskTime.Width = 140;
             // 
-            // colpermitLife
+            // colcount
             // 
-            this.colpermitLife.Caption = "权限生命期";
-            this.colpermitLife.FieldName = "permitLife";
-            this.colpermitLife.Name = "colpermitLife";
-            this.colpermitLife.Visible = true;
-            this.colpermitLife.VisibleIndex = 3;
-            this.colpermitLife.Width = 80;
+            this.colcount.Caption = "失败次数";
+            this.colcount.FieldName = "count";
+            this.colcount.Name = "colcount";
+            this.colcount.Visible = true;
+            this.colcount.VisibleIndex = 4;
+            this.colcount.Width = 80;
             // 
-            // coltokenLife
+            // colcreatedTime
             // 
-            this.coltokenLife.Caption = "令牌生命期";
-            this.coltokenLife.FieldName = "tokenLife";
-            this.coltokenLife.Name = "coltokenLife";
-            this.coltokenLife.Visible = true;
-            this.coltokenLife.VisibleIndex = 4;
-            this.coltokenLife.Width = 80;
-            // 
-            // colsigninOne
-            // 
-            this.colsigninOne.Caption = "是否单点";
-            this.colsigninOne.FieldName = "signinOne";
-            this.colsigninOne.Name = "colsigninOne";
-            this.colsigninOne.Visible = true;
-            this.colsigninOne.VisibleIndex = 5;
-            this.colsigninOne.Width = 60;
-            // 
-            // colautoRefresh
-            // 
-            this.colautoRefresh.Caption = "自动刷新";
-            this.colautoRefresh.FieldName = "autoRefresh";
-            this.colautoRefresh.Name = "colautoRefresh";
-            this.colautoRefresh.Visible = true;
-            this.colautoRefresh.VisibleIndex = 6;
-            this.colautoRefresh.Width = 60;
-            // 
-            // colautoTenant
-            // 
-            this.colautoTenant.Caption = "自动登录到机构";
-            this.colautoTenant.FieldName = "autoTenant";
-            this.colautoTenant.Name = "colautoTenant";
+            this.colcreatedTime.Caption = "创建时间";
+            this.colcreatedTime.FieldName = "createdTime";
+            this.colcreatedTime.Name = "colcreatedTime";
+            this.colcreatedTime.Visible = true;
+            this.colcreatedTime.VisibleIndex = 5;
+            this.colcreatedTime.Width = 140;
             // 
             // imgNav
             // 
@@ -286,22 +268,22 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             this.KeyInput.Size = new System.Drawing.Size(976, 21);
             this.KeyInput.TabIndex = 1;
             // 
-            // pccApp
+            // pccSchedule
             // 
-            this.pccApp.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pccApp.focusedRowHandle = 0;
-            this.pccApp.Location = new System.Drawing.Point(2, 522);
-            this.pccApp.MaximumSize = new System.Drawing.Size(0, 22);
-            this.pccApp.MinimumSize = new System.Drawing.Size(320, 22);
-            this.pccApp.Name = "pccApp";
-            this.pccApp.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("pccApp.pageSizeItems")));
-            this.pccApp.Size = new System.Drawing.Size(1066, 22);
-            this.pccApp.TabIndex = 4;
+            this.pccSchedule.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pccSchedule.focusedRowHandle = 0;
+            this.pccSchedule.Location = new System.Drawing.Point(2, 522);
+            this.pccSchedule.MaximumSize = new System.Drawing.Size(0, 22);
+            this.pccSchedule.MinimumSize = new System.Drawing.Size(320, 22);
+            this.pccSchedule.Name = "pccSchedule";
+            this.pccSchedule.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("pccSchedule.pageSizeItems")));
+            this.pccSchedule.Size = new System.Drawing.Size(1066, 22);
+            this.pccSchedule.TabIndex = 4;
             // 
             // panMain
             // 
             this.panMain.Controls.Add(this.grdSchedule);
-            this.panMain.Controls.Add(this.pccApp);
+            this.panMain.Controls.Add(this.pccSchedule);
             this.panMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panMain.Location = new System.Drawing.Point(5, 49);
             this.panMain.Name = "panMain";
@@ -317,6 +299,7 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSchedule)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvSchedule)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgNav)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSpace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSearch)).EndInit();
@@ -335,24 +318,21 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
         private BarDockControl barDockControlLeft;
         private BarDockControl barDockControlRight;
         private ImageCollection imgNav;
-        private DevExpress.XtraGrid.Columns.GridColumn colid;
-        private DevExpress.XtraGrid.Columns.GridColumn colindex;
-        private DevExpress.XtraGrid.Columns.GridColumn colname;
-        private DevExpress.XtraGrid.Columns.GridColumn colalias;
-        private DevExpress.XtraGrid.Columns.GridColumn colicon;
-        private DevExpress.XtraGrid.Columns.GridColumn coldomain;
-        private DevExpress.XtraGrid.Columns.GridColumn colpermitLife;
-        private DevExpress.XtraGrid.Columns.GridColumn coltokenLife;
-        private DevExpress.XtraGrid.Columns.GridColumn colsigninOne;
-        private DevExpress.XtraGrid.Columns.GridColumn colautoRefresh;
-        private DevExpress.XtraGrid.Columns.GridColumn colautoTenant;
         private PanelControl panSpace;
         private PanelControl panSearch;
         internal SimpleButton Search;
         internal ButtonEdit KeyInput;
-        public Utils.Controls.PageControl pccApp;
+        public Utils.Controls.PageControl pccSchedule;
         private PanelControl panMain;
         public GridControl grdSchedule;
         public GridView gdvSchedule;
+        private DevExpress.XtraGrid.Columns.GridColumn colid;
+        private DevExpress.XtraGrid.Columns.GridColumn colinvalid;
+        private DevExpress.XtraGrid.Columns.GridColumn coltype;
+        private DevExpress.XtraGrid.Columns.GridColumn colmethod;
+        private DevExpress.XtraGrid.Columns.GridColumn coltaskTime;
+        private DevExpress.XtraGrid.Columns.GridColumn colcount;
+        private DevExpress.XtraGrid.Columns.GridColumn colcreatedTime;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repType;
     }
 }

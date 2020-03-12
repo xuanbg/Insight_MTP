@@ -34,6 +34,8 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
             tab.totalRows = int.Parse(result.option.ToString());
             view.grdTenant.DataSource = list;
             view.gdvTenant.FocusedRowHandle = handle;
+
+            refreshToolBar();
         }
 
         /// <summary>

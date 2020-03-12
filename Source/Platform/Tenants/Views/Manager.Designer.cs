@@ -582,7 +582,6 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
         private DevExpress.XtraGrid.Columns.GridColumn colremark;
         private DevExpress.XtraGrid.Columns.GridColumn colstatus;
         private DevExpress.XtraGrid.Columns.GridColumn colisInvalid;
-        public DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repStatus;
         private DevExpress.XtraGrid.Columns.GridColumn colid1;
         private DevExpress.XtraGrid.Columns.GridColumn coltenantId;
         private DevExpress.XtraGrid.Columns.GridColumn colappId;
@@ -596,5 +595,6 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
         private DevExpress.XtraGrid.Columns.GridColumn colemail;
         private DevExpress.XtraGrid.Columns.GridColumn colremark1;
         private DevExpress.XtraGrid.Columns.GridColumn colisInvalid1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repStatus;
     }
 }

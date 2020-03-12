@@ -37,6 +37,8 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
             tab.totalRows = int.Parse(result.option.ToString()) ;
             view.grdApp.DataSource = list;
             view.gdvApp.FocusedRowHandle = handle;
+
+            refreshToolBar();
         }
 
         /// <summary>

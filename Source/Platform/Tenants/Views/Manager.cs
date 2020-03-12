@@ -12,6 +12,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
         public Manager()
         {
             InitializeComponent();
+
             var list = new List<LookUpMember>
             {
                 new LookUpMember {id = "0", name = "待审核"},
