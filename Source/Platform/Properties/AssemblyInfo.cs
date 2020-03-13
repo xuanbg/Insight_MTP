@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("基础模块")]
+[assembly: AssemblyTitle("平台管理模块")]
 [assembly: AssemblyDescription("Insight 多租户平台管理客户端")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Insight Software Ltd.")]
 [assembly: AssemblyProduct("Insight MTP Client")]
-[assembly: AssemblyCopyright("Copyright © 2014 Insight Software Ltd.")]
+[assembly: AssemblyCopyright("Copyright © 2020 Insight Software Ltd.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -30,6 +30,5 @@ using System.Runtime.InteropServices;
 //
 // 可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”:
-// [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.*")]
 //[assembly: AssemblyFileVersion("14.1.0813.5")]
