@@ -33,12 +33,11 @@ namespace Insight.MTP.Client.Platform.Users.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
-            this.imgData = new DevExpress.Utils.ImageCollection(this.components);
-            this.imgPermission = new DevExpress.Utils.ImageCollection(this.components);
-            this.panMain = new DevExpress.XtraEditors.PanelControl();
+            this.imgData = new DevExpress.Utils.ImageCollection();
+            this.imgPermission = new DevExpress.Utils.ImageCollection();
             this.panUser = new DevExpress.XtraEditors.PanelControl();
+            this.ppcUser = new Insight.Utils.Controls.PageControl();
             this.grdUser = new DevExpress.XtraGrid.GridControl();
             this.gdvUser = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -49,7 +48,6 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.colEmail = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colValidity = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ppcUser = new Insight.Utils.Controls.PageControl();
             this.panSpace = new DevExpress.XtraEditors.PanelControl();
             this.panSearch = new DevExpress.XtraEditors.PanelControl();
             this.Search = new DevExpress.XtraEditors.SimpleButton();
@@ -60,13 +58,10 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.colIndexA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colTypeA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colNameA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.colPermitA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgPermission)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panMain)).BeginInit();
-            this.panMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panUser)).BeginInit();
             this.panUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUser)).BeginInit();
@@ -85,6 +80,8 @@ namespace Insight.MTP.Client.Platform.Users.Views
             // xtraScrollable
             // 
             this.xtraScrollable.Controls.Add(this.spcMain);
+            this.xtraScrollable.Controls.Add(this.panSpace);
+            this.xtraScrollable.Controls.Add(this.panSearch);
             this.xtraScrollable.Location = new System.Drawing.Point(0, 31);
             this.xtraScrollable.Padding = new System.Windows.Forms.Padding(5);
             this.xtraScrollable.Size = new System.Drawing.Size(1080, 600);
@@ -125,27 +122,27 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.imgPermission.InsertGalleryImage("checkbox_16x16.png", "images/content/checkbox_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/content/checkbox_16x16.png"), 4);
             this.imgPermission.Images.SetKeyName(4, "checkbox_16x16.png");
             // 
-            // panMain
-            // 
-            this.panMain.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panMain.Controls.Add(this.panUser);
-            this.panMain.Controls.Add(this.panSpace);
-            this.panMain.Controls.Add(this.panSearch);
-            this.panMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panMain.Location = new System.Drawing.Point(0, 0);
-            this.panMain.Name = "panMain";
-            this.panMain.Size = new System.Drawing.Size(765, 590);
-            this.panMain.TabIndex = 0;
-            // 
             // panUser
             // 
             this.panUser.Controls.Add(this.grdUser);
             this.panUser.Controls.Add(this.ppcUser);
             this.panUser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panUser.Location = new System.Drawing.Point(0, 44);
+            this.panUser.Location = new System.Drawing.Point(0, 0);
             this.panUser.Name = "panUser";
             this.panUser.Size = new System.Drawing.Size(765, 546);
             this.panUser.TabIndex = 0;
+            // 
+            // ppcUser
+            // 
+            this.ppcUser.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ppcUser.focusedRowHandle = 0;
+            this.ppcUser.Location = new System.Drawing.Point(2, 522);
+            this.ppcUser.MaximumSize = new System.Drawing.Size(0, 22);
+            this.ppcUser.MinimumSize = new System.Drawing.Size(320, 22);
+            this.ppcUser.Name = "ppcUser";
+            this.ppcUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcUser.pageSizeItems")));
+            this.ppcUser.Size = new System.Drawing.Size(761, 22);
+            this.ppcUser.TabIndex = 0;
             // 
             // grdUser
             // 
@@ -240,25 +237,13 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.colValidity.VisibleIndex = 5;
             this.colValidity.Width = 40;
             // 
-            // ppcUser
-            // 
-            this.ppcUser.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcUser.focusedRowHandle = 0;
-            this.ppcUser.Location = new System.Drawing.Point(2, 522);
-            this.ppcUser.MaximumSize = new System.Drawing.Size(0, 22);
-            this.ppcUser.MinimumSize = new System.Drawing.Size(320, 22);
-            this.ppcUser.Name = "ppcUser";
-            this.ppcUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcUser.pageSizeItems")));
-            this.ppcUser.Size = new System.Drawing.Size(761, 22);
-            this.ppcUser.TabIndex = 0;
-            // 
             // panSpace
             // 
             this.panSpace.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panSpace.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panSpace.Location = new System.Drawing.Point(0, 39);
+            this.panSpace.Location = new System.Drawing.Point(5, 44);
             this.panSpace.Name = "panSpace";
-            this.panSpace.Size = new System.Drawing.Size(765, 5);
+            this.panSpace.Size = new System.Drawing.Size(1070, 5);
             this.panSpace.TabIndex = 0;
             // 
             // panSearch
@@ -266,9 +251,9 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.panSearch.Controls.Add(this.Search);
             this.panSearch.Controls.Add(this.KeyInput);
             this.panSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panSearch.Location = new System.Drawing.Point(0, 0);
+            this.panSearch.Location = new System.Drawing.Point(5, 5);
             this.panSearch.Name = "panSearch";
-            this.panSearch.Size = new System.Drawing.Size(765, 39);
+            this.panSearch.Size = new System.Drawing.Size(1070, 39);
             this.panSearch.TabIndex = 0;
             // 
             // Search
@@ -278,7 +263,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.Search.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Search.Appearance.Options.UseFont = true;
             this.Search.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("Search.ImageOptions.Image")));
-            this.Search.Location = new System.Drawing.Point(687, 8);
+            this.Search.Location = new System.Drawing.Point(992, 8);
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(70, 23);
             this.Search.TabIndex = 2;
@@ -295,20 +280,20 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.KeyInput.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
             this.KeyInput.Properties.NullText = "在此输入查询关键词……";
-            this.KeyInput.Size = new System.Drawing.Size(671, 21);
+            this.KeyInput.Size = new System.Drawing.Size(976, 21);
             this.KeyInput.TabIndex = 1;
             // 
             // spcMain
             // 
             this.spcMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spcMain.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
-            this.spcMain.Location = new System.Drawing.Point(5, 5);
+            this.spcMain.Location = new System.Drawing.Point(5, 49);
             this.spcMain.Name = "spcMain";
-            this.spcMain.Panel1.Controls.Add(this.panMain);
+            this.spcMain.Panel1.Controls.Add(this.panUser);
             this.spcMain.Panel1.MinSize = 750;
             this.spcMain.Panel2.Controls.Add(this.panAction);
             this.spcMain.Panel2.MinSize = 300;
-            this.spcMain.Size = new System.Drawing.Size(1070, 590);
+            this.spcMain.Size = new System.Drawing.Size(1070, 546);
             this.spcMain.SplitterPosition = 300;
             this.spcMain.TabIndex = 1;
             // 
@@ -318,7 +303,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.panAction.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panAction.Location = new System.Drawing.Point(0, 0);
             this.panAction.Name = "panAction";
-            this.panAction.Size = new System.Drawing.Size(300, 590);
+            this.panAction.Size = new System.Drawing.Size(300, 546);
             this.panAction.TabIndex = 0;
             // 
             // treAction
@@ -327,8 +312,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.treAction.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.colIndexA,
             this.colTypeA,
-            this.colNameA,
-            this.colPermitA});
+            this.colNameA});
             this.treAction.Cursor = System.Windows.Forms.Cursors.Default;
             this.treAction.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treAction.KeyFieldName = "id";
@@ -339,7 +323,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.treAction.OptionsView.ShowVertLines = false;
             this.treAction.ParentFieldName = "parentId";
             this.treAction.SelectImageList = this.imgPermission;
-            this.treAction.Size = new System.Drawing.Size(296, 586);
+            this.treAction.Size = new System.Drawing.Size(296, 542);
             this.treAction.TabIndex = 0;
             this.treAction.Tag = "NODE_TYPE";
             // 
@@ -364,14 +348,6 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.colNameA.VisibleIndex = 0;
             this.colNameA.Width = 245;
             // 
-            // colPermitA
-            // 
-            this.colPermitA.FieldName = "remark";
-            this.colPermitA.Name = "colPermitA";
-            this.colPermitA.Visible = true;
-            this.colPermitA.VisibleIndex = 1;
-            this.colPermitA.Width = 61;
-            // 
             // Manager
             // 
             this.Appearance.Options.UseFont = true;
@@ -381,8 +357,6 @@ namespace Insight.MTP.Client.Platform.Users.Views
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgPermission)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panMain)).EndInit();
-            this.panMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panUser)).EndInit();
             this.panUser.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdUser)).EndInit();
@@ -404,7 +378,6 @@ namespace Insight.MTP.Client.Platform.Users.Views
         #endregion
         private DevExpress.Utils.ImageCollection imgData;
         private DevExpress.Utils.ImageCollection imgPermission;
-        private PanelControl panMain;
         private PanelControl panSearch;
         private PanelControl panUser;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
@@ -427,6 +400,5 @@ namespace Insight.MTP.Client.Platform.Users.Views
         private DevExpress.XtraTreeList.Columns.TreeListColumn colIndexA;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colTypeA;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colNameA;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn colPermitA;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Tenants.Views;
 using Insight.Utils.BaseViewModels;
@@ -14,9 +15,9 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         /// </summary>
         public ManagerModel()
         {
-            init(view.gdvTenant, "editItem", view.tabTenant, view.KeyInput, view.Search);
+            init(view.gdvTenant, "editItem", view.ppcTenant, view.KeyInput, view.Search);
             initGrid(view.gdvApp, "appChanged", "rent");
-            initGrid(view.gdvUser, null, null, view.tabUser);
+            initGrid(view.gdvUser, null, null, view.ppcUser);
         }
 
         /// <summary>
@@ -48,8 +49,6 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
             {
                 item = null;
                 app = null;
-                view.grdApp.DataSource = null;
-                view.grdUser.DataSource = null;
             }
             else
             {
@@ -59,16 +58,19 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
                 if (obj.id != item?.id)
                 {
                     item = obj;
-                    if (item.apps == null)
+                    if (item.apps == null || !item.apps.Any())
                     {
                         item.apps = dataModel.getTenantApps(item.id);
                     }
 
-                    if (item.users == null)
+                    if (item.users == null || !item.users.Any())
                     {
-                        var result = dataModel.getTenantUsers(item.id, view.tabUser.page, view.tabUser.size);
-                        item.users = result.data;
-                        view.tabUser.totalRows = int.Parse(result.option.ToString());
+                        var result = dataModel.getTenantUsers(item.id, view.ppcUser.page, view.ppcUser.size);
+                        if (result.success)
+                        {
+                            item.users = result.data;
+                            view.ppcUser.totalRows = int.Parse(result.option.ToString());
+                        }
                     }
                 }
             }

@@ -23,6 +23,11 @@ namespace Insight.MTP.Client.Common.Entity
         public string appId { get; set; }
 
         /// <summary>
+        /// 应用名称
+        /// </summary>
+        public string appName { get; set; }
+
+        /// <summary>
         /// 角色名称
         /// </summary>
         public string name { get; set; }
@@ -38,14 +43,19 @@ namespace Insight.MTP.Client.Common.Entity
         public bool builtin { get; set; }
 
         /// <summary>
-        /// 角色权限
+        /// 角色成员
         /// </summary>
-        public List<AppTree> funcs { get; set; }
+        public List<Member> members { get; set; }
 
         /// <summary>
-        /// 成员用户
+        /// 角色成员用户
         /// </summary>
         public List<User> users { get; set; }
+
+        /// <summary>
+        /// 角色功能权限
+        /// </summary>
+        public List<AppTree> funcs { get; set; }
     }
 
     /// <summary>
@@ -92,18 +102,16 @@ namespace Insight.MTP.Client.Common.Entity
         /// 是否失效：0、有效；1、失效
         /// </summary>
         public bool invalid { get; set; }
-        
+
         /// <summary>
-        /// 授予用户的功能权限
+        /// 角色功能权限
         /// </summary>
         public List<AppTree> funcs { get; set; }
-
-        /// <summary>
-        /// 授予用户的数据权限
-        /// </summary>
-        public List<AppTree> datas { get; set; }
     }
 
+    /// <summary>
+    /// 角色成员
+    /// </summary>
     public class Member
     {
         /// <summary>

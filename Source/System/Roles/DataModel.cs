@@ -22,7 +22,6 @@ namespace Insight.MTP.Client.Setting.Roles
             var url = $"{service}/v1.0/roles";
             var dict = new Dictionary<string, object>
             {
-                {"all", true},
                 {"keyword", keyword},
                 {"page", page},
                 {"size", size}
@@ -33,29 +32,36 @@ namespace Insight.MTP.Client.Setting.Roles
         }
 
         /// <summary>
-        /// 获取指定角色的成员集合
+        /// 获取指定角色的成员
         /// </summary>
         /// <param name="id">角色ID</param>
-        /// <returns>授权功能集合</returns>
+        /// <returns>成员集合</returns>
         public List<Member> getRoleMember(string id)
         {
-            var url = $"{service}/v1.0/roles/{id}/functions";
+            var url = $"{service}/v1.0/roles/{id}/members";
             var client = new HttpClient<List<Member>>();
 
             return client.getData(url);
         }
 
         /// <summary>
-        /// 获取指定角色的授权功能集合
+        /// 获取指定角色的成员用户
         /// </summary>
         /// <param name="id">角色ID</param>
-        /// <returns>授权功能集合</returns>
-        public List<User> getMemberUsers(string id)
+        /// <param name="page">页码</param>
+        /// <param name="size">每页行数</param>
+        /// <returns>成员用户集合</returns>
+        public Result<List<User>> getMemberUsers(string id, int page, int size)
         {
-            var url = $"{service}/v1.0/roles/{id}/functions";
+            var url = $"{service}/v1.0/roles/{id}/users";
+            var dict = new Dictionary<string, object>
+            {
+                {"page", page},
+                {"size", size}
+            };
             var client = new HttpClient<List<User>>();
 
-            return client.getData(url);
+            return client.getResult(url, dict);
         }
 
         /// <summary>
@@ -65,7 +71,7 @@ namespace Insight.MTP.Client.Setting.Roles
         /// <returns>授权功能集合</returns>
         public List<AppTree> getRoleFuncs(string id)
         {
-            var url = $"{service}/v1.0/roles/{id}/functions";
+            var url = $"{service}/v1.0/roles/{id}/funcs";
             var client = new HttpClient<List<AppTree>>();
 
             return client.getData(url);

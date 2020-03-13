@@ -52,7 +52,6 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
                 item = null;
                 nav = null;
                 func = null;
-                view.grdFunc.DataSource = null;
             }
             else
             {
@@ -62,7 +61,7 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
                 if (obj.id != item?.id)
                 {
                     item = obj;
-                    if (item.navigations == null)
+                    if (item.navigations == null || !item.navigations.Any())
                     {
                         item.navigations = dataModel.getNavs(item.id);
                     }
@@ -80,6 +79,7 @@ namespace Insight.MTP.Client.Platform.Apps.ViewModels
                 nav = null;
             }
 
+            view.grdFunc.DataSource = nav?.functions;
             refreshToolBar();
         }
 

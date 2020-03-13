@@ -51,7 +51,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.colstatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repStatus = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colisInvalid = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.tabTenant = new Insight.Utils.Controls.PageControl();
+            this.ppcTenant = new Insight.Utils.Controls.PageControl();
             this.panSpace = new DevExpress.XtraEditors.PanelControl();
             this.panSearch = new DevExpress.XtraEditors.PanelControl();
             this.Search = new DevExpress.XtraEditors.SimpleButton();
@@ -76,7 +76,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.colemail = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colremark1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colisInvalid1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.tabUser = new Insight.Utils.Controls.PageControl();
+            this.ppcUser = new Insight.Utils.Controls.PageControl();
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMain)).BeginInit();
@@ -165,7 +165,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             // palTenant
             // 
             this.palTenant.Controls.Add(this.grdTenant);
-            this.palTenant.Controls.Add(this.tabTenant);
+            this.palTenant.Controls.Add(this.ppcTenant);
             this.palTenant.Dock = System.Windows.Forms.DockStyle.Fill;
             this.palTenant.Location = new System.Drawing.Point(0, 44);
             this.palTenant.Name = "palTenant";
@@ -269,17 +269,17 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.colisInvalid.VisibleIndex = 5;
             this.colisInvalid.Width = 40;
             // 
-            // tabTenant
+            // ppcTenant
             // 
-            this.tabTenant.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabTenant.focusedRowHandle = 0;
-            this.tabTenant.Location = new System.Drawing.Point(2, 232);
-            this.tabTenant.MaximumSize = new System.Drawing.Size(0, 22);
-            this.tabTenant.MinimumSize = new System.Drawing.Size(300, 22);
-            this.tabTenant.Name = "tabTenant";
-            this.tabTenant.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("tabTenant.pageSizeItems")));
-            this.tabTenant.Size = new System.Drawing.Size(1066, 22);
-            this.tabTenant.TabIndex = 0;
+            this.ppcTenant.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ppcTenant.focusedRowHandle = 0;
+            this.ppcTenant.Location = new System.Drawing.Point(2, 232);
+            this.ppcTenant.MaximumSize = new System.Drawing.Size(0, 22);
+            this.ppcTenant.MinimumSize = new System.Drawing.Size(300, 22);
+            this.ppcTenant.Name = "ppcTenant";
+            this.ppcTenant.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcTenant.pageSizeItems")));
+            this.ppcTenant.Size = new System.Drawing.Size(1066, 22);
+            this.ppcTenant.TabIndex = 0;
             // 
             // panSpace
             // 
@@ -410,7 +410,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             // grpUser
             // 
             this.grpUser.Controls.Add(this.grdUser);
-            this.grpUser.Controls.Add(this.tabUser);
+            this.grpUser.Controls.Add(this.ppcUser);
             this.grpUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpUser.Location = new System.Drawing.Point(0, 0);
             this.grpUser.Name = "grpUser";
@@ -508,17 +508,17 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.colisInvalid1.VisibleIndex = 5;
             this.colisInvalid1.Width = 40;
             // 
-            // tabUser
+            // ppcUser
             // 
-            this.tabUser.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabUser.focusedRowHandle = 0;
-            this.tabUser.Location = new System.Drawing.Point(2, 261);
-            this.tabUser.MaximumSize = new System.Drawing.Size(0, 22);
-            this.tabUser.MinimumSize = new System.Drawing.Size(320, 22);
-            this.tabUser.Name = "tabUser";
-            this.tabUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("tabUser.pageSizeItems")));
-            this.tabUser.Size = new System.Drawing.Size(661, 22);
-            this.tabUser.TabIndex = 0;
+            this.ppcUser.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ppcUser.focusedRowHandle = 0;
+            this.ppcUser.Location = new System.Drawing.Point(2, 261);
+            this.ppcUser.MaximumSize = new System.Drawing.Size(0, 22);
+            this.ppcUser.MinimumSize = new System.Drawing.Size(320, 22);
+            this.ppcUser.Name = "ppcUser";
+            this.ppcUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcUser.pageSizeItems")));
+            this.ppcUser.Size = new System.Drawing.Size(661, 22);
+            this.ppcUser.TabIndex = 0;
             // 
             // Manager
             // 
@@ -554,7 +554,6 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
         }
 
         #endregion
-        internal Utils.Controls.PageControl tabUser;
         internal GridControl grdUser;
         internal GridView gdvUser;
         private BarDockControl barDockControlTop;
@@ -568,7 +567,6 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
         private PanelControl palTenant;
         internal GridControl grdTenant;
         internal GridView gdvTenant;
-        internal Utils.Controls.PageControl tabTenant;
         internal GridControl grdApp;
         internal GridView gdvApp;
         private PanelControl panSpace;
@@ -596,5 +594,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
         private DevExpress.XtraGrid.Columns.GridColumn colremark1;
         private DevExpress.XtraGrid.Columns.GridColumn colisInvalid1;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repStatus;
+        public Utils.Controls.PageControl ppcUser;
+        public Utils.Controls.PageControl ppcTenant;
     }
 }

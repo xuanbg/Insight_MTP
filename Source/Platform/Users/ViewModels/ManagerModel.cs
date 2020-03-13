@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Users.Views;
 using Insight.Utils.BaseViewModels;
@@ -42,7 +43,6 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
             if (index < 0)
             {
                 item = null;
-                view.grdUser.DataSource = null;
             }
             else
             {
@@ -52,7 +52,7 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
                 if (obj.id != item?.id)
                 {
                     item = obj;
-                    if (item.funcs == null)
+                    if (item.funcs == null || !item.funcs.Any())
                     {
                         item.funcs = dataModel.getFuncs(item.id);
                     }

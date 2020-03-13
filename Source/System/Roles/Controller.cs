@@ -74,6 +74,50 @@ namespace Insight.MTP.Client.Setting.Roles
                 mdiModel.tab.removeItems();
             }
         }
+
+        /// <summary>
+        /// 设置角色功能权限
+        /// </summary>
+        public void setFunc()
+        {
+            var msg = "您确定要删除角色{mdiModel.item.name}吗？\r\n数据删除后无法恢复！";
+            if (!Messages.showConfirm(msg)) return;
+
+            if (dataModel.deleteRole(mdiModel.item))
+            {
+                mdiModel.list.Remove(mdiModel.item);
+                mdiModel.tab.removeItems();
+            }
+        }
         
+        /// <summary>
+        /// 添加角色成员
+        /// </summary>
+        public void addMember()
+        {
+            var msg = "您确定要删除角色{mdiModel.item.name}吗？\r\n数据删除后无法恢复！";
+            if (!Messages.showConfirm(msg)) return;
+
+            if (dataModel.deleteRole(mdiModel.item))
+            {
+                mdiModel.list.Remove(mdiModel.item);
+                mdiModel.tab.removeItems();
+            }
+        }
+
+        /// <summary>
+        /// 移除角色成员
+        /// </summary>
+        public void removeMember()
+        {
+            var msg = "您确定要删除角色{mdiModel.item.name}吗？\r\n数据删除后无法恢复！";
+            if (!Messages.showConfirm(msg)) return;
+
+            if (dataModel.deleteRole(mdiModel.item))
+            {
+                mdiModel.list.Remove(mdiModel.item);
+                mdiModel.tab.removeItems();
+            }
+        }
     }
 }
