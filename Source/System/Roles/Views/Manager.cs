@@ -1,6 +1,6 @@
 ﻿using Insight.Utils.BaseForms;
 
-namespace Insight.MTP.Client.System.Roles.Views
+namespace Insight.MTP.Client.Setting.Roles.Views
 {
     public partial class Manager : BaseMdi
     {

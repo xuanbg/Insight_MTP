@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Insight.MTP.Client.Common.Entity;
-using Insight.MTP.Client.System.Roles.Views;
+using Insight.MTP.Client.Setting.Roles.Views;
 using Insight.Utils.BaseViewModels;
 
-namespace Insight.MTP.Client.System.Roles.ViewModels
+namespace Insight.MTP.Client.Setting.Roles.ViewModels
 {
     public class ManagerModel : BaseMdiModel<Role, Manager, DataModel>
     {
@@ -27,8 +27,8 @@ namespace Insight.MTP.Client.System.Roles.ViewModels
             if (!result.success) return;
 
             tab.totalRows = int.Parse(result.option.ToString()) ;
-            view.GrdRole.DataSource = list;
-            view.GdvRole.FocusedRowHandle = handle;
+            view.grdRole.DataSource = list;
+            view.gdvRole.FocusedRowHandle = handle;
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Insight.MTP.Client.System.Roles.ViewModels
             if (index < 0)
             {
                 item = null;
-                view.GrdUser.DataSource = null;
+                view.grdUser.DataSource = null;
             }
             else
             {
@@ -57,7 +57,7 @@ namespace Insight.MTP.Client.System.Roles.ViewModels
                 }
             }
 
-            view.GrdUser.DataSource = item?.users;
+            view.grdUser.DataSource = item?.users;
 
             refreshToolBar();
         }
@@ -75,7 +75,7 @@ namespace Insight.MTP.Client.System.Roles.ViewModels
         /// </summary>
         public void refreshGrid()
         {
-            view.GdvUser.RefreshData();
+            view.gdvUser.RefreshData();
             refreshToolBar();
         }
 

@@ -6,7 +6,7 @@ using DevExpress.XtraTreeList.Columns;
 using DevExpress.XtraWizard;
 using WizardPage = DevExpress.XtraWizard.WizardPage;
 
-namespace Insight.MTP.Client.System.Roles.Views
+namespace Insight.MTP.Client.Setting.Roles.Views
 {
     partial class Wizard
     {

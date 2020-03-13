@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainApp", "MainApp\MainApp.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform", "Platform\Platform.csproj", "{7654C71F-3E13-49DA-A9B9-85EE3E40D589}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System", "System\System.csproj", "{0D9CDDDA-F6F7-4BBC-8E1B-6554169EA524}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Setting", "System\Setting.csproj", "{0D9CDDDA-F6F7-4BBC-8E1B-6554169EA524}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

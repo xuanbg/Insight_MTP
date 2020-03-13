@@ -4,7 +4,7 @@ using Insight.Utils.Client;
 using Insight.Utils.Common;
 using Insight.Utils.Entity;
 
-namespace Insight.MTP.Client.System.Roles
+namespace Insight.MTP.Client.Setting.Roles
 {
     public class DataModel
     {

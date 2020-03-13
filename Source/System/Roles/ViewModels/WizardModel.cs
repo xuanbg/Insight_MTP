@@ -1,8 +1,8 @@
 ﻿using Insight.MTP.Client.Common.Entity;
-using Insight.MTP.Client.System.Roles.Views;
+using Insight.MTP.Client.Setting.Roles.Views;
 using Insight.Utils.BaseViewModels;
 
-namespace Insight.MTP.Client.System.Roles.ViewModels
+namespace Insight.MTP.Client.Setting.Roles.ViewModels
 {
     public class WizardModel : BaseWizardModel<Role, Wizard>
     {
