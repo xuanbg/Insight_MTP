@@ -124,9 +124,10 @@ namespace Insight.MTP.Client.Platform.Users
         {
             var msg = $"对不起，无法删除用户{user.name}！";
             var url = $"{service}/v1.0/users/password";
+            var data = new PasswordDto {id = user.id};
             var client = new HttpClient<object>();
 
-            return client.put(url, user.id, msg);
+            return client.put(url, data, msg);
         }
     }
 }

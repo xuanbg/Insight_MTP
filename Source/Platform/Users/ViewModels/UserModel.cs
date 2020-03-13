@@ -2,7 +2,6 @@
 using Insight.MTP.Client.Platform.Users.Views;
 using Insight.Utils.BaseViewModels;
 using Insight.Utils.Common;
-using Insight.Utils.Entity;
 
 namespace Insight.MTP.Client.Platform.Users.ViewModels
 {
@@ -17,7 +16,22 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
         public UserModel(User data, string title) : base(title)
         {
             item = data;
-            
+
+            view.txtName.EditValue = item.name;
+            view.txtAccount.EditValue = item.account;
+            view.txtMobile.EditValue = item.mobile;
+            view.txtEmail.EditValue = item.email;
+            view.memRemark.EditValue = item.remark;
+
+            view.txtName.EditValueChanged += (sender, args) => item.name = view.txtName.Text.Trim();
+            view.txtAccount.EditValueChanged += (sender, args) => item.account = view.txtAccount.Text.Trim();
+            view.txtMobile.EditValueChanged += (sender, args) => item.mobile = view.txtMobile.Text.Trim();
+            view.txtEmail.EditValueChanged += (sender, args) => item.email = view.txtEmail.Text.Trim();
+            view.memRemark.EditValueChanged += (sender, args) =>
+            {
+                var text = view.memRemark.EditValue?.ToString().Trim();
+                item.remark = string.IsNullOrEmpty(text) ? null : text;
+            };
         }
 
         /// <summary>
@@ -27,8 +41,15 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
         {
             if (string.IsNullOrEmpty(item.name))
             {
-                Messages.showWarning("必须输入功能名称！");
+                Messages.showWarning("必须输入用户名称！");
                 view.txtName.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(item.account))
+            {
+                Messages.showWarning("必须输入登录账号！");
+                view.txtAccount.Focus();
                 return;
             }
 
