@@ -93,36 +93,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Apps\Controller.cs" />
-    <Compile Include="Apps\DataModel.cs" />
-    <Compile Include="Apps\ViewModels\FunModel.cs" />
-    <Compile Include="Apps\ViewModels\NavModel.cs" />
-    <Compile Include="Apps\ViewModels\ManagerModel.cs" />
-    <Compile Include="Apps\ViewModels\AppModel.cs" />
-    <Compile Include="Apps\Views\FunDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Apps\Views\FunDialog.Designer.cs">
-      <DependentUpon>FunDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Apps\Views\NavDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Apps\Views\NavDialog.Designer.cs">
-      <DependentUpon>NavDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Apps\Views\AppDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Apps\Views\AppDialog.Designer.cs">
-      <DependentUpon>AppDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Apps\Views\Manager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Apps\Views\Manager.Designer.cs">
-      <DependentUpon>Manager.cs</DependentUpon>
-    </Compile>
     <Compile Include="Schedules\Controller.cs" />
     <Compile Include="Schedules\DataModel.cs" />
     <Compile Include="Schedules\ViewModels\ManagerModel.cs" />
@@ -181,18 +151,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Apps\Views\FunDialog.resx">
-      <DependentUpon>FunDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Views\NavDialog.resx">
-      <DependentUpon>NavDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Views\AppDialog.resx">
-      <DependentUpon>AppDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Views\Manager.resx">
-      <DependentUpon>Manager.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Schedules\Views\Manager.resx">
       <DependentUpon>Manager.cs</DependentUpon>
     </EmbeddedResource>

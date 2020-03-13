@@ -1,4 +1,4 @@
-﻿namespace Insight.MTP.Client.Platform.Apps.Views
+﻿namespace Insight.MTP.Client.Setting.Apps.Views
 {
     partial class FunDialog
     {

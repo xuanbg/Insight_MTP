@@ -1,12 +1,12 @@
 ﻿using System.Linq;
 using Insight.MTP.Client.Common.Entity;
-using Insight.MTP.Client.Platform.Apps.ViewModels;
-using Insight.MTP.Client.Platform.Apps.Views;
+using Insight.MTP.Client.Setting.Apps.ViewModels;
+using Insight.MTP.Client.Setting.Apps.Views;
 using Insight.Utils.BaseControllers;
 using Insight.Utils.Common;
 using Insight.Utils.Entity;
 
-namespace Insight.MTP.Client.Platform.Apps
+namespace Insight.MTP.Client.Setting.Apps
 {
     public class Controller : MdiController<App, Manager, ManagerModel, DataModel>
     {

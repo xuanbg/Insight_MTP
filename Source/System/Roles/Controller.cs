@@ -28,20 +28,20 @@ namespace Insight.MTP.Client.Setting.Roles
         /// </summary>
         public void newItem()
         {
-            var role = new Role();
-            var model = new WizardModel(role, "新建角色");
-            model.callbackEvent += (sender, args) =>
-            {
-                role.id = dataModel.addRole(role);
-                if (role.id == null) return;
+            //var role = new Role();
+            //var model = new WizardModel(role, "新建角色");
+            //model.callbackEvent += (sender, args) =>
+            //{
+            //    role.id = dataModel.addRole(role);
+            //    if (role.id == null) return;
 
-                mdiModel.list.Add(role);
-                mdiModel.tab.addItems();
+            //    mdiModel.list.Add(role);
+            //    mdiModel.tab.addItems();
 
-                model.close();
-            };
+            //    model.close();
+            //};
 
-            model.showDialog();
+            //model.showDialog();
         }
 
         /// <summary>
@@ -49,15 +49,15 @@ namespace Insight.MTP.Client.Setting.Roles
         /// </summary>
         public void editItem()
         {
-            var model = new WizardModel(mdiModel.item, "编辑角色");
-            model.callbackEvent += (sender, args) =>
-            {
-                if (!dataModel.updateRole(mdiModel.item)) return;
+            //var model = new WizardModel(mdiModel.item, "编辑角色");
+            //model.callbackEvent += (sender, args) =>
+            //{
+            //    if (!dataModel.updateRole(mdiModel.item)) return;
 
-                model.close();
-            };
+            //    model.close();
+            //};
 
-            model.showDialog();
+            //model.showDialog();
         }
 
         /// <summary>

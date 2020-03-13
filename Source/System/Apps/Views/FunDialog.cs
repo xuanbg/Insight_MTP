@@ -1,6 +1,6 @@
 ﻿using Insight.Utils.BaseForms;
 
-namespace Insight.MTP.Client.Platform.Apps.Views
+namespace Insight.MTP.Client.Setting.Apps.Views
 {
     public partial class FunDialog : BaseDialog
     {

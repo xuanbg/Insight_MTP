@@ -6,7 +6,7 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraTreeList;
 
-namespace Insight.MTP.Client.Platform.Apps.Views
+namespace Insight.MTP.Client.Setting.Apps.Views
 {
     partial class Manager
     {

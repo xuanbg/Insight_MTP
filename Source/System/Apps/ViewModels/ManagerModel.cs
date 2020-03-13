@@ -2,10 +2,10 @@
 using System.Linq;
 using DevExpress.XtraTreeList.Nodes;
 using Insight.MTP.Client.Common.Entity;
-using Insight.MTP.Client.Platform.Apps.Views;
+using Insight.MTP.Client.Setting.Apps.Views;
 using Insight.Utils.BaseViewModels;
 
-namespace Insight.MTP.Client.Platform.Apps.ViewModels
+namespace Insight.MTP.Client.Setting.Apps.ViewModels
 {
     public class ManagerModel : BaseMdiModel<App, Manager, DataModel>
     {

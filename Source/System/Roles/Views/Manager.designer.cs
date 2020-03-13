@@ -43,6 +43,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.splRole = new DevExpress.XtraEditors.SplitContainerControl();
+            this.panRole = new DevExpress.XtraEditors.PanelControl();
             this.grdRole = new DevExpress.XtraGrid.GridControl();
             this.gdvRole = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -73,11 +74,16 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.colTypeA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colNameA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colPermitA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.panRole = new DevExpress.XtraEditors.PanelControl();
+            this.panSearch = new DevExpress.XtraEditors.PanelControl();
+            this.Search = new DevExpress.XtraEditors.SimpleButton();
+            this.KeyInput = new DevExpress.XtraEditors.ButtonEdit();
+            this.panSpace = new DevExpress.XtraEditors.PanelControl();
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splRole)).BeginInit();
             this.splRole.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panRole)).BeginInit();
+            this.panRole.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMember)).BeginInit();
@@ -96,13 +102,17 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             ((System.ComponentModel.ISupportInitialize)(this.panPermit)).BeginInit();
             this.panPermit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treAction)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panRole)).BeginInit();
-            this.panRole.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panSearch)).BeginInit();
+            this.panSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.KeyInput.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panSpace)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraScrollable
             // 
             this.xtraScrollable.Controls.Add(this.spcMain);
+            this.xtraScrollable.Controls.Add(this.panSpace);
+            this.xtraScrollable.Controls.Add(this.panSearch);
             this.xtraScrollable.Location = new System.Drawing.Point(0, 31);
             this.xtraScrollable.Padding = new System.Windows.Forms.Padding(5);
             this.xtraScrollable.Size = new System.Drawing.Size(1080, 600);
@@ -154,9 +164,19 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.splRole.Panel2.Controls.Add(this.splMember);
             this.splRole.Panel2.MinSize = 200;
             this.splRole.ScrollBarSmallChange = 1;
-            this.splRole.Size = new System.Drawing.Size(765, 590);
-            this.splRole.SplitterPosition = 295;
+            this.splRole.Size = new System.Drawing.Size(765, 546);
+            this.splRole.SplitterPosition = 273;
             this.splRole.TabIndex = 0;
+            // 
+            // panRole
+            // 
+            this.panRole.Controls.Add(this.grdRole);
+            this.panRole.Controls.Add(this.ppcRole);
+            this.panRole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panRole.Location = new System.Drawing.Point(0, 0);
+            this.panRole.Name = "panRole";
+            this.panRole.Size = new System.Drawing.Size(765, 273);
+            this.panRole.TabIndex = 0;
             // 
             // grdRole
             // 
@@ -164,7 +184,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.grdRole.Location = new System.Drawing.Point(2, 2);
             this.grdRole.MainView = this.gdvRole;
             this.grdRole.Name = "grdRole";
-            this.grdRole.Size = new System.Drawing.Size(761, 269);
+            this.grdRole.Size = new System.Drawing.Size(761, 247);
             this.grdRole.TabIndex = 0;
             this.grdRole.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvRole});
@@ -227,7 +247,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             // 
             this.ppcRole.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ppcRole.focusedRowHandle = 0;
-            this.ppcRole.Location = new System.Drawing.Point(2, 271);
+            this.ppcRole.Location = new System.Drawing.Point(2, 249);
             this.ppcRole.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcRole.MinimumSize = new System.Drawing.Size(300, 22);
             this.ppcRole.Name = "ppcRole";
@@ -245,7 +265,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.splMember.Panel1.MinSize = 160;
             this.splMember.Panel2.Controls.Add(this.grpUser);
             this.splMember.Panel2.MinSize = 300;
-            this.splMember.Size = new System.Drawing.Size(765, 290);
+            this.splMember.Size = new System.Drawing.Size(765, 268);
             this.splMember.SplitterPosition = 225;
             this.splMember.TabIndex = 0;
             // 
@@ -255,7 +275,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.grpMember.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpMember.Location = new System.Drawing.Point(0, 0);
             this.grpMember.Name = "grpMember";
-            this.grpMember.Size = new System.Drawing.Size(225, 290);
+            this.grpMember.Size = new System.Drawing.Size(225, 268);
             this.grpMember.TabIndex = 0;
             this.grpMember.Text = "角色成员";
             // 
@@ -271,7 +291,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.treMember.OptionsView.ShowColumns = false;
             this.treMember.ParentFieldName = "parentId";
             this.treMember.SelectImageList = this.imgMember;
-            this.treMember.Size = new System.Drawing.Size(221, 267);
+            this.treMember.Size = new System.Drawing.Size(221, 245);
             this.treMember.TabIndex = 0;
             this.treMember.Tag = "NODE_TYPE";
             // 
@@ -299,7 +319,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.grpUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpUser.Location = new System.Drawing.Point(0, 0);
             this.grpUser.Name = "grpUser";
-            this.grpUser.Size = new System.Drawing.Size(535, 290);
+            this.grpUser.Size = new System.Drawing.Size(535, 268);
             this.grpUser.TabIndex = 0;
             this.grpUser.Text = "成员用户";
             // 
@@ -309,7 +329,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.grdUser.Location = new System.Drawing.Point(2, 21);
             this.grdUser.MainView = this.gdvUser;
             this.grdUser.Name = "grdUser";
-            this.grdUser.Size = new System.Drawing.Size(531, 245);
+            this.grdUser.Size = new System.Drawing.Size(531, 223);
             this.grdUser.TabIndex = 0;
             this.grdUser.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvUser});
@@ -371,7 +391,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             // 
             this.ppcUser.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ppcUser.focusedRowHandle = 0;
-            this.ppcUser.Location = new System.Drawing.Point(2, 266);
+            this.ppcUser.Location = new System.Drawing.Point(2, 244);
             this.ppcUser.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcUser.MinimumSize = new System.Drawing.Size(320, 22);
             this.ppcUser.Name = "ppcUser";
@@ -396,13 +416,13 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             // 
             this.spcMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spcMain.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
-            this.spcMain.Location = new System.Drawing.Point(5, 5);
+            this.spcMain.Location = new System.Drawing.Point(5, 49);
             this.spcMain.Name = "spcMain";
             this.spcMain.Panel1.Controls.Add(this.splRole);
             this.spcMain.Panel1.MinSize = 750;
             this.spcMain.Panel2.Controls.Add(this.panPermit);
             this.spcMain.Panel2.MinSize = 300;
-            this.spcMain.Size = new System.Drawing.Size(1070, 590);
+            this.spcMain.Size = new System.Drawing.Size(1070, 546);
             this.spcMain.SplitterPosition = 300;
             this.spcMain.TabIndex = 0;
             // 
@@ -412,7 +432,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.panPermit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panPermit.Location = new System.Drawing.Point(0, 0);
             this.panPermit.Name = "panPermit";
-            this.panPermit.Size = new System.Drawing.Size(300, 590);
+            this.panPermit.Size = new System.Drawing.Size(300, 546);
             this.panPermit.TabIndex = 0;
             // 
             // treAction
@@ -432,7 +452,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.treAction.OptionsView.ShowVertLines = false;
             this.treAction.ParentFieldName = "parentId";
             this.treAction.SelectImageList = this.imgPermission;
-            this.treAction.Size = new System.Drawing.Size(296, 586);
+            this.treAction.Size = new System.Drawing.Size(296, 542);
             this.treAction.TabIndex = 4;
             this.treAction.Tag = "NODE_TYPE";
             // 
@@ -463,15 +483,51 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.colPermitA.Name = "colPermitA";
             this.colPermitA.Width = 61;
             // 
-            // panRole
+            // panSearch
             // 
-            this.panRole.Controls.Add(this.grdRole);
-            this.panRole.Controls.Add(this.ppcRole);
-            this.panRole.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panRole.Location = new System.Drawing.Point(0, 0);
-            this.panRole.Name = "panRole";
-            this.panRole.Size = new System.Drawing.Size(765, 295);
-            this.panRole.TabIndex = 0;
+            this.panSearch.Controls.Add(this.Search);
+            this.panSearch.Controls.Add(this.KeyInput);
+            this.panSearch.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panSearch.Location = new System.Drawing.Point(5, 5);
+            this.panSearch.Name = "panSearch";
+            this.panSearch.Size = new System.Drawing.Size(1070, 39);
+            this.panSearch.TabIndex = 0;
+            // 
+            // Search
+            // 
+            this.Search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Search.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Search.Appearance.Options.UseFont = true;
+            this.Search.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("Search.ImageOptions.Image")));
+            this.Search.Location = new System.Drawing.Point(992, 8);
+            this.Search.Name = "Search";
+            this.Search.Size = new System.Drawing.Size(70, 23);
+            this.Search.TabIndex = 2;
+            this.Search.Text = "查  询";
+            // 
+            // KeyInput
+            // 
+            this.KeyInput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.KeyInput.Location = new System.Drawing.Point(9, 9);
+            this.KeyInput.Name = "KeyInput";
+            this.KeyInput.Properties.AutoHeight = false;
+            this.KeyInput.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.KeyInput.Properties.NullText = "在此输入查询关键词……";
+            this.KeyInput.Size = new System.Drawing.Size(976, 21);
+            this.KeyInput.TabIndex = 1;
+            // 
+            // panSpace
+            // 
+            this.panSpace.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panSpace.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panSpace.Location = new System.Drawing.Point(5, 44);
+            this.panSpace.Name = "panSpace";
+            this.panSpace.Size = new System.Drawing.Size(1070, 5);
+            this.panSpace.TabIndex = 0;
             // 
             // Manager
             // 
@@ -482,6 +538,8 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splRole)).EndInit();
             this.splRole.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panRole)).EndInit();
+            this.panRole.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdRole)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvRole)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMember)).EndInit();
@@ -500,8 +558,10 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             ((System.ComponentModel.ISupportInitialize)(this.panPermit)).EndInit();
             this.panPermit.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treAction)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panRole)).EndInit();
-            this.panRole.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panSearch)).EndInit();
+            this.panSearch.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.KeyInput.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panSpace)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -544,5 +604,9 @@ namespace Insight.MTP.Client.Setting.Roles.Views
         public TreeList treAction;
         public Utils.Controls.PageControl ppcUser;
         private PanelControl panRole;
+        private PanelControl panSearch;
+        public SimpleButton Search;
+        public ButtonEdit KeyInput;
+        private PanelControl panSpace;
     }
 }

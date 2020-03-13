@@ -1,10 +1,10 @@
-﻿using Insight.MTP.Client.Common.Entity;
+﻿using System.Collections.Generic;
+using Insight.MTP.Client.Common.Entity;
 using Insight.Utils.Client;
-using System.Collections.Generic;
 using Insight.Utils.Common;
 using Insight.Utils.Entity;
 
-namespace Insight.MTP.Client.Platform.Apps
+namespace Insight.MTP.Client.Setting.Apps
 {
     public class DataModel
     {

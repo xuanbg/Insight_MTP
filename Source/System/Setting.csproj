@@ -72,22 +72,45 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Apps\Controller.cs" />
+    <Compile Include="Apps\DataModel.cs" />
+    <Compile Include="Apps\ViewModels\AppModel.cs" />
+    <Compile Include="Apps\ViewModels\FunModel.cs" />
+    <Compile Include="Apps\ViewModels\ManagerModel.cs" />
+    <Compile Include="Apps\ViewModels\NavModel.cs" />
+    <Compile Include="Apps\Views\AppDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Views\AppDialog.Designer.cs">
+      <DependentUpon>AppDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Views\FunDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Views\FunDialog.Designer.cs">
+      <DependentUpon>FunDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Views\Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Views\Manager.Designer.cs">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Views\NavDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Views\NavDialog.Designer.cs">
+      <DependentUpon>NavDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles\Controller.cs" />
     <Compile Include="Roles\DataModel.cs" />
     <Compile Include="Roles\ViewModels\ManagerModel.cs" />
-    <Compile Include="Roles\ViewModels\WizardModel.cs" />
     <Compile Include="Roles\Views\Manager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Roles\Views\Manager.designer.cs">
       <DependentUpon>Manager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Roles\Views\Wizard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Roles\Views\Wizard.Designer.cs">
-      <DependentUpon>Wizard.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -103,12 +126,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Apps\Views\AppDialog.resx">
+      <DependentUpon>AppDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Views\FunDialog.resx">
+      <DependentUpon>FunDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Views\Manager.resx">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Views\NavDialog.resx">
+      <DependentUpon>NavDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Roles\Views\Manager.resx">
       <DependentUpon>Manager.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Roles\Views\Wizard.resx">
-      <DependentUpon>Wizard.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -16,7 +16,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         /// </summary>
         public ManagerModel()
         {
-            init(view.gdvRole, "editItem", view.ppcRole);
+            init(view.gdvRole, "editItem", view.ppcRole, view.KeyInput, view.Search);
             initTree(view.treMember, "memberChanged");
             initGrid(view.gdvUser, null, null, view.ppcUser);
             initTree(view.treAction);
