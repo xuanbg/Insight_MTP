@@ -12,6 +12,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         /// </summary>
         public ManagerModel()
         {
+            init(view.gdvRole, "", view.ppcRole);
         }
 
         /// <summary>
@@ -21,7 +22,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         public void loadData(int handle = 0)
         {
             showWaitForm();
-            var result = dataModel.getUsers(keyWord, tab.page, tab.size);
+            var result = dataModel.getRoles(keyWord, tab.page, tab.size);
             list = result.data;
             closeWaitForm();
             if (!result.success) return;
@@ -52,7 +53,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
                     item = obj;
                     if (item.users == null)
                     {
-                        item.users = dataModel.getFuncs(item.id);
+                        item.users = dataModel.getMemberUsers(item.id);
                     }
                 }
             }

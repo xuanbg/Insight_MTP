@@ -24,15 +24,15 @@ namespace Insight.MTP.Client.Setting.Roles
         }
 
         /// <summary>
-        /// 新建用户
+        /// 新建角色
         /// </summary>
         public void newItem()
         {
             var role = new Role();
-            var model = new WizardModel(role, "新建用户");
+            var model = new WizardModel(role, "新建角色");
             model.callbackEvent += (sender, args) =>
             {
-                role.id = dataModel.addUser(role);
+                role.id = dataModel.addRole(role);
                 if (role.id == null) return;
 
                 mdiModel.list.Add(role);
@@ -45,14 +45,14 @@ namespace Insight.MTP.Client.Setting.Roles
         }
 
         /// <summary>
-        /// 编辑用户
+        /// 编辑角色
         /// </summary>
         public void editItem()
         {
-            var model = new WizardModel(mdiModel.item, "编辑用户");
+            var model = new WizardModel(mdiModel.item, "编辑角色");
             model.callbackEvent += (sender, args) =>
             {
-                if (!dataModel.updateUser(mdiModel.item)) return;
+                if (!dataModel.updateRole(mdiModel.item)) return;
 
                 model.close();
             };
@@ -61,14 +61,14 @@ namespace Insight.MTP.Client.Setting.Roles
         }
 
         /// <summary>
-        /// 删除用户
+        /// 删除角色
         /// </summary>
         public void deleteItem()
         {
-            var msg = "您确定要删除用户{mdiModel.item.name}吗？\r\n数据删除后无法恢复！";
+            var msg = "您确定要删除角色{mdiModel.item.name}吗？\r\n数据删除后无法恢复！";
             if (!Messages.showConfirm(msg)) return;
 
-            if (dataModel.deleteUser(mdiModel.item))
+            if (dataModel.deleteRole(mdiModel.item))
             {
                 mdiModel.list.Remove(mdiModel.item);
                 mdiModel.tab.removeItems();

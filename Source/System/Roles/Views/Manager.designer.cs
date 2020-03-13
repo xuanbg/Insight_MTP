@@ -66,10 +66,10 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.colLoginName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colValidity = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.TabUser = new Insight.Utils.Controls.PageControl();
+            this.ppcUser = new Insight.Utils.Controls.PageControl();
             this.imgPermission = new DevExpress.Utils.ImageCollection(this.components);
             this.spcMain = new DevExpress.XtraEditors.SplitContainerControl();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.panPermit = new DevExpress.XtraEditors.PanelControl();
             this.treAction = new DevExpress.XtraTreeList.TreeList();
             this.colIndexA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colTypeA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -97,8 +97,8 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             ((System.ComponentModel.ISupportInitialize)(this.imgPermission)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).BeginInit();
             this.spcMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panPermit)).BeginInit();
+            this.panPermit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treAction)).BeginInit();
             this.SuspendLayout();
             // 
@@ -285,6 +285,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.treMember.SelectImageList = this.imgMember;
             this.treMember.Size = new System.Drawing.Size(221, 267);
             this.treMember.TabIndex = 0;
+            this.treMember.Tag = "ONLY_LEVEL0";
             // 
             // colNodeType
             // 
@@ -312,7 +313,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             // grpUser
             // 
             this.grpUser.Controls.Add(this.grdUser);
-            this.grpUser.Controls.Add(this.TabUser);
+            this.grpUser.Controls.Add(this.ppcUser);
             this.grpUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpUser.Location = new System.Drawing.Point(0, 0);
             this.grpUser.Name = "grpUser";
@@ -383,17 +384,17 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.colValidity.VisibleIndex = 3;
             this.colValidity.Width = 40;
             // 
-            // TabUser
+            // ppcUser
             // 
-            this.TabUser.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.TabUser.focusedRowHandle = 0;
-            this.TabUser.Location = new System.Drawing.Point(2, 266);
-            this.TabUser.MaximumSize = new System.Drawing.Size(0, 22);
-            this.TabUser.MinimumSize = new System.Drawing.Size(320, 22);
-            this.TabUser.Name = "TabUser";
-            this.TabUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("TabUser.pageSizeItems")));
-            this.TabUser.Size = new System.Drawing.Size(531, 22);
-            this.TabUser.TabIndex = 1;
+            this.ppcUser.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ppcUser.focusedRowHandle = 0;
+            this.ppcUser.Location = new System.Drawing.Point(2, 266);
+            this.ppcUser.MaximumSize = new System.Drawing.Size(0, 22);
+            this.ppcUser.MinimumSize = new System.Drawing.Size(320, 22);
+            this.ppcUser.Name = "ppcUser";
+            this.ppcUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcUser.pageSizeItems")));
+            this.ppcUser.Size = new System.Drawing.Size(531, 22);
+            this.ppcUser.TabIndex = 0;
             // 
             // imgPermission
             // 
@@ -417,20 +418,20 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.spcMain.Name = "spcMain";
             this.spcMain.Panel1.Controls.Add(this.splRole);
             this.spcMain.Panel1.MinSize = 750;
-            this.spcMain.Panel2.Controls.Add(this.panelControl1);
+            this.spcMain.Panel2.Controls.Add(this.panPermit);
             this.spcMain.Panel2.MinSize = 300;
             this.spcMain.Size = new System.Drawing.Size(1070, 590);
             this.spcMain.SplitterPosition = 300;
             this.spcMain.TabIndex = 0;
             // 
-            // panelControl1
+            // panPermit
             // 
-            this.panelControl1.Controls.Add(this.treAction);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl1.Location = new System.Drawing.Point(0, 0);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(300, 590);
-            this.panelControl1.TabIndex = 0;
+            this.panPermit.Controls.Add(this.treAction);
+            this.panPermit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panPermit.Location = new System.Drawing.Point(0, 0);
+            this.panPermit.Name = "panPermit";
+            this.panPermit.Size = new System.Drawing.Size(300, 590);
+            this.panPermit.TabIndex = 0;
             // 
             // treAction
             // 
@@ -451,6 +452,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.treAction.SelectImageList = this.imgPermission;
             this.treAction.Size = new System.Drawing.Size(296, 586);
             this.treAction.TabIndex = 4;
+            this.treAction.Tag = "NODE_TYPE";
             // 
             // colIndexA
             // 
@@ -513,8 +515,8 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             ((System.ComponentModel.ISupportInitialize)(this.imgPermission)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).EndInit();
             this.spcMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panPermit)).EndInit();
+            this.panPermit.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treAction)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -522,7 +524,6 @@ namespace Insight.MTP.Client.Setting.Roles.Views
         }
 
         #endregion
-        internal Utils.Controls.PageControl TabUser;
         private BarDockControl barDockControlTop;
         private BarDockControl barDockControlBottom;
         private BarDockControl barDockControlLeft;
@@ -547,7 +548,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
         private DevExpress.XtraTreeList.Columns.TreeListColumn colMember;
         private DevExpress.XtraGrid.Columns.GridColumn colApp;
         private SplitContainerControl spcMain;
-        private PanelControl panelControl1;
+        private PanelControl panPermit;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colIndexA;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colTypeA;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colNameA;
@@ -560,5 +561,6 @@ namespace Insight.MTP.Client.Setting.Roles.Views
         public GridView gdvUser;
         public GridView gdvRole;
         public TreeList treAction;
+        public Utils.Controls.PageControl ppcUser;
     }
 }

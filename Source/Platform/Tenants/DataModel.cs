@@ -10,6 +10,7 @@ namespace Insight.MTP.Client.Platform.Tenants
     public class DataModel
     {
         private const string service = "/base/tenant";
+        private const string commonService = "/common/basedata";
 
         /// <summary>
         /// 获取租户集合
@@ -63,6 +64,31 @@ namespace Insight.MTP.Client.Platform.Tenants
             var client = new HttpClient<List<TenantUser>>();
 
             return client.getResult(url, dict);
+        }
+
+        /// <summary>
+        /// 获取全部省级行政区划
+        /// </summary>
+        /// <returns>省级行政区划集合</returns>
+        public List<LookUpMember> getProvinces()
+        {
+            var url = $"{commonService}/v1.0/regions/provinces";
+            var client = new HttpClient<List<LookUpMember>>();
+
+            return client.getData(url);
+        }
+
+        /// <summary>
+        /// 获取指定上级ID的行政区划集合数据
+        /// </summary>
+        /// <param name="id">上级区划ID</param>
+        /// <returns>行政区划集合</returns>
+        public List<Region> getRegions(string id)
+        {
+            var url = $"{commonService}/v1.0/regions/{id}/subs";
+            var client = new HttpClient<List<Region>>();
+
+            return client.getData(url);
         }
 
         /// <summary>
