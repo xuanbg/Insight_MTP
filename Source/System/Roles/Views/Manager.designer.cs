@@ -268,7 +268,6 @@ namespace Insight.MTP.Client.System.Roles.Views
             this.TabRole.pageSizeItems = ((global::System.Collections.ObjectModel.Collection<string>)(resources.GetObject("TabRole.PageSizeItems")));
             this.TabRole.Size = new global::System.Drawing.Size(761, 22);
             this.TabRole.TabIndex = 2;
-            this.TabRole.totalRows = 0;
             // 
             // splMember
             // 
@@ -418,7 +417,6 @@ namespace Insight.MTP.Client.System.Roles.Views
             this.TabUser.pageSizeItems = ((global::System.Collections.ObjectModel.Collection<string>)(resources.GetObject("TabUser.PageSizeItems")));
             this.TabUser.Size = new global::System.Drawing.Size(531, 22);
             this.TabUser.TabIndex = 1;
-            this.TabUser.totalRows = 0;
             // 
             // tabPermission
             // 
