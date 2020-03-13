@@ -56,6 +56,7 @@
     <Compile Include="Entity\Resource.cs" />
     <Compile Include="Entity\App.cs" />
     <Compile Include="Entity\Bases.cs" />
+    <Compile Include="Entity\Role.cs" />
     <Compile Include="Entity\Schedule.cs" />
     <Compile Include="Entity\Tenant.cs" />
     <Compile Include="Entity\TenantApp.cs" />
