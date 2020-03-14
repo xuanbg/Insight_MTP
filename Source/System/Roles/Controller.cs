@@ -1,4 +1,5 @@
-﻿using Insight.MTP.Client.Common.Entity;
+﻿using System;
+using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Setting.Roles.ViewModels;
 using Insight.MTP.Client.Setting.Roles.Views;
 using Insight.Utils.BaseControllers;
@@ -76,35 +77,22 @@ namespace Insight.MTP.Client.Setting.Roles
                 mdiModel.tab.removeItems();
             }
         }
-
-        /// <summary>
-        /// 设置角色功能权限
-        /// </summary>
-        public void setFunc()
-        {
-            var msg = "您确定要删除角色{mdiModel.item.name}吗？\r\n数据删除后无法恢复！";
-            if (!Messages.showConfirm(msg)) return;
-
-            if (dataModel.deleteRole(mdiModel.item))
-            {
-                mdiModel.list.Remove(mdiModel.item);
-                mdiModel.tab.removeItems();
-            }
-        }
         
         /// <summary>
         /// 添加角色成员
         /// </summary>
         public void addMember()
         {
-            var msg = "您确定要删除角色{mdiModel.item.name}吗？\r\n数据删除后无法恢复！";
-            if (!Messages.showConfirm(msg)) return;
-
-            if (dataModel.deleteRole(mdiModel.item))
+            var apps = dataModel.getRoleApps();
+            var model = new RoleModel(mdiModel.item, apps, "编辑角色");
+            model.callbackEvent += (sender, args) =>
             {
-                mdiModel.list.Remove(mdiModel.item);
-                mdiModel.tab.removeItems();
-            }
+                if (!dataModel.updateRole(mdiModel.item)) return;
+
+                model.close();
+            };
+
+            model.showDialog();
         }
 
         /// <summary>
@@ -112,13 +100,35 @@ namespace Insight.MTP.Client.Setting.Roles
         /// </summary>
         public void removeMember()
         {
-            var msg = "您确定要删除角色{mdiModel.item.name}吗？\r\n数据删除后无法恢复！";
+            var msg = $"您确定要移除角色成员{mdiModel.member.name}吗？";
             if (!Messages.showConfirm(msg)) return;
 
-            if (dataModel.deleteRole(mdiModel.item))
+            if (dataModel.removeMember(mdiModel.member))
             {
-                mdiModel.list.Remove(mdiModel.item);
-                mdiModel.tab.removeItems();
+                mdiModel.item.members.Remove(mdiModel.member);
+                mdiModel.refreshTree();
+                mdiModel.refreshGrid();
+            }
+        }
+
+        /// <summary>
+        /// 设置角色功能权限
+        /// </summary>
+        public void setFunc()
+        {
+            if (mdiModel.func == null) return;
+
+            var permit = mdiModel.func.permit;
+            if (permit == null) permit = true;
+            else if ((bool) permit) permit = false;
+            else permit = null;
+
+            if (dataModel.setFuncPermit(mdiModel.item.id, mdiModel.func.id, permit))
+            {
+                mdiModel.func.permit = permit;
+                mdiModel.func.type = 3 + (permit == null ? 2 : Convert.ToInt32(permit));
+
+                mdiModel.refreshAction();
             }
         }
     }

@@ -131,5 +131,50 @@ namespace Insight.MTP.Client.Setting.Roles
             return client.delete(url, user.id, msg);
         }
 
+        /// <summary>
+        /// 添加角色成员
+        /// </summary>
+        /// <param name="id">角色ID</param>
+        /// <param name="members">角色成员实体对象集合</param>
+        /// <returns>是否成功</returns>
+        public bool addMember(string id, List<Member> members)
+        {
+            var msg = "对不起，添加角色成员失败！";
+            var url = $"{service}/v1.0/roles/{id}/members";
+            var client = new HttpClient<object>();
+
+            return client.post(url, members, msg);
+        }
+
+        /// <summary>
+        /// 移除角色成员
+        /// </summary>
+        /// <param name="member">角色成员实体对象</param>
+        /// <returns>是否成功</returns>
+        public bool removeMember(Member member)
+        {
+            var msg = $"对不起，无法移除角色成员【{member.name}】！";
+            var url = $"{service}/v1.0/roles/{member.id}/members";
+            var client = new HttpClient<object>();
+
+            return client.delete(url, member, msg);
+        }
+
+        /// <summary>
+        /// 设置角色功能权限
+        /// </summary>
+        /// <param name="id">角色ID</param>
+        /// <param name="funcId">功能ID</param>
+        /// <param name="permit">授权状态</param>
+        /// <returns>是否成功</returns>
+        public bool setFuncPermit(string id, string funcId, bool? permit)
+        {
+            var msg = $"对不起，设置功能权限失败！";
+            var url = $"{service}/v1.0/roles/{id}/funcs";
+            var data = new Dictionary<string, object> {{"id", funcId}, {"permit", permit}};
+            var client = new HttpClient<object>();
+
+            return client.put(url, data, msg);
+        }
     }
 }

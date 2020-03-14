@@ -10,6 +10,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
     public class ManagerModel : BaseMdiModel<Role, Manager, DataModel>
     {
         public Member member;
+        public AppTree func;
 
         /// <summary>
         /// 构造方法
@@ -19,7 +20,16 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             init(view.gdvRole, "editItem", view.ppcRole, view.KeyInput, view.Search);
             initTree(view.treMember, "memberChanged");
             initGrid(view.gdvUser, null, null, view.ppcUser);
-            initTree(view.treAction);
+            initTree(view.treAction, "funcChanged");
+
+            view.treAction.Click += (sender, args) =>
+            {
+                var node = view.treAction.FocusedNode;
+                if (node.HasChildren) return;
+
+                funcChanged(node);
+                callback("setFunc");
+            };
         }
 
         /// <summary>
@@ -123,20 +133,41 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         }
 
         /// <summary>
+        /// 选中功能列表节点改变
+        /// </summary>
+        /// <param name="node">功能节点</param>
+        public void funcChanged(TreeListNode node)
+        {
+            if (node.HasChildren) return;
+
+            var id = node.GetValue("id").ToString();
+            func = item.funcs.SingleOrDefault(i => i.id == id);
+        }
+
+        /// <summary>
         /// 刷新树数据
         /// </summary>
         public void refreshTree()
         {
+            view.treMember.RefreshDataSource();
             refreshToolBar();
         }
 
         /// <summary>
-        /// 刷新列表数据
+        /// 刷新成员用户列表数据
         /// </summary>
         public void refreshGrid()
         {
-            view.gdvUser.RefreshData();
+            view.grdUser.DataSource = dataModel.getMemberUsers(item.id, 1, view.ppcUser.size);
             refreshToolBar();
+        }
+
+        /// <summary>
+        /// 刷新树数据
+        /// </summary>
+        public void refreshAction()
+        {
+            view.treAction.RefreshDataSource();
         }
 
         /// <summary>
@@ -149,9 +180,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
                 ["editItem"] = item != null,
                 ["deleteItem"] = item != null,
                 ["addMember"] = item != null && item.builtin,
-                ["removeMember"] = member != null && member.type > 0,
-                ["setFunc"] = item != null,
-                ["setData"] = item != null,
+                ["removeMember"] = member != null && member.type > 0
             };
             switchItemStatus(dict);
         }

@@ -115,7 +115,7 @@ namespace Insight.MTP.Client.Common.Entity
     public class Member
     {
         /// <summary>
-        /// ID，唯一标识
+        /// 成员ID，唯一标识
         /// </summary>
         public string id { get; set; }
 
