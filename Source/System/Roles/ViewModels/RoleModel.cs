@@ -30,6 +30,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             {
                 item.appId = view.lueApp.EditValue.ToString();
                 item.appName = view.lueApp.Text;
+                item.builtin = item.appId == "9dd99dd9e6df467a8207d05ea5581125";
             };
             view.txtName.EditValueChanged += (sender, args) => item.name = view.txtName.Text.Trim();
             view.memRemark.EditValueChanged += (sender, args) =>
@@ -44,9 +45,16 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         /// </summary>
         public new void confirm()
         {
+            if (string.IsNullOrEmpty(item.appId))
+            {
+                Messages.showWarning("必须选择一个应用！");
+                view.lueApp.Focus();
+                return;
+            }
+
             if (string.IsNullOrEmpty(item.name))
             {
-                Messages.showWarning("必须输入功能名称！");
+                Messages.showWarning("必须输入角色名称！");
                 view.txtName.Focus();
                 return;
             }
