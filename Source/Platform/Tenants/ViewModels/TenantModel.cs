@@ -47,7 +47,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
             view.txtAlias.EditValueChanged += (sender, args) => item.alias = view.txtAlias.Text.Trim();
             view.memRemark.EditValueChanged += (sender, args) =>
             {
-                var text = view.memRemark.EditValue?.ToString().Trim();
+                var text = view.memRemark.Text.Trim();
                 item.remark = string.IsNullOrEmpty(text) ? null : text;
             };
 

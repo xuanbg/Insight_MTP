@@ -78,6 +78,18 @@ namespace Insight.MTP.Client.Setting.Roles
         }
 
         /// <summary>
+        /// 获取角色可用应用集合
+        /// </summary>
+        /// <returns>应用集合</returns>
+        public List<LookUpMember> getRoleApps()
+        {
+            var url = $"{service}/v1.0/apps";
+            var client = new HttpClient<List<LookUpMember>>();
+
+            return client.getData(url);
+        }
+
+        /// <summary>
         /// 新增角色信息
         /// </summary>
         /// <param name="role">角色实体对象</param>

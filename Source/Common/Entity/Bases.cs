@@ -175,4 +175,25 @@ namespace Insight.MTP.Client.Common.Entity
         /// </summary>
         public bool? permit { get; set; }
     }
+
+    /// <summary>
+    /// 角色可用应用
+    /// </summary>
+    public class RoleApp
+    {
+        /// <summary>
+        /// 应用ID
+        /// </summary>
+        public string id { get; set; }
+
+        /// <summary>
+        /// 应用名称
+        /// </summary>
+        public string name { get; set; }
+
+        /// <summary>
+        /// 应用简称
+        /// </summary>
+        public string alias { get; set; }
+    }
 }

@@ -5,9 +5,9 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraTab;
 using DevExpress.XtraTreeList;
 
-namespace Insight.SRM.Client.Base.Roles.Views
+namespace Insight.MTP.Client.Setting.Roles.Views
 {
-    partial class Member
+    partial class MemberDialog
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -35,7 +35,7 @@ namespace Insight.SRM.Client.Base.Roles.Views
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Member));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MemberDialog));
             this.tabMember = new DevExpress.XtraTab.XtraTabControl();
             this.pagTitle = new DevExpress.XtraTab.XtraTabPage();
             this.palTitle = new DevExpress.XtraEditors.PanelControl();
@@ -57,9 +57,6 @@ namespace Insight.SRM.Client.Base.Roles.Views
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CategoryNode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrgTreeNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabMember)).BeginInit();
             this.tabMember.SuspendLayout();
             this.pagTitle.SuspendLayout();
@@ -81,36 +78,15 @@ namespace Insight.SRM.Client.Base.Roles.Views
             // 
             // Cancel
             // 
-            this.Cancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Cancel.Appearance.Options.UseFont = true;
-            this.Cancel.Location = new System.Drawing.Point(200, 424);
+            this.cancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cancel.Appearance.Options.UseFont = true;
+            this.cancel.Location = new System.Drawing.Point(200, 424);
             // 
             // Confirm
             // 
-            this.Confirm.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Confirm.Appearance.Options.UseFont = true;
-            this.Confirm.Location = new System.Drawing.Point(290, 424);
-            // 
-            // FolderNode
-            // 
-            this.FolderNode.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("FolderNode.ImageStream")));
-            this.FolderNode.Images.SetKeyName(0, "Item.png");
-            this.FolderNode.Images.SetKeyName(1, "Folder.png");
-            this.FolderNode.Images.SetKeyName(2, "FolderOpen.png");
-            // 
-            // CategoryNode
-            // 
-            this.CategoryNode.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("CategoryNode.ImageStream")));
-            this.CategoryNode.Images.SetKeyName(0, "Doc.png");
-            this.CategoryNode.Images.SetKeyName(1, "Folder.png");
-            this.CategoryNode.Images.SetKeyName(2, "FolderOpen.png");
-            // 
-            // OrgTreeNode
-            // 
-            this.OrgTreeNode.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("OrgTreeNode.ImageStream")));
-            this.OrgTreeNode.Images.SetKeyName(0, "NodeOrg.png");
-            this.OrgTreeNode.Images.SetKeyName(1, "NodeDept.png");
-            this.OrgTreeNode.Images.SetKeyName(2, "NodePost.png");
+            this.confirm.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.confirm.Appearance.Options.UseFont = true;
+            this.confirm.Location = new System.Drawing.Point(290, 424);
             // 
             // tabMember
             // 
@@ -153,7 +129,6 @@ namespace Insight.SRM.Client.Base.Roles.Views
             this.treOrg.OptionsSelection.MultiSelect = true;
             this.treOrg.OptionsView.ShowCheckBoxes = true;
             this.treOrg.ParentFieldName = "ParentId";
-            this.treOrg.SelectImageList = this.OrgTreeNode;
             this.treOrg.Size = new System.Drawing.Size(358, 365);
             this.treOrg.TabIndex = 0;
             // 
@@ -304,12 +279,9 @@ namespace Insight.SRM.Client.Base.Roles.Views
             this.Text = "添加角色成员";
             this.Controls.SetChildIndex(this.panel, 0);
             this.Controls.SetChildIndex(this.tabMember, 0);
-            this.Controls.SetChildIndex(this.Cancel, 0);
-            this.Controls.SetChildIndex(this.Confirm, 0);
+            this.Controls.SetChildIndex(this.cancel, 0);
+            this.Controls.SetChildIndex(this.confirm, 0);
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CategoryNode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrgTreeNode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabMember)).EndInit();
             this.tabMember.ResumeLayout(false);
             this.pagTitle.ResumeLayout(false);
