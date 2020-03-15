@@ -11,6 +11,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
 {
     public class TenantModel : BaseDialogModel<Tenant, TenantDialog>
     {
+        private readonly DataModel dm;
         public readonly List<Region> regions = new List<Region>();
 
         /// <summary>
@@ -20,28 +21,12 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         /// <param name="data">初始化数据</param>
         /// <param name="provinces">省级区划数据源</param>
         /// <param name="title">View标题</param>
-        public TenantModel(Tenant data, List<LookUpMember> provinces, string title) : base(title)
+        /// <param name="dataModel"></param>
+        public TenantModel(Tenant data, List<LookUpMember> provinces, string title, DataModel dataModel) : base(title)
         {
             item = data;
+            dm = dataModel;
             if (item.companyInfo == null) item.companyInfo = new CompanyInfo();
-
-            Format.initComboBoxEdit(view.cbeProvince, provinces);
-
-            view.txtName.EditValue = item.name;
-            view.txtAlias.EditValue = item.alias;
-            view.memRemark.EditValue = item.remark;
-            view.txtCompany.EditValue = item.companyInfo.companyName;
-            view.butLogo.EditValue = item.companyInfo.logo;
-            view.txtHome.EditValue = item.companyInfo.homeSit;
-            view.txtLicense.EditValue = item.companyInfo.license;
-            view.butImage.EditValue = item.companyInfo.licenseImage;
-            view.cbeProvince.EditValue = item.companyInfo.provinceId;
-            view.cbeCity.EditValue = item.companyInfo.cityId;
-            view.cbeCounty.EditValue = item.companyInfo.countyId;
-            view.txtAddress.EditValue = item.companyInfo.address;
-            view.txtContact.EditValue = item.companyInfo.contactName;
-            view.txtMobile.EditValue = item.companyInfo.contactPhone;
-            view.txtEmail.EditValue = item.companyInfo.contactMailbox;
 
             view.txtName.EditValueChanged += (sender, args) => item.name = view.txtName.Text.Trim();
             view.txtAlias.EditValueChanged += (sender, args) => item.alias = view.txtAlias.Text.Trim();
@@ -50,7 +35,6 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
                 var text = view.memRemark.Text.Trim();
                 item.remark = string.IsNullOrEmpty(text) ? null : text;
             };
-
             view.txtCompany.EditValueChanged += (sender, args) => item.companyInfo.companyName = view.txtCompany.Text.Trim();
             view.butLogo.EditValueChanged += (sender, args) =>
             {
@@ -62,27 +46,44 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
             {
                 item.companyInfo.licenseImage = view.butImage.Text.Trim();
             };
-            view.cbeProvince.EditValueChanged += (sender, args) =>
+            view.lueProvince.EditValueChanged += (sender, args) =>
             {
-                item.companyInfo.provinceId = view.cbeProvince.EditValue.ToString();
-                item.companyInfo.province = view.cbeProvince.Text.Trim();
+                item.companyInfo.provinceId = view.lueProvince.EditValue.ToString();
+                item.companyInfo.province = view.lueProvince.Text.Trim();
                 initCity(item.companyInfo.provinceId);
             };
-            view.cbeCity.EditValueChanged += (sender, args) =>
+            view.lueCity.EditValueChanged += (sender, args) =>
             {
-                item.companyInfo.cityId = view.cbeCity.EditValue.ToString();
-                item.companyInfo.city = view.cbeCity.Text.Trim();
+                item.companyInfo.cityId = view.lueCity.EditValue.ToString();
+                item.companyInfo.city = view.lueCity.Text.Trim();
                 initCounty(item.companyInfo.cityId);
             };
-            view.cbeCounty.EditValueChanged += (sender, args) =>
+            view.lueCounty.EditValueChanged += (sender, args) =>
             {
-                item.companyInfo.countyId = view.cbeCounty.EditValue.ToString();
-                item.companyInfo.county = view.cbeCounty.Text.Trim();
+                item.companyInfo.countyId = view.lueCounty.EditValue.ToString();
+                item.companyInfo.county = view.lueCounty.Text.Trim();
             };
             view.txtAddress.EditValueChanged += (sender, args) => item.companyInfo.address = view.txtAddress.Text.Trim();
             view.txtContact.EditValueChanged += (sender, args) => item.companyInfo.contactName = view.txtContact.Text.Trim();
             view.txtMobile.EditValueChanged += (sender, args) => item.companyInfo.contactPhone = view.txtMobile.Text.Trim();
             view.txtEmail.EditValueChanged += (sender, args) => item.companyInfo.contactMailbox = view.txtEmail.Text.Trim();
+
+            Format.initLookUpEdit(view.lueProvince, provinces);
+            view.txtName.EditValue = item.name;
+            view.txtAlias.EditValue = item.alias;
+            view.memRemark.EditValue = item.remark;
+            view.txtCompany.EditValue = item.companyInfo.companyName;
+            view.butLogo.EditValue = item.companyInfo.logo;
+            view.txtHome.EditValue = item.companyInfo.homeSit;
+            view.txtLicense.EditValue = item.companyInfo.license;
+            view.butImage.EditValue = item.companyInfo.licenseImage;
+            view.lueProvince.EditValue = item.companyInfo.provinceId;
+            view.lueCity.EditValue = item.companyInfo.cityId;
+            view.lueCounty.EditValue = item.companyInfo.countyId;
+            view.txtAddress.EditValue = item.companyInfo.address;
+            view.txtContact.EditValue = item.companyInfo.contactName;
+            view.txtMobile.EditValue = item.companyInfo.contactPhone;
+            view.txtEmail.EditValue = item.companyInfo.contactMailbox;
         }
 
         /// <summary>
@@ -91,14 +92,20 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         /// <param name="id"></param>
         private void initCity(string id)
         {
+            view.lueCounty.Properties.DataSource = null;
+            item.companyInfo.cityId = null;
+            item.companyInfo.city = null;
+            item.companyInfo.countyId = null;
+            item.companyInfo.county = null;
+
             var list = regions.Where(i => i.parentId == id).Select(i => new LookUpMember {id = i.id, name = i.name}).ToList();
             if (list.Any())
             {
-                Format.initComboBoxEdit(view.cbeCity, list);
+                Format.initLookUpEdit(view.lueCity, list);
             }
             else
             {
-                callback("LoadRegions", new object[] {id});
+                regions.AddRange(dm.getRegions(id));
                 initCity(id);
             }
         }
@@ -109,14 +116,17 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         /// <param name="id"></param>
         private void initCounty(string id)
         {
+            item.companyInfo.countyId = null;
+            item.companyInfo.county = null;
+
             var list = regions.Where(i => i.parentId == id).Select(i => new LookUpMember {id = i.id, name = i.name}).ToList();
             if (list.Any())
             {
-                Format.initComboBoxEdit(view.cbeCounty, list);
+                Format.initLookUpEdit(view.lueCounty, list);
             }
             else
             {
-                callback("LoadRegions", new object[] {id});
+                regions.AddRange(dm.getRegions(id));
                 initCounty(id);
             }
         }

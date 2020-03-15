@@ -10,7 +10,7 @@ namespace Insight.MTP.Client.Platform.Tenants
     public class DataModel
     {
         private const string service = "/base/tenant";
-        private const string commonService = "/common/basedata";
+        private const string commonService = "/common/basedata/area";
 
         /// <summary>
         /// 获取租户集合
@@ -72,7 +72,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         /// <returns>省级行政区划集合</returns>
         public List<LookUpMember> getProvinces()
         {
-            var url = $"{commonService}/v1.0/regions/provinces";
+            var url = $"{commonService}/v1.0/areas/provinces";
             var client = new HttpClient<List<LookUpMember>>();
 
             return client.getData(url);
@@ -85,7 +85,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         /// <returns>行政区划集合</returns>
         public List<Region> getRegions(string id)
         {
-            var url = $"{commonService}/v1.0/regions/{id}/subs";
+            var url = $"{commonService}/v1.0/areas/{id}/subs";
             var client = new HttpClient<List<Region>>();
 
             return client.getData(url);

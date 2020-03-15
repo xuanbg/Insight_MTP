@@ -7,7 +7,7 @@ namespace Insight.MTP.Client.Platform.Schedules
 {
     public class DataModel
     {
-        private const string service = "/base/message";
+        private const string service = "/common/message";
 
         /// <summary>
         /// 获取计划任务集合

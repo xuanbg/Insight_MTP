@@ -53,9 +53,6 @@
             this.labEmail = new DevExpress.XtraEditors.LabelControl();
             this.txtEmail = new DevExpress.XtraEditors.TextEdit();
             this.txtAddress = new DevExpress.XtraEditors.TextEdit();
-            this.cbeProvince = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cbeCity = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cbeCounty = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labCompany = new DevExpress.XtraEditors.LabelControl();
             this.txtCompany = new DevExpress.XtraEditors.TextEdit();
             this.labLogo = new DevExpress.XtraEditors.LabelControl();
@@ -68,6 +65,9 @@
             this.separatorControl2 = new DevExpress.XtraEditors.SeparatorControl();
             this.butLogo = new DevExpress.XtraEditors.ButtonEdit();
             this.butImage = new DevExpress.XtraEditors.ButtonEdit();
+            this.lueProvince = new DevExpress.XtraEditors.LookUpEdit();
+            this.lueCity = new DevExpress.XtraEditors.LookUpEdit();
+            this.lueCounty = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
@@ -77,9 +77,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMobile.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbeProvince.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbeCity.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbeCounty.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCompany.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHome.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLicense.Properties)).BeginInit();
@@ -87,6 +84,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.butLogo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.butImage.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueProvince.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCity.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCounty.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel
@@ -115,11 +115,11 @@
             this.panel.Controls.Add(this.labAddress);
             this.panel.Controls.Add(this.labCompany);
             this.panel.Controls.Add(this.labName);
-            this.panel.Controls.Add(this.cbeProvince);
-            this.panel.Controls.Add(this.cbeCity);
-            this.panel.Controls.Add(this.cbeCounty);
             this.panel.Controls.Add(this.separatorControl1);
             this.panel.Controls.Add(this.separatorControl2);
+            this.panel.Controls.Add(this.lueProvince);
+            this.panel.Controls.Add(this.lueCity);
+            this.panel.Controls.Add(this.lueCounty);
             this.panel.Size = new System.Drawing.Size(570, 320);
             // 
             // cancel
@@ -284,39 +284,6 @@
             this.txtAddress.Size = new System.Drawing.Size(470, 20);
             this.txtAddress.TabIndex = 12;
             // 
-            // cbeProvince
-            // 
-            this.cbeProvince.EnterMoveNextControl = true;
-            this.cbeProvince.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.cbeProvince.Location = new System.Drawing.Point(80, 207);
-            this.cbeProvince.Name = "cbeProvince";
-            this.cbeProvince.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbeProvince.Size = new System.Drawing.Size(100, 20);
-            this.cbeProvince.TabIndex = 9;
-            // 
-            // cbeCity
-            // 
-            this.cbeCity.EnterMoveNextControl = true;
-            this.cbeCity.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.cbeCity.Location = new System.Drawing.Point(190, 207);
-            this.cbeCity.Name = "cbeCity";
-            this.cbeCity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbeCity.Size = new System.Drawing.Size(150, 20);
-            this.cbeCity.TabIndex = 10;
-            // 
-            // cbeCounty
-            // 
-            this.cbeCounty.EnterMoveNextControl = true;
-            this.cbeCounty.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.cbeCounty.Location = new System.Drawing.Point(350, 207);
-            this.cbeCounty.Name = "cbeCounty";
-            this.cbeCounty.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbeCounty.Size = new System.Drawing.Size(200, 20);
-            this.cbeCounty.TabIndex = 11;
-            // 
             // labCompany
             // 
             this.labCompany.Appearance.Options.UseTextOptions = true;
@@ -435,6 +402,45 @@
             this.butImage.Size = new System.Drawing.Size(170, 22);
             this.butImage.TabIndex = 8;
             // 
+            // lueProvince
+            // 
+            this.lueProvince.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.lueProvince.Location = new System.Drawing.Point(80, 207);
+            this.lueProvince.Name = "lueProvince";
+            this.lueProvince.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueProvince.Properties.NullText = "";
+            this.lueProvince.Properties.PopupSizeable = false;
+            this.lueProvince.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.lueProvince.Size = new System.Drawing.Size(100, 20);
+            this.lueProvince.TabIndex = 9;
+            // 
+            // lueCity
+            // 
+            this.lueCity.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.lueCity.Location = new System.Drawing.Point(190, 207);
+            this.lueCity.Name = "lueCity";
+            this.lueCity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueCity.Properties.NullText = "";
+            this.lueCity.Properties.PopupSizeable = false;
+            this.lueCity.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.lueCity.Size = new System.Drawing.Size(150, 20);
+            this.lueCity.TabIndex = 10;
+            // 
+            // lueCounty
+            // 
+            this.lueCounty.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.lueCounty.Location = new System.Drawing.Point(350, 207);
+            this.lueCounty.Name = "lueCounty";
+            this.lueCounty.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueCounty.Properties.NullText = "";
+            this.lueCounty.Properties.PopupSizeable = false;
+            this.lueCounty.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.lueCounty.Size = new System.Drawing.Size(200, 20);
+            this.lueCounty.TabIndex = 11;
+            // 
             // TenantDialog
             // 
             this.ClientSize = new System.Drawing.Size(584, 382);
@@ -448,9 +454,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMobile.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbeProvince.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbeCity.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbeCounty.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCompany.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHome.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLicense.Properties)).EndInit();
@@ -458,6 +461,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.butLogo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.butImage.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueProvince.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCity.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCounty.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -488,9 +494,9 @@
         public DevExpress.XtraEditors.TextEdit txtMobile;
         public DevExpress.XtraEditors.TextEdit txtContact;
         public DevExpress.XtraEditors.TextEdit txtAddress;
-        public DevExpress.XtraEditors.ComboBoxEdit cbeProvince;
-        public DevExpress.XtraEditors.ComboBoxEdit cbeCity;
-        public DevExpress.XtraEditors.ComboBoxEdit cbeCounty;
         public DevExpress.XtraEditors.ButtonEdit butLogo;
+        public DevExpress.XtraEditors.LookUpEdit lueProvince;
+        public DevExpress.XtraEditors.LookUpEdit lueCity;
+        public DevExpress.XtraEditors.LookUpEdit lueCounty;
     }
 }
