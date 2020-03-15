@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Entity\CompanyInfo.cs" />
     <Compile Include="Entity\Function.cs" />
+    <Compile Include="Entity\Interface.cs" />
     <Compile Include="Entity\Navigation.cs" />
     <Compile Include="Entity\App.cs" />
     <Compile Include="Entity\Bases.cs" />

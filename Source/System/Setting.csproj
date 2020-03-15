@@ -102,6 +102,22 @@
     <Compile Include="Apps\Views\NavDialog.Designer.cs">
       <DependentUpon>NavDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\Controller.cs" />
+    <Compile Include="Interfaces\DataModel.cs" />
+    <Compile Include="Interfaces\ViewModels\InterfaceModel.cs" />
+    <Compile Include="Interfaces\ViewModels\ManagerModel.cs" />
+    <Compile Include="Interfaces\Views\InterfaceDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Views\InterfaceDialog.Designer.cs">
+      <DependentUpon>InterfaceDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Views\Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Views\Manager.Designer.cs">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles\Controller.cs" />
     <Compile Include="Roles\DataModel.cs" />
@@ -128,7 +144,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\" />
     <Folder Include="Scenes\" />
     <Folder Include="Templates\" />
   </ItemGroup>
@@ -151,6 +166,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\Views\NavDialog.resx">
       <DependentUpon>NavDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Views\InterfaceDialog.resx">
+      <DependentUpon>InterfaceDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Views\Manager.resx">
+      <DependentUpon>Manager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Roles\Views\MemberDialog.resx">
