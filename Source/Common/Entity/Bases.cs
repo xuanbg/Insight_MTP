@@ -125,14 +125,24 @@ namespace Insight.MTP.Client.Common.Entity
         public string parentId { get; set; }
 
         /// <summary>
-        /// 图标类型
+        /// 类型
         /// </summary>
         public int type { get; set; }
 
         /// <summary>
-        /// 节点名称
+        /// 序号
+        /// </summary>
+        public int index { get; set; }
+
+        /// <summary>
+        /// 成员名称
         /// </summary>
         public string name { get; set; }
+
+        /// <summary>
+        /// 描述
+        /// </summary>
+        public string remark { get; set; }
     }
 
     /// <summary>

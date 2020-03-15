@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Setting.Roles.ViewModels;
 using Insight.MTP.Client.Setting.Roles.Views;
@@ -83,11 +84,14 @@ namespace Insight.MTP.Client.Setting.Roles
         /// </summary>
         public void addMember()
         {
-            var apps = dataModel.getRoleApps();
-            var model = new RoleModel(mdiModel.item, apps, "编辑角色");
+            var members = dataModel.getMemberOfUser(mdiModel.item.id);
+            var model = new MemberModel(members, "添加角色成员");
             model.callbackEvent += (sender, args) =>
             {
-                if (!dataModel.updateRole(mdiModel.item)) return;
+                if (!dataModel.addMember(mdiModel.item.id, model.members)) return;
+
+                mdiModel.item.members.AddRange(model.members);
+                if (mdiModel.item.members.All(i => i.id != "1")) mdiModel.item.members.Add(new Member {id = "1", type = 0, name = "用户"});
 
                 model.close();
             };

@@ -71,11 +71,11 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
                     if (item.members == null || !item.members.Any())
                     {
                         item.members = dataModel.getRoleMember(item.id);
-                        if (item.members.Any(i => i.type == 1)) item.members.AddRange(new List<Member> {new Member {id = "1", type = 0, name = "用户"}});
+                        if (item.members.Any(i => i.type == 1)) item.members.Add(new Member {id = "1", type = 0, name = "用户"});
                         
-                        if (item.members.Any(i => i.type == 2)) item.members.AddRange(new List<Member> {new Member {id = "2", type = 0, name = "用户组"}});
+                        if (item.members.Any(i => i.type == 2)) item.members.Add(new Member {id = "2", type = 0, name = "用户组"});
 
-                        if (item.members.Any(i => i.type == 3)) item.members.AddRange(new List<Member> {new Member {id = "3", type = 0, name = "岗位"}});
+                        if (item.members.Any(i => i.type == 3)) item.members.Add(new Member {id = "3", type = 0, name = "职位"});
                     }
 
                     if (item.users == null || !item.users.Any())

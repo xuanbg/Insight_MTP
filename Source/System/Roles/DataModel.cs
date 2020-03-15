@@ -90,6 +90,18 @@ namespace Insight.MTP.Client.Setting.Roles
         }
 
         /// <summary>
+        /// 获取角色可选用户成员
+        /// </summary>
+        /// <returns>用户成员集合</returns>
+        public List<Member> getMemberOfUser(string id)
+        {
+            var url = $"{service}/v1.0/roles/{id}/users/other";
+            var client = new HttpClient<List<Member>>();
+
+            return client.getData(url);
+        }
+
+        /// <summary>
         /// 新增角色信息
         /// </summary>
         /// <param name="role">角色实体对象</param>
