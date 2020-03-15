@@ -52,6 +52,8 @@ namespace Insight.MTP.Client.Platform.Users
         /// <returns>用户ID</returns>
         public string addUser(User user)
         {
+            if (user == null) return null;
+
             var msg = $"新建用户【{user.name}】失败！";
             var url = $"{service}/v1.0/users";
             var client = new HttpClient<string>();
@@ -66,6 +68,8 @@ namespace Insight.MTP.Client.Platform.Users
         /// <returns>是否更新成功</returns>
         public bool updateUser(User user)
         {
+            if (user == null) return false;
+
             var msg = $"更新用户【{user.name}】数据失败！";
             var url = $"{service}/v1.0/users";
             var client = new HttpClient<object>();
@@ -80,6 +84,8 @@ namespace Insight.MTP.Client.Platform.Users
         /// <returns>是否删除成功</returns>
         public bool deleteUser(User user)
         {
+            if (user == null) return false;
+
             var msg = $"对不起，无法删除用户【{user.name}】！";
             var url = $"{service}/v1.0/users";
             var client = new HttpClient<object>();
@@ -94,6 +100,8 @@ namespace Insight.MTP.Client.Platform.Users
         /// <returns>是否成功</returns>
         public bool disableUser(User user)
         {
+            if (user == null) return false;
+
             var msg = $"对不起，无法禁用用户{user.name}！";
             var url = $"{service}/v1.0/users/disable";
             var client = new HttpClient<object>();
@@ -108,6 +116,8 @@ namespace Insight.MTP.Client.Platform.Users
         /// <returns>是否成功</returns>
         public bool enableUser(User user)
         {
+            if (user == null) return false;
+
             var msg = $"对不起，无法启用用户{user.name}！";
             var url = $"{service}/v1.0/users/enable";
             var client = new HttpClient<object>();
@@ -122,6 +132,8 @@ namespace Insight.MTP.Client.Platform.Users
         /// <returns>是否成功</returns>
         public bool resetPassword(User user)
         {
+            if (user == null) return false;
+
             var msg = $"对不起，无法删除用户{user.name}！";
             var url = $"{service}/v1.0/users/password";
             var data = new PasswordDto {id = user.id};

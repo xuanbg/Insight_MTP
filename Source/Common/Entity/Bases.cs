@@ -132,7 +132,7 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// ĞòºÅ
         /// </summary>
-        public int index { get; set; }
+        public int? index { get; set; }
 
         /// <summary>
         /// ³ÉÔ±Ãû³Æ

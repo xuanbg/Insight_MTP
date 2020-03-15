@@ -93,6 +93,9 @@ namespace Insight.MTP.Client.Setting.Roles
                 mdiModel.item.members.AddRange(model.members);
                 if (mdiModel.item.members.All(i => i.id != "1")) mdiModel.item.members.Add(new Member {id = "1", type = 0, name = "用户"});
 
+                mdiModel.refreshTree();
+                mdiModel.refreshGrid();
+
                 model.close();
             };
 
@@ -107,9 +110,11 @@ namespace Insight.MTP.Client.Setting.Roles
             var msg = $"您确定要移除角色成员{mdiModel.member.name}吗？";
             if (!Messages.showConfirm(msg)) return;
 
-            if (dataModel.removeMember(mdiModel.member))
+            if (dataModel.removeMember(mdiModel.item.id, mdiModel.member))
             {
                 mdiModel.item.members.Remove(mdiModel.member);
+                if (mdiModel.item.members.All(i => i.type != 1)) mdiModel.item.members.RemoveAll(i => i.id == "1");
+
                 mdiModel.refreshTree();
                 mdiModel.refreshGrid();
             }

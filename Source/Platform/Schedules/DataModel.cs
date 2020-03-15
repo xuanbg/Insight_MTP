@@ -37,6 +37,8 @@ namespace Insight.MTP.Client.Platform.Schedules
         /// <returns>是否成功</returns>
         public bool executeSchedule(string id)
         {
+            if (string.IsNullOrEmpty(id)) return false;
+
             const string msg = "对不起，无法执行选中的计划任务！";
             var url = $"{service}/v1.0/schedules";
             var client = new HttpClient<List<Navigation>>();
@@ -51,6 +53,8 @@ namespace Insight.MTP.Client.Platform.Schedules
         /// <returns>是否删除成功</returns>
         public bool deleteSchedule(string id)
         {
+            if (string.IsNullOrEmpty(id)) return false;
+
             const string msg = "对不起，无法删除选中的计划任务！";
             var url = $"{service}/v1.0/schedules";
             var client = new HttpClient<object>();
@@ -65,6 +69,8 @@ namespace Insight.MTP.Client.Platform.Schedules
         /// <returns>是否成功</returns>
         public bool disableSchedule(string id)
         {
+            if (string.IsNullOrEmpty(id)) return false;
+
             const string msg = "对不起，无法禁用选中的计划任务！";
             var url = $"{service}/v1.0/schedules/disable";
             var client = new HttpClient<object>();
@@ -79,6 +85,8 @@ namespace Insight.MTP.Client.Platform.Schedules
         /// <returns>是否成功</returns>
         public bool enableSchedule(string id)
         {
+            if (string.IsNullOrEmpty(id)) return false;
+
             const string msg = "对不起，无法启用选中的计划任务！";
             var url = $"{service}/v1.0/schedules/enable";
             var client = new HttpClient<object>();

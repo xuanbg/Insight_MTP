@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Tenants.ViewModels;
 using Insight.MTP.Client.Platform.Tenants.Views;
@@ -105,12 +104,7 @@ namespace Insight.MTP.Client.Platform.Tenants
             if (result == DialogResult.Cancel) return;
 
             var status = result == DialogResult.Yes ? 1 : 2;
-            var dict = new Dictionary<string, object>
-            {
-                {"id", mdiModel.item.id},
-                {"status", status}
-            };
-            if (dataModel.auditTenant(dict))
+            if (dataModel.auditTenant(mdiModel.item.id, status))
             {
                 mdiModel.item.status = status;
                 mdiModel.refreshGrid();

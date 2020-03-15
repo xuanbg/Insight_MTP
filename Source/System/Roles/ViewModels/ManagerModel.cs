@@ -18,7 +18,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         public ManagerModel()
         {
             init(view.gdvRole, "editItem", view.ppcRole, view.KeyInput, view.Search);
-            initTree(view.treMember, "memberChanged");
+            initTree(view.treMember, "memberChanged", "removeMember");
             initGrid(view.gdvUser, null, null, view.ppcUser);
             initTree(view.treAction, "funcChanged");
 
@@ -150,6 +150,8 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         public void refreshTree()
         {
             view.treMember.RefreshDataSource();
+            view.treMember.ExpandAll();
+
             refreshToolBar();
         }
 
@@ -158,8 +160,10 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         /// </summary>
         public void refreshGrid()
         {
-            view.grdUser.DataSource = dataModel.getMemberUsers(item.id, 1, view.ppcUser.size);
-            refreshToolBar();
+            var result = dataModel.getMemberUsers(item.id, 1, view.ppcUser.size);
+            if (!result.success) return;
+
+            view.grdUser.DataSource = result.data;
         }
 
         /// <summary>

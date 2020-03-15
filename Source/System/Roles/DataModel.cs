@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Insight.MTP.Client.Common.Entity;
 using Insight.Utils.Client;
 using Insight.Utils.Common;
@@ -108,6 +109,8 @@ namespace Insight.MTP.Client.Setting.Roles
         /// <returns>角色ID</returns>
         public string addRole(Role role)
         {
+            if (role == null) return null;
+
             var msg = $"新建角色【{role.name}】失败！";
             var url = $"{service}/v1.0/roles";
             var client = new HttpClient<string>();
@@ -118,29 +121,33 @@ namespace Insight.MTP.Client.Setting.Roles
         /// <summary>
         /// 更新角色信息
         /// </summary>
-        /// <param name="user">角色实体对象</param>
+        /// <param name="role">角色实体对象</param>
         /// <returns>是否更新成功</returns>
-        public bool updateRole(Role user)
+        public bool updateRole(Role role)
         {
-            var msg = $"更新角色【{user.name}】数据失败！";
+            if (role == null) return false;
+
+            var msg = $"更新角色【{role.name}】数据失败！";
             var url = $"{service}/v1.0/roles";
             var client = new HttpClient<object>();
 
-            return client.put(url, user, msg);
+            return client.put(url, role, msg);
         }
 
         /// <summary>
         /// 删除角色
         /// </summary>
-        /// <param name="user">角色实体对象</param>
+        /// <param name="role">角色实体对象</param>
         /// <returns>是否删除成功</returns>
-        public bool deleteRole(Role user)
+        public bool deleteRole(Role role)
         {
-            var msg = $"对不起，无法删除角色【{user.name}】！";
+            if (role == null) return false;
+
+            var msg = $"对不起，无法删除角色【{role.name}】！";
             var url = $"{service}/v1.0/roles";
             var client = new HttpClient<object>();
 
-            return client.delete(url, user.id, msg);
+            return client.delete(url, role.id, msg);
         }
 
         /// <summary>
@@ -151,6 +158,8 @@ namespace Insight.MTP.Client.Setting.Roles
         /// <returns>是否成功</returns>
         public bool addMember(string id, List<Member> members)
         {
+            if (!members.Any()) return false;
+
             var msg = "对不起，添加角色成员失败！";
             var url = $"{service}/v1.0/roles/{id}/members";
             var client = new HttpClient<object>();
@@ -161,12 +170,15 @@ namespace Insight.MTP.Client.Setting.Roles
         /// <summary>
         /// 移除角色成员
         /// </summary>
+        /// <param name="id">角色ID</param>
         /// <param name="member">角色成员实体对象</param>
         /// <returns>是否成功</returns>
-        public bool removeMember(Member member)
+        public bool removeMember(string id, Member member)
         {
+            if (string.IsNullOrEmpty(id) || member == null) return false;
+
             var msg = $"对不起，无法移除角色成员【{member.name}】！";
-            var url = $"{service}/v1.0/roles/{member.id}/members";
+            var url = $"{service}/v1.0/roles/{id}/members";
             var client = new HttpClient<object>();
 
             return client.delete(url, member, msg);
@@ -181,6 +193,8 @@ namespace Insight.MTP.Client.Setting.Roles
         /// <returns>是否成功</returns>
         public bool setFuncPermit(string id, string funcId, bool? permit)
         {
+            if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(funcId)) return false;
+
             var msg = $"对不起，设置功能权限失败！";
             var url = $"{service}/v1.0/roles/{id}/funcs";
             var data = new Dictionary<string, object> {{"id", funcId}, {"permit", permit}};
