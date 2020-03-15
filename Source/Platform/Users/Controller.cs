@@ -28,7 +28,7 @@ namespace Insight.MTP.Client.Platform.Users
         /// </summary>
         public void newItem()
         {
-            var user = new User();
+            var user = new User{password = Util.hash("123456")};
             var model = new UserModel(user, "新建用户");
             model.callbackEvent += (sender, args) =>
             {

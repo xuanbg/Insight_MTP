@@ -89,6 +89,11 @@ namespace Insight.MTP.Client.Common.Entity
         public string email { get; set; }
 
         /// <summary>
+        /// µÇÂ¼ÃÜÂë
+        /// </summary>
+        public string password { get; set; }
+
+        /// <summary>
         /// ÃèÊö
         /// </summary>
         public string remark { get; set; }
