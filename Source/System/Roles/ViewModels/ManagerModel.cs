@@ -40,10 +40,10 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         {
             showWaitForm();
             var result = dataModel.getRoles(keyWord, tab.page, tab.size);
-            list = result.data;
             closeWaitForm();
             if (!result.success) return;
 
+            list = result.data;
             tab.totalRows = int.Parse(result.option.ToString()) ;
             view.grdRole.DataSource = list;
             view.gdvRole.FocusedRowHandle = handle;

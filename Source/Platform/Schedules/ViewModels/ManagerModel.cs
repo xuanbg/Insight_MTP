@@ -23,10 +23,10 @@ namespace Insight.MTP.Client.Platform.Schedules.ViewModels
         {
             showWaitForm();
             var result = dataModel.getSchedules(keyWord, tab.page, tab.size);
-            list = result.data;
             closeWaitForm();
             if (!result.success) return;
 
+            list = result.data;
             tab.totalRows = int.Parse(result.option.ToString()) ;
             view.grdSchedule.DataSource = list;
             view.gdvSchedule.FocusedRowHandle = handle;

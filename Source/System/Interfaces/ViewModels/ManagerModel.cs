@@ -23,10 +23,10 @@ namespace Insight.MTP.Client.Setting.Interfaces.ViewModels
         {
             showWaitForm();
             var result = dataModel.getInterfaces(keyWord, tab.page, tab.size);
-            list = result.data;
             closeWaitForm();
             if (!result.success) return;
 
+            list = result.data;
             tab.totalRows = int.Parse(result.option.ToString()) ;
             view.grdInterface.DataSource = list;
             view.gdvInterface.FocusedRowHandle = handle;

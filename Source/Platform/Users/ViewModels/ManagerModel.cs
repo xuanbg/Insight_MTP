@@ -25,10 +25,10 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
         {
             showWaitForm();
             var result = dataModel.getUsers(keyWord, tab.page, tab.size);
-            list = result.data;
             closeWaitForm();
             if (!result.success) return;
 
+            list = result.data;
             tab.totalRows = int.Parse(result.option.ToString()) ;
             view.grdUser.DataSource = list;
             view.gdvUser.FocusedRowHandle = handle;

@@ -30,10 +30,10 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
         {
             showWaitForm();
             var result = dataModel.getApps(keyWord, tab.page, tab.size);
-            list = result.data;
             closeWaitForm();
             if (!result.success) return;
 
+            list = result.data;
             tab.totalRows = int.Parse(result.option.ToString()) ;
             view.grdApp.DataSource = list;
             view.gdvApp.FocusedRowHandle = handle;
