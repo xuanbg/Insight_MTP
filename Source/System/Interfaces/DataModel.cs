@@ -30,7 +30,7 @@ namespace Insight.MTP.Client.Setting.Interfaces
 
             return client.getResult(url, dict);
         }
-
+        
         /// <summary>
         /// 新增接口配置
         /// </summary>
@@ -41,7 +41,7 @@ namespace Insight.MTP.Client.Setting.Interfaces
             if (config == null) return null;
 
             var msg = $"新建接口【{config.name}】的配置数据失败！";
-            var url = $"{service}/v1.0/roles";
+            var url = $"{service}/v1.0/configs";
             var client = new HttpClient<string>();
 
             return client.commit(url, config, msg, RequestMethod.POST);
@@ -57,7 +57,7 @@ namespace Insight.MTP.Client.Setting.Interfaces
             if (config == null) return false;
 
             var msg = $"更新接口【{config.name}】的配置数据失败！";
-            var url = $"{service}/v1.0/roles";
+            var url = $"{service}/v1.0/configs";
             var client = new HttpClient<object>();
 
             return client.put(url, config, msg);
@@ -90,6 +90,5 @@ namespace Insight.MTP.Client.Setting.Interfaces
 
             return client.get(url);
         }
-
     }
 }
