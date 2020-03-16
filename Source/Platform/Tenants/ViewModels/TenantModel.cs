@@ -19,10 +19,9 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         /// 通过订阅事件实现双向数据绑定
         /// </summary>
         /// <param name="data">初始化数据</param>
-        /// <param name="provinces">省级区划数据源</param>
         /// <param name="title">View标题</param>
         /// <param name="dataModel"></param>
-        public TenantModel(Tenant data, List<LookUpMember> provinces, string title, DataModel dataModel) : base(title)
+        public TenantModel(Tenant data, string title, DataModel dataModel) : base(title)
         {
             item = data;
             dm = dataModel;
@@ -81,7 +80,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
             view.txtMobile.EditValueChanged += (sender, args) => item.companyInfo.contactPhone = view.txtMobile.Text.Trim();
             view.txtEmail.EditValueChanged += (sender, args) => item.companyInfo.contactMailbox = view.txtEmail.Text.Trim();
 
-            Format.initLookUpEdit(view.lueProvince, provinces);
+            Format.initLookUpEdit(view.lueProvince, dm.getProvinces());
             view.lueProvince.EditValue = item.companyInfo.provinceId;
             view.lueCity.EditValue = item.companyInfo.cityId;
             view.lueCounty.EditValue = item.companyInfo.countyId;

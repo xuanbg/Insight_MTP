@@ -142,9 +142,31 @@
     <Compile Include="Roles\Views\Manager.designer.cs">
       <DependentUpon>Manager.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scenes\Controller.cs" />
+    <Compile Include="Scenes\DataModel.cs" />
+    <Compile Include="Scenes\ViewModels\BindModel.cs" />
+    <Compile Include="Scenes\ViewModels\ManagerModel.cs" />
+    <Compile Include="Scenes\ViewModels\SceneModel.cs" />
+    <Compile Include="Scenes\Views\BindDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scenes\Views\BindDialog.Designer.cs">
+      <DependentUpon>BindDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scenes\Views\Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scenes\Views\Manager.Designer.cs">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scenes\Views\SceneDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scenes\Views\SceneDialog.Designer.cs">
+      <DependentUpon>SceneDialog.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scenes\" />
     <Folder Include="Templates\" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +204,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Roles\Views\Manager.resx">
       <DependentUpon>Manager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scenes\Views\BindDialog.resx">
+      <DependentUpon>BindDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scenes\Views\Manager.resx">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scenes\Views\SceneDialog.resx">
+      <DependentUpon>SceneDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

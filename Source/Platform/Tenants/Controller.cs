@@ -30,25 +30,16 @@ namespace Insight.MTP.Client.Platform.Tenants
         public void newItem()
         {
             var tenant = new Tenant();
-            var list = dataModel.getProvinces();
-            var model = new TenantModel(tenant, list, "新建租户", dataModel);
+            var model = new TenantModel(tenant, "新建租户", dataModel);
             model.callbackEvent += (sender, args) =>
             {
-                switch (args.methodName)
-                {
-                    case "LoadRegions":
-                        model.regions.AddRange(dataModel.getRegions((string)args.param[0]));
-                        break;
-                    case "confirm":
-                        tenant.id = dataModel.addTenant(tenant);
-                        if (tenant.id == null) return;
+                tenant.id = dataModel.addTenant(tenant);
+                if (tenant.id == null) return;
 
-                        mdiModel.list.Add(tenant);
-                        mdiModel.tab.addItems();
+                mdiModel.list.Add(tenant);
+                mdiModel.tab.addItems();
 
-                        model.close();
-                        break;
-                }
+                model.close();
             };
 
             model.showDialog();
@@ -59,8 +50,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         /// </summary>
         public void editItem()
         {
-            var list = dataModel.getProvinces();
-            var model = new TenantModel(mdiModel.item, list, "编辑租户", dataModel);
+            var model = new TenantModel(mdiModel.item, "编辑租户", dataModel);
             model.callbackEvent += (sender, args) =>
             {
                 if (!dataModel.updateTenant(mdiModel.item)) return;

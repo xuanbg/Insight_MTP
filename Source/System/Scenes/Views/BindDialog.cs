@@ -1,13 +1,13 @@
 ﻿using Insight.Utils.BaseForms;
 
-namespace Insight.MTP.Client.Setting.Interfaces.Views
+namespace Insight.MTP.Client.Setting.Scenes.Views
 {
-    public partial class Manager : BaseMdi
+    public partial class BindDialog : BaseDialog
     {
         /// <summary>
         /// 构造函数
         /// </summary>
-        public Manager()
+        public BindDialog()
         {
             InitializeComponent();
         }

@@ -56,7 +56,6 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             this.colisVerify = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colisLimit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colisLogResult = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.imgNav = new DevExpress.Utils.ImageCollection();
             this.panSpace = new DevExpress.XtraEditors.PanelControl();
             this.panSearch = new DevExpress.XtraEditors.PanelControl();
@@ -68,7 +67,6 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdInterface)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvInterface)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgNav)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSpace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSearch)).BeginInit();
@@ -128,8 +126,6 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             this.grdInterface.Location = new System.Drawing.Point(2, 2);
             this.grdInterface.MainView = this.gdvInterface;
             this.grdInterface.Name = "grdInterface";
-            this.grdInterface.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repType});
             this.grdInterface.Size = new System.Drawing.Size(1066, 520);
             this.grdInterface.TabIndex = 0;
             this.grdInterface.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -251,15 +247,6 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             this.colisLogResult.FieldName = "isLogResult";
             this.colisLogResult.Name = "colisLogResult";
             // 
-            // repType
-            // 
-            this.repType.AutoHeight = false;
-            this.repType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repType.DisplayMember = "name";
-            this.repType.Name = "repType";
-            this.repType.ValueMember = "id";
-            // 
             // imgNav
             // 
             this.imgNav.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imgNav.ImageStream")));
@@ -345,7 +332,6 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdInterface)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvInterface)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgNav)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSpace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panSearch)).EndInit();
@@ -372,7 +358,6 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
         private PanelControl panMain;
         public GridControl grdInterface;
         public GridView gdvInterface;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repType;
         private DevExpress.XtraGrid.Columns.GridColumn colid;
         private DevExpress.XtraGrid.Columns.GridColumn colname;
         private DevExpress.XtraGrid.Columns.GridColumn colmethod;
