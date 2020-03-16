@@ -16,7 +16,7 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
         public ManagerModel()
         {
             init(view.gdvScene, "editItem", view.ppcScene, view.KeyInput, view.Search);
-            initGrid(view.gdvTemplate, null, null, view.ppcTemplate);
+            initGrid(view.gdvTemplate, "configChanged", null, view.ppcTemplate);
         }
 
         /// <summary>
@@ -51,7 +51,6 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
             }
             else
             {
-                tab.focusedRowHandle = index;
                 var obj = list[index];
                 if (obj.id != item?.id)
                 {
@@ -73,10 +72,10 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
         }
 
         /// <summary>
-        /// 所选绑定应用改变
+        /// 所选模板配置改变
         /// </summary>
         /// <param name="index">列表行号</param>
-        public void appChanged(int index)
+        public void configChanged(int index)
         {
             config = index < 0 ? null : item.configs[index];
 

@@ -55,7 +55,6 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
             }
             else
             {
-                tab.focusedRowHandle = index;
                 var obj = list[index];
                 if (obj.id != item?.id)
                 {
