@@ -154,7 +154,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
 
             item.users = result.data;
             view.ppcUser.totalRows = result.total;
-            view.gdvUser.RefreshData();
+            view.grdUser.DataSource = item.users;
             view.gdvUser.FocusedRowHandle = handle;
 
             refreshToolBar();
