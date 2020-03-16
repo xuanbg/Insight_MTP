@@ -31,7 +31,7 @@ namespace Insight.MTP.Client.Setting.Interfaces.ViewModels
             list.Clear();
 
             list.AddRange(result.data);
-            tab.totalRows = int.Parse(result.option.ToString());
+            tab.totalRows = result.total;
             view.gdvInterface.RefreshData();
             view.gdvInterface.FocusedRowHandle = handle;
 
@@ -48,7 +48,16 @@ namespace Insight.MTP.Client.Setting.Interfaces.ViewModels
 
             refreshToolBar();
         }
-        
+
+        /// <summary>
+        /// 刷新列表数据
+        /// </summary>
+        public void refreshGrid()
+        {
+            view.gdvInterface.RefreshData();
+            refreshToolBar();
+        }
+
         /// <summary>
         /// 刷新工具条按钮状态
         /// </summary>

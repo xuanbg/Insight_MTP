@@ -55,7 +55,7 @@ namespace Insight.MTP.Client.Setting.Apps
             {
                 if (!dataModel.updateApp(mdiModel.item)) return;
 
-                mdiModel.refreshGrid();
+                mdiModel.refreshFunc();
                 model.close();
             };
 
@@ -74,6 +74,7 @@ namespace Insight.MTP.Client.Setting.Apps
             {
                 mdiModel.list.Remove(mdiModel.item);
                 mdiModel.tab.removeItems();
+                mdiModel.refreshGrid();
             }
         }
 
@@ -151,7 +152,7 @@ namespace Insight.MTP.Client.Setting.Apps
                 if (func.id == null) return;
 
                 mdiModel.nav.functions.Add(func);
-                mdiModel.refreshGrid();
+                mdiModel.refreshFunc();
                 model.close();
             };
 
@@ -168,7 +169,7 @@ namespace Insight.MTP.Client.Setting.Apps
             {
                 if (!dataModel.updateFunc(mdiModel.func)) return;
 
-                mdiModel.refreshGrid();
+                mdiModel.refreshFunc();
                 model.close();
             };
 
@@ -186,7 +187,7 @@ namespace Insight.MTP.Client.Setting.Apps
             if (dataModel.deleteFunc(mdiModel.func))
             {
                 mdiModel.nav.functions.Remove(mdiModel.func);
-                mdiModel.refreshGrid();
+                mdiModel.refreshFunc();
             }
         }
     }

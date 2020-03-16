@@ -35,7 +35,7 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
             list.Clear();
 
             list.AddRange(result.data);
-            tab.totalRows = int.Parse(result.option.ToString());
+            tab.totalRows = result.total;
             view.gdvScene.RefreshData();
             view.gdvScene.FocusedRowHandle = handle;
 
@@ -65,7 +65,7 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
                         if (result.success)
                         {
                             item.configs = result.data;
-                            view.ppcTemplate.totalRows = int.Parse(result.option.ToString());
+                            view.ppcTemplate.totalRows = result.total;
                         }
                     }
                 }

@@ -73,6 +73,7 @@ namespace Insight.MTP.Client.Setting.Scenes
             {
                 mdiModel.list.Remove(mdiModel.item);
                 mdiModel.tab.removeItems();
+                mdiModel.refreshGrid();
             }
         }
         

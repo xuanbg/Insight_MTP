@@ -20,7 +20,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             initSearch(view.KeyInput, view.Search);
             initMainGrid(view.grdRole, view.gdvRole, view.ppcRole);
             initTree(view.treMember, "memberChanged", "removeMember");
-            initGrid(view.gdvUser, null, null, view.ppcUser);
+            initGrid(view.gdvUser, null, null, view.ppcUser, "getMemberUsers");
             initTree(view.treAction, "funcChanged");
 
             // 通过权限树点击事件循环设置功能权限状态：->1->0->null
@@ -49,9 +49,11 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             list.Clear();
 
             list.AddRange(result.data);
-            tab.totalRows = int.Parse(result.option.ToString());
+            tab.totalRows = result.total;
             view.gdvRole.RefreshData();
-            view.grdRole.DataSource = list;
+            view.gdvRole.FocusedRowHandle = handle;
+
+            refreshToolBar();
         }
 
         /// <summary>
@@ -111,12 +113,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             // 读取角色成员用户
             if (!item.users.Any())
             {
-                var result = dataModel.getMemberUsers(item.id, view.ppcUser.page, view.ppcUser.size);
-                if (result.success)
-                {
-                    item.users = result.data;
-                    view.ppcUser.totalRows = int.Parse(result.option.ToString());
-                }
+                getMemberUsers();
             }
 
             // 读取角色权限
@@ -147,6 +144,23 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         }
 
         /// <summary>
+        /// 获取角色成员用户集合
+        /// </summary>
+        /// <param name="handle"></param>
+        public void getMemberUsers(int handle = 0)
+        {
+            var result = dataModel.getMemberUsers(item.id, view.ppcUser.page, view.ppcUser.size);
+            if (!result.success) return;
+
+            item.users = result.data;
+            view.ppcUser.totalRows = result.total;
+            view.gdvUser.RefreshData();
+            view.gdvUser.FocusedRowHandle = handle;
+
+            refreshToolBar();
+        }
+
+        /// <summary>
         /// 选中功能列表节点改变
         /// </summary>
         /// <param name="node">功能节点</param>
@@ -170,16 +184,14 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         }
 
         /// <summary>
-        /// 刷新成员用户列表数据
+        /// 刷新列表数据
         /// </summary>
         public void refreshGrid()
         {
-            var result = dataModel.getMemberUsers(item.id, 1, view.ppcUser.size);
-            if (!result.success) return;
-
-            view.grdUser.DataSource = result.data;
+            view.gdvRole.RefreshData();
+            refreshToolBar();
         }
-
+        
         /// <summary>
         /// 刷新树数据
         /// </summary>

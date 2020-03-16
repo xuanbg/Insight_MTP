@@ -76,6 +76,7 @@ namespace Insight.MTP.Client.Setting.Roles
             {
                 mdiModel.list.Remove(mdiModel.item);
                 mdiModel.tab.removeItems();
+                mdiModel.refreshGrid();
             }
         }
         
@@ -94,7 +95,7 @@ namespace Insight.MTP.Client.Setting.Roles
                 if (mdiModel.item.members.All(i => i.id != "1")) mdiModel.item.members.Add(new Member {id = "1", type = 0, name = "用户"});
 
                 mdiModel.refreshTree();
-                mdiModel.refreshGrid();
+                mdiModel.getMemberUsers();
 
                 model.close();
             };
@@ -116,7 +117,7 @@ namespace Insight.MTP.Client.Setting.Roles
                 if (mdiModel.item.members.All(i => i.type != 1)) mdiModel.item.members.RemoveAll(i => i.id == "1");
 
                 mdiModel.refreshTree();
-                mdiModel.refreshGrid();
+                mdiModel.getMemberUsers();
             }
         }
 

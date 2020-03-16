@@ -31,7 +31,7 @@ namespace Insight.MTP.Client.Platform.Schedules.ViewModels
             item = null;
 
             list.AddRange(result.data);
-            tab.totalRows = int.Parse(result.option.ToString());
+            tab.totalRows = result.total;
             view.gdvSchedule.RefreshData();
             view.gdvSchedule.FocusedRowHandle = handle;
 

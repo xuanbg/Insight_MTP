@@ -33,7 +33,7 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
             list.Clear();
 
             list.AddRange(result.data);
-            tab.totalRows = int.Parse(result.option.ToString()) ;
+            tab.totalRows = result.total ;
             view.gdvUser.RefreshData();
             view.gdvUser.FocusedRowHandle = handle;
 

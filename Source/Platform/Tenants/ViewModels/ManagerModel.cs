@@ -18,7 +18,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
             initSearch(view.KeyInput, view.Search);
             initMainGrid(view.grdTenant, view.gdvTenant, view.ppcTenant);
             initGrid(view.gdvApp, "appChanged", "rent");
-            initGrid(view.gdvUser, null, null, view.ppcUser);
+            initGrid(view.gdvUser, null, null, view.ppcUser, "getTenantUsers");
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
             list.Clear();
 
             list.AddRange(result.data);
-            tab.totalRows = int.Parse(result.option.ToString());
+            tab.totalRows = result.total;
             view.gdvTenant.RefreshData();
             view.gdvTenant.FocusedRowHandle = handle;
 
@@ -68,12 +68,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
 
                     if (!item.users.Any())
                     {
-                        var result = dataModel.getTenantUsers(item.id, view.ppcUser.page, view.ppcUser.size);
-                        if (result.success)
-                        {
-                            item.users = result.data;
-                            view.ppcUser.totalRows = int.Parse(result.option.ToString());
-                        }
+                        getTenantUsers();
                     }
                 }
             }
@@ -90,6 +85,23 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         public void appChanged(int index)
         {
             app = index < 0 ? null : item.apps[index];
+
+            refreshToolBar();
+        }
+
+        /// <summary>
+        /// 获取租户绑定用户集合
+        /// </summary>
+        /// <param name="handle"></param>
+        public void getTenantUsers(int handle = 0)
+        {
+            var result = dataModel.getTenantUsers(item.id, view.ppcUser.page, view.ppcUser.size);
+            if (!result.success) return;
+
+            item.users = result.data;
+            view.ppcUser.totalRows = result.total;
+            view.gdvUser.RefreshData();
+            view.gdvUser.FocusedRowHandle = handle;
 
             refreshToolBar();
         }
