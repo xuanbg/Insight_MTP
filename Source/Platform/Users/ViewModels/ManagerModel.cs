@@ -13,7 +13,8 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
         /// </summary>
         public ManagerModel()
         {
-            init(view.gdvUser, "editItem", view.ppcUser, view.KeyInput, view.Search);
+            initSearch(view.KeyInput, view.Search);
+            initMainGrid(view.grdUser, view.gdvUser, view.ppcUser);
             initTree(view.treAction);
         }
 
@@ -28,10 +29,15 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
             closeWaitForm();
             if (!result.success) return;
 
-            list = result.data;
+            item = null;
+            list.Clear();
+
+            list.AddRange(result.data);
             tab.totalRows = int.Parse(result.option.ToString()) ;
-            view.grdUser.DataSource = list;
+            view.gdvUser.RefreshData();
             view.gdvUser.FocusedRowHandle = handle;
+
+            refreshToolBar();
         }
 
         /// <summary>
@@ -46,10 +52,10 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
             }
             else
             {
-                var obj = list[index];
-                if (obj.id != item?.id)
+                var id = item?.id;
+                item = list[index];
+                if (item.id != id)
                 {
-                    item = obj;
                     if (item.funcs == null || !item.funcs.Any())
                     {
                         item.funcs = dataModel.getFuncs(item.id);

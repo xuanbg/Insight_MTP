@@ -12,7 +12,8 @@ namespace Insight.MTP.Client.Setting.Interfaces.ViewModels
         /// </summary>
         public ManagerModel()
         {
-            init(view.gdvInterface, "editItem", view.pccInterface, view.KeyInput, view.Search);
+            initSearch(view.KeyInput, view.Search);
+            initMainGrid(view.grdInterface, view.gdvInterface, view.pccInterface);
         }
 
         /// <summary>
@@ -26,9 +27,12 @@ namespace Insight.MTP.Client.Setting.Interfaces.ViewModels
             closeWaitForm();
             if (!result.success) return;
 
-            list = result.data;
-            tab.totalRows = int.Parse(result.option.ToString()) ;
-            view.grdInterface.DataSource = list;
+            item = null;
+            list.Clear();
+
+            list.AddRange(result.data);
+            tab.totalRows = int.Parse(result.option.ToString());
+            view.gdvInterface.RefreshData();
             view.gdvInterface.FocusedRowHandle = handle;
 
             refreshToolBar();

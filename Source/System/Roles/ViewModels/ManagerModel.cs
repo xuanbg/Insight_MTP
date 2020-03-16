@@ -17,7 +17,8 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         /// </summary>
         public ManagerModel()
         {
-            init(view.gdvRole, "editItem", view.ppcRole, view.KeyInput, view.Search);
+            initSearch(view.KeyInput, view.Search);
+            initMainGrid(view.grdRole, view.gdvRole, view.ppcRole);
             initTree(view.treMember, "memberChanged", "removeMember");
             initGrid(view.gdvUser, null, null, view.ppcUser);
             initTree(view.treAction, "funcChanged");
@@ -43,10 +44,13 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             closeWaitForm();
             if (!result.success) return;
 
-            list = result.data;
-            tab.totalRows = int.Parse(result.option.ToString()) ;
+            item = null;
+            list.Clear();
+
+            list.AddRange(result.data);
+            tab.totalRows = int.Parse(result.option.ToString());
+            view.gdvRole.RefreshData();
             view.grdRole.DataSource = list;
-            view.gdvRole.FocusedRowHandle = handle;
         }
 
         /// <summary>
@@ -62,10 +66,10 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             }
             else
             {
-                var obj = list[index];
-                if (obj.id != item?.id)
+                var id = item?.id;
+                item = list[index];
+                if (item.id != id)
                 {
-                    item = obj;
                     if (item.members == null || !item.members.Any())
                     {
                         item.members = dataModel.getRoleMember(item.id);

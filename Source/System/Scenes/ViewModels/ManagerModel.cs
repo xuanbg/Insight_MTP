@@ -15,7 +15,8 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
         /// </summary>
         public ManagerModel()
         {
-            init(view.gdvScene, "editItem", view.ppcScene, view.KeyInput, view.Search);
+            initSearch(view.KeyInput, view.Search);
+            initMainGrid(view.grdScene, view.gdvScene, view.ppcScene);
             initGrid(view.gdvTemplate, "configChanged", null, view.ppcTemplate);
         }
 
@@ -30,9 +31,12 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
             closeWaitForm();
             if (!result.success) return;
 
-            list = result.data;
+            item = null;
+            list.Clear();
+
+            list.AddRange(result.data);
             tab.totalRows = int.Parse(result.option.ToString());
-            view.grdScene.DataSource = list;
+            view.gdvScene.RefreshData();
             view.gdvScene.FocusedRowHandle = handle;
 
             refreshToolBar();
@@ -51,10 +55,10 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
             }
             else
             {
-                var obj = list[index];
-                if (obj.id != item?.id)
+                var id = item?.id;
+                item = list[index];
+                if (item.id != id)
                 {
-                    item = obj;
                     if (item.configs == null || !item.configs.Any())
                     {
                         var result = dataModel.getTempConfigs(item.id, view.ppcTemplate.page, view.ppcTemplate.size);

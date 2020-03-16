@@ -15,7 +15,8 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         /// </summary>
         public ManagerModel()
         {
-            init(view.gdvTenant, "editItem", view.ppcTenant, view.KeyInput, view.Search);
+            initSearch(view.KeyInput, view.Search);
+            initMainGrid(view.grdTenant, view.gdvTenant, view.ppcTenant);
             initGrid(view.gdvApp, "appChanged", "rent");
             initGrid(view.gdvUser, null, null, view.ppcUser);
         }
@@ -31,9 +32,12 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
             closeWaitForm();
             if (!result.success) return;
 
-            list = result.data;
+            item = null;
+            list.Clear();
+
+            list.AddRange(result.data);
             tab.totalRows = int.Parse(result.option.ToString());
-            view.grdTenant.DataSource = list;
+            view.gdvTenant.RefreshData();
             view.gdvTenant.FocusedRowHandle = handle;
 
             refreshToolBar();
@@ -52,10 +56,10 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
             }
             else
             {
-                var obj = list[index];
-                if (obj.id != item?.id)
+                var id = item?.id;
+                item = list[index];
+                if (item.id != id)
                 {
-                    item = obj;
                     if (item.apps == null || !item.apps.Any())
                     {
                         item.apps = dataModel.getTenantApps(item.id);

@@ -12,7 +12,8 @@ namespace Insight.MTP.Client.Platform.Schedules.ViewModels
         /// </summary>
         public ManagerModel()
         {
-            init(view.gdvSchedule, "execute", view.pccSchedule, view.KeyInput, view.Search);
+            initSearch(view.KeyInput, view.Search);
+            initMainGrid(view.grdSchedule, view.gdvSchedule, view.pccSchedule);
         }
 
         /// <summary>
@@ -26,9 +27,12 @@ namespace Insight.MTP.Client.Platform.Schedules.ViewModels
             closeWaitForm();
             if (!result.success) return;
 
-            list = result.data;
-            tab.totalRows = int.Parse(result.option.ToString()) ;
-            view.grdSchedule.DataSource = list;
+            list.Clear();
+            item = null;
+
+            list.AddRange(result.data);
+            tab.totalRows = int.Parse(result.option.ToString());
+            view.gdvSchedule.RefreshData();
             view.gdvSchedule.FocusedRowHandle = handle;
 
             refreshToolBar();
