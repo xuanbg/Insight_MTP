@@ -99,7 +99,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             if (!item.members.Any())
             {
                 var members = dataModel.getRoleMember(item.id);
-                if (members.Any()) item.members.AddRange(members);
+                if (members != null) item.members.AddRange(members);
 
                 if (item.members.Any(i => i.type == 1)) item.members.Add(new Member { id = "1", type = 0, name = "用户" });
 
@@ -123,7 +123,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             if (!item.funcs.Any())
             {
                 var funcs = dataModel.getRoleFuncs(item.id);
-                if (funcs.Any()) item.funcs.AddRange(funcs);
+                if (funcs != null) item.funcs.AddRange(funcs);
             }
         }
 

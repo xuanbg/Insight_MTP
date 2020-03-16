@@ -59,7 +59,7 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
                     if (!item.funcs.Any())
                     {
                         var funcs = dataModel.getFuncs(item.id);
-                        if (funcs.Any()) item.funcs.AddRange(funcs);
+                        if (funcs != null) item.funcs.AddRange(funcs);
                     }
                 }
             }

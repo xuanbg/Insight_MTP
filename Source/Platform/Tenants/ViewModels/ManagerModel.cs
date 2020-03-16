@@ -63,7 +63,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
                     if (!item.apps.Any())
                     {
                         var apps = dataModel.getTenantApps(item.id);
-                        if (apps.Any()) item.apps.AddRange(apps);
+                        if (apps != null) item.apps.AddRange(apps);
                     }
 
                     if (!item.users.Any())

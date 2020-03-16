@@ -66,7 +66,7 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
                     if (!item.navigations.Any())
                     {
                         var navs = dataModel.getNavs(item.id);
-                        if (navs.Any()) item.navigations.AddRange(navs);
+                        if (navs != null) item.navigations.AddRange(navs);
                     }
                 }
             }
@@ -110,7 +110,7 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
                 else if (!nav.functions.Any())
                 {
                     var funcs = dataModel.getFuncs(nav.id);
-                    if (funcs.Any()) nav.functions.AddRange(funcs);
+                    if (funcs != null) nav.functions.AddRange(funcs);
                 }
             }
 
