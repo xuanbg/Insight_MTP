@@ -22,7 +22,7 @@ namespace Insight.MTP.Client.Setting.Roles
         /// </summary>
         public void refresh()
         {
-            mdiModel.loadData(mdiModel.handle);
+            mdiModel.loadData(mdiModel.tab.focusedRowHandle);
         }
 
         /// <summary>

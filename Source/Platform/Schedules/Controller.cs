@@ -20,7 +20,7 @@ namespace Insight.MTP.Client.Platform.Schedules
         /// </summary>
         public void refresh()
         {
-            mdiModel.loadData(mdiModel.handle);
+            mdiModel.loadData(mdiModel.tab.focusedRowHandle);
         }
 
         /// <summary>

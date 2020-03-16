@@ -21,7 +21,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         /// </summary>
         public void refresh()
         {
-            mdiModel.loadData(mdiModel.handle);
+            mdiModel.loadData(mdiModel.tab.focusedRowHandle);
         }
 
         /// <summary>
