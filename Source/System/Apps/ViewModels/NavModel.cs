@@ -17,7 +17,6 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
         public NavModel(Navigation data, string title) : base(title)
         {
             item = data;
-            if (item.moduleInfo == null) item.moduleInfo = new ModuleInfo();
 
             var isGroup = item.type == 1;
             view.chkGroup.Checked = isGroup;

@@ -62,6 +62,6 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 导航集合
         /// </summary>
-        public List<Navigation> navigations { get; set; }
+        public List<Navigation> navigations { get; set; } = new List<Navigation>();
     }
 }

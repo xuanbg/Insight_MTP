@@ -27,7 +27,7 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 企业信息
         /// </summary>
-        public CompanyInfo companyInfo { get; set; }
+        public CompanyInfo companyInfo { get; set; } = new CompanyInfo();
 
         /// <summary>
         /// 描述
@@ -47,11 +47,11 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 创建人ID
         /// </summary>
-        public List<TenantApp> apps { get; set; }
+        public List<TenantApp> apps { get; set; } = new List<TenantApp>();
 
         /// <summary>
         /// 创建时间
         /// </summary>
-        public List<TenantUser> users { get; set; }
+        public List<TenantUser> users { get; set; } = new List<TenantUser>();
     }
 }

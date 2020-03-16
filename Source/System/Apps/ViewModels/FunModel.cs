@@ -17,7 +17,6 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
         public FunModel(Function data, string title) : base(title)
         {
             item = data;
-            if (item.funcInfo == null) item.funcInfo = new FuncInfo();
 
             view.comType.SelectedIndex = item.type;
             view.speIndex.EditValue = item.index;

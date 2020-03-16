@@ -63,9 +63,10 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
                 item = list[index];
                 if (item.id != id)
                 {
-                    if (item.navigations == null || !item.navigations.Any())
+                    if (!item.navigations.Any())
                     {
-                        item.navigations = dataModel.getNavs(item.id);
+                        var navs = dataModel.getNavs(item.id);
+                        if (navs.Any()) item.navigations.AddRange(navs);
                     }
                 }
             }
@@ -98,7 +99,6 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
             }
             else
             {
-
                 var id = node.GetValue("id").ToString();
                 nav = item.navigations.SingleOrDefault(m => m.id == id);
                 if (nav == null) return;
@@ -107,9 +107,10 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
                 {
                     func = null;
                 }
-                else if (nav.functions == null)
+                else if (!nav.functions.Any())
                 {
-                    nav.functions = dataModel.getFuncs(nav.id);
+                    var funcs = dataModel.getFuncs(nav.id);
+                    if (funcs.Any()) nav.functions.AddRange(funcs);
                 }
             }
 

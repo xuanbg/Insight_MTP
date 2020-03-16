@@ -59,7 +59,7 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
                 item = list[index];
                 if (item.id != id)
                 {
-                    if (item.configs == null || !item.configs.Any())
+                    if (!item.configs.Any())
                     {
                         var result = dataModel.getTempConfigs(item.id, view.ppcTemplate.page, view.ppcTemplate.size);
                         if (result.success)

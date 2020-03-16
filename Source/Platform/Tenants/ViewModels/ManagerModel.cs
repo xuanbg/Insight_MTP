@@ -60,12 +60,13 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
                 item = list[index];
                 if (item.id != id)
                 {
-                    if (item.apps == null || !item.apps.Any())
+                    if (!item.apps.Any())
                     {
-                        item.apps = dataModel.getTenantApps(item.id);
+                        var apps = dataModel.getTenantApps(item.id);
+                        if (apps.Any()) item.apps.AddRange(apps);
                     }
 
-                    if (item.users == null || !item.users.Any())
+                    if (!item.users.Any())
                     {
                         var result = dataModel.getTenantUsers(item.id, view.ppcUser.page, view.ppcUser.size);
                         if (result.success)

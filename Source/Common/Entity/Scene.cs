@@ -27,6 +27,6 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 模板配置集合
         /// </summary>
-        public List<TempConfig> configs { get; set; }
+        public List<TempConfig> configs { get; set; } = new List<TempConfig>();
     }
 }

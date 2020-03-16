@@ -23,6 +23,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             initGrid(view.gdvUser, null, null, view.ppcUser);
             initTree(view.treAction, "funcChanged");
 
+            // 通过权限树点击事件循环设置功能权限状态：->1->0->null
             view.treAction.Click += (sender, args) =>
             {
                 var node = view.treAction.FocusedNode;
@@ -68,33 +69,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             {
                 var id = item?.id;
                 item = list[index];
-                if (item.id != id)
-                {
-                    if (item.members == null || !item.members.Any())
-                    {
-                        item.members = dataModel.getRoleMember(item.id);
-                        if (item.members.Any(i => i.type == 1)) item.members.Add(new Member {id = "1", type = 0, name = "用户"});
-                        
-                        if (item.members.Any(i => i.type == 2)) item.members.Add(new Member {id = "2", type = 0, name = "用户组"});
-
-                        if (item.members.Any(i => i.type == 3)) item.members.Add(new Member {id = "3", type = 0, name = "职位"});
-                    }
-
-                    if (item.users == null || !item.users.Any())
-                    {
-                        var result = dataModel.getMemberUsers(item.id, view.ppcUser.page, view.ppcUser.size);
-                        if (result.success)
-                        {
-                            item.users = result.data;
-                            view.ppcUser.totalRows = int.Parse(result.option.ToString());
-                        }
-                    }
-
-                    if (item.funcs == null || !item.funcs.Any())
-                    {
-                        item.funcs = dataModel.getRoleFuncs(item.id);
-                    }
-                }
+                if (item.id != id) getDetail();
             }
 
             view.treMember.DataSource = item?.members;
@@ -113,6 +88,43 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             view.treAction.ExpandToLevel(1);
 
             refreshToolBar();
+        }
+
+        /// <summary>
+        /// 获取角色明细数据
+        /// </summary>
+        private void getDetail()
+        {
+            // 读取角色成员
+            if (!item.members.Any())
+            {
+                var members = dataModel.getRoleMember(item.id);
+                if (members.Any()) item.members.AddRange(members);
+
+                if (item.members.Any(i => i.type == 1)) item.members.Add(new Member { id = "1", type = 0, name = "用户" });
+
+                if (item.members.Any(i => i.type == 2)) item.members.Add(new Member { id = "2", type = 0, name = "用户组" });
+
+                if (item.members.Any(i => i.type == 3)) item.members.Add(new Member { id = "3", type = 0, name = "职位" });
+            }
+
+            // 读取角色成员用户
+            if (!item.users.Any())
+            {
+                var result = dataModel.getMemberUsers(item.id, view.ppcUser.page, view.ppcUser.size);
+                if (result.success)
+                {
+                    item.users = result.data;
+                    view.ppcUser.totalRows = int.Parse(result.option.ToString());
+                }
+            }
+
+            // 读取角色权限
+            if (!item.funcs.Any())
+            {
+                var funcs = dataModel.getRoleFuncs(item.id);
+                if (funcs.Any()) item.funcs.AddRange(funcs);
+            }
         }
 
         /// <summary>

@@ -37,6 +37,6 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 图标信息
         /// </summary>
-        public FuncInfo funcInfo { get; set; }
+        public FuncInfo funcInfo { get; set; } = new FuncInfo();
     }
 }

@@ -45,17 +45,17 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 角色成员
         /// </summary>
-        public List<Member> members { get; set; }
+        public List<Member> members { get; set; } = new List<Member>();
 
         /// <summary>
         /// 角色成员用户
         /// </summary>
-        public List<User> users { get; set; }
+        public List<User> users { get; set; } = new List<User>();
 
         /// <summary>
         /// 角色功能权限
         /// </summary>
-        public List<AppTree> funcs { get; set; }
+        public List<AppTree> funcs { get; set; } = new List<AppTree>();
     }
 
     /// <summary>
@@ -111,7 +111,7 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 角色功能权限
         /// </summary>
-        public List<AppTree> funcs { get; set; }
+        public List<AppTree> funcs { get; set; } = new List<AppTree>();
     }
 
     /// <summary>

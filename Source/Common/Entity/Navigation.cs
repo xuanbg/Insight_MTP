@@ -38,11 +38,11 @@ namespace Insight.MTP.Client.Common.Entity
         /// <summary>
         /// 模块信息
         /// </summary>
-        public ModuleInfo moduleInfo { get; set; }
+        public ModuleInfo moduleInfo { get; set; } = new ModuleInfo();
 
         /// <summary>
         /// 功能集合
         /// </summary>
-        public List<Function> functions { get; set; }
+        public List<Function> functions { get; set; } = new List<Function>();
     }
 }
