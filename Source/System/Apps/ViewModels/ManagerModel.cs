@@ -51,7 +51,7 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
         /// <param name="index">List下标</param>
         public void itemChanged(int index)
         {
-            if (index < 0)
+            if (index < 0 || index >= list.Count)
             {
                 item = null;
                 nav = null;
@@ -59,15 +59,11 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
             }
             else
             {
-                var id = item?.id;
                 item = list[index];
-                if (item.id != id)
+                if (!item.navigations.Any())
                 {
-                    if (!item.navigations.Any())
-                    {
-                        var navs = dataModel.getNavs(item.id);
-                        if (navs != null) item.navigations.AddRange(navs);
-                    }
+                    var navs = dataModel.getNavs(item.id);
+                    if (navs != null) item.navigations.AddRange(navs);
                 }
             }
 

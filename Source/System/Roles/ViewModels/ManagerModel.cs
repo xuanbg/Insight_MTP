@@ -62,16 +62,15 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         /// <param name="index">List下标</param>
         public void itemChanged(int index)
         {
-            if (index < 0)
+            if (index < 0 || index >= list.Count)
             {
                 item = null;
                 member = null;
             }
             else
             {
-                var id = item?.id;
                 item = list[index];
-                if (item.id != id) getDetail();
+                getDetail();
             }
 
             view.treMember.DataSource = item?.members;
@@ -111,10 +110,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             }
 
             // 读取角色成员用户
-            if (!item.users.Any())
-            {
-                getMemberUsers();
-            }
+            if (!item.users.Any()) getMemberUsers();
 
             // 读取角色权限
             if (!item.funcs.Any())

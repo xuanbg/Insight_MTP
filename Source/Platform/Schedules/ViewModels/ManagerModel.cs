@@ -44,7 +44,7 @@ namespace Insight.MTP.Client.Platform.Schedules.ViewModels
         /// <param name="index">List下标</param>
         public void itemChanged(int index)
         {
-            item = index < 0 ? null : list[index];
+            item = index < 0 || index >= list.Count ? null : list[index];
 
             refreshToolBar();
         }

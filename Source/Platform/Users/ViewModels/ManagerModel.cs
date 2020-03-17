@@ -46,21 +46,17 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
         /// <param name="index">List下标</param>
         public void itemChanged(int index)
         {
-            if (index < 0)
+            if (index < 0 || index >= list.Count)
             {
                 item = null;
             }
             else
             {
-                var id = item?.id;
                 item = list[index];
-                if (item.id != id)
+                if (!item.funcs.Any())
                 {
-                    if (!item.funcs.Any())
-                    {
-                        var funcs = dataModel.getFuncs(item.id);
-                        if (funcs != null) item.funcs.AddRange(funcs);
-                    }
+                    var funcs = dataModel.getFuncs(item.id);
+                    if (funcs != null) item.funcs.AddRange(funcs);
                 }
             }
 

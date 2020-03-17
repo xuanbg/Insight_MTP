@@ -49,27 +49,23 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         /// <param name="index">List下标</param>
         public void itemChanged(int index)
         {
-            if (index < 0)
+            if (index < 0 || index >= list.Count)
             {
                 item = null;
                 app = null;
             }
             else
             {
-                var id = item?.id;
                 item = list[index];
-                if (item.id != id)
+                if (!item.apps.Any())
                 {
-                    if (!item.apps.Any())
-                    {
-                        var apps = dataModel.getTenantApps(item.id);
-                        if (apps != null) item.apps.AddRange(apps);
-                    }
+                    var apps = dataModel.getTenantApps(item.id);
+                    if (apps != null) item.apps.AddRange(apps);
+                }
 
-                    if (!item.users.Any())
-                    {
-                        getTenantUsers();
-                    }
+                if (!item.users.Any())
+                {
+                    getTenantUsers();
                 }
             }
 

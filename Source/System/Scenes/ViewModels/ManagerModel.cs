@@ -17,7 +17,7 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
         {
             initSearch(view.KeyInput, view.Search);
             initMainGrid(view.grdScene, view.gdvScene, view.ppcScene);
-            initGrid(view.gdvTemplate, "configChanged", null, view.ppcTemplate);
+            initGrid(view.gdvTemplate, "configChanged", null, view.ppcTemplate, "getConfigs");
         }
 
         /// <summary>
@@ -48,27 +48,15 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
         /// <param name="index">List下标</param>
         public void itemChanged(int index)
         {
-            if (index < 0)
+            if (index < 0 || index >= list.Count)
             {
                 item = null;
                 config = null;
             }
             else
             {
-                var id = item?.id;
                 item = list[index];
-                if (item.id != id)
-                {
-                    if (!item.configs.Any())
-                    {
-                        var result = dataModel.getTempConfigs(item.id, view.ppcTemplate.page, view.ppcTemplate.size);
-                        if (result.success)
-                        {
-                            item.configs = result.data;
-                            view.ppcTemplate.totalRows = result.total;
-                        }
-                    }
-                }
+                if (!item.configs.Any()) getConfigs();
             }
 
             view.grdTemplate.DataSource = item?.configs;
@@ -82,6 +70,23 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
         public void configChanged(int index)
         {
             config = index < 0 ? null : item.configs[index];
+
+            refreshToolBar();
+        }
+
+        /// <summary>
+        /// 读取模板配置数据
+        /// </summary>
+        /// <param name="handle"></param>
+        public void getConfigs(int handle = 0)
+        {
+            var result = dataModel.getTempConfigs(item.id, view.ppcTemplate.page, view.ppcTemplate.size);
+            if (!result.success) return;
+
+            item.configs = result.data;
+            view.ppcTemplate.totalRows = result.total;
+            view.grdTemplate.DataSource = item.configs;
+            view.gdvTemplate.FocusedRowHandle = handle;
 
             refreshToolBar();
         }

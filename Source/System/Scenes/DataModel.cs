@@ -9,8 +9,8 @@ namespace Insight.MTP.Client.Setting.Scenes
 {
     public class DataModel
     {
-        private const string service = "/common/scene";
-        private const string commonService = "/common/basedata/area";
+        private const string service = "/common/message";
+        private const string appService = "/base/resource";
 
         /// <summary>
         /// 获取场景集合
@@ -21,7 +21,7 @@ namespace Insight.MTP.Client.Setting.Scenes
         /// <returns>场景集合</returns>
         public Result<List<Scene>> getScenes(string keyword, int page, int size)
         {
-            var url = $"{service}/v1.0/Scenes";
+            var url = $"{service}/v1.0/scenes";
             var dict = new Dictionary<string, object>
             {
                 {"keyword", keyword},
@@ -42,7 +42,7 @@ namespace Insight.MTP.Client.Setting.Scenes
         /// <returns>绑定的用户集合</returns>
         public Result<List<TempConfig>> getTempConfigs(string id, int page, int size)
         {
-            var url = $"{service}/v1.0/Scenes/{id}/Temps";
+            var url = $"{service}/v1.0/scenes/{id}/configs";
             var dict = new Dictionary<string, object>
             {
                 {"page", page},
@@ -63,7 +63,7 @@ namespace Insight.MTP.Client.Setting.Scenes
             if (Scene == null) return null;
 
             var msg = $"新建场景【{Scene.name}】失败！";
-            var url = $"{service}/v1.0/Scenes";
+            var url = $"{service}/v1.0/scenes";
             var client = new HttpClient<string>();
 
             return client.commit(url, Scene, msg, RequestMethod.POST);
@@ -79,7 +79,7 @@ namespace Insight.MTP.Client.Setting.Scenes
             if (Scene == null) return false;
 
             var msg = $"更新场景【{Scene.name}】数据失败！";
-            var url = $"{service}/v1.0/Scenes";
+            var url = $"{service}/v1.0/scenes";
             var client = new HttpClient<object>();
 
             return client.put(url, Scene, msg);
@@ -95,7 +95,7 @@ namespace Insight.MTP.Client.Setting.Scenes
             if (Scene == null) return false;
 
             var msg = $"对不起，无法删除场景【{Scene.name}】！";
-            var url = $"{service}/v1.0/Scenes";
+            var url = $"{service}/v1.0/scenes";
             var client = new HttpClient<object>();
 
             return client.delete(url, Scene.id, msg);
@@ -111,7 +111,7 @@ namespace Insight.MTP.Client.Setting.Scenes
         {
             if (!Temps.Any()) return false;
 
-            var url = $"{service}/v1.0/Scenes/{id}/Temps";
+            var url = $"{service}/v1.0/scenes/{id}/configs";
             var data = Temps.Select(i => i.id).ToList();
             var client = new HttpClient<object>();
 
@@ -128,7 +128,7 @@ namespace Insight.MTP.Client.Setting.Scenes
             if (Temp == null) return false;
 
             var msg = $"对不起，模板【{Temp.template}】解除绑定失败！";
-            var url = $"{service}/v1.0/Scenes/{Temp.sceneId}/Temps";
+            var url = $"{service}/v1.0/scenes/{Temp.sceneId}/configs";
             var data = new List<string> {Temp.id};
             var client = new HttpClient<object>();
 
