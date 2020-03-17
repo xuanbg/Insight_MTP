@@ -63,10 +63,10 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         /// <param name="index">List下标</param>
         public void itemChanged(int index)
         {
+            member = null;
             if (index < 0 || index >= list.Count)
             {
                 item = null;
-                member = null;
             }
             else
             {

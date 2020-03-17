@@ -50,10 +50,10 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         /// <param name="index">List下标</param>
         public void itemChanged(int index)
         {
+            app = null;
             if (index < 0 || index >= list.Count)
             {
                 item = null;
-                app = null;
             }
             else
             {
@@ -130,9 +130,9 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
                 ["editItem"] = item != null,
                 ["deleteItem"] = item != null,
                 ["audit"] = item != null && item.status != 1,
-                ["disable"] = item != null && !item.invalid,
+                ["disable"] = item != null && !item.invalid && item.status == 1,
                 ["enable"] = item != null && item.invalid,
-                ["bind"] = item != null,
+                ["bind"] = item != null && item.status == 1,
                 ["unbind"] = item != null && app != null,
                 ["rent"] = item != null && app != null
             };

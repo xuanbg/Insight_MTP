@@ -49,10 +49,10 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
         /// <param name="index">List下标</param>
         public void itemChanged(int index)
         {
+            config = null;
             if (index < 0 || index >= list.Count)
             {
                 item = null;
-                config = null;
             }
             else
             {

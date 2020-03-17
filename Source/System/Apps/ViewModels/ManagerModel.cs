@@ -52,11 +52,11 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
         /// <param name="index">List下标</param>
         public void itemChanged(int index)
         {
+            nav = null;
+            func = null;
             if (index < 0 || index >= list.Count)
             {
                 item = null;
-                nav = null;
-                func = null;
             }
             else
             {
@@ -89,10 +89,10 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
         /// <param name="node">导航节点</param>
         public void navChanged(TreeListNode node)
         {
+            func = null;
             if (node == null)
             {
                 nav = null;
-                func = null;
             }
             else
             {
