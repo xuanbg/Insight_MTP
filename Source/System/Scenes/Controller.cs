@@ -33,13 +33,13 @@ namespace Insight.MTP.Client.Setting.Scenes
             var model = new SceneModel(scene, "新建场景");
             model.callbackEvent += (sender, args) =>
             {
-                        scene.id = dataModel.addScene(scene);
-                        if (scene.id == null) return;
+                scene.id = dataModel.addScene(scene);
+                if (scene.id == null) return;
 
-                        mdiModel.list.Add(scene);
-                        mdiModel.tab.addItems();
+                mdiModel.list.Add(scene);
+                mdiModel.tab.addItems();
 
-                        model.close();
+                model.close();
             };
 
             model.showDialog();
@@ -73,7 +73,6 @@ namespace Insight.MTP.Client.Setting.Scenes
             {
                 mdiModel.list.Remove(mdiModel.item);
                 mdiModel.tab.removeItems();
-                mdiModel.refreshGrid();
             }
         }
         

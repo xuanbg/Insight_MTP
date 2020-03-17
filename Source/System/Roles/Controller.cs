@@ -76,7 +76,6 @@ namespace Insight.MTP.Client.Setting.Roles
             {
                 mdiModel.list.Remove(mdiModel.item);
                 mdiModel.tab.removeItems();
-                mdiModel.refreshGrid();
             }
         }
         

@@ -73,7 +73,6 @@ namespace Insight.MTP.Client.Platform.Tenants
             {
                 mdiModel.list.Remove(mdiModel.item);
                 mdiModel.tab.removeItems();
-                mdiModel.refreshGrid();
             }
         }
 
@@ -137,6 +136,7 @@ namespace Insight.MTP.Client.Platform.Tenants
 
                 mdiModel.item.apps.AddRange(model.apps);
                 mdiModel.refreshApp();
+
                 model.close();
             };
 

@@ -91,15 +91,6 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
 
             refreshToolBar();
         }
-
-        /// <summary>
-        /// 刷新列表数据
-        /// </summary>
-        public void refreshGrid()
-        {
-            view.gdvScene.RefreshData();
-            refreshToolBar();
-        }
         
         /// <summary>
         /// 刷新工具条按钮状态

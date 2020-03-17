@@ -179,15 +179,6 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
 
             refreshToolBar();
         }
-
-        /// <summary>
-        /// 刷新列表数据
-        /// </summary>
-        public void refreshGrid()
-        {
-            view.gdvRole.RefreshData();
-            refreshToolBar();
-        }
         
         /// <summary>
         /// 刷新树数据

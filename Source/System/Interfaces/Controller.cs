@@ -72,7 +72,6 @@ namespace Insight.MTP.Client.Setting.Interfaces
             {
                 mdiModel.list.Remove(mdiModel.item);
                 mdiModel.tab.removeItems();
-                mdiModel.refreshGrid();
             }
         }
 

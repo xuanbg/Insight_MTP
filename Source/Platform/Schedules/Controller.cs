@@ -35,7 +35,6 @@ namespace Insight.MTP.Client.Platform.Schedules
             {
                 mdiModel.list.Remove(mdiModel.item);
                 mdiModel.tab.removeItems();
-                mdiModel.refreshGrid();
             }
         }
 
@@ -51,7 +50,6 @@ namespace Insight.MTP.Client.Platform.Schedules
             {
                 mdiModel.list.Remove(mdiModel.item);
                 mdiModel.tab.removeItems();
-                mdiModel.refreshGrid();
             }
         }
 

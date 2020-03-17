@@ -125,16 +125,7 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
 
             refreshToolBar();
         }
-
-        /// <summary>
-        /// 刷新列表数据
-        /// </summary>
-        public void refreshGrid()
-        {
-            view.gdvApp.RefreshData();
-            refreshToolBar();
-        }
-
+        
         /// <summary>
         /// 刷新树数据
         /// </summary>
