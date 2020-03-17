@@ -35,6 +35,7 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -56,7 +57,7 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             this.colisVerify = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colisLimit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colisLogResult = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.imgNav = new DevExpress.Utils.ImageCollection();
+            this.imgNav = new DevExpress.Utils.ImageCollection(this.components);
             this.panSpace = new DevExpress.XtraEditors.PanelControl();
             this.panSearch = new DevExpress.XtraEditors.PanelControl();
             this.Search = new DevExpress.XtraEditors.SimpleButton();
@@ -183,7 +184,7 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             this.colurl.Name = "colurl";
             this.colurl.Visible = true;
             this.colurl.VisibleIndex = 2;
-            this.colurl.Width = 434;
+            this.colurl.Width = 394;
             // 
             // colauthCode
             // 
@@ -192,7 +193,7 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             this.colauthCode.Name = "colauthCode";
             this.colauthCode.Visible = true;
             this.colauthCode.VisibleIndex = 3;
-            this.colauthCode.Width = 120;
+            this.colauthCode.Width = 160;
             // 
             // collimitGap
             // 
@@ -304,7 +305,7 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             // pccInterface
             // 
             this.pccInterface.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pccInterface.focusedRowHandle = 0;
+            this.pccInterface.focusedRowHandle = -1;
             this.pccInterface.Location = new System.Drawing.Point(2, 522);
             this.pccInterface.MaximumSize = new System.Drawing.Size(0, 22);
             this.pccInterface.MinimumSize = new System.Drawing.Size(320, 22);

@@ -21,7 +21,7 @@ namespace Insight.MTP.Client.Setting.Scenes
         /// </summary>
         public void refresh()
         {
-            mdiModel.loadData(mdiModel.tab.focusedRowHandle);
+            mdiModel.loadData(mdiModel.tab.page, mdiModel.tab.focusedRowHandle);
         }
 
         /// <summary>

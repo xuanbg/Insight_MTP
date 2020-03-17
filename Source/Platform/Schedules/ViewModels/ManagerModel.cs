@@ -19,11 +19,12 @@ namespace Insight.MTP.Client.Platform.Schedules.ViewModels
         /// <summary>
         /// 加载列表数据
         /// </summary>
-        /// <param name="handle">行号</param>
-        public void loadData(int handle = 0)
+        /// <param name="page">当前页</param>
+        /// <param name="handle">焦点行号</param>
+        public void loadData(int page = 1, int handle = 0)
         {
             showWaitForm();
-            var result = dataModel.getSchedules(keyWord, tab.page, tab.size);
+            var result = dataModel.getSchedules(keyWord, page, tab.size);
             closeWaitForm();
             if (!result.success) return;
 
@@ -32,7 +33,7 @@ namespace Insight.MTP.Client.Platform.Schedules.ViewModels
 
             list.AddRange(result.data);
             tab.totalRows = result.total;
-            view.gdvSchedule.RefreshData();
+            tab.page = page;
             view.gdvSchedule.FocusedRowHandle = handle;
 
             refreshToolBar();

@@ -26,11 +26,12 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
         /// <summary>
         /// 加载列表数据
         /// </summary>
-        /// <param name="handle">行号</param>
-        public void loadData(int handle = 0)
+        /// <param name="page">当前页</param>
+        /// <param name="handle">焦点行号</param>
+        public void loadData(int page = 1, int handle = 0)
         {
             showWaitForm();
-            var result = dataModel.getApps(keyWord, tab.page, tab.size);
+            var result = dataModel.getApps(keyWord, page, tab.size);
             closeWaitForm();
             if (!result.success) return;
 
@@ -39,7 +40,7 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
 
             list.AddRange(result.data);
             tab.totalRows = result.total;
-            view.gdvApp.RefreshData();
+            tab.page = page;
             view.gdvApp.FocusedRowHandle = handle;
 
             refreshToolBar();
