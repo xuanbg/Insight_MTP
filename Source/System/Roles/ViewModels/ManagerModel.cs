@@ -206,7 +206,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             {
                 ["editItem"] = item != null,
                 ["deleteItem"] = item != null,
-                ["addMember"] = item != null && item.builtin,
+                ["addMember"] = item != null && !item.builtin,
                 ["removeMember"] = member != null && member.type > 0
             };
             switchItemStatus(dict);

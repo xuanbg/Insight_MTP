@@ -251,7 +251,6 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.ppcRole.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcRole.MinimumSize = new System.Drawing.Size(300, 22);
             this.ppcRole.Name = "ppcRole";
-            this.ppcRole.page = 1;
             this.ppcRole.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcRole.pageSizeItems")));
             this.ppcRole.Size = new System.Drawing.Size(761, 22);
             this.ppcRole.TabIndex = 0;
@@ -396,7 +395,6 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.ppcUser.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcUser.MinimumSize = new System.Drawing.Size(320, 22);
             this.ppcUser.Name = "ppcUser";
-            this.ppcUser.page = 1;
             this.ppcUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcUser.pageSizeItems")));
             this.ppcUser.Size = new System.Drawing.Size(531, 22);
             this.ppcUser.TabIndex = 0;
