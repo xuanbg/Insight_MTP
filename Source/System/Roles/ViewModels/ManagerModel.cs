@@ -67,6 +67,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             if (index < 0 || index >= list.Count)
             {
                 item = null;
+                view.grdUser.DataSource = null;
             }
             else
             {
@@ -75,18 +76,13 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             }
 
             view.treMember.DataSource = item?.members;
-            if (item?.members.Any() ?? false)
-            {
-                view.treMember.FocusedNode = view.treMember.Nodes.FirstNode;
-                view.treMember.ExpandAll();
-            }
-            else
-            {
-                member = null;
-            }
+            view.treAction.CollapseAll();
+            view.treMember.FocusedNode = view.treMember.GetNodeList().FirstOrDefault(i => i.Level == 0);
+            view.treMember.ExpandAll();
 
-            view.grdUser.DataSource = item?.users;
             view.treAction.DataSource = item?.funcs;
+            view.treAction.CollapseAll();
+            view.treAction.FocusedNode = view.treAction.GetNodeList().FirstOrDefault(i => i.Level == 0);
             view.treAction.ExpandToLevel(1);
 
             refreshToolBar();
@@ -153,8 +149,6 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             view.ppcUser.totalRows = result.total;
             view.grdUser.DataSource = item.users;
             view.gdvUser.FocusedRowHandle = handle;
-
-            refreshToolBar();
         }
 
         /// <summary>

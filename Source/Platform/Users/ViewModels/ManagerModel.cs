@@ -62,6 +62,8 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
             }
 
             view.treAction.DataSource = item?.funcs;
+            view.treAction.CollapseAll();
+            view.treAction.FocusedNode = view.treAction.GetNodeList().FirstOrDefault(i => i.Level == 0);
             view.treAction.ExpandToLevel(1);
 
             refreshToolBar();
