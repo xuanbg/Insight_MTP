@@ -69,7 +69,7 @@ namespace Insight.MTP.Client.Setting.Roles
         /// </summary>
         public void deleteItem()
         {
-            var msg = "您确定要删除角色{mdiModel.item.name}吗？\r\n数据删除后无法恢复！";
+            var msg = $"您确定要删除角色{mdiModel.item.name}吗？\r\n数据删除后无法恢复！";
             if (!Messages.showConfirm(msg)) return;
 
             if (dataModel.deleteRole(mdiModel.item))

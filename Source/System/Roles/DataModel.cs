@@ -195,7 +195,7 @@ namespace Insight.MTP.Client.Setting.Roles
         {
             if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(funcId)) return false;
 
-            var msg = $"对不起，设置功能权限失败！";
+            var msg = "对不起，设置功能权限失败！";
             var url = $"{service}/v1.0/roles/{id}/funcs";
             var data = new Dictionary<string, object> {{"id", funcId}, {"permit", permit}};
             var client = new HttpClient<object>();

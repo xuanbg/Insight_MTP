@@ -65,7 +65,7 @@ namespace Insight.MTP.Client.Platform.Users
         /// </summary>
         public void deleteItem()
         {
-            var msg = "您确定要删除用户{mdiModel.item.name}吗？\r\n数据删除后无法恢复！";
+            var msg = $"您确定要删除用户{mdiModel.item.name}吗？\r\n数据删除后无法恢复！";
             if (!Messages.showConfirm(msg)) return;
 
             if (dataModel.deleteUser(mdiModel.item))

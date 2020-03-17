@@ -65,7 +65,7 @@ namespace Insight.MTP.Client.Setting.Interfaces
         /// </summary>
         public void deleteItem()
         {
-            var msg = "您确定要删除接口{mdiModel.item.name}的配置数据吗？\r\n数据删除后接口将无法访问！";
+            var msg = $"您确定要删除接口{mdiModel.item.name}的配置数据吗？\r\n数据删除后接口将无法访问！";
             if (!Messages.showConfirm(msg)) return;
 
             if (dataModel.deleteInterface(mdiModel.item))
