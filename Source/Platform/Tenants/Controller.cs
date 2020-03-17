@@ -39,7 +39,7 @@ namespace Insight.MTP.Client.Platform.Tenants
                 mdiModel.list.Add(tenant);
                 mdiModel.tab.addItems();
 
-                model.close();
+                model.closeDialog();
             };
 
             model.showDialog();
@@ -55,7 +55,7 @@ namespace Insight.MTP.Client.Platform.Tenants
             {
                 if (!dataModel.updateTenant(mdiModel.item)) return;
 
-                model.close();
+                model.closeDialog();
             };
 
             model.showDialog();
@@ -89,6 +89,9 @@ namespace Insight.MTP.Client.Platform.Tenants
             if (dataModel.auditTenant(mdiModel.item.id, status))
             {
                 mdiModel.item.status = status;
+                mdiModel.getTenantApps();
+                mdiModel.getTenantUsers();
+
                 mdiModel.refreshGrid();
             }
         }
@@ -137,7 +140,7 @@ namespace Insight.MTP.Client.Platform.Tenants
                 mdiModel.item.apps.AddRange(model.apps);
                 mdiModel.refreshApp();
 
-                model.close();
+                model.closeDialog();
             };
 
             model.showDialog();
@@ -169,7 +172,7 @@ namespace Insight.MTP.Client.Platform.Tenants
                 if (!dataModel.rentApp(mdiModel.app)) return;
 
                 mdiModel.refreshApp();
-                model.close();
+                model.closeDialog();
             };
 
             model.showDialog();

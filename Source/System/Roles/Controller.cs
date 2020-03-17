@@ -41,7 +41,7 @@ namespace Insight.MTP.Client.Setting.Roles
                 mdiModel.list.Add(role);
                 mdiModel.tab.addItems();
 
-                model.close();
+                model.closeDialog();
             };
 
             model.showDialog();
@@ -58,7 +58,7 @@ namespace Insight.MTP.Client.Setting.Roles
             {
                 if (!dataModel.updateRole(mdiModel.item)) return;
 
-                model.close();
+                model.closeDialog();
             };
 
             model.showDialog();
@@ -96,7 +96,7 @@ namespace Insight.MTP.Client.Setting.Roles
                 mdiModel.refreshTree();
                 mdiModel.getMemberUsers();
 
-                model.close();
+                model.closeDialog();
             };
 
             model.showDialog();

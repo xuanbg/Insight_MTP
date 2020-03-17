@@ -174,7 +174,7 @@
             // txtAlias
             // 
             this.txtAlias.EnterMoveNextControl = true;
-            this.txtAlias.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtAlias.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.txtAlias.Location = new System.Drawing.Point(380, 22);
             this.txtAlias.Name = "txtAlias";
             this.txtAlias.Size = new System.Drawing.Size(170, 20);
@@ -382,14 +382,14 @@
             // butLogo
             // 
             this.butLogo.EnterMoveNextControl = true;
-            this.butLogo.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.butLogo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.butLogo.Location = new System.Drawing.Point(380, 112);
             this.butLogo.Name = "butLogo";
             editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
             this.butLogo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.butLogo.Size = new System.Drawing.Size(170, 22);
-            this.butLogo.TabIndex = 2;
+            this.butLogo.TabIndex = 5;
             // 
             // butImage
             // 
@@ -404,7 +404,7 @@
             // 
             // lueProvince
             // 
-            this.lueProvince.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.lueProvince.ImeMode = System.Windows.Forms.ImeMode.On;
             this.lueProvince.Location = new System.Drawing.Point(80, 207);
             this.lueProvince.Name = "lueProvince";
             this.lueProvince.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -417,7 +417,7 @@
             // 
             // lueCity
             // 
-            this.lueCity.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.lueCity.ImeMode = System.Windows.Forms.ImeMode.On;
             this.lueCity.Location = new System.Drawing.Point(190, 207);
             this.lueCity.Name = "lueCity";
             this.lueCity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -430,7 +430,7 @@
             // 
             // lueCounty
             // 
-            this.lueCounty.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.lueCounty.ImeMode = System.Windows.Forms.ImeMode.On;
             this.lueCounty.Location = new System.Drawing.Point(350, 207);
             this.lueCounty.Name = "lueCounty";
             this.lueCounty.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {

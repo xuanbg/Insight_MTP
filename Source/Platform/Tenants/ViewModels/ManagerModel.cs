@@ -54,14 +54,15 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
             if (index < 0 || index >= list.Count)
             {
                 item = null;
+                view.grdApp.DataSource = null;
+                view.grdUser.DataSource = null;
             }
             else
             {
                 item = list[index];
                 if (!item.apps.Any())
                 {
-                    var apps = dataModel.getTenantApps(item.id);
-                    if (apps != null) item.apps.AddRange(apps);
+                    getTenantApps();
                 }
 
                 if (!item.users.Any())
@@ -70,8 +71,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
                 }
             }
 
-            view.grdApp.DataSource = item?.apps;
-            view.grdUser.DataSource = item?.users;
+
             refreshToolBar();
         }
 
@@ -90,6 +90,22 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         /// 获取租户绑定用户集合
         /// </summary>
         /// <param name="handle"></param>
+        public void getTenantApps(int handle = 0)
+        {
+            var apps = dataModel.getTenantApps(item.id);
+            if (apps == null) return;
+
+            item.apps.AddRange(apps);
+            view.gdvApp.RefreshData();
+            view.gdvApp.FocusedRowHandle = handle;
+
+            refreshToolBar();
+        }
+
+        /// <summary>
+        /// 获取租户绑定用户集合
+        /// </summary>
+        /// <param name="handle"></param>
         public void getTenantUsers(int handle = 0)
         {
             var result = dataModel.getTenantUsers(item.id, view.ppcUser.page, view.ppcUser.size);
@@ -97,10 +113,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
 
             item.users = result.data;
             view.ppcUser.totalRows = result.total;
-            view.gdvUser.RefreshData();
             view.gdvUser.FocusedRowHandle = handle;
-
-            refreshToolBar();
         }
 
         /// <summary>

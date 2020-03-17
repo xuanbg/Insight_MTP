@@ -38,7 +38,7 @@ namespace Insight.MTP.Client.Setting.Interfaces
                 mdiModel.list.Add(config);
                 mdiModel.tab.addItems();
 
-                model.close();
+                model.closeDialog();
             };
 
             model.showDialog();
@@ -54,7 +54,7 @@ namespace Insight.MTP.Client.Setting.Interfaces
             {
                 if (!dataModel.updateInterface(mdiModel.item)) return;
 
-                model.close();
+                model.closeDialog();
             };
 
             model.showDialog();

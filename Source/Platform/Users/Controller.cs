@@ -38,7 +38,7 @@ namespace Insight.MTP.Client.Platform.Users
                 mdiModel.list.Add(user);
                 mdiModel.tab.addItems();
 
-                model.close();
+                model.closeDialog();
             };
 
             model.showDialog();
@@ -54,7 +54,7 @@ namespace Insight.MTP.Client.Platform.Users
             {
                 if (!dataModel.updateUser(mdiModel.item)) return;
 
-                model.close();
+                model.closeDialog();
             };
 
             model.showDialog();

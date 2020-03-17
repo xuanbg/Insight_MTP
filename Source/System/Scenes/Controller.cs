@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using Insight.MTP.Client.Common.Entity;
+﻿using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Setting.Scenes.ViewModels;
 using Insight.MTP.Client.Setting.Scenes.Views;
 using Insight.Utils.BaseControllers;
@@ -39,7 +38,7 @@ namespace Insight.MTP.Client.Setting.Scenes
                 mdiModel.list.Add(scene);
                 mdiModel.tab.addItems();
 
-                model.close();
+                model.closeDialog();
             };
 
             model.showDialog();
@@ -55,7 +54,7 @@ namespace Insight.MTP.Client.Setting.Scenes
             {
                 if (!dataModel.updateScene(mdiModel.item)) return;
 
-                model.close();
+                model.closeDialog();
             };
 
             model.showDialog();
