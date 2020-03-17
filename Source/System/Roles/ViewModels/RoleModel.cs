@@ -30,7 +30,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             {
                 item.appId = view.lueApp.EditValue.ToString();
                 item.appName = view.lueApp.Text;
-                item.builtin = item.appId == "9dd99dd9e6df467a8207d05ea5581125";
+                item.builtin = item.appId != "9dd99dd9e6df467a8207d05ea5581125";
             };
             view.txtName.EditValueChanged += (sender, args) => item.name = view.txtName.Text.Trim();
             view.memRemark.EditValueChanged += (sender, args) =>

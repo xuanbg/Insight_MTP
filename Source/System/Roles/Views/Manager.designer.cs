@@ -209,7 +209,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             // 
             // colBuiltIn
             // 
-            this.colBuiltIn.Caption = "内置";
+            this.colBuiltIn.Caption = "模板";
             this.colBuiltIn.FieldName = "builtin";
             this.colBuiltIn.Name = "colBuiltIn";
             this.colBuiltIn.Visible = true;
@@ -246,11 +246,12 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             // ppcRole
             // 
             this.ppcRole.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcRole.focusedRowHandle = 0;
+            this.ppcRole.focusedRowHandle = -1;
             this.ppcRole.Location = new System.Drawing.Point(2, 249);
             this.ppcRole.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcRole.MinimumSize = new System.Drawing.Size(300, 22);
             this.ppcRole.Name = "ppcRole";
+            this.ppcRole.page = 1;
             this.ppcRole.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcRole.pageSizeItems")));
             this.ppcRole.Size = new System.Drawing.Size(761, 22);
             this.ppcRole.TabIndex = 0;
@@ -390,11 +391,12 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             // ppcUser
             // 
             this.ppcUser.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcUser.focusedRowHandle = 0;
+            this.ppcUser.focusedRowHandle = -1;
             this.ppcUser.Location = new System.Drawing.Point(2, 244);
             this.ppcUser.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcUser.MinimumSize = new System.Drawing.Size(320, 22);
             this.ppcUser.Name = "ppcUser";
+            this.ppcUser.page = 1;
             this.ppcUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcUser.pageSizeItems")));
             this.ppcUser.Size = new System.Drawing.Size(531, 22);
             this.ppcUser.TabIndex = 0;
