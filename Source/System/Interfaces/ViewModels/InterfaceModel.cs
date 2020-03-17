@@ -71,8 +71,6 @@ namespace Insight.MTP.Client.Setting.Interfaces.ViewModels
         /// </summary>
         public new void confirm()
         {
-            if (!inputExamine()) return;
-
             if (string.IsNullOrEmpty(item.name))
             {
                 Messages.showWarning("必须输入接口名称！");
