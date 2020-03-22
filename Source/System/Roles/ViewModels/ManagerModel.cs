@@ -107,7 +107,16 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             }
 
             // 读取角色成员用户
-            if (!item.users.Any()) getMemberUsers();
+            if (!item.users.Any())
+            {
+                getMemberUsers();
+            }
+            else
+            {
+                view.ppcUser.totalRows = item.users.Count;
+                view.grdUser.DataSource = item.users;
+                view.gdvUser.FocusedRowHandle = 0;
+            }
 
             // 读取角色权限
             if (!item.funcs.Any())

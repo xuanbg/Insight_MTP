@@ -69,17 +69,12 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
             }
 
             view.TreNav.DataSource = item?.navigations;
-            if (item?.navigations.Any() ?? false)
-            {
-                view.TreNav.FocusedNode = view.TreNav.Nodes.FirstNode;
-                view.TreNav.ExpandAll();
-            }
-            else
-            {
-                nav = null;
-            }
+            view.TreNav.CollapseAll();
+            view.TreNav.FocusedNode = view.TreNav.GetNodeList().FirstOrDefault(i => i.Level == 0);
+            view.TreNav.ExpandAll();
 
             view.grdFunc.DataSource = nav?.functions;
+
             refreshToolBar();
         }
 

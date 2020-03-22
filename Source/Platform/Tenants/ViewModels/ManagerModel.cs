@@ -96,7 +96,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
             if (apps == null) return;
 
             item.apps.AddRange(apps);
-            view.gdvApp.RefreshData();
+            view.grdApp.DataSource = item.apps;
             view.gdvApp.FocusedRowHandle = handle;
 
             refreshToolBar();
@@ -113,6 +113,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
 
             item.users = result.data;
             view.ppcUser.totalRows = result.total;
+            view.grdUser.DataSource = item.users;
             view.gdvUser.FocusedRowHandle = handle;
         }
 
