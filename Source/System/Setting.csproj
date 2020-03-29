@@ -160,9 +160,22 @@
     <Compile Include="Scenes\Views\SceneDialog.Designer.cs">
       <DependentUpon>SceneDialog.cs</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Templates\" />
+    <Compile Include="Templates\Controller.cs" />
+    <Compile Include="Templates\DataModel.cs" />
+    <Compile Include="Templates\ViewModels\TemplateModel.cs" />
+    <Compile Include="Templates\ViewModels\ManagerModel.cs" />
+    <Compile Include="Templates\Views\TemplateDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Templates\Views\TemplateDialog.Designer.cs">
+      <DependentUpon>TemplateDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\Views\Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Templates\Views\Manager.Designer.cs">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -208,6 +221,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Scenes\Views\SceneDialog.resx">
       <DependentUpon>SceneDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates\Views\TemplateDialog.resx">
+      <DependentUpon>TemplateDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates\Views\Manager.resx">
+      <DependentUpon>Manager.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

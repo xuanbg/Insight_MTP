@@ -15,13 +15,13 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
         /// 构造函数
         /// 通过订阅事件实现双向数据绑定
         /// </summary>
-        /// <param name="config"></param>
+        /// <param name="data"></param>
         /// <param name="temps">可选模板集合</param>
         /// <param name="apps">可选应用集合</param>
         /// <param name="title">View标题</param>
-        public ConfigModel(TempConfig config, List<MessageTemp> temps, List<LookUpMember> apps, string title) : base(title)
+        public ConfigModel(TempConfig data, List<MessageTemp> temps, List<LookUpMember> apps, string title) : base(title)
         {
-            item = config;
+            item = data;
 
             var list = temps.Select(i => new LookUpMember {id = i.id, name = i.title}).ToList();
             Format.initLookUpEdit(view.lueTemplate, list);
