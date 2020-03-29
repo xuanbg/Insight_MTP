@@ -71,7 +71,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
                 }
             }
 
-
+            view.grdApp.DataSource = item?.apps;
             refreshToolBar();
         }
 
@@ -147,7 +147,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
                 ["disable"] = item != null && !item.invalid && item.status == 1,
                 ["enable"] = item != null && item.invalid,
                 ["bind"] = item != null && item.status == 1,
-                ["unbind"] = item != null && app != null && app.id != "9dd99dd9e6df467a8207d05ea5581125",
+                ["unbind"] = item != null && app?.id != "e46c0d4f85f24f759ad4d86b9505b1d4",
                 ["rent"] = item != null && app != null
             };
             switchItemStatus(dict);
