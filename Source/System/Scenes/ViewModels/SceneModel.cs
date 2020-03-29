@@ -18,9 +18,11 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
             item = data;
 
             view.txtName.EditValue = item.name;
+            view.txtCode.EditValue = item.code;
             view.memRemark.EditValue = item.remark;
 
             view.txtName.EditValueChanged += (sender, args) => item.name = view.txtName.Text.Trim();
+            view.txtCode.EditValueChanged += (sender, args) => item.code = view.txtCode.Text.Trim();
             view.memRemark.EditValueChanged += (sender, args) =>
             {
                 var text = view.memRemark.Text.Trim();
@@ -39,7 +41,14 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
                 view.txtName.Focus();
                 return;
             }
-            
+
+            if (string.IsNullOrEmpty(item.code))
+            {
+                Messages.showWarning("必须输入场景编码！");
+                view.txtCode.Focus();
+                return;
+            }
+
             base.confirm();
         }
     }

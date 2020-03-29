@@ -34,6 +34,7 @@ namespace Insight.MTP.Client.Setting.Scenes.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -43,6 +44,10 @@ namespace Insight.MTP.Client.Setting.Scenes.Views
             this.palTenant = new DevExpress.XtraEditors.PanelControl();
             this.grdScene = new DevExpress.XtraGrid.GridControl();
             this.gdvScene = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colid = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colcode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colname = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colremark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ppcScene = new Insight.Utils.Controls.PageControl();
             this.panSpace = new DevExpress.XtraEditors.PanelControl();
             this.panSearch = new DevExpress.XtraEditors.PanelControl();
@@ -51,6 +56,15 @@ namespace Insight.MTP.Client.Setting.Scenes.Views
             this.grpUser = new DevExpress.XtraEditors.GroupControl();
             this.grdTemplate = new DevExpress.XtraGrid.GridControl();
             this.gdvTemplate = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colid1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colsceneId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coltemplateId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coltemplate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colappId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colappName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colpartnerCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colpartner = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colsign = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ppcTemplate = new Insight.Utils.Controls.PageControl();
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
@@ -154,18 +168,56 @@ namespace Insight.MTP.Client.Setting.Scenes.Views
             // gdvScene
             // 
             this.gdvScene.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.gdvScene.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colid,
+            this.colcode,
+            this.colname,
+            this.colremark});
             this.gdvScene.GridControl = this.grdScene;
             this.gdvScene.Name = "gdvScene";
             this.gdvScene.OptionsDetail.EnableMasterViewMode = false;
             // 
+            // colid
+            // 
+            this.colid.FieldName = "id";
+            this.colid.Name = "colid";
+            // 
+            // colcode
+            // 
+            this.colcode.Caption = "编码";
+            this.colcode.FieldName = "code";
+            this.colcode.Name = "colcode";
+            this.colcode.Visible = true;
+            this.colcode.VisibleIndex = 0;
+            this.colcode.Width = 80;
+            // 
+            // colname
+            // 
+            this.colname.Caption = "场景名称";
+            this.colname.FieldName = "name";
+            this.colname.Name = "colname";
+            this.colname.Visible = true;
+            this.colname.VisibleIndex = 1;
+            this.colname.Width = 320;
+            // 
+            // colremark
+            // 
+            this.colremark.Caption = "场景描述";
+            this.colremark.FieldName = "remark";
+            this.colremark.Name = "colremark";
+            this.colremark.Visible = true;
+            this.colremark.VisibleIndex = 2;
+            this.colremark.Width = 634;
+            // 
             // ppcScene
             // 
             this.ppcScene.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcScene.focusedRowHandle = 0;
+            this.ppcScene.focusedRowHandle = -1;
             this.ppcScene.Location = new System.Drawing.Point(2, 252);
             this.ppcScene.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcScene.MinimumSize = new System.Drawing.Size(300, 22);
             this.ppcScene.Name = "ppcScene";
+            this.ppcScene.page = 1;
             this.ppcScene.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcScene.pageSizeItems")));
             this.ppcScene.Size = new System.Drawing.Size(1066, 22);
             this.ppcScene.TabIndex = 0;
@@ -240,18 +292,94 @@ namespace Insight.MTP.Client.Setting.Scenes.Views
             // 
             // gdvTemplate
             // 
+            this.gdvTemplate.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colid1,
+            this.colsceneId,
+            this.coltemplateId,
+            this.coltemplate,
+            this.colappId,
+            this.colappName,
+            this.colpartnerCode,
+            this.colpartner,
+            this.colsign});
             this.gdvTemplate.GridControl = this.grdTemplate;
             this.gdvTemplate.Name = "gdvTemplate";
             this.gdvTemplate.OptionsDetail.EnableMasterViewMode = false;
             // 
+            // colid1
+            // 
+            this.colid1.FieldName = "id";
+            this.colid1.Name = "colid1";
+            // 
+            // colsceneId
+            // 
+            this.colsceneId.FieldName = "sceneId";
+            this.colsceneId.Name = "colsceneId";
+            // 
+            // coltemplateId
+            // 
+            this.coltemplateId.FieldName = "templateId";
+            this.coltemplateId.Name = "coltemplateId";
+            // 
+            // coltemplate
+            // 
+            this.coltemplate.Caption = "模板名称";
+            this.coltemplate.FieldName = "template";
+            this.coltemplate.Name = "coltemplate";
+            this.coltemplate.Visible = true;
+            this.coltemplate.VisibleIndex = 0;
+            this.coltemplate.Width = 240;
+            // 
+            // colappId
+            // 
+            this.colappId.FieldName = "appId";
+            this.colappId.Name = "colappId";
+            // 
+            // colappName
+            // 
+            this.colappName.Caption = "绑定应用";
+            this.colappName.FieldName = "appName";
+            this.colappName.Name = "colappName";
+            this.colappName.Visible = true;
+            this.colappName.VisibleIndex = 1;
+            this.colappName.Width = 240;
+            // 
+            // colpartnerCode
+            // 
+            this.colpartnerCode.Caption = "合作伙伴编码";
+            this.colpartnerCode.FieldName = "partnerCode";
+            this.colpartnerCode.Name = "colpartnerCode";
+            this.colpartnerCode.Visible = true;
+            this.colpartnerCode.VisibleIndex = 2;
+            this.colpartnerCode.Width = 100;
+            // 
+            // colpartner
+            // 
+            this.colpartner.Caption = "合作伙伴名称";
+            this.colpartner.FieldName = "partner";
+            this.colpartner.Name = "colpartner";
+            this.colpartner.Visible = true;
+            this.colpartner.VisibleIndex = 3;
+            this.colpartner.Width = 374;
+            // 
+            // colsign
+            // 
+            this.colsign.Caption = "消息签名";
+            this.colsign.FieldName = "sign";
+            this.colsign.Name = "colsign";
+            this.colsign.Visible = true;
+            this.colsign.VisibleIndex = 4;
+            this.colsign.Width = 80;
+            // 
             // ppcTemplate
             // 
             this.ppcTemplate.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcTemplate.focusedRowHandle = 0;
+            this.ppcTemplate.focusedRowHandle = -1;
             this.ppcTemplate.Location = new System.Drawing.Point(2, 241);
             this.ppcTemplate.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcTemplate.MinimumSize = new System.Drawing.Size(320, 22);
             this.ppcTemplate.Name = "ppcTemplate";
+            this.ppcTemplate.page = 1;
             this.ppcTemplate.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcTemplate.pageSizeItems")));
             this.ppcTemplate.Size = new System.Drawing.Size(1066, 22);
             this.ppcTemplate.TabIndex = 0;
@@ -300,5 +428,18 @@ namespace Insight.MTP.Client.Setting.Scenes.Views
         public GridView gdvScene;
         public GridControl grdTemplate;
         public GridView gdvTemplate;
+        private DevExpress.XtraGrid.Columns.GridColumn colid;
+        private DevExpress.XtraGrid.Columns.GridColumn colcode;
+        private DevExpress.XtraGrid.Columns.GridColumn colname;
+        private DevExpress.XtraGrid.Columns.GridColumn colremark;
+        private DevExpress.XtraGrid.Columns.GridColumn colid1;
+        private DevExpress.XtraGrid.Columns.GridColumn colsceneId;
+        private DevExpress.XtraGrid.Columns.GridColumn coltemplateId;
+        private DevExpress.XtraGrid.Columns.GridColumn coltemplate;
+        private DevExpress.XtraGrid.Columns.GridColumn colappId;
+        private DevExpress.XtraGrid.Columns.GridColumn colappName;
+        private DevExpress.XtraGrid.Columns.GridColumn colpartnerCode;
+        private DevExpress.XtraGrid.Columns.GridColumn colpartner;
+        private DevExpress.XtraGrid.Columns.GridColumn colsign;
     }
 }

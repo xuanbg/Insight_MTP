@@ -58,6 +58,7 @@
     <Compile Include="Entity\Scene.cs" />
     <Compile Include="Entity\TempConfig.cs" />
     <Compile Include="Entity\Schedule.cs" />
+    <Compile Include="Entity\MessageTemp.cs" />
     <Compile Include="Entity\Tenant.cs" />
     <Compile Include="Entity\TenantApp.cs" />
     <Compile Include="Entity\TenantUser.cs" />

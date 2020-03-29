@@ -74,6 +74,40 @@ namespace Insight.MTP.Client.Setting.Scenes
                 mdiModel.tab.removeItems();
             }
         }
-        
+
+        /// <summary>
+        /// 新建场景配置
+        /// </summary>
+        public void addConfig()
+        {
+            var config = new TempConfig{sceneId = mdiModel.item.id};
+            var temps = dataModel.getTemplates();
+            var apps = dataModel.getApps();
+            var model = new ConfigModel(config, temps, apps, "新增场景配置");
+            model.callbackEvent += (sender, args) =>
+            {
+                config.id = dataModel.bindTemps(config);
+                if (config.id == null) return;
+
+                mdiModel.addConfig(config);
+                model.closeDialog();
+            };
+
+            model.showDialog();
+        }
+
+        /// <summary>
+        /// 删除场景配置
+        /// </summary>
+        public void removeConfig()
+        {
+            var msg = $"您确定要删除【{mdiModel.item.name}】配置的模板{mdiModel.config.template}吗？";
+            if (!Messages.showConfirm(msg)) return;
+
+            if (dataModel.unbindTemp(mdiModel.config))
+            {
+                mdiModel.removeConfig();
+            }
+        }
     }
 }

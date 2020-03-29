@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Insight.MTP.Client.Common.Entity;
 using Insight.Utils.Client;
 using Insight.Utils.Common;
@@ -100,39 +99,70 @@ namespace Insight.MTP.Client.Setting.Scenes
 
             return client.delete(url, Scene.id, msg);
         }
-        
+
+        /// <summary>
+        /// 获取模板集合
+        /// </summary>
+        /// <returns>应用集合</returns>
+        public List<MessageTemp> getTemplates()
+        {
+            var url = $"{service}/v1.0/templates";
+            var dict = new Dictionary<string, object>
+            {
+                {"page", 1},
+                {"size", 999}
+            };
+            var client = new HttpClient<List<MessageTemp>>();
+
+            return client.getData(url, dict);
+        }
+
+        /// <summary>
+        /// 获取应用集合
+        /// </summary>
+        /// <returns>应用集合</returns>
+        public List<LookUpMember> getApps()
+        {
+            var url = $"{appService}/v1.0/apps";
+            var dict = new Dictionary<string, object>
+            {
+                {"page", 1},
+                {"size", 999}
+            };
+            var client = new HttpClient<List<LookUpMember>>();
+
+            return client.getData(url, dict);
+        }
+
         /// <summary>
         /// 绑定模板
         /// </summary>
-        /// <param name="id">场景ID</param>
-        /// <param name="Temps">场景模板实体对象集合</param>
+        /// <param name="config">场景模板实体对象</param>
         /// <returns>是否成功</returns>
-        public bool bindTemps(string id, List<TempConfig> Temps)
+        public string bindTemps(TempConfig config)
         {
-            if (!Temps.Any()) return false;
+            if (config == null) return null;
 
-            var url = $"{service}/v1.0/scenes/{id}/configs";
-            var data = Temps.Select(i => i.id).ToList();
-            var client = new HttpClient<object>();
+            var url = $"{service}/v1.0/scenes/configs";
+            var client = new HttpClient<string>();
 
-            return client.post(url, data);
+            return client.commit(url, config, RequestMethod.POST);
         }
 
         /// <summary>
         /// 解绑模板
         /// </summary>
-        /// <param name="Temp">场景模板实体对象</param>
+        /// <param name="config">场景模板实体对象</param>
         /// <returns>是否成功</returns>
-        public bool unbindTemp(TempConfig Temp)
+        public bool unbindTemp(TempConfig config)
         {
-            if (Temp == null) return false;
+            if (config == null) return false;
 
-            var msg = $"对不起，模板【{Temp.template}】解除绑定失败！";
-            var url = $"{service}/v1.0/scenes/{Temp.sceneId}/configs";
-            var data = new List<string> {Temp.id};
+            var msg = $"对不起，模板【{config.template}】解除绑定失败！";
+            var url = $"{service}/v1.0/scenes/configs";
             var client = new HttpClient<object>();
 
-            return client.delete(url,data, msg);
+            return client.delete(url, config.id, msg);
         }
     }
 }

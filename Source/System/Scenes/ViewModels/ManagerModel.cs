@@ -91,7 +91,26 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
 
             refreshToolBar();
         }
-        
+
+        /// <summary>
+        /// 添加场景配置
+        /// </summary>
+        /// <param name="data"></param>
+        public void addConfig(TempConfig data)
+        {
+            item.configs.Add(data);
+            view.ppcTemplate.addItems();
+        }
+
+        /// <summary>
+        /// 移除场景配置
+        /// </summary>
+        public void removeConfig()
+        {
+            item.configs.Remove(config);
+            view.ppcTemplate.removeItems();
+        }
+
         /// <summary>
         /// 刷新工具条按钮状态
         /// </summary>
@@ -101,8 +120,8 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
             {
                 ["editItem"] = item != null,
                 ["deleteItem"] = item != null,
-                ["bind"] = item != null,
-                ["unbind"] = item != null && config != null,
+                ["addConfig"] = item != null,
+                ["removeConfig"] = item != null && config != null,
             };
             switchItemStatus(dict);
         }

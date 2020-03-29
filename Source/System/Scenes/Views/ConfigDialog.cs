@@ -2,12 +2,9 @@
 
 namespace Insight.MTP.Client.Setting.Scenes.Views
 {
-    public partial class BindDialog : BaseDialog
+    public partial class ConfigDialog : BaseDialog
     {
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public BindDialog()
+        public ConfigDialog()
         {
             InitializeComponent();
         }
