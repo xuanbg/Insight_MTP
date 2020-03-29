@@ -147,7 +147,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
                 ["disable"] = item != null && !item.invalid && item.status == 1,
                 ["enable"] = item != null && item.invalid,
                 ["bind"] = item != null && item.status == 1,
-                ["unbind"] = item != null && app != null,
+                ["unbind"] = item != null && app != null && app.id != "9dd99dd9e6df467a8207d05ea5581125",
                 ["rent"] = item != null && app != null
             };
             switchItemStatus(dict);
