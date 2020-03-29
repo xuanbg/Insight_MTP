@@ -1,4 +1,5 @@
-﻿using Insight.MTP.Client.Common.Entity;
+﻿using System.Linq;
+using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Setting.Scenes.ViewModels;
 using Insight.MTP.Client.Setting.Scenes.Views;
 using Insight.Utils.BaseControllers;
@@ -81,7 +82,7 @@ namespace Insight.MTP.Client.Setting.Scenes
         public void addConfig()
         {
             var config = new TempConfig{sceneId = mdiModel.item.id};
-            var temps = dataModel.getTemplates();
+            var temps = dataModel.getTemplates().Where(i => !i.invalid).ToList();
             var apps = dataModel.getApps();
             var model = new ConfigModel(config, temps, apps, "新增场景配置");
             model.callbackEvent += (sender, args) =>

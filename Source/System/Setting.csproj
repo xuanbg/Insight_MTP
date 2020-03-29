@@ -203,7 +203,6 @@
     <EmbeddedResource Include="Interfaces\Views\Manager.resx">
       <DependentUpon>Manager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Roles\Views\MemberDialog.resx">
       <DependentUpon>MemberDialog.cs</DependentUpon>
     </EmbeddedResource>

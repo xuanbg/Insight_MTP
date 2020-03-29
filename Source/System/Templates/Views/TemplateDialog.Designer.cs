@@ -150,6 +150,7 @@
             // 
             // memRemark
             // 
+            this.memRemark.ImeMode = System.Windows.Forms.ImeMode.On;
             this.memRemark.Location = new System.Drawing.Point(60, 208);
             this.memRemark.Name = "memRemark";
             this.memRemark.Size = new System.Drawing.Size(490, 50);
@@ -189,6 +190,11 @@
             // 
             // spiExpire
             // 
+            this.spiExpire.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.spiExpire.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.spiExpire.Location = new System.Drawing.Point(460, 23);
             this.spiExpire.Name = "spiExpire";
@@ -214,6 +220,7 @@
             // 
             // memContent
             // 
+            this.memContent.ImeMode = System.Windows.Forms.ImeMode.On;
             this.memContent.Location = new System.Drawing.Point(60, 83);
             this.memContent.Name = "memContent";
             this.memContent.Size = new System.Drawing.Size(490, 115);

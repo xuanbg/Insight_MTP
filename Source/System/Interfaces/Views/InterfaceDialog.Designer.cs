@@ -317,6 +317,7 @@
             // 
             // memRemark
             // 
+            this.memRemark.ImeMode = System.Windows.Forms.ImeMode.On;
             this.memRemark.Location = new System.Drawing.Point(80, 83);
             this.memRemark.Name = "memRemark";
             this.memRemark.Size = new System.Drawing.Size(470, 50);
