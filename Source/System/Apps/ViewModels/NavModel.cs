@@ -2,7 +2,6 @@
 using Insight.MTP.Client.Setting.Apps.Views;
 using Insight.Utils.BaseViewModels;
 using Insight.Utils.Common;
-using Insight.Utils.Entity;
 
 namespace Insight.MTP.Client.Setting.Apps.ViewModels
 {

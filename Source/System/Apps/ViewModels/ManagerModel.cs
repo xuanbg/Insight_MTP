@@ -148,7 +148,7 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
             {
                 ["editApp"] = item != null,
                 ["deleteApp"] = item != null,
-                ["newNav"] = item?.autoTenant != null,
+                ["newNav"] = item?.permitLife > 0,
                 ["editNav"] = nav != null,
                 ["deleteNav"] = nav != null,
                 ["newFunc"] = nav != null && nav.type == 2,

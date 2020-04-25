@@ -25,6 +25,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         {
             item = data;
             dm = dataModel;
+            if (item.companyInfo == null) item.companyInfo = new CompanyInfo();
 
             view.txtName.EditValue = item.name;
             view.txtAlias.EditValue = item.alias;

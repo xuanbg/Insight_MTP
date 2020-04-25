@@ -53,11 +53,6 @@ namespace Insight.MTP.Client.Common.Entity
         /// 是否自动刷新Token
         /// </summary>
         public bool autoRefresh { get; set; }
-
-        /// <summary>
-        /// 是否自动加载租户
-        /// </summary>
-        public bool? autoTenant { get; set; }
         
         /// <summary>
         /// 导航集合
