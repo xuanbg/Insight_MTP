@@ -2,7 +2,7 @@
 using System.Linq;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Setting.Scenes.Views;
-using Insight.Utils.BaseViewModels;
+using Insight.Base.BaseForm.ViewModels;
 
 namespace Insight.MTP.Client.Setting.Scenes.ViewModels
 {

@@ -3,7 +3,7 @@ using System.Linq;
 using DevExpress.XtraTreeList.Nodes;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Setting.Apps.Views;
-using Insight.Utils.BaseViewModels;
+using Insight.Base.BaseForm.ViewModels;
 
 namespace Insight.MTP.Client.Setting.Apps.ViewModels
 {

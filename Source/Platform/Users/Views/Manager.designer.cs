@@ -37,7 +37,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.imgData = new DevExpress.Utils.ImageCollection();
             this.imgPermission = new DevExpress.Utils.ImageCollection();
             this.panUser = new DevExpress.XtraEditors.PanelControl();
-            this.ppcUser = new Insight.Utils.Controls.PageControl();
+            this.ppcUser = new Insight.Base.BaseForm.Controls.PageControl();
             this.grdUser = new DevExpress.XtraGrid.GridControl();
             this.gdvUser = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -392,7 +392,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
         private SplitContainerControl spcMain;
         public GridControl grdUser;
         public GridView gdvUser;
-        public Utils.Controls.PageControl ppcUser;
+        public Insight.Base.BaseForm.Controls.PageControl ppcUser;
         public SimpleButton Search;
         public ButtonEdit KeyInput;
         private PanelControl panAction;

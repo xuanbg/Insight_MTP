@@ -62,7 +62,7 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             this.panSearch = new DevExpress.XtraEditors.PanelControl();
             this.Search = new DevExpress.XtraEditors.SimpleButton();
             this.KeyInput = new DevExpress.XtraEditors.ButtonEdit();
-            this.pccInterface = new Insight.Utils.Controls.PageControl();
+            this.pccInterface = new Insight.Base.BaseForm.Controls.PageControl();
             this.panMain = new DevExpress.XtraEditors.PanelControl();
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
@@ -355,7 +355,7 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
         private PanelControl panSearch;
         internal SimpleButton Search;
         internal ButtonEdit KeyInput;
-        public Utils.Controls.PageControl pccInterface;
+        public Insight.Base.BaseForm.Controls.PageControl pccInterface;
         private PanelControl panMain;
         public GridControl grdInterface;
         public GridView gdvInterface;

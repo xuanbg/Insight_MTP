@@ -51,7 +51,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.colstatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repStatus = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colisInvalid = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ppcTenant = new Insight.Utils.Controls.PageControl();
+            this.ppcTenant = new Insight.Base.BaseForm.Controls.PageControl();
             this.panSpace = new DevExpress.XtraEditors.PanelControl();
             this.panSearch = new DevExpress.XtraEditors.PanelControl();
             this.Search = new DevExpress.XtraEditors.SimpleButton();
@@ -76,7 +76,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.colemail = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colremark1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colisInvalid1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ppcUser = new Insight.Utils.Controls.PageControl();
+            this.ppcUser = new Insight.Base.BaseForm.Controls.PageControl();
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMain)).BeginInit();
@@ -594,7 +594,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
         private DevExpress.XtraGrid.Columns.GridColumn colremark1;
         private DevExpress.XtraGrid.Columns.GridColumn colisInvalid1;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repStatus;
-        public Utils.Controls.PageControl ppcUser;
-        public Utils.Controls.PageControl ppcTenant;
+        public Insight.Base.BaseForm.Controls.PageControl ppcUser;
+        public Insight.Base.BaseForm.Controls.PageControl ppcTenant;
     }
 }

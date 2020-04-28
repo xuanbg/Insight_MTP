@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Insight.Utils.BaseForms;
-using Insight.Utils.Controls;
-using Insight.Utils.Entity;
+using Insight.Base.BaseForm.Controls;
+using Insight.Base.BaseForm.Entities;
+using Insight.Base.BaseForm.Forms;
 
 namespace Insight.MTP.Client.Setting.Templates.Views
 {

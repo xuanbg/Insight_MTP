@@ -1,4 +1,4 @@
-﻿using Insight.Utils.Entity;
+﻿using Insight.Base.BaseForm.Entities;
 
 namespace Insight.MTP.Client.Common.Entity
 {

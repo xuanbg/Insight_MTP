@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Setting.Templates.Views;
-using Insight.Utils.BaseViewModels;
+using Insight.Base.BaseForm.ViewModels;
 
 namespace Insight.MTP.Client.Setting.Templates.ViewModels
 {

@@ -48,7 +48,7 @@ namespace Insight.MTP.Client.Setting.Scenes.Views
             this.colcode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colname = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colremark = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ppcScene = new Insight.Utils.Controls.PageControl();
+            this.ppcScene = new Insight.Base.BaseForm.Controls.PageControl();
             this.panSpace = new DevExpress.XtraEditors.PanelControl();
             this.panSearch = new DevExpress.XtraEditors.PanelControl();
             this.Search = new DevExpress.XtraEditors.SimpleButton();
@@ -65,7 +65,7 @@ namespace Insight.MTP.Client.Setting.Scenes.Views
             this.colpartnerCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colpartner = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colsign = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ppcTemplate = new Insight.Utils.Controls.PageControl();
+            this.ppcTemplate = new Insight.Base.BaseForm.Controls.PageControl();
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMain)).BeginInit();
@@ -422,8 +422,8 @@ namespace Insight.MTP.Client.Setting.Scenes.Views
         private PanelControl panSearch;
         internal SimpleButton Search;
         internal ButtonEdit KeyInput;
-        public Utils.Controls.PageControl ppcTemplate;
-        public Utils.Controls.PageControl ppcScene;
+        public Insight.Base.BaseForm.Controls.PageControl ppcTemplate;
+        public Insight.Base.BaseForm.Controls.PageControl ppcScene;
         public GridControl grdScene;
         public GridView gdvScene;
         public GridControl grdTemplate;

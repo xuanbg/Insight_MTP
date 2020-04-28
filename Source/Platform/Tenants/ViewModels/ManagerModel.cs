@@ -2,7 +2,7 @@
 using System.Linq;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Tenants.Views;
-using Insight.Utils.BaseViewModels;
+using Insight.Base.BaseForm.ViewModels;
 
 namespace Insight.MTP.Client.Platform.Tenants.ViewModels
 {

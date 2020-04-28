@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Insight.Base.BaseForm.Entities;
 using Insight.MTP.Client.Common.Entity;
-using Insight.Utils.Client;
+using Insight.Base.BaseForm.Utils;
 using Insight.Utils.Common;
 using Insight.Utils.Entity;
 

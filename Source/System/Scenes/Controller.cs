@@ -2,9 +2,9 @@
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Setting.Scenes.ViewModels;
 using Insight.MTP.Client.Setting.Scenes.Views;
-using Insight.Utils.BaseControllers;
+using Insight.Base.BaseForm.Controllers;
+using Insight.Base.BaseForm.Entities;
 using Insight.Utils.Common;
-using Insight.Utils.Entity;
 
 namespace Insight.MTP.Client.Setting.Scenes
 {

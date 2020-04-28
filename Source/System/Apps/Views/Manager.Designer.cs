@@ -56,7 +56,7 @@ namespace Insight.MTP.Client.Setting.Apps.Views
             this.colsigninOne = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colautoRefresh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colautoTenant = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.pccApp = new Insight.Utils.Controls.PageControl();
+            this.pccApp = new Insight.Base.BaseForm.Controls.PageControl();
             this.splMember = new DevExpress.XtraEditors.SplitContainerControl();
             this.grpMember = new DevExpress.XtraEditors.GroupControl();
             this.TreNav = new DevExpress.XtraTreeList.TreeList();
@@ -565,7 +565,7 @@ namespace Insight.MTP.Client.Setting.Apps.Views
         private DevExpress.XtraGrid.Columns.GridColumn colsigninOne;
         private DevExpress.XtraGrid.Columns.GridColumn colautoRefresh;
         private DevExpress.XtraGrid.Columns.GridColumn colautoTenant;
-        public Utils.Controls.PageControl pccApp;
+        public Insight.Base.BaseForm.Controls.PageControl pccApp;
         private PanelControl panSpace;
         private PanelControl panSearch;
         internal SimpleButton Search;

@@ -2,9 +2,9 @@
 using System.Linq;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Setting.Roles.Views;
-using Insight.Utils.BaseViewModels;
+using Insight.Base.BaseForm.ViewModels;
 using Insight.Utils.Common;
-using Insight.Utils.Controls;
+using Insight.Base.BaseForm.Controls;
 
 namespace Insight.MTP.Client.Setting.Roles.ViewModels
 {

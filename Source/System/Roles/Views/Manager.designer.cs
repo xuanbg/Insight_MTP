@@ -51,7 +51,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.colApp = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ppcRole = new Insight.Utils.Controls.PageControl();
+            this.ppcRole = new Insight.Base.BaseForm.Controls.PageControl();
             this.splMember = new DevExpress.XtraEditors.SplitContainerControl();
             this.grpMember = new DevExpress.XtraEditors.GroupControl();
             this.treMember = new DevExpress.XtraTreeList.TreeList();
@@ -65,7 +65,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.colLoginName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colValidity = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ppcUser = new Insight.Utils.Controls.PageControl();
+            this.ppcUser = new Insight.Base.BaseForm.Controls.PageControl();
             this.imgPermission = new DevExpress.Utils.ImageCollection(this.components);
             this.spcMain = new DevExpress.XtraEditors.SplitContainerControl();
             this.panPermit = new DevExpress.XtraEditors.PanelControl();
@@ -596,13 +596,13 @@ namespace Insight.MTP.Client.Setting.Roles.Views
         private DevExpress.XtraTreeList.Columns.TreeListColumn colNameA;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colPermitA;
         public GridControl grdRole;
-        public Utils.Controls.PageControl ppcRole;
+        public Insight.Base.BaseForm.Controls.PageControl ppcRole;
         public TreeList treMember;
         public GridControl grdUser;
         public GridView gdvUser;
         public GridView gdvRole;
         public TreeList treAction;
-        public Utils.Controls.PageControl ppcUser;
+        public Insight.Base.BaseForm.Controls.PageControl ppcUser;
         private PanelControl panRole;
         private PanelControl panSearch;
         public SimpleButton Search;

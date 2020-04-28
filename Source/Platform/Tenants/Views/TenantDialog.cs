@@ -1,4 +1,4 @@
-﻿using Insight.Utils.BaseForms;
+﻿using Insight.Base.BaseForm.Forms;
 
 namespace Insight.MTP.Client.Platform.Tenants.Views
 {

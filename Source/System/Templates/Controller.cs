@@ -1,9 +1,9 @@
 ﻿using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Setting.Templates.ViewModels;
 using Insight.MTP.Client.Setting.Templates.Views;
-using Insight.Utils.BaseControllers;
+using Insight.Base.BaseForm.Controllers;
+using Insight.Base.BaseForm.Entities;
 using Insight.Utils.Common;
-using Insight.Utils.Entity;
 
 namespace Insight.MTP.Client.Setting.Templates
 {

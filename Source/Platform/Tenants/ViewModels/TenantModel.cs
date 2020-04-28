@@ -2,9 +2,10 @@
 using System.Linq;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Tenants.Views;
-using Insight.Utils.BaseViewModels;
+using Insight.Base.BaseForm.ViewModels;
 using Insight.Utils.Common;
-using Insight.Utils.Controls;
+using Insight.Base.BaseForm.Controls;
+using Insight.Base.BaseForm.Entities;
 using Insight.Utils.Entity;
 
 namespace Insight.MTP.Client.Platform.Tenants.ViewModels
