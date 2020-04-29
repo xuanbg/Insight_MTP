@@ -1,9 +1,9 @@
 ﻿using Insight.Base.BaseForm.Controllers;
 using Insight.Base.BaseForm.Entities;
+using Insight.Base.BaseForm.Utils;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Schedules.ViewModels;
 using Insight.MTP.Client.Platform.Schedules.Views;
-using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.Platform.Schedules
 {

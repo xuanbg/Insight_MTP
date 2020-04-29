@@ -4,7 +4,7 @@ using Insight.MTP.Client.Setting.Scenes.ViewModels;
 using Insight.MTP.Client.Setting.Scenes.Views;
 using Insight.Base.BaseForm.Controllers;
 using Insight.Base.BaseForm.Entities;
-using Insight.Utils.Common;
+using Insight.Base.BaseForm.Utils;
 
 namespace Insight.MTP.Client.Setting.Scenes
 {

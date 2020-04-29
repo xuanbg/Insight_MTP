@@ -5,7 +5,7 @@ using Insight.MTP.Client.Setting.Roles.ViewModels;
 using Insight.MTP.Client.Setting.Roles.Views;
 using Insight.Base.BaseForm.Controllers;
 using Insight.Base.BaseForm.Entities;
-using Insight.Utils.Common;
+using Insight.Base.BaseForm.Utils;
 
 namespace Insight.MTP.Client.Setting.Roles
 {
