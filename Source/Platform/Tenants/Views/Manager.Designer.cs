@@ -146,6 +146,8 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             // 
             // splMain
             // 
+            this.splMain.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.splMain.Appearance.Options.UseBackColor = true;
             this.splMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splMain.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.None;
             this.splMain.Horizontal = false;
@@ -272,17 +274,20 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             // ppcTenant
             // 
             this.ppcTenant.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcTenant.focusedRowHandle = 0;
+            this.ppcTenant.focusedRowHandle = -1;
             this.ppcTenant.Location = new System.Drawing.Point(2, 232);
             this.ppcTenant.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcTenant.MinimumSize = new System.Drawing.Size(300, 22);
             this.ppcTenant.Name = "ppcTenant";
+            this.ppcTenant.page = 1;
             this.ppcTenant.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcTenant.pageSizeItems")));
             this.ppcTenant.Size = new System.Drawing.Size(1066, 22);
             this.ppcTenant.TabIndex = 0;
             // 
             // panSpace
             // 
+            this.panSpace.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.panSpace.Appearance.Options.UseBackColor = true;
             this.panSpace.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panSpace.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSpace.Location = new System.Drawing.Point(0, 39);
@@ -511,11 +516,12 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             // ppcUser
             // 
             this.ppcUser.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcUser.focusedRowHandle = 0;
+            this.ppcUser.focusedRowHandle = -1;
             this.ppcUser.Location = new System.Drawing.Point(2, 261);
             this.ppcUser.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcUser.MinimumSize = new System.Drawing.Size(320, 22);
             this.ppcUser.Name = "ppcUser";
+            this.ppcUser.page = 1;
             this.ppcUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcUser.pageSizeItems")));
             this.ppcUser.Size = new System.Drawing.Size(661, 22);
             this.ppcUser.TabIndex = 0;

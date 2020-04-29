@@ -224,6 +224,8 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             // 
             // panSpace
             // 
+            this.panSpace.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.panSpace.Appearance.Options.UseBackColor = true;
             this.panSpace.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panSpace.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSpace.Location = new System.Drawing.Point(5, 44);
@@ -271,11 +273,12 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             // pccSchedule
             // 
             this.pccSchedule.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pccSchedule.focusedRowHandle = 0;
+            this.pccSchedule.focusedRowHandle = -1;
             this.pccSchedule.Location = new System.Drawing.Point(2, 522);
             this.pccSchedule.MaximumSize = new System.Drawing.Size(0, 22);
             this.pccSchedule.MinimumSize = new System.Drawing.Size(320, 22);
             this.pccSchedule.Name = "pccSchedule";
+            this.pccSchedule.page = 1;
             this.pccSchedule.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("pccSchedule.pageSizeItems")));
             this.pccSchedule.Size = new System.Drawing.Size(1066, 22);
             this.pccSchedule.TabIndex = 0;

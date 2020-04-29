@@ -36,7 +36,6 @@ namespace Insight.MTP.Client.Setting.Roles.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -56,7 +55,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.grpMember = new DevExpress.XtraEditors.GroupControl();
             this.treMember = new DevExpress.XtraTreeList.TreeList();
             this.colMember = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.imgMember = new DevExpress.Utils.ImageCollection(this.components);
+            this.imgMember = new DevExpress.Utils.ImageCollection();
             this.grpUser = new DevExpress.XtraEditors.GroupControl();
             this.grdUser = new DevExpress.XtraGrid.GridControl();
             this.gdvUser = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -66,7 +65,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.colDescription1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colValidity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ppcUser = new Insight.Base.BaseForm.Controls.PageControl();
-            this.imgPermission = new DevExpress.Utils.ImageCollection(this.components);
+            this.imgPermission = new DevExpress.Utils.ImageCollection();
             this.spcMain = new DevExpress.XtraEditors.SplitContainerControl();
             this.panPermit = new DevExpress.XtraEditors.PanelControl();
             this.treAction = new DevExpress.XtraTreeList.TreeList();
@@ -251,6 +250,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.ppcRole.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcRole.MinimumSize = new System.Drawing.Size(300, 22);
             this.ppcRole.Name = "ppcRole";
+            this.ppcRole.page = 1;
             this.ppcRole.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcRole.pageSizeItems")));
             this.ppcRole.Size = new System.Drawing.Size(761, 22);
             this.ppcRole.TabIndex = 0;
@@ -395,6 +395,7 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.ppcUser.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcUser.MinimumSize = new System.Drawing.Size(320, 22);
             this.ppcUser.Name = "ppcUser";
+            this.ppcUser.page = 1;
             this.ppcUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcUser.pageSizeItems")));
             this.ppcUser.Size = new System.Drawing.Size(531, 22);
             this.ppcUser.TabIndex = 0;
@@ -414,6 +415,8 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             // 
             // spcMain
             // 
+            this.spcMain.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.spcMain.Appearance.Options.UseBackColor = true;
             this.spcMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spcMain.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
             this.spcMain.Location = new System.Drawing.Point(5, 49);
@@ -522,6 +525,8 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             // 
             // panSpace
             // 
+            this.panSpace.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.panSpace.Appearance.Options.UseBackColor = true;
             this.panSpace.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panSpace.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSpace.Location = new System.Drawing.Point(5, 44);

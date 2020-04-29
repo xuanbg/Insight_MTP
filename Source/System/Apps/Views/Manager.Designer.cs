@@ -36,7 +36,6 @@ namespace Insight.MTP.Client.Setting.Apps.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -62,7 +61,7 @@ namespace Insight.MTP.Client.Setting.Apps.Views
             this.TreNav = new DevExpress.XtraTreeList.TreeList();
             this.colNavType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colNavName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.imgNav = new DevExpress.Utils.ImageCollection(this.components);
+            this.imgNav = new DevExpress.Utils.ImageCollection();
             this.grpUser = new DevExpress.XtraEditors.GroupControl();
             this.grdFunc = new DevExpress.XtraGrid.GridControl();
             this.gdvFunc = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -80,6 +79,7 @@ namespace Insight.MTP.Client.Setting.Apps.Views
             this.panSearch = new DevExpress.XtraEditors.PanelControl();
             this.Search = new DevExpress.XtraEditors.SimpleButton();
             this.KeyInput = new DevExpress.XtraEditors.ButtonEdit();
+            this.pceApp = new DevExpress.XtraEditors.PanelControl();
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splMain)).BeginInit();
@@ -101,6 +101,8 @@ namespace Insight.MTP.Client.Setting.Apps.Views
             ((System.ComponentModel.ISupportInitialize)(this.panSearch)).BeginInit();
             this.panSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KeyInput.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pceApp)).BeginInit();
+            this.pceApp.SuspendLayout();
             this.SuspendLayout();
             // 
             // xtraScrollable
@@ -149,13 +151,14 @@ namespace Insight.MTP.Client.Setting.Apps.Views
             // 
             // splMain
             // 
+            this.splMain.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.splMain.Appearance.Options.UseBackColor = true;
             this.splMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splMain.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.None;
             this.splMain.Horizontal = false;
             this.splMain.Location = new System.Drawing.Point(5, 49);
             this.splMain.Name = "splMain";
-            this.splMain.Panel1.Controls.Add(this.grdApp);
-            this.splMain.Panel1.Controls.Add(this.pccApp);
+            this.splMain.Panel1.Controls.Add(this.pceApp);
             this.splMain.Panel1.MinSize = 200;
             this.splMain.Panel2.Controls.Add(this.splMember);
             this.splMain.Panel2.MinSize = 200;
@@ -167,16 +170,17 @@ namespace Insight.MTP.Client.Setting.Apps.Views
             // grdApp
             // 
             this.grdApp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdApp.Location = new System.Drawing.Point(0, 0);
+            this.grdApp.Location = new System.Drawing.Point(2, 2);
             this.grdApp.MainView = this.gdvApp;
             this.grdApp.Name = "grdApp";
-            this.grdApp.Size = new System.Drawing.Size(1070, 256);
+            this.grdApp.Size = new System.Drawing.Size(1066, 274);
             this.grdApp.TabIndex = 0;
             this.grdApp.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvApp});
             // 
             // gdvApp
             // 
+            this.gdvApp.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.gdvApp.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colid,
             this.colindex,
@@ -280,13 +284,14 @@ namespace Insight.MTP.Client.Setting.Apps.Views
             // pccApp
             // 
             this.pccApp.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pccApp.focusedRowHandle = 0;
-            this.pccApp.Location = new System.Drawing.Point(0, 256);
+            this.pccApp.focusedRowHandle = -1;
+            this.pccApp.Location = new System.Drawing.Point(2, 254);
             this.pccApp.MaximumSize = new System.Drawing.Size(0, 22);
             this.pccApp.MinimumSize = new System.Drawing.Size(320, 22);
             this.pccApp.Name = "pccApp";
+            this.pccApp.page = 1;
             this.pccApp.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("pccApp.pageSizeItems")));
-            this.pccApp.Size = new System.Drawing.Size(1070, 22);
+            this.pccApp.Size = new System.Drawing.Size(1066, 22);
             this.pccApp.TabIndex = 0;
             // 
             // splMember
@@ -461,6 +466,8 @@ namespace Insight.MTP.Client.Setting.Apps.Views
             // 
             // panSpace
             // 
+            this.panSpace.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.panSpace.Appearance.Options.UseBackColor = true;
             this.panSpace.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panSpace.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSpace.Location = new System.Drawing.Point(5, 44);
@@ -505,6 +512,16 @@ namespace Insight.MTP.Client.Setting.Apps.Views
             this.KeyInput.Size = new System.Drawing.Size(976, 21);
             this.KeyInput.TabIndex = 1;
             // 
+            // pceApp
+            // 
+            this.pceApp.Controls.Add(this.pccApp);
+            this.pceApp.Controls.Add(this.grdApp);
+            this.pceApp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pceApp.Location = new System.Drawing.Point(0, 0);
+            this.pceApp.Name = "pceApp";
+            this.pceApp.Size = new System.Drawing.Size(1070, 278);
+            this.pceApp.TabIndex = 0;
+            // 
             // Manager
             // 
             this.Appearance.Options.UseFont = true;
@@ -531,6 +548,8 @@ namespace Insight.MTP.Client.Setting.Apps.Views
             ((System.ComponentModel.ISupportInitialize)(this.panSearch)).EndInit();
             this.panSearch.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.KeyInput.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pceApp)).EndInit();
+            this.pceApp.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -579,5 +598,6 @@ namespace Insight.MTP.Client.Setting.Apps.Views
         private DevExpress.XtraGrid.Columns.GridColumn colFunIconUrl;
         private DevExpress.XtraGrid.Columns.GridColumn colBeginGroup;
         private DevExpress.XtraGrid.Columns.GridColumn colFunHideText;
+        private PanelControl pceApp;
     }
 }

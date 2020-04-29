@@ -33,11 +33,11 @@ namespace Insight.MTP.Client.Platform.Users.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
-            this.imgData = new DevExpress.Utils.ImageCollection();
-            this.imgPermission = new DevExpress.Utils.ImageCollection();
+            this.imgData = new DevExpress.Utils.ImageCollection(this.components);
+            this.imgPermission = new DevExpress.Utils.ImageCollection(this.components);
             this.panUser = new DevExpress.XtraEditors.PanelControl();
-            this.ppcUser = new Insight.Base.BaseForm.Controls.PageControl();
             this.grdUser = new DevExpress.XtraGrid.GridControl();
             this.gdvUser = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -48,6 +48,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.colEmail = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colValidity = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ppcUser = new Insight.Base.BaseForm.Controls.PageControl();
             this.panSpace = new DevExpress.XtraEditors.PanelControl();
             this.panSearch = new DevExpress.XtraEditors.PanelControl();
             this.Search = new DevExpress.XtraEditors.SimpleButton();
@@ -131,18 +132,6 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.panUser.Name = "panUser";
             this.panUser.Size = new System.Drawing.Size(765, 546);
             this.panUser.TabIndex = 0;
-            // 
-            // ppcUser
-            // 
-            this.ppcUser.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcUser.focusedRowHandle = 0;
-            this.ppcUser.Location = new System.Drawing.Point(2, 522);
-            this.ppcUser.MaximumSize = new System.Drawing.Size(0, 22);
-            this.ppcUser.MinimumSize = new System.Drawing.Size(320, 22);
-            this.ppcUser.Name = "ppcUser";
-            this.ppcUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcUser.pageSizeItems")));
-            this.ppcUser.Size = new System.Drawing.Size(761, 22);
-            this.ppcUser.TabIndex = 0;
             // 
             // grdUser
             // 
@@ -237,8 +226,23 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.colValidity.VisibleIndex = 5;
             this.colValidity.Width = 40;
             // 
+            // ppcUser
+            // 
+            this.ppcUser.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ppcUser.focusedRowHandle = -1;
+            this.ppcUser.Location = new System.Drawing.Point(2, 522);
+            this.ppcUser.MaximumSize = new System.Drawing.Size(0, 22);
+            this.ppcUser.MinimumSize = new System.Drawing.Size(320, 22);
+            this.ppcUser.Name = "ppcUser";
+            this.ppcUser.page = 1;
+            this.ppcUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcUser.pageSizeItems")));
+            this.ppcUser.Size = new System.Drawing.Size(761, 22);
+            this.ppcUser.TabIndex = 0;
+            // 
             // panSpace
             // 
+            this.panSpace.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.panSpace.Appearance.Options.UseBackColor = true;
             this.panSpace.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panSpace.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSpace.Location = new System.Drawing.Point(5, 44);
@@ -285,6 +289,8 @@ namespace Insight.MTP.Client.Platform.Users.Views
             // 
             // spcMain
             // 
+            this.spcMain.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.spcMain.Appearance.Options.UseBackColor = true;
             this.spcMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spcMain.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
             this.spcMain.Location = new System.Drawing.Point(5, 49);

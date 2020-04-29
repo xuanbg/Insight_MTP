@@ -35,7 +35,6 @@ namespace Insight.MTP.Client.Setting.Templates.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -54,7 +53,7 @@ namespace Insight.MTP.Client.Setting.Templates.Views
             this.colexpire = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colremark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colinvalid = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.imgNav = new DevExpress.Utils.ImageCollection(this.components);
+            this.imgNav = new DevExpress.Utils.ImageCollection();
             this.panSpace = new DevExpress.XtraEditors.PanelControl();
             this.panSearch = new DevExpress.XtraEditors.PanelControl();
             this.Search = new DevExpress.XtraEditors.SimpleButton();
@@ -243,6 +242,8 @@ namespace Insight.MTP.Client.Setting.Templates.Views
             // 
             // panSpace
             // 
+            this.panSpace.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.panSpace.Appearance.Options.UseBackColor = true;
             this.panSpace.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panSpace.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSpace.Location = new System.Drawing.Point(5, 44);

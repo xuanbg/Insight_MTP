@@ -35,7 +35,6 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -57,7 +56,7 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             this.colisVerify = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colisLimit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colisLogResult = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.imgNav = new DevExpress.Utils.ImageCollection(this.components);
+            this.imgNav = new DevExpress.Utils.ImageCollection();
             this.panSpace = new DevExpress.XtraEditors.PanelControl();
             this.panSearch = new DevExpress.XtraEditors.PanelControl();
             this.Search = new DevExpress.XtraEditors.SimpleButton();
@@ -258,6 +257,8 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             // 
             // panSpace
             // 
+            this.panSpace.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.panSpace.Appearance.Options.UseBackColor = true;
             this.panSpace.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panSpace.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSpace.Location = new System.Drawing.Point(5, 44);
@@ -310,6 +311,7 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             this.pccInterface.MaximumSize = new System.Drawing.Size(0, 22);
             this.pccInterface.MinimumSize = new System.Drawing.Size(320, 22);
             this.pccInterface.Name = "pccInterface";
+            this.pccInterface.page = 1;
             this.pccInterface.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("pccInterface.pageSizeItems")));
             this.pccInterface.Size = new System.Drawing.Size(1066, 22);
             this.pccInterface.TabIndex = 0;

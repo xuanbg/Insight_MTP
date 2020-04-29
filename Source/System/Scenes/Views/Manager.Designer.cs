@@ -34,7 +34,6 @@ namespace Insight.MTP.Client.Setting.Scenes.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -128,6 +127,8 @@ namespace Insight.MTP.Client.Setting.Scenes.Views
             // 
             // splMain
             // 
+            this.splMain.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.splMain.Appearance.Options.UseBackColor = true;
             this.splMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splMain.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.None;
             this.splMain.Horizontal = false;
@@ -224,6 +225,8 @@ namespace Insight.MTP.Client.Setting.Scenes.Views
             // 
             // panSpace
             // 
+            this.panSpace.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.panSpace.Appearance.Options.UseBackColor = true;
             this.panSpace.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panSpace.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSpace.Location = new System.Drawing.Point(0, 39);
