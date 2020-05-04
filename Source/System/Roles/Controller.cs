@@ -95,6 +95,7 @@ namespace Insight.MTP.Client.Setting.Roles
 
                 mdiModel.refreshTree();
                 mdiModel.getMemberUsers();
+                mdiModel.refreshUser();
 
                 model.closeDialog();
             };
@@ -110,14 +111,14 @@ namespace Insight.MTP.Client.Setting.Roles
             var msg = $"您确定要移除角色成员{mdiModel.member.name}吗？";
             if (!Messages.showConfirm(msg)) return;
 
-            if (dataModel.removeMember(mdiModel.item.id, mdiModel.member))
-            {
-                mdiModel.item.members.Remove(mdiModel.member);
-                if (mdiModel.item.members.All(i => i.type != 1)) mdiModel.item.members.RemoveAll(i => i.id == "1");
+            if (!dataModel.removeMember(mdiModel.item.id, mdiModel.member)) return;
 
-                mdiModel.refreshTree();
-                mdiModel.getMemberUsers();
-            }
+            mdiModel.item.members.Remove(mdiModel.member);
+            if (mdiModel.item.members.All(i => i.type != 1)) mdiModel.item.members.RemoveAll(i => i.id == "1");
+
+            mdiModel.refreshTree();
+            mdiModel.getMemberUsers();
+            mdiModel.refreshUser();
         }
 
         /// <summary>

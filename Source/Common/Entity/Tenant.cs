@@ -50,6 +50,11 @@ namespace Insight.MTP.Client.Common.Entity
         public List<TenantApp> apps { get; set; } = new List<TenantApp>();
 
         /// <summary>
+        /// 用户总数
+        /// </summary>
+        public int userTotal { get; set; }
+
+        /// <summary>
         /// 创建时间
         /// </summary>
         public List<TenantUser> users { get; set; } = new List<TenantUser>();

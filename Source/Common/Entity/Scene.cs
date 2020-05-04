@@ -25,6 +25,11 @@ namespace Insight.MTP.Client.Common.Entity
         public string remark { get; set; }
 
         /// <summary>
+        /// 配置总数
+        /// </summary>
+        public int configTotal { get; set; }
+
+        /// <summary>
         /// 模板配置集合
         /// </summary>
         public List<TempConfig> configs { get; set; } = new List<TempConfig>();

@@ -53,14 +53,21 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
             if (index < 0 || index >= list.Count)
             {
                 item = null;
-            }
-            else
-            {
-                item = list[index];
-                if (!item.configs.Any()) getConfigs();
+                view.ppcTemplate.totalRows = 0;
+                view.grdTemplate.DataSource = null;
+                view.gdvTemplate.FocusedRowHandle = -1;
+                refreshToolBar();
+
+                return;
             }
 
-            view.grdTemplate.DataSource = item?.configs;
+            item = list[index];
+            if (!item.configs.Any()) getConfigs();
+
+            view.ppcTemplate.totalRows = item.configTotal;
+            view.grdTemplate.DataSource = item.configs;
+            view.gdvTemplate.FocusedRowHandle = 0;
+
             refreshToolBar();
         }
 
@@ -85,11 +92,7 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
             if (!result.success) return;
 
             item.configs = result.data;
-            view.ppcTemplate.totalRows = result.total;
-            view.grdTemplate.DataSource = item.configs;
-            view.gdvTemplate.FocusedRowHandle = handle;
-
-            refreshToolBar();
+            item.configTotal = result.total;
         }
 
         /// <summary>

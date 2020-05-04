@@ -48,6 +48,11 @@ namespace Insight.MTP.Client.Common.Entity
         public List<Member> members { get; set; } = new List<Member>();
 
         /// <summary>
+        /// 角色成员总数
+        /// </summary>
+        public int userTotal { get; set; }
+
+        /// <summary>
         /// 角色成员用户
         /// </summary>
         public List<User> users { get; set; } = new List<User>();

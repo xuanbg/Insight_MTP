@@ -67,33 +67,18 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             if (index < 0 || index >= list.Count)
             {
                 item = null;
+                view.treMember.DataSource = null;
+                view.treAction.DataSource = null;
                 view.grdUser.DataSource = null;
+                view.ppcUser.totalRows = 0;
+                view.ppcUser.focusedRowHandle = -0;
+                refreshToolBar();
+
+                return;
             }
-            else
-            {
-                item = list[index];
-                getDetail();
-            }
 
-            view.treMember.DataSource = item?.members;
-            view.treAction.CollapseAll();
-            view.treMember.FocusedNode = view.treMember.GetNodeList().FirstOrDefault(i => i.Level == 0);
-            view.treMember.ExpandAll();
-
-            view.treAction.DataSource = item?.funcs;
-            view.treAction.CollapseAll();
-            view.treAction.FocusedNode = view.treAction.GetNodeList().FirstOrDefault(i => i.Level == 0);
-            view.treAction.ExpandToLevel(1);
-
-            refreshToolBar();
-        }
-
-        /// <summary>
-        /// 获取角色明细数据
-        /// </summary>
-        private void getDetail()
-        {
             // 读取角色成员
+            item = list[index];
             if (!item.members.Any())
             {
                 var members = dataModel.getRoleMember(item.id);
@@ -107,16 +92,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             }
 
             // 读取角色成员用户
-            if (!item.users.Any())
-            {
-                getMemberUsers();
-            }
-            else
-            {
-                view.ppcUser.totalRows = item.users.Count;
-                view.grdUser.DataSource = item.users;
-                view.gdvUser.FocusedRowHandle = 0;
-            }
+            if (!item.users.Any()) getMemberUsers();
 
             // 读取角色权限
             if (!item.funcs.Any())
@@ -124,8 +100,24 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
                 var funcs = dataModel.getRoleFuncs(item.id);
                 if (funcs != null) item.funcs.AddRange(funcs);
             }
-        }
 
+            view.treMember.DataSource = item.members;
+            view.treMember.CollapseAll();
+            view.treMember.FocusedNode = view.treMember.GetNodeList().FirstOrDefault(i => i.Level == 0);
+            view.treMember.ExpandAll();
+
+            view.treAction.DataSource = item.funcs;
+            view.treAction.CollapseAll();
+            view.treAction.FocusedNode = view.treAction.GetNodeList().FirstOrDefault(i => i.Level == 0);
+            view.treAction.ExpandToLevel(1);
+
+            view.ppcUser.totalRows = item.userTotal;
+            view.grdUser.DataSource = item.users;
+            view.gdvUser.FocusedRowHandle = 0;
+
+            refreshToolBar();
+        }
+        
         /// <summary>
         /// 成员节点改变
         /// </summary>
@@ -148,16 +140,13 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         /// <summary>
         /// 获取角色成员用户集合
         /// </summary>
-        /// <param name="handle"></param>
-        public void getMemberUsers(int handle = 0)
+        public void getMemberUsers()
         {
             var result = dataModel.getMemberUsers(item.id, view.ppcUser.page, view.ppcUser.size);
             if (!result.success) return;
 
             item.users = result.data;
-            view.ppcUser.totalRows = result.total;
-            view.grdUser.DataSource = item.users;
-            view.gdvUser.FocusedRowHandle = handle;
+            item.userTotal = result.total;
         }
 
         /// <summary>
@@ -170,6 +159,14 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
 
             var id = node.GetValue("id").ToString();
             func = item.funcs.SingleOrDefault(i => i.id == id);
+        }
+
+        /// <summary>
+        /// 刷新用户列表
+        /// </summary>
+        public void refreshUser()
+        {
+            view.gdvUser.RefreshData();
         }
 
         /// <summary>
