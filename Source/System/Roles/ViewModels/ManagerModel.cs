@@ -111,10 +111,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             view.treAction.FocusedNode = view.treAction.GetNodeList().FirstOrDefault(i => i.Level == 0);
             view.treAction.ExpandToLevel(1);
 
-            view.ppcUser.totalRows = item.userTotal;
-            view.grdUser.DataSource = item.users;
-            view.gdvUser.FocusedRowHandle = 0;
-
+            refreshUser();
             refreshToolBar();
         }
         
@@ -166,7 +163,9 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         /// </summary>
         public void refreshUser()
         {
-            view.gdvUser.RefreshData();
+            view.ppcUser.totalRows = item.userTotal;
+            view.grdUser.DataSource = item.users;
+            view.gdvUser.FocusedRowHandle = 0;
         }
 
         /// <summary>
