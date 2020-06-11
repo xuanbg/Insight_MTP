@@ -185,6 +185,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         public void refreshAction()
         {
             view.treAction.RefreshDataSource();
+            view.treAction.FocusedNode = view.treAction.GetNodeAt(5,5);
         }
 
         /// <summary>

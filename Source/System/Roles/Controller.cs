@@ -6,6 +6,7 @@ using Insight.MTP.Client.Setting.Roles.Views;
 using Insight.Base.BaseForm.Controllers;
 using Insight.Base.BaseForm.Entities;
 using Insight.Base.BaseForm.Utils;
+using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.Setting.Roles
 {
@@ -128,15 +129,16 @@ namespace Insight.MTP.Client.Setting.Roles
         {
             if (mdiModel.func == null) return;
 
+            var func = Util.clone(mdiModel.func);
             var permit = mdiModel.func.permit;
-            if (permit == null) permit = true;
-            else if ((bool) permit) permit = false;
-            else permit = null;
+            if (permit == null) func.permit = true;
+            else if ((bool) permit) func.permit = false;
+            else func.permit = null;
 
-            if (dataModel.setFuncPermit(mdiModel.item.id, mdiModel.func.id, permit))
+            if (dataModel.setFuncPermit(mdiModel.item.id, func))
             {
-                mdiModel.func.permit = permit;
-                mdiModel.func.type = 3 + (permit == null ? 2 : Convert.ToInt32(permit));
+                mdiModel.func.permit = func.permit;
+                mdiModel.func.type = 3 + (func.permit == null ? 2 : Convert.ToInt32(func.permit));
 
                 mdiModel.refreshAction();
             }

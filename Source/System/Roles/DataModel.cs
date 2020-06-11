@@ -189,19 +189,17 @@ namespace Insight.MTP.Client.Setting.Roles
         /// 设置角色功能权限
         /// </summary>
         /// <param name="id">角色ID</param>
-        /// <param name="funcId">功能ID</param>
-        /// <param name="permit">授权状态</param>
+        /// <param name="permit">授权实体</param>
         /// <returns>是否成功</returns>
-        public bool setFuncPermit(string id, string funcId, bool? permit)
+        public bool setFuncPermit(string id, AppTree permit)
         {
-            if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(funcId)) return false;
+            if (string.IsNullOrEmpty(id)) return false;
 
             var msg = "对不起，设置功能权限失败！";
             var url = $"{service}/v1.0/roles/{id}/funcs";
-            var data = new Dictionary<string, object> {{"id", funcId}, {"permit", permit}};
             var client = new HttpClient<object>();
 
-            return client.put(url, data, msg);
+            return client.put(url, permit, msg);
         }
     }
 }

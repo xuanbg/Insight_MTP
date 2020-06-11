@@ -11,7 +11,7 @@ namespace Insight.MTP.Client.Platform.Tenants
     public class DataModel
     {
         private const string service = "/base/tenant";
-        private const string commonService = "/common/basedata/area";
+        private const string commonService = "/common/area";
 
         /// <summary>
         /// 获取租户集合
