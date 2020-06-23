@@ -146,6 +146,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Schedules\Views\Manager.resx">
       <DependentUpon>Manager.cs</DependentUpon>
     </EmbeddedResource>

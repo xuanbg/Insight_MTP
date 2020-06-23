@@ -8,7 +8,7 @@ namespace Insight.MTP.Client.Setting.Interfaces
 {
     public class DataModel
     {
-        private const string service = "/base/auth";
+        private const string service = "/common/config";
 
         /// <summary>
         /// 获取计划任务集合
