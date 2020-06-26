@@ -42,7 +42,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         public void loadData(int page = 1, int handle = 0)
         {
             showWaitForm();
-            var result = dataModel.getRoles(keyWord, page, tab.size);
+            var result = dataModel.getRoles(keyword, page, tab.size);
             closeWaitForm();
             if (!result.success) return;
 

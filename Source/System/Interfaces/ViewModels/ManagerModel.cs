@@ -24,7 +24,7 @@ namespace Insight.MTP.Client.Setting.Interfaces.ViewModels
         public void loadData(int page = 1, int handle = 0)
         {
             showWaitForm();
-            var result = dataModel.getInterfaces(keyWord, page, tab.size);
+            var result = dataModel.getInterfaces(keyword, page, tab.size);
             closeWaitForm();
             if (!result.success) return;
 

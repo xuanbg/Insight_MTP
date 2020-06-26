@@ -31,7 +31,7 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
         public void loadData(int page = 1, int handle = 0)
         {
             showWaitForm();
-            var result = dataModel.getApps(keyWord, page, tab.size);
+            var result = dataModel.getApps(keyword, page, tab.size);
             closeWaitForm();
             if (!result.success) return;
 

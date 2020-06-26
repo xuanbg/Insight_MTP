@@ -26,7 +26,7 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
         public void loadData(int page = 1, int handle = 0)
         {
             showWaitForm();
-            var result = dataModel.getUsers(keyWord, page, tab.size);
+            var result = dataModel.getUsers(keyword, page, tab.size);
             closeWaitForm();
             if (!result.success) return;
 

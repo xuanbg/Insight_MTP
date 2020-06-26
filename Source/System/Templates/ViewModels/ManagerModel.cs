@@ -24,7 +24,7 @@ namespace Insight.MTP.Client.Setting.Templates.ViewModels
         public void loadData(int page = 1, int handle = 0)
         {
             showWaitForm();
-            var result = dataModel.getTemplates(keyWord, page, tab.size);
+            var result = dataModel.getTemplates(keyword, page, tab.size);
             closeWaitForm();
             if (!result.success) return;
 

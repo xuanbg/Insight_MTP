@@ -29,7 +29,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         public void loadData(int page = 1, int handle = 0)
         {
             showWaitForm();
-            var result = dataModel.getTenants(keyWord, page, tab.size);
+            var result = dataModel.getTenants(keyword, page, tab.size);
             closeWaitForm();
             if (!result.success) return;
 

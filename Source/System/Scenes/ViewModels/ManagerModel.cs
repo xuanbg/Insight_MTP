@@ -28,7 +28,7 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
         public void loadData(int page = 1, int handle = 0)
         {
             showWaitForm();
-            var result = dataModel.getScenes(keyWord, page, tab.size);
+            var result = dataModel.getScenes(keyword, page, tab.size);
             closeWaitForm();
             if (!result.success) return;
 

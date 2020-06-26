@@ -24,7 +24,7 @@ namespace Insight.MTP.Client.Platform.Schedules.ViewModels
         public void loadData(int page = 1, int handle = 0)
         {
             showWaitForm();
-            var result = dataModel.getSchedules(keyWord, page, tab.size);
+            var result = dataModel.getSchedules(keyword, page, tab.size);
             closeWaitForm();
             if (!result.success) return;
 
