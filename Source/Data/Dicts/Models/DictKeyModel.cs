@@ -21,11 +21,7 @@ namespace Insight.MTP.Client.Data.Dicts.Models
             view.spiIndex.EditValueChanged += (sender, args) => item.index = (int) view.spiIndex.Value;
             view.txtCode.EditValueChanged += (sender, args) => item.code = view.txtCode.Text.Trim();
             view.txtValue.EditValueChanged += (sender, args) => item.value = view.txtValue.Text.Trim();
-            view.mmeExtend.EditValueChanged += (sender, args) =>
-            {
-                var text = view.mmeExtend.EditValue?.ToString().Trim();
-                item.extend = string.IsNullOrEmpty(text) ? null : text;
-            };
+            view.mmeExtend.EditValueChanged += (sender, args) => item.extend = view.mmeExtend.EditValue;
             view.mmeRemark.EditValueChanged += (sender, args) =>
             {
                 var text = view.mmeRemark.EditValue?.ToString().Trim();

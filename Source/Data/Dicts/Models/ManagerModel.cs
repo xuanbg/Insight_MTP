@@ -52,6 +52,7 @@ namespace Insight.MTP.Client.Data.Dicts.Models
             if (index < 0 || index >= list.Count)
             {
                 item = null;
+                key = null;
                 view.grdKey.DataSource = null;
                 view.gdvKey.FocusedRowHandle = -1;
                 refreshToolBar();
@@ -79,6 +80,15 @@ namespace Insight.MTP.Client.Data.Dicts.Models
         {
             key = index < 0 || index >= item.keys.Count ? null : item.keys[index];
 
+            refreshToolBar();
+        }
+
+        /// <summary>
+        /// 刷新列表数据
+        /// </summary>
+        public void refreshGrid()
+        {
+            view.gdvDict.RefreshData();
             refreshToolBar();
         }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Insight.Base.BaseForm.Entities;
 using Insight.Base.BaseForm.Utils;
 using Insight.MTP.Client.Common.Entity;
 using Insight.Utils.Common;
@@ -49,7 +50,7 @@ namespace Insight.MTP.Client.Data.Dicts
         /// 获取应用集合
         /// </summary>
         /// <returns>应用集合</returns>
-        public Result<List<App>> getApps()
+        public List<LookUpMember> getApps()
         {
             const string url = "/base/resource/v1.0/apps";
             var dict = new Dictionary<string, object>
@@ -57,9 +58,57 @@ namespace Insight.MTP.Client.Data.Dicts
                 {"page", 1},
                 {"size", 999}
             };
-            var client = new HttpClient<List<App>>();
+            var client = new HttpClient<List<LookUpMember>>();
 
-            return client.getResult(url, dict);
+            return client.getData(url, dict);
+        }
+
+        /// <summary>
+        /// 新增字典
+        /// </summary>
+        /// <param name="dto">字典DTO</param>
+        /// <returns>字典ID</returns>
+        public string addDict(DictDto dto)
+        {
+            if (dto == null) return null;
+
+            var msg = $"新增字典【{dto.name}】数据失败！";
+            var url = $"{service}/v1.0/dicts";
+            var client = new HttpClient<string>();
+
+            return client.commit(url, dto, msg, RequestMethod.POST);
+        }
+
+        /// <summary>
+        /// 编辑字典
+        /// </summary>
+        /// <param name="dto">字典DTO</param>
+        /// <returns>是否更新成功</returns>
+        public bool editDict(DictDto dto)
+        {
+            if (dto == null) return false;
+
+            var msg = $"更新字典【{dto.name}】数据失败！";
+            var url = $"{service}/v1.0/dicts";
+            var client = new HttpClient<object>();
+
+            return client.put(url, dto, msg);
+        }
+
+        /// <summary>
+        /// 删除字典
+        /// </summary>
+        /// <param name="dto">字典DTO</param>
+        /// <returns>是否删除成功</returns>
+        public bool deleteDict(DictDto dto)
+        {
+            if (dto == null) return false;
+
+            var msg = $"对不起，无法删除字典键值【{dto.name}】数据！";
+            var url = $"{service}/v1.0/dicts";
+            var client = new HttpClient<object>();
+
+            return client.delete(url, dto.id, msg);
         }
 
         /// <summary>

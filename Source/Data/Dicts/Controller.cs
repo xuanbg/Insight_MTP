@@ -28,15 +28,16 @@ namespace Insight.MTP.Client.Data.Dicts
         /// </summary>
         public void newItem()
         {
-            var key = new DictKeyDto { dictId = mdiModel.item.id };
-            var model = new DictKeyModel(key, "新增字典");
+            var dict = new DictDto();
+            var apps = dataModel.getApps();
+            var model = new DictModel(dict, apps, "新增字典");
             model.callbackEvent += (sender, args) =>
             {
-                key.id = dataModel.addDictKey(model.item);
-                if (key.id == null) return;
+                dict.id = dataModel.addDict(model.item);
+                if (dict.id == null) return;
 
-                mdiModel.item.keys.Add(key);
-                mdiModel.refreshKeyGrid();
+                mdiModel.list.Add(dict);
+                mdiModel.tab.addItems();
 
                 model.closeDialog();
             };
@@ -49,12 +50,13 @@ namespace Insight.MTP.Client.Data.Dicts
         /// </summary>
         public void editItem()
         {
-            var model = new DictKeyModel(mdiModel.key, "编辑字典");
+            var apps = dataModel.getApps();
+            var model = new DictModel(mdiModel.item, apps, "编辑字典");
             model.callbackEvent += (sender, args) =>
             {
-                if (!dataModel.editDictKey(model.item)) return;
+                if (!dataModel.editDict(model.item)) return;
 
-                mdiModel.refreshKeyGrid();
+                mdiModel.refreshGrid();
                 model.closeDialog();
             };
 
@@ -66,12 +68,13 @@ namespace Insight.MTP.Client.Data.Dicts
         /// </summary>
         public void deleteItem()
         {
-            var msg = $"您确定要删除字典{mdiModel.key.value}吗？\r\n数据删除后无法恢复！";
+            var msg = $"您确定要删除字典{mdiModel.item.name}吗？\r\n数据删除后无法恢复！";
             if (!Messages.showConfirm(msg)) return;
 
-            if (dataModel.deleteDictKey(mdiModel.key))
+            if (dataModel.deleteDict(mdiModel.item))
             {
-                mdiModel.item.keys.Remove(mdiModel.key);
+                mdiModel.list.Remove(mdiModel.item);
+                mdiModel.tab.removeItems();
             }
         }
 
@@ -87,6 +90,7 @@ namespace Insight.MTP.Client.Data.Dicts
                 key.id = dataModel.addDictKey(model.item);
                 if (key.id == null) return;
 
+                key.tenantId = Setting.tenantId;
                 mdiModel.item.keys.Add(key);
                 mdiModel.refreshKeyGrid();
 
@@ -124,6 +128,7 @@ namespace Insight.MTP.Client.Data.Dicts
             if (dataModel.deleteDictKey(mdiModel.key))
             {
                 mdiModel.item.keys.Remove(mdiModel.key);
+                mdiModel.refreshKeyGrid();
             }
         }
     }
