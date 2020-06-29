@@ -114,24 +114,24 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.labCode.Name = "labCode";
             this.labCode.Size = new System.Drawing.Size(80, 21);
             this.labCode.TabIndex = 0;
-            this.labCode.Text = "编码：";
+            this.labCode.Text = "键名：";
             // 
-            // txtValue
+            // txtName
             // 
             this.txtName.EnterMoveNextControl = true;
             this.txtName.Location = new System.Drawing.Point(240, 50);
-            this.txtName.Name = "txtValue";
+            this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(110, 20);
             this.txtName.TabIndex = 3;
             // 
-            // labValue
+            // labName
             // 
             this.labName.Appearance.Options.UseTextOptions = true;
             this.labName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labName.Location = new System.Drawing.Point(180, 50);
-            this.labName.Name = "labValue";
+            this.labName.Name = "labName";
             this.labName.Size = new System.Drawing.Size(60, 21);
             this.labName.TabIndex = 0;
             this.labName.Text = "名称：";
