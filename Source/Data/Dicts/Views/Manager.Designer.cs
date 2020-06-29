@@ -155,16 +155,16 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.colappName.Name = "colappName";
             this.colappName.Visible = true;
             this.colappName.VisibleIndex = 0;
-            this.colappName.Width = 240;
+            this.colappName.Width = 200;
             // 
             // colcode
             // 
-            this.colcode.Caption = "编码";
+            this.colcode.Caption = "键名";
             this.colcode.FieldName = "code";
             this.colcode.Name = "colcode";
             this.colcode.Visible = true;
             this.colcode.VisibleIndex = 1;
-            this.colcode.Width = 100;
+            this.colcode.Width = 140;
             // 
             // colname
             // 
@@ -249,7 +249,7 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             // 
             // colcode1
             // 
-            this.colcode1.Caption = "代码";
+            this.colcode1.Caption = "编码";
             this.colcode1.FieldName = "code";
             this.colcode1.Name = "colcode1";
             this.colcode1.Visible = true;
