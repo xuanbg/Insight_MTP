@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Insight.Base.BaseForm.Entities;
 using Insight.Base.BaseForm.ViewModels;
-using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Data.Dicts.Views;
 
 namespace Insight.MTP.Client.Data.Dicts.Models
