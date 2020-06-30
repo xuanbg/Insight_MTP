@@ -2,7 +2,6 @@
 using Insight.Base.BaseForm.Entities;
 using Insight.Base.BaseForm.Utils;
 using Insight.Base.BaseForm.ViewModels;
-using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Data.Dicts.Views;
 
 namespace Insight.MTP.Client.Data.Dicts.Models
@@ -20,7 +19,11 @@ namespace Insight.MTP.Client.Data.Dicts.Models
         public DictModel(DictDto data, List<LookUpMember> apps, string title) : base(title)
         {
             item = data;
-            Format.initLookUpEdit(view.lueApp, apps);
+
+            view.lueApp.EditValue = item.appId;
+            view.txtCode.EditValue = item.code;
+            view.txtName.EditValue = item.name;
+            view.mmeRemark.EditValue = item.remark;
 
             view.lueApp.EditValueChanged += (sender, args) =>
             {
@@ -35,10 +38,7 @@ namespace Insight.MTP.Client.Data.Dicts.Models
                 item.remark = string.IsNullOrEmpty(text) ? null : text;
             };
 
-            view.lueApp.EditValue = item.appId;
-            view.txtCode.EditValue = item.code;
-            view.txtName.EditValue = item.name;
-            view.mmeRemark.EditValue = item.remark;
+            Format.initLookUpEdit(view.lueApp, apps);
         }
 
         /// <summary>

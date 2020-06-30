@@ -156,7 +156,7 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.labCode.Name = "labCode";
             this.labCode.Size = new System.Drawing.Size(60, 21);
             this.labCode.TabIndex = 0;
-            this.labCode.Text = "代码：";
+            this.labCode.Text = "编码：";
             // 
             // txtValue
             // 
