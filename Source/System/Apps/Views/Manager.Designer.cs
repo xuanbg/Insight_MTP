@@ -289,7 +289,6 @@ namespace Insight.MTP.Client.Setting.Apps.Views
             this.pccApp.MaximumSize = new System.Drawing.Size(0, 22);
             this.pccApp.MinimumSize = new System.Drawing.Size(320, 22);
             this.pccApp.Name = "pccApp";
-            this.pccApp.page = 1;
             this.pccApp.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("pccApp.pageSizeItems")));
             this.pccApp.Size = new System.Drawing.Size(1066, 22);
             this.pccApp.TabIndex = 0;

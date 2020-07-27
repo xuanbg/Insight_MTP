@@ -311,7 +311,6 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             this.pccInterface.MaximumSize = new System.Drawing.Size(0, 22);
             this.pccInterface.MinimumSize = new System.Drawing.Size(320, 22);
             this.pccInterface.Name = "pccInterface";
-            this.pccInterface.page = 1;
             this.pccInterface.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("pccInterface.pageSizeItems")));
             this.pccInterface.Size = new System.Drawing.Size(1066, 22);
             this.pccInterface.TabIndex = 0;

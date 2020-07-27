@@ -234,7 +234,6 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.ppcUser.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcUser.MinimumSize = new System.Drawing.Size(320, 22);
             this.ppcUser.Name = "ppcUser";
-            this.ppcUser.page = 1;
             this.ppcUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcUser.pageSizeItems")));
             this.ppcUser.Size = new System.Drawing.Size(761, 22);
             this.ppcUser.TabIndex = 0;

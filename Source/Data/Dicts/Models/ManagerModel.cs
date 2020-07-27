@@ -37,7 +37,6 @@ namespace Insight.MTP.Client.Data.Dicts.Models
 
             list.AddRange(result.data);
             tab.totalRows = result.total;
-            tab.page = page;
             view.gdvDict.FocusedRowHandle = handle;
 
             refreshToolBar();

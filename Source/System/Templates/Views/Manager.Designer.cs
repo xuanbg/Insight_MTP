@@ -296,7 +296,6 @@ namespace Insight.MTP.Client.Setting.Templates.Views
             this.pccTemplate.MaximumSize = new System.Drawing.Size(0, 22);
             this.pccTemplate.MinimumSize = new System.Drawing.Size(320, 22);
             this.pccTemplate.Name = "pccTemplate";
-            this.pccTemplate.page = 1;
             this.pccTemplate.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("pccTemplate.pageSizeItems")));
             this.pccTemplate.Size = new System.Drawing.Size(1066, 22);
             this.pccTemplate.TabIndex = 0;

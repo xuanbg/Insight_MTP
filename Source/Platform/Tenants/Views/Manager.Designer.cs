@@ -279,7 +279,6 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.ppcTenant.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcTenant.MinimumSize = new System.Drawing.Size(300, 22);
             this.ppcTenant.Name = "ppcTenant";
-            this.ppcTenant.page = 1;
             this.ppcTenant.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcTenant.pageSizeItems")));
             this.ppcTenant.Size = new System.Drawing.Size(1066, 22);
             this.ppcTenant.TabIndex = 0;
@@ -521,7 +520,6 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.ppcUser.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcUser.MinimumSize = new System.Drawing.Size(320, 22);
             this.ppcUser.Name = "ppcUser";
-            this.ppcUser.page = 1;
             this.ppcUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcUser.pageSizeItems")));
             this.ppcUser.Size = new System.Drawing.Size(661, 22);
             this.ppcUser.TabIndex = 0;

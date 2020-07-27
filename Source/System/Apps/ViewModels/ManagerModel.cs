@@ -40,7 +40,6 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
 
             list.AddRange(result.data);
             tab.totalRows = result.total;
-            tab.page = page;
             view.gdvApp.FocusedRowHandle = handle;
 
             refreshToolBar();

@@ -188,7 +188,6 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.upcDict.MaximumSize = new System.Drawing.Size(0, 22);
             this.upcDict.MinimumSize = new System.Drawing.Size(320, 22);
             this.upcDict.Name = "upcDict";
-            this.upcDict.page = 1;
             this.upcDict.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("upcDict.pageSizeItems")));
             this.upcDict.Size = new System.Drawing.Size(498, 22);
             this.upcDict.TabIndex = 0;

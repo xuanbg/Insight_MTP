@@ -218,7 +218,6 @@ namespace Insight.MTP.Client.Setting.Scenes.Views
             this.ppcScene.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcScene.MinimumSize = new System.Drawing.Size(300, 22);
             this.ppcScene.Name = "ppcScene";
-            this.ppcScene.page = 1;
             this.ppcScene.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcScene.pageSizeItems")));
             this.ppcScene.Size = new System.Drawing.Size(1066, 22);
             this.ppcScene.TabIndex = 0;
@@ -382,7 +381,6 @@ namespace Insight.MTP.Client.Setting.Scenes.Views
             this.ppcTemplate.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcTemplate.MinimumSize = new System.Drawing.Size(320, 22);
             this.ppcTemplate.Name = "ppcTemplate";
-            this.ppcTemplate.page = 1;
             this.ppcTemplate.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcTemplate.pageSizeItems")));
             this.ppcTemplate.Size = new System.Drawing.Size(1066, 22);
             this.ppcTemplate.TabIndex = 0;

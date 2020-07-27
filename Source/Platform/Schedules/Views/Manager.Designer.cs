@@ -278,7 +278,6 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             this.pccSchedule.MaximumSize = new System.Drawing.Size(0, 22);
             this.pccSchedule.MinimumSize = new System.Drawing.Size(320, 22);
             this.pccSchedule.Name = "pccSchedule";
-            this.pccSchedule.page = 1;
             this.pccSchedule.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("pccSchedule.pageSizeItems")));
             this.pccSchedule.Size = new System.Drawing.Size(1066, 22);
             this.pccSchedule.TabIndex = 0;
