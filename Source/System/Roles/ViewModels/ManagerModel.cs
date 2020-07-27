@@ -20,7 +20,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             initSearch(view.KeyInput, view.Search);
             initMainGrid(view.grdRole, view.gdvRole, view.ppcRole);
             initTree(view.treMember, "memberChanged", "removeMember");
-            initGrid(view.gdvUser, null, null, view.ppcUser, "getMemberUsers");
+            initGrid(view.grdUser, view.gdvUser, null, null, view.ppcUser, "getMemberUsers");
             initTree(view.treAction, "funcChanged");
 
             // 通过权限树点击事件循环设置功能权限状态：->1->0->null
@@ -38,8 +38,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         /// 加载列表数据
         /// </summary>
         /// <param name="page">当前页</param>
-        /// <param name="handle">焦点行号</param>
-        public void loadData(int page = 1, int handle = 0)
+        public void loadData(int page = 1)
         {
             showWaitForm();
             var result = dataModel.getRoles(keyword, page, tab.size);
@@ -51,7 +50,6 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
 
             list.AddRange(result.data);
             tab.totalRows = result.total;
-            view.gdvRole.FocusedRowHandle = handle;
 
             refreshToolBar();
         }
@@ -70,7 +68,6 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
                 view.treAction.DataSource = null;
                 view.grdUser.DataSource = null;
                 view.ppcUser.totalRows = 0;
-                view.ppcUser.focusedRowHandle = -0;
                 refreshToolBar();
 
                 return;

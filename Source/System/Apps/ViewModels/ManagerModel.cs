@@ -20,15 +20,14 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
             initSearch(view.KeyInput, view.Search);
             initMainGrid(view.grdApp, view.gdvApp, view.pccApp, "editApp");
             initTree(view.TreNav, "navChanged", "editNav");
-            initGrid(view.gdvFunc, "funChanged", "editFunc");
+            initGrid(view.grdFunc, view.gdvFunc, "funChanged", "editFunc");
         }
 
         /// <summary>
         /// 加载列表数据
         /// </summary>
         /// <param name="page">当前页</param>
-        /// <param name="handle">焦点行号</param>
-        public void loadData(int page = 1, int handle = 0)
+        public void loadData(int page = 1)
         {
             showWaitForm();
             var result = dataModel.getApps(keyword, page, tab.size);
@@ -40,7 +39,6 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
 
             list.AddRange(result.data);
             tab.totalRows = result.total;
-            view.gdvApp.FocusedRowHandle = handle;
 
             refreshToolBar();
         }

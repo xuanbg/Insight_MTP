@@ -284,7 +284,6 @@ namespace Insight.MTP.Client.Setting.Apps.Views
             // pccApp
             // 
             this.pccApp.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pccApp.focusedRowHandle = -1;
             this.pccApp.Location = new System.Drawing.Point(2, 254);
             this.pccApp.MaximumSize = new System.Drawing.Size(0, 22);
             this.pccApp.MinimumSize = new System.Drawing.Size(320, 22);

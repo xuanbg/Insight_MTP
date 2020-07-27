@@ -291,7 +291,6 @@ namespace Insight.MTP.Client.Setting.Templates.Views
             // pccTemplate
             // 
             this.pccTemplate.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pccTemplate.focusedRowHandle = -1;
             this.pccTemplate.Location = new System.Drawing.Point(2, 522);
             this.pccTemplate.MaximumSize = new System.Drawing.Size(0, 22);
             this.pccTemplate.MinimumSize = new System.Drawing.Size(320, 22);

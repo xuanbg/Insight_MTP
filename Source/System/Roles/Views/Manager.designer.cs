@@ -245,7 +245,6 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             // ppcRole
             // 
             this.ppcRole.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcRole.focusedRowHandle = -1;
             this.ppcRole.Location = new System.Drawing.Point(2, 249);
             this.ppcRole.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcRole.MinimumSize = new System.Drawing.Size(300, 22);
@@ -389,7 +388,6 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             // ppcUser
             // 
             this.ppcUser.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcUser.focusedRowHandle = -1;
             this.ppcUser.Location = new System.Drawing.Point(2, 244);
             this.ppcUser.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcUser.MinimumSize = new System.Drawing.Size(320, 22);

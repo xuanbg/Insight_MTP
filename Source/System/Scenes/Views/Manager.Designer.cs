@@ -213,7 +213,6 @@ namespace Insight.MTP.Client.Setting.Scenes.Views
             // ppcScene
             // 
             this.ppcScene.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcScene.focusedRowHandle = -1;
             this.ppcScene.Location = new System.Drawing.Point(2, 252);
             this.ppcScene.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcScene.MinimumSize = new System.Drawing.Size(300, 22);
@@ -376,7 +375,6 @@ namespace Insight.MTP.Client.Setting.Scenes.Views
             // ppcTemplate
             // 
             this.ppcTemplate.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcTemplate.focusedRowHandle = -1;
             this.ppcTemplate.Location = new System.Drawing.Point(2, 241);
             this.ppcTemplate.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcTemplate.MinimumSize = new System.Drawing.Size(320, 22);

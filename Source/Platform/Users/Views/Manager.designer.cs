@@ -229,7 +229,6 @@ namespace Insight.MTP.Client.Platform.Users.Views
             // ppcUser
             // 
             this.ppcUser.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcUser.focusedRowHandle = -1;
             this.ppcUser.Location = new System.Drawing.Point(2, 522);
             this.ppcUser.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcUser.MinimumSize = new System.Drawing.Size(320, 22);

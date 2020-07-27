@@ -273,7 +273,6 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             // pccSchedule
             // 
             this.pccSchedule.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pccSchedule.focusedRowHandle = -1;
             this.pccSchedule.Location = new System.Drawing.Point(2, 522);
             this.pccSchedule.MaximumSize = new System.Drawing.Size(0, 22);
             this.pccSchedule.MinimumSize = new System.Drawing.Size(320, 22);

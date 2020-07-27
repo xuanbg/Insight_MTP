@@ -17,16 +17,15 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         {
             initSearch(view.KeyInput, view.Search);
             initMainGrid(view.grdTenant, view.gdvTenant, view.ppcTenant);
-            initGrid(view.gdvApp, "appChanged", "rent");
-            initGrid(view.gdvUser, null, null, view.ppcUser, "getTenantUsers");
+            initGrid(view.grdApp, view.gdvApp, "appChanged", "rent");
+            initGrid(view.grdUser, view.gdvUser, null, null, view.ppcUser, "getTenantUsers");
         }
 
         /// <summary>
         /// 加载列表数据
         /// </summary>
         /// <param name="page">当前页</param>
-        /// <param name="handle">焦点行号</param>
-        public void loadData(int page = 1, int handle = 0)
+        public void loadData(int page = 1)
         {
             showWaitForm();
             var result = dataModel.getTenants(keyword, page, tab.size);
@@ -38,7 +37,6 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
 
             list.AddRange(result.data);
             tab.totalRows = result.total;
-            view.gdvTenant.FocusedRowHandle = handle;
 
             refreshToolBar();
         }

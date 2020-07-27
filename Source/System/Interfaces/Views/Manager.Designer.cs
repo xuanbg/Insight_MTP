@@ -306,7 +306,6 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             // pccInterface
             // 
             this.pccInterface.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pccInterface.focusedRowHandle = -1;
             this.pccInterface.Location = new System.Drawing.Point(2, 522);
             this.pccInterface.MaximumSize = new System.Drawing.Size(0, 22);
             this.pccInterface.MinimumSize = new System.Drawing.Size(320, 22);

@@ -17,15 +17,14 @@ namespace Insight.MTP.Client.Data.Dicts.Models
         {
             initSearch(view.KeyInput, view.Search);
             initMainGrid(view.grdDict, view.gdvDict, view.upcDict);
-            initGrid(view.gdvKey, "keyChanged", "editValue");
+            initGrid(view.grdKey, view.gdvKey, "keyChanged", "editValue");
         }
 
         /// <summary>
         /// 加载列表数据
         /// </summary>
         /// <param name="page">当前页</param>
-        /// <param name="handle">焦点行号</param>
-        public void loadData(int page = 1, int handle = 0)
+        public void loadData(int page = 1)
         {
             showWaitForm();
             var result = dataModel.getDicts(keyword, page, tab.size);
@@ -37,7 +36,6 @@ namespace Insight.MTP.Client.Data.Dicts.Models
 
             list.AddRange(result.data);
             tab.totalRows = result.total;
-            view.gdvDict.FocusedRowHandle = handle;
 
             refreshToolBar();
         }

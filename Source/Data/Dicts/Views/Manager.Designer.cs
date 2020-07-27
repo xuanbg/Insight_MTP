@@ -183,7 +183,6 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             // upcDict
             // 
             this.upcDict.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.upcDict.focusedRowHandle = -1;
             this.upcDict.Location = new System.Drawing.Point(2, 520);
             this.upcDict.MaximumSize = new System.Drawing.Size(0, 22);
             this.upcDict.MinimumSize = new System.Drawing.Size(320, 22);
