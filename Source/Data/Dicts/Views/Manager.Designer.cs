@@ -59,7 +59,6 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.Search = new DevExpress.XtraEditors.SimpleButton();
             this.KeyInput = new DevExpress.XtraEditors.ButtonEdit();
             this.xtraScrollable.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sccMain)).BeginInit();
             this.sccMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pceDict)).BeginInit();
@@ -84,13 +83,6 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.xtraScrollable.Location = new System.Drawing.Point(0, 31);
             this.xtraScrollable.Padding = new System.Windows.Forms.Padding(5);
             this.xtraScrollable.Size = new System.Drawing.Size(1080, 598);
-            // 
-            // FolderNode
-            // 
-            this.FolderNode.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("FolderNode.ImageStream")));
-            this.FolderNode.Images.SetKeyName(0, "Item.png");
-            this.FolderNode.Images.SetKeyName(1, "Folder.png");
-            this.FolderNode.Images.SetKeyName(2, "FolderOpen.png");
             // 
             // sccMain
             // 
@@ -332,7 +324,6 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.Name = "Manager";
             this.Text = "字典管理";
             this.xtraScrollable.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sccMain)).EndInit();
             this.sccMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pceDict)).EndInit();

@@ -60,7 +60,6 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.colTypeA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colNameA = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.xtraScrollable.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgPermission)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panUser)).BeginInit();
@@ -86,13 +85,6 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.xtraScrollable.Location = new System.Drawing.Point(0, 31);
             this.xtraScrollable.Padding = new System.Windows.Forms.Padding(5);
             this.xtraScrollable.Size = new System.Drawing.Size(1080, 600);
-            // 
-            // FolderNode
-            // 
-            this.FolderNode.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("FolderNode.ImageStream")));
-            this.FolderNode.Images.SetKeyName(0, "Item.png");
-            this.FolderNode.Images.SetKeyName(1, "Folder.png");
-            this.FolderNode.Images.SetKeyName(2, "FolderOpen.png");
             // 
             // imgData
             // 
@@ -358,7 +350,6 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.ClientSize = new System.Drawing.Size(1080, 631);
             this.Name = "Manager";
             this.xtraScrollable.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgPermission)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panUser)).EndInit();

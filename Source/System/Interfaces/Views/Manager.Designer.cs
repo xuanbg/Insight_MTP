@@ -36,10 +36,6 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.grdInterface = new DevExpress.XtraGrid.GridControl();
             this.gdvInterface = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colid = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -64,7 +60,6 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             this.pccInterface = new Insight.Base.BaseForm.Controls.PageControl();
             this.panMain = new DevExpress.XtraEditors.PanelControl();
             this.xtraScrollable.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdInterface)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvInterface)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgNav)).BeginInit();
@@ -84,41 +79,6 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             this.xtraScrollable.Location = new System.Drawing.Point(0, 31);
             this.xtraScrollable.Padding = new System.Windows.Forms.Padding(5);
             this.xtraScrollable.Size = new System.Drawing.Size(1080, 600);
-            // 
-            // FolderNode
-            // 
-            this.FolderNode.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("FolderNode.ImageStream")));
-            this.FolderNode.Images.SetKeyName(0, "Item.png");
-            this.FolderNode.Images.SetKeyName(1, "Folder.png");
-            this.FolderNode.Images.SetKeyName(2, "FolderOpen.png");
-            // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Manager = null;
-            this.barDockControlTop.Size = new System.Drawing.Size(0, 0);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlBottom.Manager = null;
-            this.barDockControlBottom.Size = new System.Drawing.Size(0, 0);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Manager = null;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 0);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlRight.Manager = null;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 0);
             // 
             // grdInterface
             // 
@@ -330,7 +290,6 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
             this.ClientSize = new System.Drawing.Size(1080, 631);
             this.Name = "Manager";
             this.xtraScrollable.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdInterface)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvInterface)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgNav)).EndInit();
@@ -346,10 +305,6 @@ namespace Insight.MTP.Client.Setting.Interfaces.Views
         }
 
         #endregion
-        private BarDockControl barDockControlTop;
-        private BarDockControl barDockControlBottom;
-        private BarDockControl barDockControlLeft;
-        private BarDockControl barDockControlRight;
         private ImageCollection imgNav;
         private PanelControl panSpace;
         private PanelControl panSearch;

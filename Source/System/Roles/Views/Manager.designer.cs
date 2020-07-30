@@ -37,10 +37,6 @@ namespace Insight.MTP.Client.Setting.Roles.Views
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.splRole = new DevExpress.XtraEditors.SplitContainerControl();
             this.panRole = new DevExpress.XtraEditors.PanelControl();
             this.grdRole = new DevExpress.XtraGrid.GridControl();
@@ -78,7 +74,6 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.KeyInput = new DevExpress.XtraEditors.ButtonEdit();
             this.panSpace = new DevExpress.XtraEditors.PanelControl();
             this.xtraScrollable.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splRole)).BeginInit();
             this.splRole.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panRole)).BeginInit();
@@ -115,41 +110,6 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.xtraScrollable.Location = new System.Drawing.Point(0, 31);
             this.xtraScrollable.Padding = new System.Windows.Forms.Padding(5);
             this.xtraScrollable.Size = new System.Drawing.Size(1080, 600);
-            // 
-            // FolderNode
-            // 
-            this.FolderNode.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("FolderNode.ImageStream")));
-            this.FolderNode.Images.SetKeyName(0, "Item.png");
-            this.FolderNode.Images.SetKeyName(1, "Folder.png");
-            this.FolderNode.Images.SetKeyName(2, "FolderOpen.png");
-            // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Manager = null;
-            this.barDockControlTop.Size = new System.Drawing.Size(0, 0);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlBottom.Manager = null;
-            this.barDockControlBottom.Size = new System.Drawing.Size(0, 0);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Manager = null;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 0);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlRight.Manager = null;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 0);
             // 
             // splRole
             // 
@@ -536,7 +496,6 @@ namespace Insight.MTP.Client.Setting.Roles.Views
             this.ClientSize = new System.Drawing.Size(1080, 631);
             this.Name = "Manager";
             this.xtraScrollable.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.FolderNode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splRole)).EndInit();
             this.splRole.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panRole)).EndInit();
@@ -569,10 +528,6 @@ namespace Insight.MTP.Client.Setting.Roles.Views
         }
 
         #endregion
-        private BarDockControl barDockControlTop;
-        private BarDockControl barDockControlBottom;
-        private BarDockControl barDockControlLeft;
-        private BarDockControl barDockControlRight;
         private GroupControl grpMember;
         private GroupControl grpUser;
         private SplitContainerControl splRole;
