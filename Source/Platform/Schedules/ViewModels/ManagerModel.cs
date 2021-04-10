@@ -59,16 +59,17 @@ namespace Insight.MTP.Client.Platform.Schedules.ViewModels
         /// <summary>
         /// 刷新工具条按钮状态
         /// </summary>
-        private void refreshToolBar()
+        private new void refreshToolBar()
         {
-            var dict = new Dictionary<string, bool>
+            buttonStatus = new Dictionary<string, bool>
             {
                 ["execute"] = item != null && !item.invalid,
                 ["deleteItem"] = item != null && item.invalid,
                 ["disable"] = item != null && !item.invalid,
                 ["enable"] = item != null && item.invalid,
             };
-            switchItemStatus(dict);
+
+            base.refreshToolBar();
         }
     }
 }

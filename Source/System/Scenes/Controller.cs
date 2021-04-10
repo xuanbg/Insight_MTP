@@ -8,7 +8,7 @@ using Insight.Base.BaseForm.Utils;
 
 namespace Insight.MTP.Client.Setting.Scenes
 {
-    public class Controller : MdiController<Scene, Manager, ManagerModel, DataModel>
+    public class Controller : MdiController<Scene, TempConfig, Manager, ManagerModel, DataModel>
     {
         /// <summary>
         /// 构造函数
@@ -82,12 +82,11 @@ namespace Insight.MTP.Client.Setting.Scenes
         public void addConfig()
         {
             var config = new TempConfig{sceneId = mdiModel.item.id};
-            var temps = dataModel.getTemplates().Where(i => !i.invalid).ToList();
             var apps = dataModel.getApps();
-            var model = new ConfigModel(config, temps, apps, "新增场景配置");
+            var model = new ConfigModel(config, apps, "新增场景配置");
             model.callbackEvent += (sender, args) =>
             {
-                config.id = dataModel.bindTemps(config);
+                config.id = dataModel.addScene(mdiModel.item);
                 if (config.id == null) return;
 
                 mdiModel.addConfig(config);
@@ -105,7 +104,7 @@ namespace Insight.MTP.Client.Setting.Scenes
             var msg = $"您确定要删除【{mdiModel.item.name}】配置的模板{mdiModel.config.template}吗？";
             if (!Messages.showConfirm(msg)) return;
 
-            if (dataModel.unbindTemp(mdiModel.config))
+            if (dataModel.deleteScene(mdiModel.item))
             {
                 mdiModel.removeConfig();
             }

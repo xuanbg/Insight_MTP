@@ -8,7 +8,7 @@ using Insight.Base.BaseForm.Utils;
 
 namespace Insight.MTP.Client.Setting.Apps
 {
-    public class Controller : MdiController<App, Manager, ManagerModel, DataModel>
+    public class Controller : MdiController<App, Navigation, Manager, ManagerModel, DataModel>
     {
         /// <summary>
         /// 构造函数

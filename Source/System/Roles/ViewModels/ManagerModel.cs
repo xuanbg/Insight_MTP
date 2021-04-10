@@ -187,16 +187,17 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         /// <summary>
         /// 刷新工具条按钮状态
         /// </summary>
-        private void refreshToolBar()
+        private new void refreshToolBar()
         {
-            var dict = new Dictionary<string, bool>
+            buttonStatus = new Dictionary<string, bool>
             {
                 ["editItem"] = item != null,
                 ["deleteItem"] = item != null,
                 ["addMember"] = item != null && !item.builtin,
                 ["removeMember"] = member != null && member.type > 0
             };
-            switchItemStatus(dict);
+
+            base.refreshToolBar();
         }
     }
 }

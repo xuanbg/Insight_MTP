@@ -61,9 +61,9 @@
   <ItemGroup>
     <Compile Include="Dicts\Controller.cs" />
     <Compile Include="Dicts\DataModel.cs" />
-    <Compile Include="Dicts\Models\DictModel.cs" />
-    <Compile Include="Dicts\Models\ManagerModel.cs" />
-    <Compile Include="Dicts\Models\DictKeyModel.cs" />
+    <Compile Include="Dicts\ViewModels\DictModel.cs" />
+    <Compile Include="Dicts\ViewModels\ManagerModel.cs" />
+    <Compile Include="Dicts\ViewModels\DictKeyModel.cs" />
     <Compile Include="Dicts\Views\DictDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,12 +83,6 @@
       <DependentUpon>DictKeyDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{7c8ac27e-e640-4403-af4d-5b62c6c55826}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Dicts\Views\DictDialog.resx">

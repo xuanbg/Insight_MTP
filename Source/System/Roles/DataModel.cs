@@ -28,9 +28,9 @@ namespace Insight.MTP.Client.Setting.Roles
                 {"page", page},
                 {"size", size}
             };
-            var client = new HttpClient<List<Role>>();
+            var client = new HttpClient<List<Role>>(url);
 
-            return client.getResult(url, dict);
+            return client.getResult(dict);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Insight.MTP.Client.Setting.Roles
         public List<Member> getRoleMember(string id)
         {
             var url = $"{service}/v1.0/roles/{id}/members";
-            var client = new HttpClient<List<Member>>();
+            var client = new HttpClient<List<Member>>(url);
 
             return client.getData(url);
         }
@@ -61,9 +61,9 @@ namespace Insight.MTP.Client.Setting.Roles
                 {"page", page},
                 {"size", size}
             };
-            var client = new HttpClient<List<User>>();
+            var client = new HttpClient<List<User>>(url);
 
-            return client.getResult(url, dict);
+            return client.getResult(dict);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Insight.MTP.Client.Setting.Roles
         public List<AppTree> getRoleFuncs(string id)
         {
             var url = $"{service}/v1.0/roles/{id}/funcs";
-            var client = new HttpClient<List<AppTree>>();
+            var client = new HttpClient<List<AppTree>>(url);
 
             return client.getData(url);
         }
@@ -86,7 +86,7 @@ namespace Insight.MTP.Client.Setting.Roles
         public List<LookUpMember> getRoleApps()
         {
             var url = $"{service}/v1.0/apps";
-            var client = new HttpClient<List<LookUpMember>>();
+            var client = new HttpClient<List<LookUpMember>>(url);
 
             return client.getData(url);
         }
@@ -98,7 +98,7 @@ namespace Insight.MTP.Client.Setting.Roles
         public List<Member> getMemberOfUser(string id)
         {
             var url = $"{service}/v1.0/roles/{id}/users/other";
-            var client = new HttpClient<List<Member>>();
+            var client = new HttpClient<List<Member>>(url);
 
             return client.getData(url);
         }
@@ -112,11 +112,10 @@ namespace Insight.MTP.Client.Setting.Roles
         {
             if (role == null) return null;
 
-            var msg = $"新建角色【{role.name}】失败！";
             var url = $"{service}/v1.0/roles";
-            var client = new HttpClient<string>();
+            var client = new HttpClient<string>(url);
 
-            return client.commit(url, role, msg, RequestMethod.POST);
+            return client.commit(RequestMethod.POST, role);
         }
 
         /// <summary>
@@ -128,11 +127,10 @@ namespace Insight.MTP.Client.Setting.Roles
         {
             if (role == null) return false;
 
-            var msg = $"更新角色【{role.name}】数据失败！";
             var url = $"{service}/v1.0/roles";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, role, msg);
+            return client.put(role);
         }
 
         /// <summary>
@@ -144,11 +142,10 @@ namespace Insight.MTP.Client.Setting.Roles
         {
             if (role == null) return false;
 
-            var msg = $"对不起，无法删除角色【{role.name}】！";
             var url = $"{service}/v1.0/roles";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.delete(url, role.id, msg);
+            return client.delete(role.id);
         }
 
         /// <summary>
@@ -161,11 +158,10 @@ namespace Insight.MTP.Client.Setting.Roles
         {
             if (!members.Any()) return false;
 
-            var msg = "对不起，添加角色成员失败！";
             var url = $"{service}/v1.0/roles/{id}/members";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.post(url, members, msg);
+            return client.post(members);
         }
 
         /// <summary>
@@ -178,11 +174,10 @@ namespace Insight.MTP.Client.Setting.Roles
         {
             if (string.IsNullOrEmpty(id) || member == null) return false;
 
-            var msg = $"对不起，无法移除角色成员【{member.name}】！";
             var url = $"{service}/v1.0/roles/{id}/members";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.delete(url, member, msg);
+            return client.delete(member);
         }
 
         /// <summary>
@@ -195,11 +190,10 @@ namespace Insight.MTP.Client.Setting.Roles
         {
             if (string.IsNullOrEmpty(id)) return false;
 
-            var msg = "对不起，设置功能权限失败！";
             var url = $"{service}/v1.0/roles/{id}/funcs";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, permit, msg);
+            return client.put(permit);
         }
     }
 }

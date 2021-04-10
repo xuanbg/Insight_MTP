@@ -139,9 +139,9 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
         /// <summary>
         /// 刷新工具条按钮状态
         /// </summary>
-        private void refreshToolBar()
+        private new void refreshToolBar()
         {
-            var dict = new Dictionary<string, bool>
+            buttonStatus = new Dictionary<string, bool>
             {
                 ["editApp"] = item != null,
                 ["deleteApp"] = item != null,
@@ -152,7 +152,8 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
                 ["editFunc"] = func != null,
                 ["deleteFunc"] = func != null,
             };
-            switchItemStatus(dict);
+
+            base.refreshToolBar();
         }
     }
 }

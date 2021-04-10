@@ -26,9 +26,9 @@ namespace Insight.MTP.Client.Setting.Apps
                 {"page", page},
                 {"size", size}
             };
-            var client = new HttpClient<List<App>>();
+            var client = new HttpClient<List<App>>(url);
 
-            return client.getResult(url, dict);
+            return client.getResult(dict);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Insight.MTP.Client.Setting.Apps
         public List<Navigation> getNavs(string id)
         {
             var url = $"{service}/v1.0/apps/{id}/navigators";
-            var client = new HttpClient<List<Navigation>>();
+            var client = new HttpClient<List<Navigation>>(url);
 
             return client.getData(url);
         }
@@ -52,7 +52,7 @@ namespace Insight.MTP.Client.Setting.Apps
         public List<Function> getFuncs(string id)
         {
             var url = $"{service}/v1.0/navigators/{id}/functions";
-            var client = new HttpClient<List<Function>>();
+            var client = new HttpClient<List<Function>>(url);
 
             return client.getData(url);
         }
@@ -66,11 +66,10 @@ namespace Insight.MTP.Client.Setting.Apps
         {
             if (app == null) return null;
 
-            var msg = $"新建应用【{app.name}】失败！";
             var url = $"{service}/v1.0/apps";
-            var client = new HttpClient<string>();
+            var client = new HttpClient<string>(url);
 
-            return client.commit(url, app, msg, RequestMethod.POST);
+            return client.commit(RequestMethod.POST, app);
         }
 
         /// <summary>
@@ -82,11 +81,10 @@ namespace Insight.MTP.Client.Setting.Apps
         {
             if (app == null) return false;
 
-            var msg = $"更新应用【{app.name}】数据失败！";
             var url = $"{service}/v1.0/apps";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, app, msg);
+            return client.put(app);
         }
 
         /// <summary>
@@ -98,11 +96,10 @@ namespace Insight.MTP.Client.Setting.Apps
         {
             if (app == null) return false;
 
-            var msg = $"对不起，无法删除应用【{app.name}】！";
             var url = $"{service}/v1.0/apps";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.delete(url, app.id, msg);
+            return client.delete(app.id);
         }
 
         /// <summary>
@@ -114,11 +111,10 @@ namespace Insight.MTP.Client.Setting.Apps
         {
             if (nav == null) return null;
 
-            var msg = $"新建导航【{nav.name}】失败！";
             var url = $"{service}/v1.0/navigators";
-            var client = new HttpClient<string>();
+            var client = new HttpClient<string>(url);
 
-            return client.commit(url, nav, msg, RequestMethod.POST);
+            return client.commit(RequestMethod.POST, nav);
         }
 
         /// <summary>
@@ -130,11 +126,10 @@ namespace Insight.MTP.Client.Setting.Apps
         {
             if (nav == null) return false;
 
-            var msg = $"更新导航【{nav.name}】数据失败！";
             var url = $"{service}/v1.0/navigators";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, nav, msg);
+            return client.put(nav);
         }
 
         /// <summary>
@@ -146,11 +141,10 @@ namespace Insight.MTP.Client.Setting.Apps
         {
             if (nav == null) return false;
 
-            var msg = $"对不起，无法删除导航【{nav.name}】！";
             var url = $"{service}/v1.0/navigators";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.delete(url, nav.id, msg);
+            return client.delete(nav.id);
         }
 
         /// <summary>
@@ -162,11 +156,10 @@ namespace Insight.MTP.Client.Setting.Apps
         {
             if (func == null) return null;
 
-            var msg = $"新建功能【{func.name}】失败！";
             var url = $"{service}/v1.0/functions";
-            var client = new HttpClient<string>();
+            var client = new HttpClient<string>(url);
 
-            return client.commit(url, func, msg, RequestMethod.POST);
+            return client.commit(RequestMethod.POST, func);
         }
 
         /// <summary>
@@ -178,11 +171,10 @@ namespace Insight.MTP.Client.Setting.Apps
         {
             if (func == null) return false;
 
-            var msg = $"更新功能【{func.name}】数据失败！";
             var url = $"{service}/v1.0/functions";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, func, msg);
+            return client.put(func);
         }
 
         /// <summary>
@@ -194,11 +186,10 @@ namespace Insight.MTP.Client.Setting.Apps
         {
             if (func == null) return false;
 
-            var msg = $"对不起，无法删除功能【{func.name}】！";
             var url = $"{service}/v1.0/functions";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.delete(url, func.id, msg);
+            return client.delete(func.id);
         }
     }
 }

@@ -7,7 +7,7 @@ using Insight.MTP.Client.Platform.Schedules.Views;
 
 namespace Insight.MTP.Client.Platform.Schedules
 {
-    public class Controller : MdiController<Schedule, Manager, ManagerModel, DataModel>
+    public class Controller : MdiController<Schedule, object, Manager, ManagerModel, DataModel>
     {
         /// <summary>
         /// 构造函数

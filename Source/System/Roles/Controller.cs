@@ -10,7 +10,7 @@ using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.Setting.Roles
 {
-    public class Controller : MdiController<Role, Manager, ManagerModel, DataModel>
+    public class Controller : MdiController<Role, Member, Manager, ManagerModel, DataModel>
     {
         /// <summary>
         /// 构造函数

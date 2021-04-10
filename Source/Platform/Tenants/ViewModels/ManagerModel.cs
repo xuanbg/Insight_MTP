@@ -132,9 +132,9 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         /// <summary>
         /// 刷新工具条按钮状态
         /// </summary>
-        private void refreshToolBar()
+        private new void refreshToolBar()
         {
-            var dict = new Dictionary<string, bool>
+            buttonStatus = new Dictionary<string, bool>
             {
                 ["editItem"] = item != null,
                 ["deleteItem"] = item != null,
@@ -145,7 +145,8 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
                 ["unbind"] = item != null && app?.id != "e46c0d4f85f24f759ad4d86b9505b1d4",
                 ["rent"] = item != null && app != null
             };
-            switchItemStatus(dict);
+
+            base.refreshToolBar();
         }
     }
 }

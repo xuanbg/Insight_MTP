@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Insight.Base.BaseForm.Entities;
 using Insight.Base.BaseForm.Utils;
-using Insight.MTP.Client.Common.Entity;
 using Insight.Utils.Common;
 using Insight.Utils.Entity;
 
@@ -27,9 +26,9 @@ namespace Insight.MTP.Client.Data.Dicts
                 {"page", page},
                 {"size", size}
             };
-            var client = new HttpClient<List<DictDto>>();
+            var client = new HttpClient<List<DictDto>>(url);
 
-            return client.getResult(url, dict);
+            return client.getResult(dict);
         }
 
         /// <summary>
@@ -37,12 +36,12 @@ namespace Insight.MTP.Client.Data.Dicts
         /// </summary>
         /// <param name="id">字典数据ID</param>
         /// <returns>字典键值集合</returns>
-        public List<DictKeyDto> getDictKeys(string id)
+        public List<DictKeyDto<object>> getDictKeys(string id)
         {
             var url = $"{service}/v1.0/dicts/{id}";
-            var client = new HttpClient<List<DictKeyDto>>();
+            var client = new HttpClient<List<DictKeyDto<object>>>(url);
 
-            return client.getData(url);
+            return client.getData();
         }
 
 
@@ -58,9 +57,9 @@ namespace Insight.MTP.Client.Data.Dicts
                 {"page", 1},
                 {"size", 999}
             };
-            var client = new HttpClient<List<LookUpMember>>();
+            var client = new HttpClient<List<LookUpMember>>(url);
 
-            return client.getData(url, dict);
+            return client.getData(dict);
         }
 
         /// <summary>
@@ -72,11 +71,10 @@ namespace Insight.MTP.Client.Data.Dicts
         {
             if (dto == null) return null;
 
-            var msg = $"新增字典【{dto.name}】数据失败！";
             var url = $"{service}/v1.0/dicts";
-            var client = new HttpClient<string>();
+            var client = new HttpClient<string>(url);
 
-            return client.commit(url, dto, msg, RequestMethod.POST);
+            return client.commit(RequestMethod.POST, dto);
         }
 
         /// <summary>
@@ -88,11 +86,10 @@ namespace Insight.MTP.Client.Data.Dicts
         {
             if (dto == null) return false;
 
-            var msg = $"更新字典【{dto.name}】数据失败！";
             var url = $"{service}/v1.0/dicts";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, dto, msg);
+            return client.put(dto);
         }
 
         /// <summary>
@@ -104,11 +101,10 @@ namespace Insight.MTP.Client.Data.Dicts
         {
             if (dto == null) return false;
 
-            var msg = $"对不起，无法删除字典键值【{dto.name}】数据！";
             var url = $"{service}/v1.0/dicts";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.delete(url, dto.id, msg);
+            return client.delete(dto.id);
         }
 
         /// <summary>
@@ -116,15 +112,14 @@ namespace Insight.MTP.Client.Data.Dicts
         /// </summary>
         /// <param name="dto">字典键值DTO</param>
         /// <returns>字典键值ID</returns>
-        public string addDictKey(DictKeyDto dto)
+        public string addDictKey(DictKeyDto<object> dto)
         {
             if (dto == null) return null;
 
-            var msg = $"新增字典键值【{dto.value}】数据失败！";
             var url = $"{service}/v1.0/dicts/keys";
-            var client = new HttpClient<string>();
+            var client = new HttpClient<string>(url);
 
-            return client.commit(url, dto, msg, RequestMethod.POST);
+            return client.commit(RequestMethod.POST, dto);
         }
 
         /// <summary>
@@ -132,15 +127,14 @@ namespace Insight.MTP.Client.Data.Dicts
         /// </summary>
         /// <param name="dto">字典键值DTO</param>
         /// <returns>是否更新成功</returns>
-        public bool editDictKey(DictKeyDto dto)
+        public bool editDictKey(DictKeyDto<object> dto)
         {
             if (dto == null) return false;
 
-            var msg = $"更新字典键值【{dto.value}】数据失败！";
             var url = $"{service}/v1.0/dicts/keys";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, dto, msg);
+            return client.put(dto);
         }
         
         /// <summary>
@@ -148,15 +142,14 @@ namespace Insight.MTP.Client.Data.Dicts
         /// </summary>
         /// <param name="dto">字典键值DTO</param>
         /// <returns>是否删除成功</returns>
-        public bool deleteDictKey(DictKeyDto dto)
+        public bool deleteDictKey(DictKeyDto<object> dto)
         {
             if (dto == null) return false;
 
-            var msg = $"对不起，无法删除字典键值【{dto.value}】数据！";
             var url = $"{service}/v1.0/dicts/keys";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.delete(url, dto.id, msg);
+            return client.delete(dto.id);
         }
     }
 }

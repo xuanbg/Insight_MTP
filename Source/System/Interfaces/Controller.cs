@@ -7,7 +7,7 @@ using Insight.MTP.Client.Setting.Interfaces.Views;
 
 namespace Insight.MTP.Client.Setting.Interfaces
 {
-    public class Controller : MdiController<Interface, Manager, ManagerModel, DataModel>
+    public class Controller : MdiController<Interface, object, Manager, ManagerModel, DataModel>
     {
         /// <summary>
         /// 构造函数

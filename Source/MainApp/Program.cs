@@ -16,8 +16,9 @@ namespace Insight.MTP.Client.MainApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // ReSharper disable once UnusedVariable
             var controller = new Controller();
+            if (controller.exit) return;
+
             Application.Run();
         }
     }

@@ -8,7 +8,7 @@ using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.Platform.Users
 {
-    public class Controller : MdiController<User, Manager, ManagerModel, DataModel>
+    public class Controller : MdiController<User, object, Manager, ManagerModel, DataModel>
     {
         /// <summary>
         /// 构造函数

@@ -114,16 +114,17 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
         /// <summary>
         /// 刷新工具条按钮状态
         /// </summary>
-        private void refreshToolBar()
+        private new void refreshToolBar()
         {
-            var dict = new Dictionary<string, bool>
+            buttonStatus = new Dictionary<string, bool>
             {
                 ["editItem"] = item != null,
                 ["deleteItem"] = item != null,
                 ["addConfig"] = item != null,
                 ["removeConfig"] = item != null && config != null,
             };
-            switchItemStatus(dict);
+
+            base.refreshToolBar();
         }
     }
 }

@@ -26,9 +26,9 @@ namespace Insight.MTP.Client.Setting.Interfaces
                 {"page", page},
                 {"size", size}
             };
-            var client = new HttpClient<List<Interface>>();
+            var client = new HttpClient<List<Interface>>(url);
 
-            return client.getResult(url, dict);
+            return client.getResult(dict);
         }
         
         /// <summary>
@@ -40,11 +40,10 @@ namespace Insight.MTP.Client.Setting.Interfaces
         {
             if (config == null) return null;
 
-            var msg = $"新建接口【{config.name}】的配置数据失败！";
             var url = $"{service}/v1.0/configs";
-            var client = new HttpClient<string>();
+            var client = new HttpClient<string>(url);
 
-            return client.commit(url, config, msg, RequestMethod.POST);
+            return client.commit(RequestMethod.POST, config);
         }
 
         /// <summary>
@@ -56,11 +55,10 @@ namespace Insight.MTP.Client.Setting.Interfaces
         {
             if (config == null) return false;
 
-            var msg = $"更新接口【{config.name}】的配置数据失败！";
             var url = $"{service}/v1.0/configs";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, config, msg);
+            return client.put(config);
         }
 
         /// <summary>
@@ -72,11 +70,10 @@ namespace Insight.MTP.Client.Setting.Interfaces
         {
             if (config == null) return false;
 
-            var msg = $"对不起，无法删除接口【{config.name}】的配置数据！";
             var url = $"{service}/v1.0/configs";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.delete(url, config.id, msg);
+            return client.delete(config.id);
         }
 
         /// <summary>
@@ -86,9 +83,9 @@ namespace Insight.MTP.Client.Setting.Interfaces
         public bool loadInterfaces()
         {
             var url = $"{service}/v1.0/configs/load";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.get(url);
+            return client.get();
         }
     }
 }

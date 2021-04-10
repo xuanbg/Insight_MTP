@@ -28,9 +28,9 @@ namespace Insight.MTP.Client.Setting.Scenes
                 {"page", page},
                 {"size", size}
             };
-            var client = new HttpClient<List<Scene>>();
+            var client = new HttpClient<List<Scene>>(url);
 
-            return client.getResult(url, dict);
+            return client.getResult(dict);
         }
         
         /// <summary>
@@ -48,74 +48,54 @@ namespace Insight.MTP.Client.Setting.Scenes
                 {"page", page},
                 {"size", size}
             };
-            var client = new HttpClient<List<TempConfig>>();
+            var client = new HttpClient<List<TempConfig>>(url);
 
-            return client.getResult(url, dict);
+            return client.getResult(dict);
         }
         
         /// <summary>
         /// 新增场景信息
         /// </summary>
-        /// <param name="Scene">场景实体对象</param>
+        /// <param name="scene">场景实体对象</param>
         /// <returns>场景ID</returns>
-        public string addScene(Scene Scene)
+        public string addScene(Scene scene)
         {
-            if (Scene == null) return null;
+            if (scene == null) return null;
 
-            var msg = $"新建场景【{Scene.name}】失败！";
             var url = $"{service}/v1.0/scenes";
-            var client = new HttpClient<string>();
+            var client = new HttpClient<string>(url);
 
-            return client.commit(url, Scene, msg, RequestMethod.POST);
+            return client.commit(RequestMethod.POST, scene);
         }
 
         /// <summary>
         /// 更新场景信息
         /// </summary>
-        /// <param name="Scene">场景实体对象</param>
+        /// <param name="scene">场景实体对象</param>
         /// <returns>是否更新成功</returns>
-        public bool updateScene(Scene Scene)
+        public bool updateScene(Scene scene)
         {
-            if (Scene == null) return false;
+            if (scene == null) return false;
 
-            var msg = $"更新场景【{Scene.name}】数据失败！";
             var url = $"{service}/v1.0/scenes";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, Scene, msg);
+            return client.put(scene);
         }
 
         /// <summary>
         /// 删除场景
         /// </summary>
-        /// <param name="Scene">场景实体对象</param>
+        /// <param name="scene">场景实体对象</param>
         /// <returns>是否删除成功</returns>
-        public bool deleteScene(Scene Scene)
+        public bool deleteScene(Scene scene)
         {
-            if (Scene == null) return false;
+            if (scene == null) return false;
 
-            var msg = $"对不起，无法删除场景【{Scene.name}】！";
             var url = $"{service}/v1.0/scenes";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.delete(url, Scene.id, msg);
-        }
-
-        /// <summary>
-        /// 获取模板集合
-        /// </summary>
-        /// <returns>应用集合</returns>
-        public List<MessageTemp> getTemplates()
-        {
-            var url = $"{service}/v1.0/templates";
-            var dict = new Dictionary<string, object>
-            {
-                {"page", 1},
-                {"size", 999}
-            };
-            var client = new HttpClient<List<MessageTemp>>();
-
-            return client.getData(url, dict);
+            return client.delete(scene.id);
         }
 
         /// <summary>
@@ -130,40 +110,9 @@ namespace Insight.MTP.Client.Setting.Scenes
                 {"page", 1},
                 {"size", 999}
             };
-            var client = new HttpClient<List<LookUpMember>>();
+            var client = new HttpClient<List<LookUpMember>>(url);
 
-            return client.getData(url, dict);
-        }
-
-        /// <summary>
-        /// 绑定模板
-        /// </summary>
-        /// <param name="config">场景模板实体对象</param>
-        /// <returns>是否成功</returns>
-        public string bindTemps(TempConfig config)
-        {
-            if (config == null) return null;
-
-            var url = $"{service}/v1.0/scenes/configs";
-            var client = new HttpClient<string>();
-
-            return client.commit(url, config, RequestMethod.POST);
-        }
-
-        /// <summary>
-        /// 解绑模板
-        /// </summary>
-        /// <param name="config">场景模板实体对象</param>
-        /// <returns>是否成功</returns>
-        public bool unbindTemp(TempConfig config)
-        {
-            if (config == null) return false;
-
-            var msg = $"对不起，模板【{config.template}】解除绑定失败！";
-            var url = $"{service}/v1.0/scenes/configs";
-            var client = new HttpClient<object>();
-
-            return client.delete(url, config.id, msg);
+            return client.getData(dict);
         }
     }
 }

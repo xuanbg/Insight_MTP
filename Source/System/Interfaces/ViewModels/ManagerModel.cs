@@ -46,18 +46,19 @@ namespace Insight.MTP.Client.Setting.Interfaces.ViewModels
 
             refreshToolBar();
         }
-        
+
         /// <summary>
         /// 刷新工具条按钮状态
         /// </summary>
-        private void refreshToolBar()
+        private new void refreshToolBar()
         {
-            var dict = new Dictionary<string, bool>
+            buttonStatus = new Dictionary<string, bool>
             {
                 ["editItem"] = item != null,
                 ["deleteItem"] = item != null
             };
-            switchItemStatus(dict);
+
+            base.refreshToolBar();
         }
     }
 }

@@ -29,9 +29,9 @@ namespace Insight.MTP.Client.Platform.Tenants
                 {"page", page},
                 {"size", size}
             };
-            var client = new HttpClient<List<Tenant>>();
+            var client = new HttpClient<List<Tenant>>(url);
 
-            return client.getResult(url, dict);
+            return client.getResult(dict);
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         public List<TenantApp> getTenantApps(string id)
         {
             var url = $"{service}/v1.0/tenants/{id}/apps";
-            var client = new HttpClient<List<TenantApp>>();
+            var client = new HttpClient<List<TenantApp>>(url);
 
             return client.getData(url);
         }
@@ -62,9 +62,9 @@ namespace Insight.MTP.Client.Platform.Tenants
                 {"page", page},
                 {"size", size}
             };
-            var client = new HttpClient<List<TenantUser>>();
+            var client = new HttpClient<List<TenantUser>>(url);
 
-            return client.getResult(url, dict);
+            return client.getResult(dict);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         public List<LookUpMember> getProvinces()
         {
             var url = $"{commonService}/v1.0/areas/provinces";
-            var client = new HttpClient<List<LookUpMember>>();
+            var client = new HttpClient<List<LookUpMember>>(url);
 
             return client.getData(url);
         }
@@ -87,7 +87,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         public List<Region> getRegions(string id)
         {
             var url = $"{commonService}/v1.0/areas/{id}/subs";
-            var client = new HttpClient<List<Region>>();
+            var client = new HttpClient<List<Region>>(url);
 
             return client.getData(url);
         }
@@ -100,7 +100,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         public List<TenantApp> getApps(string id)
         {
             var url = $"{service}/v1.0/tenants/{id}/unbounds";
-            var client = new HttpClient<List<TenantApp>>();
+            var client = new HttpClient<List<TenantApp>>(url);
 
             return client.getData(url);
         }
@@ -114,11 +114,10 @@ namespace Insight.MTP.Client.Platform.Tenants
         {
             if (tenant == null) return null;
 
-            var msg = $"新建租户【{tenant.name}】失败！";
             var url = $"{service}/v1.0/tenants";
-            var client = new HttpClient<string>();
+            var client = new HttpClient<string>(url);
 
-            return client.commit(url, tenant, msg, RequestMethod.POST);
+            return client.commit(RequestMethod.POST, tenant);
         }
 
         /// <summary>
@@ -130,11 +129,10 @@ namespace Insight.MTP.Client.Platform.Tenants
         {
             if (tenant == null) return false;
 
-            var msg = $"更新租户【{tenant.name}】数据失败！";
             var url = $"{service}/v1.0/tenants";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, tenant, msg);
+            return client.put(tenant);
         }
 
         /// <summary>
@@ -146,11 +144,10 @@ namespace Insight.MTP.Client.Platform.Tenants
         {
             if (tenant == null) return false;
 
-            var msg = $"对不起，无法删除租户【{tenant.name}】！";
             var url = $"{service}/v1.0/tenants";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.delete(url, tenant.id, msg);
+            return client.delete(tenant.id);
         }
 
         /// <summary>
@@ -169,9 +166,9 @@ namespace Insight.MTP.Client.Platform.Tenants
                 {"id", id},
                 {"status", status}
             };
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, dict);
+            return client.put(dict);
         }
 
         /// <summary>
@@ -183,11 +180,10 @@ namespace Insight.MTP.Client.Platform.Tenants
         {
             if (tenant == null) return false;
 
-            var msg = $"禁用租户【{tenant.name}】失败！";
             var url = $"{service}/v1.0/tenants/disable";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, tenant.id, msg);
+            return client.put(tenant.id);
         }
 
         /// <summary>
@@ -199,11 +195,10 @@ namespace Insight.MTP.Client.Platform.Tenants
         {
             if (tenant == null) return false;
 
-            var msg = $"启用租户【{tenant.name}】失败！";
             var url = $"{service}/v1.0/tenants/enable";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, tenant.id, msg);
+            return client.put(tenant.id);
         }
 
         /// <summary>
@@ -218,9 +213,9 @@ namespace Insight.MTP.Client.Platform.Tenants
 
             var url = $"{service}/v1.0/tenants/{id}/apps";
             var data = apps.Select(i => i.id).ToList();
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.post(url, data);
+            return client.post(data);
         }
 
         /// <summary>
@@ -232,12 +227,11 @@ namespace Insight.MTP.Client.Platform.Tenants
         {
             if (app == null) return false;
 
-            var msg = $"对不起，应用【{app.name}】解除绑定失败！";
             var url = $"{service}/v1.0/tenants/{app.tenantId}/apps";
             var data = new List<string> {app.id};
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.delete(url,data, msg);
+            return client.delete(data);
         }
 
         /// <summary>
@@ -249,16 +243,15 @@ namespace Insight.MTP.Client.Platform.Tenants
         {
             if (app == null) return false;
 
-            var msg = $"对不起，续租应用【{app.name}】失败！";
             var url = $"{service}/v1.0/tenants/{app.tenantId}/apps";
             var dict = new Dictionary<string, object>
             {
                 {"appId", app.id},
                 {"expireDate", app.expireDate}
             };
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, dict, msg);
+            return client.put(dict);
         }
     }
 }

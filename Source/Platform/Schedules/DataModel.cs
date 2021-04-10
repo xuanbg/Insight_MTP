@@ -25,9 +25,9 @@ namespace Insight.MTP.Client.Platform.Schedules
                 {"page", page},
                 {"size", size}
             };
-            var client = new HttpClient<List<Schedule>>();
+            var client = new HttpClient<List<Schedule>>(url);
 
-            return client.getResult(url, dict);
+            return client.getResult(dict);
         }
 
         /// <summary>
@@ -39,11 +39,10 @@ namespace Insight.MTP.Client.Platform.Schedules
         {
             if (string.IsNullOrEmpty(id)) return false;
 
-            const string msg = "对不起，无法执行选中的计划任务！";
             var url = $"{service}/v1.0/schedules";
-            var client = new HttpClient<List<Navigation>>();
+            var client = new HttpClient<List<Navigation>>(url);
 
-            return client.put(url, id, msg);
+            return client.put(id);
         }
 
         /// <summary>
@@ -55,11 +54,10 @@ namespace Insight.MTP.Client.Platform.Schedules
         {
             if (string.IsNullOrEmpty(id)) return false;
 
-            const string msg = "对不起，无法删除选中的计划任务！";
             var url = $"{service}/v1.0/schedules";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.delete(url, id, msg);
+            return client.delete(id);
         }
 
         /// <summary>
@@ -71,11 +69,10 @@ namespace Insight.MTP.Client.Platform.Schedules
         {
             if (string.IsNullOrEmpty(id)) return false;
 
-            const string msg = "对不起，无法禁用选中的计划任务！";
             var url = $"{service}/v1.0/schedules/disable";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, id, msg);
+            return client.put(id);
         }
 
         /// <summary>
@@ -87,11 +84,10 @@ namespace Insight.MTP.Client.Platform.Schedules
         {
             if (string.IsNullOrEmpty(id)) return false;
 
-            const string msg = "对不起，无法启用选中的计划任务！";
             var url = $"{service}/v1.0/schedules/enable";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, id, msg);
+            return client.put(id);
         }
     }
 }

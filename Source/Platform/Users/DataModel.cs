@@ -28,9 +28,9 @@ namespace Insight.MTP.Client.Platform.Users
                 {"page", page},
                 {"size", size}
             };
-            var client = new HttpClient<List<User>>();
+            var client = new HttpClient<List<User>>(url);
 
-            return client.getResult(url, dict);
+            return client.getResult(dict);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Insight.MTP.Client.Platform.Users
         public List<AppTree> getFuncs(string id)
         {
             var url = $"{service}/v1.0/users/{id}/functions";
-            var client = new HttpClient<List<AppTree>>();
+            var client = new HttpClient<List<AppTree>>(url);
 
             return client.getData(url);
         }
@@ -55,11 +55,10 @@ namespace Insight.MTP.Client.Platform.Users
         {
             if (user == null) return null;
 
-            var msg = $"新建用户【{user.name}】失败！";
             var url = $"{service}/v1.0/users";
-            var client = new HttpClient<string>();
+            var client = new HttpClient<string>(url);
 
-            return client.commit(url, user, msg, RequestMethod.POST);
+            return client.commit(RequestMethod.POST, user);
         }
 
         /// <summary>
@@ -71,11 +70,10 @@ namespace Insight.MTP.Client.Platform.Users
         {
             if (user == null) return false;
 
-            var msg = $"更新用户【{user.name}】数据失败！";
             var url = $"{service}/v1.0/users";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, user, msg);
+            return client.put(user);
         }
 
         /// <summary>
@@ -87,11 +85,10 @@ namespace Insight.MTP.Client.Platform.Users
         {
             if (user == null) return false;
 
-            var msg = $"对不起，无法删除用户【{user.name}】！";
             var url = $"{service}/v1.0/users";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.delete(url, user.id, msg);
+            return client.delete(user.id);
         }
 
         /// <summary>
@@ -103,11 +100,10 @@ namespace Insight.MTP.Client.Platform.Users
         {
             if (user == null) return false;
 
-            var msg = $"对不起，无法禁用用户{user.name}！";
             var url = $"{service}/v1.0/users/disable";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, user.id, msg);
+            return client.put(user.id);
         }
 
         /// <summary>
@@ -119,11 +115,10 @@ namespace Insight.MTP.Client.Platform.Users
         {
             if (user == null) return false;
 
-            var msg = $"对不起，无法启用用户{user.name}！";
             var url = $"{service}/v1.0/users/enable";
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, user.id, msg);
+            return client.put(user.id);
         }
 
         /// <summary>
@@ -135,12 +130,11 @@ namespace Insight.MTP.Client.Platform.Users
         {
             if (user == null) return false;
 
-            var msg = $"对不起，无法删除用户{user.name}！";
             var url = $"{service}/v1.0/users/password";
             var data = new PasswordDto {id = user.id};
-            var client = new HttpClient<object>();
+            var client = new HttpClient<object>(url);
 
-            return client.put(url, data, msg);
+            return client.put(data);
         }
     }
 }
