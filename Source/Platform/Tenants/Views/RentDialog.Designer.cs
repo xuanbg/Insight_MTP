@@ -40,6 +40,7 @@
             // 
             this.panel.Controls.Add(this.datRent);
             this.panel.Controls.Add(this.labUnlockPw);
+            this.panel.Size = new System.Drawing.Size(370, 148);
             // 
             // cancel
             // 
@@ -50,6 +51,7 @@
             // 
             this.confirm.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.confirm.Appearance.Options.UseFont = true;
+            this.confirm.Location = new System.Drawing.Point(290, 172);
             // 
             // close
             // 
@@ -80,10 +82,10 @@
             this.datRent.Size = new System.Drawing.Size(100, 20);
             this.datRent.TabIndex = 1;
             // 
-            // ExtendDialog
+            // RentDialog
             // 
-            this.ClientSize = new System.Drawing.Size(384, 212);
-            this.Name = "ExtendDialog";
+            this.ClientSize = new System.Drawing.Size(384, 211);
+            this.Name = "RentDialog";
             this.Text = "锁定";
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);

@@ -1,9 +1,9 @@
-﻿using Insight.MTP.Client.Common.Entity;
-using Insight.MTP.Client.Platform.Users.ViewModels;
-using Insight.MTP.Client.Platform.Users.Views;
-using Insight.Base.BaseForm.Controllers;
+﻿using Insight.Base.BaseForm.Controllers;
 using Insight.Base.BaseForm.Entities;
 using Insight.Base.BaseForm.Utils;
+using Insight.MTP.Client.Common.Entity;
+using Insight.MTP.Client.Platform.Users.ViewModels;
+using Insight.MTP.Client.Platform.Users.Views;
 using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.Platform.Users
@@ -29,7 +29,7 @@ namespace Insight.MTP.Client.Platform.Users
         /// </summary>
         public void newItem()
         {
-            var user = new User{password = Util.hash("123456")};
+            var user = new User { password = Util.hash("123456") };
             var model = new UserModel(user, "新建用户");
             model.callbackEvent += (sender, args) =>
             {

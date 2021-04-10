@@ -1,10 +1,10 @@
-﻿using System.Windows.Forms;
+﻿using Insight.Base.BaseForm.Controllers;
+using Insight.Base.BaseForm.Entities;
+using Insight.Base.BaseForm.Utils;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Tenants.ViewModels;
 using Insight.MTP.Client.Platform.Tenants.Views;
-using Insight.Base.BaseForm.Controllers;
-using Insight.Base.BaseForm.Entities;
-using Insight.Base.BaseForm.Utils;
+using System.Windows.Forms;
 
 namespace Insight.MTP.Client.Platform.Tenants
 {

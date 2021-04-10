@@ -1,9 +1,6 @@
 ﻿using System.ComponentModel;
-using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraTab;
-using DevExpress.XtraTreeList;
 
 namespace Insight.MTP.Client.Setting.Roles.Views
 {

@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using Insight.Base.BaseForm.Utils;
+using Insight.Base.BaseForm.ViewModels;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Setting.Roles.Views;
-using Insight.Base.BaseForm.ViewModels;
-using Insight.Base.BaseForm.Utils;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Insight.MTP.Client.Setting.Roles.ViewModels
 {
@@ -29,7 +29,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
         public new void confirm()
         {
             var users = from r in view.gdvUser.GetSelectedRows()
-                select (Member) view.gdvUser.GetRow(r);
+                        select (Member)view.gdvUser.GetRow(r);
             members = users.ToList();
             if (view.gdvUser.RowCount > 0 && !members.Any())
             {

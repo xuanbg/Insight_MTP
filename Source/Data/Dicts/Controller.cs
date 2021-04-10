@@ -1,12 +1,13 @@
 ﻿using Insight.Base.BaseForm.Controllers;
 using Insight.Base.BaseForm.Entities;
 using Insight.Base.BaseForm.Utils;
+using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Data.Dicts.ViewModels;
 using Insight.MTP.Client.Data.Dicts.Views;
 
 namespace Insight.MTP.Client.Data.Dicts
 {
-    public class Controller : MdiController<DictDto, DictKeyDto<object>, Manager, ManagerModel, DataModel>
+    public class Controller : MdiController<DictDto, DictKeyDto, Manager, ManagerModel, DataModel>
     {
         /// <summary>
         /// 构造函数
@@ -82,7 +83,7 @@ namespace Insight.MTP.Client.Data.Dicts
         /// </summary>
         public void newValue()
         {
-            var key = new DictKeyDto<object> {dictId = mdiModel.item.id};
+            var key = new DictKeyDto { dictId = mdiModel.item.id };
             var model = new DictKeyModel(key, "新增键值");
             model.callbackEvent += (sender, args) =>
             {

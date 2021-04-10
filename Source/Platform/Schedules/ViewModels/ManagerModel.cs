@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Insight.Base.BaseForm.ViewModels;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Schedules.Views;
-using Insight.Base.BaseForm.ViewModels;
+using System.Collections.Generic;
 
 namespace Insight.MTP.Client.Platform.Schedules.ViewModels
 {

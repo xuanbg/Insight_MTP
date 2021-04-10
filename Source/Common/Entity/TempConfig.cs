@@ -5,46 +5,46 @@
         /// <summary>
         /// UUID主键
         /// </summary>
-        public string id{ get; set; }
+        public string id { get; set; }
 
         /// <summary>
         /// 场景ID
         /// </summary>
-        public string sceneId{ get; set; }
+        public string sceneId { get; set; }
 
         /// <summary>
         /// 模板ID
         /// </summary>
-        public string templateId{ get; set; }
+        public string templateId { get; set; }
 
         /// <summary>
         /// 模板名称
         /// </summary>
-        public string template{ get; set; }
+        public string template { get; set; }
 
         /// <summary>
         /// 应用ID
         /// </summary>
-        public string appId{ get; set; }
+        public string appId { get; set; }
 
         /// <summary>
         /// 应用名称
         /// </summary>
-        public string appName{ get; set; }
+        public string appName { get; set; }
 
         /// <summary>
         /// 合作伙伴编码
         /// </summary>
-        public string partnerCode{ get; set; }
+        public string partnerCode { get; set; }
 
         /// <summary>
         /// 合作伙伴名称
         /// </summary>
-        public string partner{ get; set; }
+        public string partner { get; set; }
 
         /// <summary>
         /// 签名
         /// </summary>
-        public string sign{ get; set; }
+        public string sign { get; set; }
     }
 }

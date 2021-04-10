@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using Insight.Base.BaseForm.ViewModels;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Tenants.Views;
-using Insight.Base.BaseForm.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Insight.MTP.Client.Platform.Tenants.ViewModels
 {
@@ -17,7 +17,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         {
             initSearch(view.KeyInput, view.Search);
             initMainGrid(view.grdTenant, view.gdvTenant, view.ppcTenant);
-            initGrid(view.grdApp, view.gdvApp, "appChanged", "rent");
+            initGrid(view.grdApp, view.gdvApp, "rent", "appChanged");
             initGrid(view.grdUser, view.gdvUser, null, null, view.ppcUser, "getTenantUsers");
         }
 

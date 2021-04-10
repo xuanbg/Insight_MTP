@@ -1,11 +1,12 @@
-﻿using Insight.Base.BaseForm.Entities;
-using Insight.Base.BaseForm.Utils;
+﻿using Insight.Base.BaseForm.Utils;
 using Insight.Base.BaseForm.ViewModels;
+using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Data.Dicts.Views;
+using Insight.Utils.Common;
 
 namespace Insight.MTP.Client.Data.Dicts.ViewModels
 {
-    public class DictKeyModel : BaseDialogModel<DictKeyDto<object>, DictKeyDialog>
+    public class DictKeyModel : BaseDialogModel<DictKeyDto, DictKeyDialog>
     {
 
         /// <summary>
@@ -14,14 +15,18 @@ namespace Insight.MTP.Client.Data.Dicts.ViewModels
         /// </summary>
         /// <param name="data">Template</param>
         /// <param name="title">view标题</param>
-        public DictKeyModel(DictKeyDto<object> data, string title) : base(title)
+        public DictKeyModel(DictKeyDto data, string title) : base(title)
         {
             item = data;
 
-            view.spiIndex.EditValueChanged += (sender, args) => item.index = (int) view.spiIndex.Value;
+            view.spiIndex.EditValueChanged += (sender, args) => item.index = (int)view.spiIndex.Value;
             view.txtCode.EditValueChanged += (sender, args) => item.code = view.txtCode.Text.Trim();
             view.txtValue.EditValueChanged += (sender, args) => item.value = view.txtValue.Text.Trim();
-            view.mmeExtend.EditValueChanged += (sender, args) => item.extend = view.mmeExtend.EditValue;
+            view.mmeExtend.EditValueChanged += (sender, args) =>
+            {
+                var text = view.mmeExtend.EditValue?.ToString().Trim();
+                item.extend = string.IsNullOrEmpty(text) ? null : Util.deserialize<object>(text);
+            };
             view.mmeRemark.EditValueChanged += (sender, args) =>
             {
                 var text = view.mmeRemark.EditValue?.ToString().Trim();
@@ -31,8 +36,8 @@ namespace Insight.MTP.Client.Data.Dicts.ViewModels
             view.spiIndex.EditValue = item.index;
             view.txtCode.EditValue = item.code;
             view.txtValue.EditValue = item.value;
-            view.mmeExtend.EditValue = item.extend;
-            view.mmeExtend.EditValue = item.remark;
+            view.mmeExtend.EditValue = item.extendVal;
+            view.mmeRemark.EditValue = item.remark;
         }
 
         /// <summary>

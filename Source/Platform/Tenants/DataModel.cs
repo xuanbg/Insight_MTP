@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Insight.Base.BaseForm.Entities;
-using Insight.MTP.Client.Common.Entity;
+﻿using Insight.Base.BaseForm.Entities;
 using Insight.Base.BaseForm.Utils;
+using Insight.MTP.Client.Common.Entity;
 using Insight.Utils.Common;
 using Insight.Utils.Entity;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Insight.MTP.Client.Platform.Tenants
 {
@@ -44,7 +44,7 @@ namespace Insight.MTP.Client.Platform.Tenants
             var url = $"{service}/v1.0/tenants/{id}/apps";
             var client = new HttpClient<List<TenantApp>>(url);
 
-            return client.getData(url);
+            return client.getData();
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Insight.MTP.Client.Platform.Tenants
             var url = $"{commonService}/v1.0/areas/provinces";
             var client = new HttpClient<List<LookUpMember>>(url);
 
-            return client.getData(url);
+            return client.getData();
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Insight.MTP.Client.Platform.Tenants
             var url = $"{commonService}/v1.0/areas/{id}/subs";
             var client = new HttpClient<List<Region>>(url);
 
-            return client.getData(url);
+            return client.getData();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Insight.MTP.Client.Platform.Tenants
             var url = $"{service}/v1.0/tenants/{id}/unbounds";
             var client = new HttpClient<List<TenantApp>>(url);
 
-            return client.getData(url);
+            return client.getData();
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace Insight.MTP.Client.Platform.Tenants
             if (app == null) return false;
 
             var url = $"{service}/v1.0/tenants/{app.tenantId}/apps";
-            var data = new List<string> {app.id};
+            var data = new List<string> { app.id };
             var client = new HttpClient<object>(url);
 
             return client.delete(data);

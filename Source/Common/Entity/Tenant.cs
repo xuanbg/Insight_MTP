@@ -43,7 +43,7 @@ namespace Insight.MTP.Client.Common.Entity
         /// 是否失效：0、正常；1、失效
         /// </summary>
         public bool invalid { get; set; }
-        
+
         /// <summary>
         /// 创建人ID
         /// </summary>

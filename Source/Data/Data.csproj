@@ -39,6 +39,9 @@
     <Reference Include="DevExpress.Data.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
+    <Reference Include="DevExpress.Images.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DevExpress.Utils.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
@@ -46,6 +49,9 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.XtraGrid.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -59,6 +65,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Apps\Controller.cs" />
+    <Compile Include="Apps\DataModel.cs" />
+    <Compile Include="Apps\ViewModels\AppModel.cs" />
+    <Compile Include="Apps\ViewModels\FunModel.cs" />
+    <Compile Include="Apps\ViewModels\ManagerModel.cs" />
+    <Compile Include="Apps\ViewModels\NavModel.cs" />
+    <Compile Include="Apps\Views\AppDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Views\AppDialog.Designer.cs">
+      <DependentUpon>AppDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Views\FunDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Views\FunDialog.Designer.cs">
+      <DependentUpon>FunDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Views\Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Views\Manager.Designer.cs">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Views\NavDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Views\NavDialog.Designer.cs">
+      <DependentUpon>NavDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dicts\Controller.cs" />
     <Compile Include="Dicts\DataModel.cs" />
     <Compile Include="Dicts\ViewModels\DictModel.cs" />
@@ -82,9 +118,38 @@
     <Compile Include="Dicts\Views\DictKeyDialog.designer.cs">
       <DependentUpon>DictKeyDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\Controller.cs" />
+    <Compile Include="Interfaces\DataModel.cs" />
+    <Compile Include="Interfaces\ViewModels\InterfaceModel.cs" />
+    <Compile Include="Interfaces\ViewModels\ManagerModel.cs" />
+    <Compile Include="Interfaces\Views\InterfaceDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Views\InterfaceDialog.Designer.cs">
+      <DependentUpon>InterfaceDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Views\Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Views\Manager.Designer.cs">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Apps\Views\AppDialog.resx">
+      <DependentUpon>AppDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Views\FunDialog.resx">
+      <DependentUpon>FunDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Views\Manager.resx">
+      <DependentUpon>Manager.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Views\NavDialog.resx">
+      <DependentUpon>NavDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dicts\Views\DictDialog.resx">
       <DependentUpon>DictDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -94,6 +159,19 @@
     <EmbeddedResource Include="Dicts\Views\DictKeyDialog.resx">
       <DependentUpon>DictKeyDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Views\InterfaceDialog.resx">
+      <DependentUpon>InterfaceDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Views\Manager.resx">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{7c8ac27e-e640-4403-af4d-5b62c6c55826}</Project>
+      <Name>Common</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

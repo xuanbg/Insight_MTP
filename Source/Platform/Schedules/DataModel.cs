@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Insight.Base.BaseForm.Utils;
 using Insight.MTP.Client.Common.Entity;
-using Insight.Base.BaseForm.Utils;
 using Insight.Utils.Entity;
+using System.Collections.Generic;
 
 namespace Insight.MTP.Client.Platform.Schedules
 {

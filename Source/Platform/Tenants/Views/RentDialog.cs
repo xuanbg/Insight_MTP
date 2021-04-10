@@ -1,5 +1,5 @@
-﻿using System.Windows.Forms;
-using Insight.Base.BaseForm.Forms;
+﻿using Insight.Base.BaseForm.Forms;
+using System.Windows.Forms;
 
 namespace Insight.MTP.Client.Platform.Tenants.Views
 {

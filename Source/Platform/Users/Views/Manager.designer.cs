@@ -33,10 +33,9 @@ namespace Insight.MTP.Client.Platform.Users.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
-            this.imgData = new DevExpress.Utils.ImageCollection(this.components);
-            this.imgPermission = new DevExpress.Utils.ImageCollection(this.components);
+            this.imgData = new DevExpress.Utils.ImageCollection();
+            this.imgPermission = new DevExpress.Utils.ImageCollection();
             this.panUser = new DevExpress.XtraEditors.PanelControl();
             this.grdUser = new DevExpress.XtraGrid.GridControl();
             this.gdvUser = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -79,12 +78,13 @@ namespace Insight.MTP.Client.Platform.Users.Views
             // 
             // xtraScrollable
             // 
+            this.xtraScrollable.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.xtraScrollable.Appearance.Options.UseBackColor = true;
             this.xtraScrollable.Controls.Add(this.spcMain);
             this.xtraScrollable.Controls.Add(this.panSpace);
             this.xtraScrollable.Controls.Add(this.panSearch);
             this.xtraScrollable.Location = new System.Drawing.Point(0, 31);
-            this.xtraScrollable.Padding = new System.Windows.Forms.Padding(5);
-            this.xtraScrollable.Size = new System.Drawing.Size(1080, 600);
+            this.xtraScrollable.Size = new System.Drawing.Size(1420, 829);
             // 
             // imgData
             // 
@@ -122,7 +122,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.panUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panUser.Location = new System.Drawing.Point(0, 0);
             this.panUser.Name = "panUser";
-            this.panUser.Size = new System.Drawing.Size(765, 546);
+            this.panUser.Size = new System.Drawing.Size(1105, 775);
             this.panUser.TabIndex = 0;
             // 
             // grdUser
@@ -131,7 +131,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.grdUser.Location = new System.Drawing.Point(2, 2);
             this.grdUser.MainView = this.gdvUser;
             this.grdUser.Name = "grdUser";
-            this.grdUser.Size = new System.Drawing.Size(761, 520);
+            this.grdUser.Size = new System.Drawing.Size(1101, 749);
             this.grdUser.TabIndex = 0;
             this.grdUser.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvUser});
@@ -221,12 +221,13 @@ namespace Insight.MTP.Client.Platform.Users.Views
             // ppcUser
             // 
             this.ppcUser.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcUser.Location = new System.Drawing.Point(2, 522);
+            this.ppcUser.Location = new System.Drawing.Point(2, 751);
             this.ppcUser.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcUser.MinimumSize = new System.Drawing.Size(320, 22);
             this.ppcUser.Name = "ppcUser";
+            this.ppcUser.orderBy = Insight.Base.BaseForm.Controls.OrderBy.POSITIVE;
             this.ppcUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcUser.pageSizeItems")));
-            this.ppcUser.Size = new System.Drawing.Size(761, 22);
+            this.ppcUser.Size = new System.Drawing.Size(1101, 22);
             this.ppcUser.TabIndex = 0;
             // 
             // panSpace
@@ -237,7 +238,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.panSpace.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSpace.Location = new System.Drawing.Point(5, 44);
             this.panSpace.Name = "panSpace";
-            this.panSpace.Size = new System.Drawing.Size(1070, 5);
+            this.panSpace.Size = new System.Drawing.Size(1410, 5);
             this.panSpace.TabIndex = 0;
             // 
             // panSearch
@@ -247,7 +248,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.panSearch.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSearch.Location = new System.Drawing.Point(5, 5);
             this.panSearch.Name = "panSearch";
-            this.panSearch.Size = new System.Drawing.Size(1070, 39);
+            this.panSearch.Size = new System.Drawing.Size(1410, 39);
             this.panSearch.TabIndex = 0;
             // 
             // Search
@@ -257,7 +258,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.Search.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Search.Appearance.Options.UseFont = true;
             this.Search.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("Search.ImageOptions.Image")));
-            this.Search.Location = new System.Drawing.Point(992, 8);
+            this.Search.Location = new System.Drawing.Point(1332, 8);
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(70, 23);
             this.Search.TabIndex = 2;
@@ -274,7 +275,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.KeyInput.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
             this.KeyInput.Properties.NullText = "在此输入查询关键词……";
-            this.KeyInput.Size = new System.Drawing.Size(976, 21);
+            this.KeyInput.Size = new System.Drawing.Size(1316, 21);
             this.KeyInput.TabIndex = 1;
             // 
             // spcMain
@@ -289,7 +290,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.spcMain.Panel1.MinSize = 750;
             this.spcMain.Panel2.Controls.Add(this.panAction);
             this.spcMain.Panel2.MinSize = 300;
-            this.spcMain.Size = new System.Drawing.Size(1070, 546);
+            this.spcMain.Size = new System.Drawing.Size(1410, 775);
             this.spcMain.SplitterPosition = 300;
             this.spcMain.TabIndex = 1;
             // 
@@ -299,7 +300,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.panAction.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panAction.Location = new System.Drawing.Point(0, 0);
             this.panAction.Name = "panAction";
-            this.panAction.Size = new System.Drawing.Size(300, 546);
+            this.panAction.Size = new System.Drawing.Size(300, 775);
             this.panAction.TabIndex = 0;
             // 
             // treAction
@@ -319,7 +320,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             this.treAction.OptionsView.ShowVertLines = false;
             this.treAction.ParentFieldName = "parentId";
             this.treAction.SelectImageList = this.imgPermission;
-            this.treAction.Size = new System.Drawing.Size(296, 542);
+            this.treAction.Size = new System.Drawing.Size(296, 771);
             this.treAction.TabIndex = 0;
             this.treAction.Tag = "NODE_TYPE";
             // 
@@ -347,7 +348,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             // Manager
             // 
             this.Appearance.Options.UseFont = true;
-            this.ClientSize = new System.Drawing.Size(1080, 631);
+            this.ClientSize = new System.Drawing.Size(1420, 860);
             this.Name = "Manager";
             this.xtraScrollable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgData)).EndInit();

@@ -36,7 +36,6 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
             this.grdSchedule = new DevExpress.XtraGrid.GridControl();
             this.gdvSchedule = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -48,7 +47,7 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             this.coltaskTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colcount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colcreatedTime = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.imgNav = new DevExpress.Utils.ImageCollection(this.components);
+            this.imgNav = new DevExpress.Utils.ImageCollection();
             this.panSpace = new DevExpress.XtraEditors.PanelControl();
             this.panSearch = new DevExpress.XtraEditors.PanelControl();
             this.Search = new DevExpress.XtraEditors.SimpleButton();
@@ -70,12 +69,13 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             // 
             // xtraScrollable
             // 
+            this.xtraScrollable.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.xtraScrollable.Appearance.Options.UseBackColor = true;
             this.xtraScrollable.Controls.Add(this.panMain);
             this.xtraScrollable.Controls.Add(this.panSpace);
             this.xtraScrollable.Controls.Add(this.panSearch);
             this.xtraScrollable.Location = new System.Drawing.Point(0, 31);
-            this.xtraScrollable.Padding = new System.Windows.Forms.Padding(5);
-            this.xtraScrollable.Size = new System.Drawing.Size(1080, 600);
+            this.xtraScrollable.Size = new System.Drawing.Size(1420, 829);
             // 
             // grdSchedule
             // 
@@ -85,7 +85,7 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             this.grdSchedule.Name = "grdSchedule";
             this.grdSchedule.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repType});
-            this.grdSchedule.Size = new System.Drawing.Size(1066, 520);
+            this.grdSchedule.Size = new System.Drawing.Size(1406, 749);
             this.grdSchedule.TabIndex = 0;
             this.grdSchedule.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvSchedule});
@@ -190,7 +190,7 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             this.panSpace.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSpace.Location = new System.Drawing.Point(5, 44);
             this.panSpace.Name = "panSpace";
-            this.panSpace.Size = new System.Drawing.Size(1070, 5);
+            this.panSpace.Size = new System.Drawing.Size(1410, 5);
             this.panSpace.TabIndex = 3;
             // 
             // panSearch
@@ -200,7 +200,7 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             this.panSearch.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSearch.Location = new System.Drawing.Point(5, 5);
             this.panSearch.Name = "panSearch";
-            this.panSearch.Size = new System.Drawing.Size(1070, 39);
+            this.panSearch.Size = new System.Drawing.Size(1410, 39);
             this.panSearch.TabIndex = 0;
             // 
             // Search
@@ -210,7 +210,7 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             this.Search.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Search.Appearance.Options.UseFont = true;
             this.Search.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("Search.ImageOptions.Image")));
-            this.Search.Location = new System.Drawing.Point(992, 8);
+            this.Search.Location = new System.Drawing.Point(1332, 8);
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(70, 23);
             this.Search.TabIndex = 2;
@@ -227,18 +227,19 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             this.KeyInput.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
             this.KeyInput.Properties.NullText = "在此输入查询关键词……";
-            this.KeyInput.Size = new System.Drawing.Size(976, 21);
+            this.KeyInput.Size = new System.Drawing.Size(1316, 21);
             this.KeyInput.TabIndex = 1;
             // 
             // pccSchedule
             // 
             this.pccSchedule.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pccSchedule.Location = new System.Drawing.Point(2, 522);
+            this.pccSchedule.Location = new System.Drawing.Point(2, 751);
             this.pccSchedule.MaximumSize = new System.Drawing.Size(0, 22);
             this.pccSchedule.MinimumSize = new System.Drawing.Size(320, 22);
             this.pccSchedule.Name = "pccSchedule";
+            this.pccSchedule.orderBy = Insight.Base.BaseForm.Controls.OrderBy.POSITIVE;
             this.pccSchedule.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("pccSchedule.pageSizeItems")));
-            this.pccSchedule.Size = new System.Drawing.Size(1066, 22);
+            this.pccSchedule.Size = new System.Drawing.Size(1406, 22);
             this.pccSchedule.TabIndex = 0;
             // 
             // panMain
@@ -248,13 +249,13 @@ namespace Insight.MTP.Client.Platform.Schedules.Views
             this.panMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panMain.Location = new System.Drawing.Point(5, 49);
             this.panMain.Name = "panMain";
-            this.panMain.Size = new System.Drawing.Size(1070, 546);
+            this.panMain.Size = new System.Drawing.Size(1410, 775);
             this.panMain.TabIndex = 0;
             // 
             // Manager
             // 
             this.Appearance.Options.UseFont = true;
-            this.ClientSize = new System.Drawing.Size(1080, 631);
+            this.ClientSize = new System.Drawing.Size(1420, 860);
             this.Name = "Manager";
             this.xtraScrollable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdSchedule)).EndInit();

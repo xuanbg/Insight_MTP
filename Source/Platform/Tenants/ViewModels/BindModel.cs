@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using Insight.Base.BaseForm.Utils;
+using Insight.Base.BaseForm.ViewModels;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Tenants.Views;
-using Insight.Base.BaseForm.ViewModels;
-using Insight.Base.BaseForm.Utils;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Insight.MTP.Client.Platform.Tenants.ViewModels
 {
@@ -29,7 +29,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         public new void confirm()
         {
             var list = from r in view.gdvApp.GetSelectedRows()
-                select (TenantApp) view.gdvApp.GetRow(r);
+                       select (TenantApp)view.gdvApp.GetRow(r);
             apps = list.ToList();
             if (!apps.Any())
             {

@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Insight.Base.BaseForm.Entities;
+using Insight.Base.BaseForm.Utils;
+using Insight.Base.BaseForm.ViewModels;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Setting.Roles.Views;
-using Insight.Base.BaseForm.ViewModels;
-using Insight.Base.BaseForm.Entities;
-using Insight.Base.BaseForm.Utils;
+using System.Collections.Generic;
 
 namespace Insight.MTP.Client.Setting.Roles.ViewModels
 {

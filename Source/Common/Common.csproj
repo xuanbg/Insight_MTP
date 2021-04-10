@@ -48,9 +48,15 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="Utils, Version=2.0.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Utility\Utils.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\CompanyInfo.cs" />
+    <Compile Include="Entity\Dict.cs" />
     <Compile Include="Entity\Function.cs" />
     <Compile Include="Entity\Interface.cs" />
     <Compile Include="Entity\Navigation.cs" />

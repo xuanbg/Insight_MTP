@@ -85,6 +85,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scenes\Controller.cs" />
+    <Compile Include="Scenes\DataModel.cs" />
+    <Compile Include="Scenes\ViewModels\ConfigModel.cs" />
+    <Compile Include="Scenes\ViewModels\ManagerModel.cs" />
+    <Compile Include="Scenes\ViewModels\SceneModel.cs" />
+    <Compile Include="Scenes\Views\ConfigDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scenes\Views\ConfigDialog.Designer.cs">
+      <DependentUpon>ConfigDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scenes\Views\Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scenes\Views\Manager.Designer.cs">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scenes\Views\SceneDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scenes\Views\SceneDialog.Designer.cs">
+      <DependentUpon>SceneDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Schedules\Controller.cs" />
     <Compile Include="Schedules\DataModel.cs" />
     <Compile Include="Schedules\ViewModels\ManagerModel.cs" />
@@ -143,6 +166,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Scenes\Views\ConfigDialog.resx">
+      <DependentUpon>ConfigDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scenes\Views\Manager.resx">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scenes\Views\SceneDialog.resx">
+      <DependentUpon>SceneDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Schedules\Views\Manager.resx">
       <DependentUpon>Manager.cs</DependentUpon>
     </EmbeddedResource>

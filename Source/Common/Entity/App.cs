@@ -8,7 +8,7 @@ namespace Insight.MTP.Client.Common.Entity
         /// ID，唯一标识
         /// </summary>
         public string id { get; set; }
-        
+
         /// <summary>
         /// 序号
         /// </summary>
@@ -53,7 +53,7 @@ namespace Insight.MTP.Client.Common.Entity
         /// 是否自动刷新Token
         /// </summary>
         public bool autoRefresh { get; set; }
-        
+
         /// <summary>
         /// 导航集合
         /// </summary>

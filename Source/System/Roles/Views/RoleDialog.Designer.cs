@@ -49,6 +49,7 @@
             this.panel.Controls.Add(this.labName);
             this.panel.Controls.Add(this.memRemark);
             this.panel.Controls.Add(this.lueApp);
+            this.panel.Size = new System.Drawing.Size(370, 148);
             // 
             // cancel
             // 
@@ -59,6 +60,7 @@
             // 
             this.confirm.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.confirm.Appearance.Options.UseFont = true;
+            this.confirm.Location = new System.Drawing.Point(290, 172);
             // 
             // close
             // 
@@ -131,7 +133,7 @@
             // 
             // RoleDialog
             // 
-            this.ClientSize = new System.Drawing.Size(384, 212);
+            this.ClientSize = new System.Drawing.Size(384, 211);
             this.Name = "RoleDialog";
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);

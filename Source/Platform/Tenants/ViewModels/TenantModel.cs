@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using Insight.Base.BaseForm.Entities;
+using Insight.Base.BaseForm.Utils;
+using Insight.Base.BaseForm.ViewModels;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Tenants.Views;
-using Insight.Base.BaseForm.ViewModels;
-using Insight.Base.BaseForm.Entities;
-using Insight.Base.BaseForm.Utils;
 using Insight.Utils.Entity;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Insight.MTP.Client.Platform.Tenants.ViewModels
 {
@@ -93,7 +93,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         private void initCity(string id)
         {
             view.lueCounty.Properties.DataSource = null;
-            var list = regions.Where(i => i.parentId == id).Select(i => new LookUpMember {id = i.id, name = i.name}).ToList();
+            var list = regions.Where(i => i.parentId == id).Select(i => new LookUpMember { id = i.id, name = i.name }).ToList();
             if (list.Any())
             {
                 Format.initLookUpEdit(view.lueCity, list);
@@ -111,7 +111,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         /// <param name="id"></param>
         private void initCounty(string id)
         {
-            var list = regions.Where(i => i.parentId == id).Select(i => new LookUpMember {id = i.id, name = i.name}).ToList();
+            var list = regions.Where(i => i.parentId == id).Select(i => new LookUpMember { id = i.id, name = i.name }).ToList();
             if (list.Any())
             {
                 Format.initLookUpEdit(view.lueCounty, list);

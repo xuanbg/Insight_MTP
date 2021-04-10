@@ -99,10 +99,11 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             // 
             // xtraScrollable
             // 
+            this.xtraScrollable.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.xtraScrollable.Appearance.Options.UseBackColor = true;
             this.xtraScrollable.Controls.Add(this.splMain);
             this.xtraScrollable.Location = new System.Drawing.Point(0, 31);
-            this.xtraScrollable.Padding = new System.Windows.Forms.Padding(5);
-            this.xtraScrollable.Size = new System.Drawing.Size(1080, 600);
+            this.xtraScrollable.Size = new System.Drawing.Size(1420, 829);
             // 
             // splMain
             // 
@@ -120,8 +121,8 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.splMain.Panel2.Controls.Add(this.splMember);
             this.splMain.Panel2.MinSize = 200;
             this.splMain.ScrollBarSmallChange = 1;
-            this.splMain.Size = new System.Drawing.Size(1070, 590);
-            this.splMain.SplitterPosition = 300;
+            this.splMain.Size = new System.Drawing.Size(1410, 819);
+            this.splMain.SplitterPosition = 417;
             this.splMain.TabIndex = 0;
             // 
             // palTenant
@@ -131,7 +132,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.palTenant.Dock = System.Windows.Forms.DockStyle.Fill;
             this.palTenant.Location = new System.Drawing.Point(0, 44);
             this.palTenant.Name = "palTenant";
-            this.palTenant.Size = new System.Drawing.Size(1070, 256);
+            this.palTenant.Size = new System.Drawing.Size(1410, 373);
             this.palTenant.TabIndex = 0;
             // 
             // grdTenant
@@ -142,7 +143,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.grdTenant.Name = "grdTenant";
             this.grdTenant.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repStatus});
-            this.grdTenant.Size = new System.Drawing.Size(1066, 230);
+            this.grdTenant.Size = new System.Drawing.Size(1406, 347);
             this.grdTenant.TabIndex = 0;
             this.grdTenant.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvTenant});
@@ -234,12 +235,13 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             // ppcTenant
             // 
             this.ppcTenant.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcTenant.Location = new System.Drawing.Point(2, 232);
+            this.ppcTenant.Location = new System.Drawing.Point(2, 349);
             this.ppcTenant.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcTenant.MinimumSize = new System.Drawing.Size(300, 22);
             this.ppcTenant.Name = "ppcTenant";
+            this.ppcTenant.orderBy = Insight.Base.BaseForm.Controls.OrderBy.POSITIVE;
             this.ppcTenant.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcTenant.pageSizeItems")));
-            this.ppcTenant.Size = new System.Drawing.Size(1066, 22);
+            this.ppcTenant.Size = new System.Drawing.Size(1406, 22);
             this.ppcTenant.TabIndex = 0;
             // 
             // panSpace
@@ -250,7 +252,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.panSpace.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSpace.Location = new System.Drawing.Point(0, 39);
             this.panSpace.Name = "panSpace";
-            this.panSpace.Size = new System.Drawing.Size(1070, 5);
+            this.panSpace.Size = new System.Drawing.Size(1410, 5);
             this.panSpace.TabIndex = 0;
             // 
             // panSearch
@@ -260,7 +262,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.panSearch.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSearch.Location = new System.Drawing.Point(0, 0);
             this.panSearch.Name = "panSearch";
-            this.panSearch.Size = new System.Drawing.Size(1070, 39);
+            this.panSearch.Size = new System.Drawing.Size(1410, 39);
             this.panSearch.TabIndex = 0;
             // 
             // Search
@@ -270,7 +272,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.Search.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Search.Appearance.Options.UseFont = true;
             this.Search.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("Search.ImageOptions.Image")));
-            this.Search.Location = new System.Drawing.Point(992, 8);
+            this.Search.Location = new System.Drawing.Point(1332, 8);
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(70, 23);
             this.Search.TabIndex = 2;
@@ -287,7 +289,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.KeyInput.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
             this.KeyInput.Properties.NullText = "在此输入查询关键词……";
-            this.KeyInput.Size = new System.Drawing.Size(976, 21);
+            this.KeyInput.Size = new System.Drawing.Size(1316, 21);
             this.KeyInput.TabIndex = 1;
             // 
             // splMember
@@ -300,8 +302,8 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.splMember.Panel1.MinSize = 400;
             this.splMember.Panel2.Controls.Add(this.grpUser);
             this.splMember.Panel2.MinSize = 500;
-            this.splMember.Size = new System.Drawing.Size(1070, 285);
-            this.splMember.SplitterPosition = 400;
+            this.splMember.Size = new System.Drawing.Size(1410, 397);
+            this.splMember.SplitterPosition = 528;
             this.splMember.TabIndex = 0;
             // 
             // grpMember
@@ -310,7 +312,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.grpMember.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpMember.Location = new System.Drawing.Point(0, 0);
             this.grpMember.Name = "grpMember";
-            this.grpMember.Size = new System.Drawing.Size(400, 285);
+            this.grpMember.Size = new System.Drawing.Size(528, 397);
             this.grpMember.TabIndex = 0;
             this.grpMember.Text = "绑定应用";
             // 
@@ -320,7 +322,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.grdApp.Location = new System.Drawing.Point(2, 21);
             this.grdApp.MainView = this.gdvApp;
             this.grdApp.Name = "grdApp";
-            this.grdApp.Size = new System.Drawing.Size(396, 262);
+            this.grdApp.Size = new System.Drawing.Size(524, 374);
             this.grdApp.TabIndex = 0;
             this.grdApp.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvApp});
@@ -377,7 +379,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.grpUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpUser.Location = new System.Drawing.Point(0, 0);
             this.grpUser.Name = "grpUser";
-            this.grpUser.Size = new System.Drawing.Size(665, 285);
+            this.grpUser.Size = new System.Drawing.Size(877, 397);
             this.grpUser.TabIndex = 0;
             this.grpUser.Text = "关联用户";
             // 
@@ -387,7 +389,7 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             this.grdUser.Location = new System.Drawing.Point(2, 21);
             this.grdUser.MainView = this.gdvUser;
             this.grdUser.Name = "grdUser";
-            this.grdUser.Size = new System.Drawing.Size(661, 240);
+            this.grdUser.Size = new System.Drawing.Size(873, 352);
             this.grdUser.TabIndex = 0;
             this.grdUser.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvUser});
@@ -474,18 +476,19 @@ namespace Insight.MTP.Client.Platform.Tenants.Views
             // ppcUser
             // 
             this.ppcUser.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcUser.Location = new System.Drawing.Point(2, 261);
+            this.ppcUser.Location = new System.Drawing.Point(2, 373);
             this.ppcUser.MaximumSize = new System.Drawing.Size(0, 22);
             this.ppcUser.MinimumSize = new System.Drawing.Size(320, 22);
             this.ppcUser.Name = "ppcUser";
+            this.ppcUser.orderBy = Insight.Base.BaseForm.Controls.OrderBy.POSITIVE;
             this.ppcUser.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcUser.pageSizeItems")));
-            this.ppcUser.Size = new System.Drawing.Size(661, 22);
+            this.ppcUser.Size = new System.Drawing.Size(873, 22);
             this.ppcUser.TabIndex = 0;
             // 
             // Manager
             // 
             this.Appearance.Options.UseFont = true;
-            this.ClientSize = new System.Drawing.Size(1080, 631);
+            this.ClientSize = new System.Drawing.Size(1420, 860);
             this.Name = "Manager";
             this.xtraScrollable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splMain)).EndInit();

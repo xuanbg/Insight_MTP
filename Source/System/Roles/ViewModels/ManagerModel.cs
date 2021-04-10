@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using DevExpress.XtraTreeList.Nodes;
+﻿using DevExpress.XtraTreeList.Nodes;
+using Insight.Base.BaseForm.ViewModels;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Setting.Roles.Views;
-using Insight.Base.BaseForm.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Insight.MTP.Client.Setting.Roles.ViewModels
 {
@@ -110,7 +110,7 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             refreshUser();
             refreshToolBar();
         }
-        
+
         /// <summary>
         /// 成员节点改变
         /// </summary>
@@ -174,14 +174,14 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
 
             refreshToolBar();
         }
-        
+
         /// <summary>
         /// 刷新树数据
         /// </summary>
         public void refreshAction()
         {
             view.treAction.RefreshDataSource();
-            view.treAction.FocusedNode = view.treAction.GetNodeAt(5,5);
+            view.treAction.FocusedNode = view.treAction.GetNodeAt(5, 5);
         }
 
         /// <summary>

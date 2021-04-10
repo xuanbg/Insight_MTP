@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using Insight.Base.BaseForm.ViewModels;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Users.Views;
-using Insight.Base.BaseForm.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Insight.MTP.Client.Platform.Users.ViewModels
 {
@@ -33,7 +33,7 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
             list.Clear();
 
             list.AddRange(result.data);
-            tab.totalRows = result.total ;
+            tab.totalRows = result.total;
 
             refreshToolBar();
         }
@@ -65,7 +65,7 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
 
             refreshToolBar();
         }
-        
+
         /// <summary>
         /// 刷新列表数据
         /// </summary>

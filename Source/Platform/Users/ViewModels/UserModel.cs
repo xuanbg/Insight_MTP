@@ -1,7 +1,7 @@
 ﻿using Insight.Base.BaseForm.Utils;
+using Insight.Base.BaseForm.ViewModels;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Users.Views;
-using Insight.Base.BaseForm.ViewModels;
 
 namespace Insight.MTP.Client.Platform.Users.ViewModels
 {

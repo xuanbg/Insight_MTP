@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Insight.Base.BaseForm.Entities;
+﻿using Insight.Base.BaseForm.Entities;
+using System.Collections.Generic;
 
 namespace Insight.MTP.Client.Common.Entity
 {

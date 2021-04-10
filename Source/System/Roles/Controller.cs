@@ -1,12 +1,12 @@
-﻿using System;
-using System.Linq;
+﻿using Insight.Base.BaseForm.Controllers;
+using Insight.Base.BaseForm.Entities;
+using Insight.Base.BaseForm.Utils;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Setting.Roles.ViewModels;
 using Insight.MTP.Client.Setting.Roles.Views;
-using Insight.Base.BaseForm.Controllers;
-using Insight.Base.BaseForm.Entities;
-using Insight.Base.BaseForm.Utils;
 using Insight.Utils.Common;
+using System;
+using System.Linq;
 
 namespace Insight.MTP.Client.Setting.Roles
 {
@@ -79,7 +79,7 @@ namespace Insight.MTP.Client.Setting.Roles
                 mdiModel.tab.removeItems();
             }
         }
-        
+
         /// <summary>
         /// 添加角色成员
         /// </summary>
@@ -92,7 +92,7 @@ namespace Insight.MTP.Client.Setting.Roles
                 if (!dataModel.addMember(mdiModel.item.id, model.members)) return;
 
                 mdiModel.item.members.AddRange(model.members);
-                if (mdiModel.item.members.All(i => i.id != "1")) mdiModel.item.members.Add(new Member {id = "1", type = 0, name = "用户"});
+                if (mdiModel.item.members.All(i => i.id != "1")) mdiModel.item.members.Add(new Member { id = "1", type = 0, name = "用户" });
 
                 mdiModel.refreshTree();
                 mdiModel.getMemberUsers();
@@ -132,7 +132,7 @@ namespace Insight.MTP.Client.Setting.Roles
             var func = Util.clone(mdiModel.func);
             var permit = mdiModel.func.permit;
             if (permit == null) func.permit = true;
-            else if ((bool) permit) func.permit = false;
+            else if ((bool)permit) func.permit = false;
             else func.permit = null;
 
             if (dataModel.setFuncPermit(mdiModel.item.id, func))

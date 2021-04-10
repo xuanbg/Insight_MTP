@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using Insight.Base.BaseForm.Entities;
-using Insight.MTP.Client.Common.Entity;
+﻿using Insight.Base.BaseForm.Entities;
 using Insight.Base.BaseForm.Utils;
+using Insight.MTP.Client.Common.Entity;
 using Insight.Utils.Common;
 using Insight.Utils.Entity;
+using System.Collections.Generic;
 
 namespace Insight.MTP.Client.Platform.Users
 {
@@ -43,7 +43,7 @@ namespace Insight.MTP.Client.Platform.Users
             var url = $"{service}/v1.0/users/{id}/functions";
             var client = new HttpClient<List<AppTree>>(url);
 
-            return client.getData(url);
+            return client.getData();
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Insight.MTP.Client.Platform.Users
             if (user == null) return false;
 
             var url = $"{service}/v1.0/users/password";
-            var data = new PasswordDto {id = user.id};
+            var data = new PasswordDto { id = user.id };
             var client = new HttpClient<object>(url);
 
             return client.put(data);

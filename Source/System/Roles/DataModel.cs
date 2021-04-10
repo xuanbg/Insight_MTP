@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Insight.Base.BaseForm.Entities;
-using Insight.MTP.Client.Common.Entity;
+﻿using Insight.Base.BaseForm.Entities;
 using Insight.Base.BaseForm.Utils;
+using Insight.MTP.Client.Common.Entity;
 using Insight.Utils.Common;
 using Insight.Utils.Entity;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Insight.MTP.Client.Setting.Roles
 {
@@ -43,7 +43,7 @@ namespace Insight.MTP.Client.Setting.Roles
             var url = $"{service}/v1.0/roles/{id}/members";
             var client = new HttpClient<List<Member>>(url);
 
-            return client.getData(url);
+            return client.getData();
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Insight.MTP.Client.Setting.Roles
             var url = $"{service}/v1.0/roles/{id}/funcs";
             var client = new HttpClient<List<AppTree>>(url);
 
-            return client.getData(url);
+            return client.getData();
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Insight.MTP.Client.Setting.Roles
             var url = $"{service}/v1.0/apps";
             var client = new HttpClient<List<LookUpMember>>(url);
 
-            return client.getData(url);
+            return client.getData();
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Insight.MTP.Client.Setting.Roles
             var url = $"{service}/v1.0/roles/{id}/users/other";
             var client = new HttpClient<List<Member>>(url);
 
-            return client.getData(url);
+            return client.getData();
         }
 
         /// <summary>
