@@ -41,7 +41,7 @@ namespace Insight.MTP.Client.Setting.Apps
             var url = $"{service}/v1.0/apps/{id}/navigators";
             var client = new HttpClient<List<Navigation>>(url);
 
-            return client.getData(url);
+            return client.getData();
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Insight.MTP.Client.Setting.Apps
             var url = $"{service}/v1.0/navigators/{id}/functions";
             var client = new HttpClient<List<Function>>(url);
 
-            return client.getData(url);
+            return client.getData();
         }
 
         /// <summary>

@@ -17,7 +17,7 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
         {
             initSearch(view.KeyInput, view.Search);
             initMainGrid(view.grdTenant, view.gdvTenant, view.ppcTenant);
-            initGrid(view.grdApp, view.gdvApp, "appChanged", "rent");
+            initGrid(view.grdApp, view.gdvApp, "rent", "appChanged");
             initGrid(view.grdUser, view.gdvUser, null, null, view.ppcUser, "getTenantUsers");
         }
 

@@ -43,7 +43,7 @@ namespace Insight.MTP.Client.Platform.Users
             var url = $"{service}/v1.0/users/{id}/functions";
             var client = new HttpClient<List<AppTree>>(url);
 
-            return client.getData(url);
+            return client.getData();
         }
 
         /// <summary>

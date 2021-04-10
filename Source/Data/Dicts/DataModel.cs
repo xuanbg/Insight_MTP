@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Insight.Base.BaseForm.Entities;
 using Insight.Base.BaseForm.Utils;
+using Insight.MTP.Client.Common.Entity;
 using Insight.Utils.Common;
 using Insight.Utils.Entity;
 
@@ -36,10 +37,10 @@ namespace Insight.MTP.Client.Data.Dicts
         /// </summary>
         /// <param name="id">字典数据ID</param>
         /// <returns>字典键值集合</returns>
-        public List<DictKeyDto<object>> getDictKeys(string id)
+        public List<DictKeyDto> getDictKeys(string id)
         {
             var url = $"{service}/v1.0/dicts/{id}";
-            var client = new HttpClient<List<DictKeyDto<object>>>(url);
+            var client = new HttpClient<List<DictKeyDto>>(url);
 
             return client.getData();
         }
@@ -112,7 +113,7 @@ namespace Insight.MTP.Client.Data.Dicts
         /// </summary>
         /// <param name="dto">字典键值DTO</param>
         /// <returns>字典键值ID</returns>
-        public string addDictKey(DictKeyDto<object> dto)
+        public string addDictKey(DictKeyDto dto)
         {
             if (dto == null) return null;
 
@@ -127,7 +128,7 @@ namespace Insight.MTP.Client.Data.Dicts
         /// </summary>
         /// <param name="dto">字典键值DTO</param>
         /// <returns>是否更新成功</returns>
-        public bool editDictKey(DictKeyDto<object> dto)
+        public bool editDictKey(DictKeyDto dto)
         {
             if (dto == null) return false;
 
@@ -142,7 +143,7 @@ namespace Insight.MTP.Client.Data.Dicts
         /// </summary>
         /// <param name="dto">字典键值DTO</param>
         /// <returns>是否删除成功</returns>
-        public bool deleteDictKey(DictKeyDto<object> dto)
+        public bool deleteDictKey(DictKeyDto dto)
         {
             if (dto == null) return false;
 

@@ -77,12 +77,13 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             // 
             // xtraScrollable
             // 
+            this.xtraScrollable.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.xtraScrollable.Appearance.Options.UseBackColor = true;
             this.xtraScrollable.Controls.Add(this.sccMain);
             this.xtraScrollable.Controls.Add(this.panSpace);
             this.xtraScrollable.Controls.Add(this.panSearch);
             this.xtraScrollable.Location = new System.Drawing.Point(0, 31);
-            this.xtraScrollable.Padding = new System.Windows.Forms.Padding(5);
-            this.xtraScrollable.Size = new System.Drawing.Size(1080, 598);
+            this.xtraScrollable.Size = new System.Drawing.Size(1420, 829);
             // 
             // sccMain
             // 
@@ -96,8 +97,8 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.sccMain.Panel1.MinSize = 400;
             this.sccMain.Panel2.Controls.Add(this.pceKey);
             this.sccMain.Panel2.MinSize = 500;
-            this.sccMain.Size = new System.Drawing.Size(1070, 544);
-            this.sccMain.SplitterPosition = 502;
+            this.sccMain.Size = new System.Drawing.Size(1410, 775);
+            this.sccMain.SplitterPosition = 540;
             this.sccMain.TabIndex = 0;
             this.sccMain.Text = "splitContainerControl1";
             // 
@@ -108,7 +109,7 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.pceDict.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pceDict.Location = new System.Drawing.Point(0, 0);
             this.pceDict.Name = "pceDict";
-            this.pceDict.Size = new System.Drawing.Size(502, 544);
+            this.pceDict.Size = new System.Drawing.Size(540, 775);
             this.pceDict.TabIndex = 0;
             // 
             // grdDict
@@ -117,7 +118,7 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.grdDict.Location = new System.Drawing.Point(2, 2);
             this.grdDict.MainView = this.gdvDict;
             this.grdDict.Name = "grdDict";
-            this.grdDict.Size = new System.Drawing.Size(498, 518);
+            this.grdDict.Size = new System.Drawing.Size(536, 749);
             this.grdDict.TabIndex = 0;
             this.grdDict.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvDict});
@@ -175,12 +176,13 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             // upcDict
             // 
             this.upcDict.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.upcDict.Location = new System.Drawing.Point(2, 520);
+            this.upcDict.Location = new System.Drawing.Point(2, 751);
             this.upcDict.MaximumSize = new System.Drawing.Size(0, 22);
             this.upcDict.MinimumSize = new System.Drawing.Size(320, 22);
             this.upcDict.Name = "upcDict";
+            this.upcDict.orderBy = Insight.Base.BaseForm.Controls.OrderBy.POSITIVE;
             this.upcDict.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("upcDict.pageSizeItems")));
-            this.upcDict.Size = new System.Drawing.Size(498, 22);
+            this.upcDict.Size = new System.Drawing.Size(536, 22);
             this.upcDict.TabIndex = 0;
             // 
             // pceKey
@@ -189,7 +191,7 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.pceKey.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pceKey.Location = new System.Drawing.Point(0, 0);
             this.pceKey.Name = "pceKey";
-            this.pceKey.Size = new System.Drawing.Size(563, 544);
+            this.pceKey.Size = new System.Drawing.Size(865, 775);
             this.pceKey.TabIndex = 0;
             // 
             // grdKey
@@ -198,7 +200,7 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.grdKey.Location = new System.Drawing.Point(2, 2);
             this.grdKey.MainView = this.gdvKey;
             this.grdKey.Name = "grdKey";
-            this.grdKey.Size = new System.Drawing.Size(559, 540);
+            this.grdKey.Size = new System.Drawing.Size(861, 771);
             this.grdKey.TabIndex = 0;
             this.grdKey.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gdvKey});
@@ -235,7 +237,7 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.colindex.Name = "colindex";
             this.colindex.Visible = true;
             this.colindex.VisibleIndex = 0;
-            this.colindex.Width = 40;
+            this.colindex.Width = 60;
             // 
             // colcode1
             // 
@@ -244,7 +246,7 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.colcode1.Name = "colcode1";
             this.colcode1.Visible = true;
             this.colcode1.VisibleIndex = 1;
-            this.colcode1.Width = 120;
+            this.colcode1.Width = 80;
             // 
             // colvalue
             // 
@@ -253,12 +255,16 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.colvalue.Name = "colvalue";
             this.colvalue.Visible = true;
             this.colvalue.VisibleIndex = 2;
-            this.colvalue.Width = 160;
+            this.colvalue.Width = 120;
             // 
             // colextend
             // 
-            this.colextend.FieldName = "extend";
+            this.colextend.Caption = "自定义值";
+            this.colextend.FieldName = "extendVal";
             this.colextend.Name = "colextend";
+            this.colextend.Visible = true;
+            this.colextend.VisibleIndex = 3;
+            this.colextend.Width = 300;
             // 
             // colremark1
             // 
@@ -266,8 +272,8 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.colremark1.FieldName = "remark";
             this.colremark1.Name = "colremark1";
             this.colremark1.Visible = true;
-            this.colremark1.VisibleIndex = 3;
-            this.colremark1.Width = 200;
+            this.colremark1.VisibleIndex = 4;
+            this.colremark1.Width = 250;
             // 
             // panSpace
             // 
@@ -277,7 +283,7 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.panSpace.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSpace.Location = new System.Drawing.Point(5, 44);
             this.panSpace.Name = "panSpace";
-            this.panSpace.Size = new System.Drawing.Size(1070, 5);
+            this.panSpace.Size = new System.Drawing.Size(1410, 5);
             this.panSpace.TabIndex = 0;
             // 
             // panSearch
@@ -287,7 +293,7 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.panSearch.Dock = System.Windows.Forms.DockStyle.Top;
             this.panSearch.Location = new System.Drawing.Point(5, 5);
             this.panSearch.Name = "panSearch";
-            this.panSearch.Size = new System.Drawing.Size(1070, 39);
+            this.panSearch.Size = new System.Drawing.Size(1410, 39);
             this.panSearch.TabIndex = 2;
             // 
             // Search
@@ -297,7 +303,7 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.Search.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Search.Appearance.Options.UseFont = true;
             this.Search.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("Search.ImageOptions.Image")));
-            this.Search.Location = new System.Drawing.Point(992, 8);
+            this.Search.Location = new System.Drawing.Point(1332, 8);
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(70, 23);
             this.Search.TabIndex = 2;
@@ -314,13 +320,13 @@ namespace Insight.MTP.Client.Data.Dicts.Views
             this.KeyInput.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
             this.KeyInput.Properties.NullText = "在此输入查询关键词……";
-            this.KeyInput.Size = new System.Drawing.Size(976, 21);
+            this.KeyInput.Size = new System.Drawing.Size(1316, 21);
             this.KeyInput.TabIndex = 1;
             // 
             // Manager
             // 
             this.Appearance.Options.UseFont = true;
-            this.ClientSize = new System.Drawing.Size(1080, 629);
+            this.ClientSize = new System.Drawing.Size(1420, 860);
             this.Name = "Manager";
             this.Text = "字典管理";
             this.xtraScrollable.ResumeLayout(false);

@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Insight.Base.BaseForm.Entities;
 using Insight.Base.BaseForm.ViewModels;
+using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Data.Dicts.Views;
 
 namespace Insight.MTP.Client.Data.Dicts.ViewModels
 {
     public class ManagerModel : BaseMdiModel<DictDto, Manager, DataModel>
     {
-        public DictKeyDto<object> key;
+        public DictKeyDto key;
 
         /// <summary>
         /// 构造方法
@@ -17,7 +17,7 @@ namespace Insight.MTP.Client.Data.Dicts.ViewModels
         {
             initSearch(view.KeyInput, view.Search);
             initMainGrid(view.grdDict, view.gdvDict, view.upcDict);
-            initGrid(view.grdKey, view.gdvKey, "keyChanged", "editValue");
+            initGrid(view.grdKey, view.gdvKey, "editValue", "keyChanged");
         }
 
         /// <summary>

@@ -18,9 +18,9 @@ namespace Insight.MTP.Client.Setting.Apps.ViewModels
         public ManagerModel()
         {
             initSearch(view.KeyInput, view.Search);
-            initMainGrid(view.grdApp, view.gdvApp, view.pccApp, "editApp");
+            initMainGrid(view.grdApp, view.gdvApp, view.pccApp, "loadData", "editApp");
             initTree(view.TreNav, "navChanged", "editNav");
-            initGrid(view.grdFunc, view.gdvFunc, "funChanged", "editFunc");
+            initGrid(view.grdFunc, view.gdvFunc, "editFunc", "funChanged");
         }
 
         /// <summary>

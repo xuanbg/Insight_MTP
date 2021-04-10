@@ -95,5 +95,12 @@
       <DependentUpon>DictKeyDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{7c8ac27e-e640-4403-af4d-5b62c6c55826}</Project>
+      <Name>Common</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -17,7 +17,7 @@ namespace Insight.MTP.Client.Setting.Scenes.ViewModels
         {
             initSearch(view.KeyInput, view.Search);
             initMainGrid(view.grdScene, view.gdvScene, view.ppcScene);
-            initGrid(view.grdTemplate, view.gdvTemplate, "configChanged", null, view.ppcTemplate, "getConfigs");
+            initGrid(view.grdTemplate, view.gdvTemplate, null, "configChanged", view.ppcTemplate, "getConfigs");
         }
 
         /// <summary>
