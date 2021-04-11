@@ -37,20 +37,13 @@ namespace Insight.MTP.Client.Platform.Scenes
         /// 获取指定场景的模板配置集合
         /// </summary>
         /// <param name="id">场景ID</param>
-        /// <param name="page">页码</param>
-        /// <param name="size">每页行数</param>
         /// <returns>绑定的用户集合</returns>
-        public Result<List<TempConfig>> getTempConfigs(string id, int page, int size)
+        public List<SceneConfig> getConfigs(string id)
         {
             var url = $"{service}/v1.0/scenes/{id}/configs";
-            var dict = new Dictionary<string, object>
-            {
-                {"page", page},
-                {"size", size}
-            };
-            var client = new HttpClient<List<TempConfig>>(url);
+            var client = new HttpClient<List<SceneConfig>>(url);
 
-            return client.getResult(dict);
+            return client.getData();
         }
 
         /// <summary>
@@ -113,6 +106,51 @@ namespace Insight.MTP.Client.Platform.Scenes
             var client = new HttpClient<List<LookUpMember>>(url);
 
             return client.getData(dict);
+        }
+
+        /// <summary>
+        /// 新增场景配置
+        /// </summary>
+        /// <param name="config">场景配置实体对象</param>
+        /// <returns>场景ID</returns>
+        public string addSceneConfig(SceneConfig config)
+        {
+            if (config == null) return null;
+
+            var url = $"{service}/v1.0/scenes/configs";
+            var client = new HttpClient<string>(url);
+
+            return client.commit(RequestMethod.POST, config);
+        }
+
+        /// <summary>
+        /// 更新场景配置
+        /// </summary>
+        /// <param name="config">场景配置实体对象</param>
+        /// <returns>是否更新成功</returns>
+        public bool updateSceneConfig(SceneConfig config)
+        {
+            if (config == null) return false;
+
+            var url = $"{service}/v1.0/scenes/configs";
+            var client = new HttpClient<object>(url);
+
+            return client.put(config);
+        }
+
+        /// <summary>
+        /// 删除场景配置
+        /// </summary>
+        /// <param name="config">场景配置实体对象</param>
+        /// <returns>是否删除成功</returns>
+        public bool deleteSceneConfig(SceneConfig config)
+        {
+            if (config == null) return false;
+
+            var url = $"{service}/v1.0/scenes/configs";
+            var client = new HttpClient<object>(url);
+
+            return client.delete(config.id);
         }
     }
 }

@@ -35,7 +35,11 @@ namespace Insight.MTP.Client.Data.Apps
             model.callbackEvent += (sender, args) =>
             {
                 app.id = dataModel.addApp(app);
-                if (app.id == null) return;
+                if (app.id == null)
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 mdiModel.list.Add(app);
                 mdiModel.tab.addItems();
@@ -54,7 +58,11 @@ namespace Insight.MTP.Client.Data.Apps
             var model = new AppModel(mdiModel.item, "编辑应用");
             model.callbackEvent += (sender, args) =>
             {
-                if (!dataModel.updateApp(mdiModel.item)) return;
+                if (!dataModel.updateApp(mdiModel.item))
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 mdiModel.refreshFunc();
                 model.closeDialog();
@@ -96,7 +104,11 @@ namespace Insight.MTP.Client.Data.Apps
             model.callbackEvent += (sender, args) =>
             {
                 nav.id = dataModel.addNav(nav);
-                if (nav.id == null) return;
+                if (nav.id == null)
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 mdiModel.item.navigations.Add(nav);
                 mdiModel.refreshTree();
@@ -114,7 +126,11 @@ namespace Insight.MTP.Client.Data.Apps
             var model = new NavModel(mdiModel.nav, "编辑导航");
             model.callbackEvent += (sender, args) =>
             {
-                if (!dataModel.updateNav(mdiModel.nav)) return;
+                if (!dataModel.updateNav(mdiModel.nav))
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 mdiModel.refreshTree();
                 model.closeDialog();
@@ -149,7 +165,11 @@ namespace Insight.MTP.Client.Data.Apps
             model.callbackEvent += (sender, args) =>
             {
                 func.id = dataModel.addFunc(func);
-                if (func.id == null) return;
+                if (func.id == null)
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 mdiModel.nav.functions.Add(func);
                 mdiModel.refreshFunc();
@@ -168,7 +188,11 @@ namespace Insight.MTP.Client.Data.Apps
             var model = new FunModel(mdiModel.func, "编辑功能");
             model.callbackEvent += (sender, args) =>
             {
-                if (!dataModel.updateFunc(mdiModel.func)) return;
+                if (!dataModel.updateFunc(mdiModel.func))
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 mdiModel.refreshFunc();
                 model.closeDialog();

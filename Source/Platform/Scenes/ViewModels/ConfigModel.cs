@@ -1,39 +1,48 @@
-﻿using Insight.Base.BaseForm.Entities;
+﻿using System.Linq;
 using Insight.Base.BaseForm.Utils;
 using Insight.Base.BaseForm.ViewModels;
 using Insight.MTP.Client.Common.Entity;
 using Insight.MTP.Client.Platform.Scenes.Views;
-using System.Collections.Generic;
 
 namespace Insight.MTP.Client.Platform.Scenes.ViewModels
 {
-    public class ConfigModel : BaseDialogModel<TempConfig, ConfigDialog>
+    public class ConfigModel : BaseDialogModel<SceneConfig, ConfigDialog>
     {
         /// <summary>
         /// 构造函数
         /// 通过订阅事件实现双向数据绑定
         /// </summary>
-        /// <param name="data"></param>
-        /// <param name="temps">可选模板集合</param>
-        /// <param name="apps">可选应用集合</param>
         /// <param name="title">View标题</param>
-        public ConfigModel(TempConfig data, List<LookUpMember> apps, string title) : base(title)
+        /// <param name="data">数据</param>
+        /// <param name="dataModel">DAL</param>
+        public ConfigModel(string title, SceneConfig data, DataModel dataModel) : base(title, data)
         {
-            item = data;
-
+            var apps = dataModel.getApps();
             Format.initLookUpEdit(view.lueApp, apps);
 
-            view.lueTemplate.EditValueChanged += (sender, args) =>
-            {
-                item.templateId = view.lueTemplate.EditValue.ToString();
-                item.template = view.lueTemplate.Text;
-            };
             view.lueApp.EditValueChanged += (sender, args) =>
             {
-                item.appId = view.lueApp.EditValue.ToString();
-                item.appName = view.lueApp.Text;
+                item.appId = view.lueApp.EditValue as string;
+                item.appName = apps.SingleOrDefault(i => i.id == item.appId)?.name;
+            };
+            view.memContent.EditValueChanged += (sender, args) =>
+            {
+                var text = view.memContent.Text.Trim();
+                item.content = string.IsNullOrEmpty(text) ? null : text;
             };
             view.txtSign.EditValueChanged += (sender, args) => item.sign = view.txtSign.Text.Trim();
+            view.speExpire.EditValueChanged += (sender, args) => item.expire = (int) view.speExpire.Value;
+            view.memRemark.EditValueChanged += (sender, args) =>
+            {
+                var text = view.memRemark.Text.Trim();
+                item.remark = string.IsNullOrEmpty(text) ? null : text;
+            };
+
+            view.lueApp.EditValue = item.appId;
+            view.memContent.EditValue = item.content;
+            view.txtSign.EditValue = item.sign;
+            view.speExpire.EditValue = item.expire;
+            view.memRemark.EditValue = item.remark;
         }
 
         /// <summary>
@@ -41,10 +50,10 @@ namespace Insight.MTP.Client.Platform.Scenes.ViewModels
         /// </summary>
         public new void confirm()
         {
-            if (string.IsNullOrEmpty(item.templateId))
+            if (string.IsNullOrEmpty(item.content))
             {
-                Messages.showWarning("必须选择一个模板！");
-                view.lueTemplate.Focus();
+                Messages.showWarning("必须输入消息内容！");
+                view.memContent.Select();
                 return;
             }
 

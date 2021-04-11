@@ -8,7 +8,7 @@ namespace Insight.MTP.Client.Platform.Scenes.ViewModels
 {
     public class ManagerModel : BaseMdiModel<Scene, Manager, DataModel>
     {
-        public TempConfig config;
+        public SceneConfig config;
 
         /// <summary>
         /// 构造方法
@@ -16,8 +16,8 @@ namespace Insight.MTP.Client.Platform.Scenes.ViewModels
         public ManagerModel()
         {
             initSearch(view.KeyInput, view.Search);
-            initMainGrid(view.grdScene, view.gdvScene, view.ppcScene);
-            initGrid(view.grdTemplate, view.gdvTemplate, null, "configChanged", view.ppcTemplate, "getConfigs");
+            initMainGrid(view.grdMaster, view.gdvMaster, view.pucMaster);
+            initGrid(view.grdDetail, view.gdvDetail, "editConfig");
         }
 
         /// <summary>
@@ -46,24 +46,26 @@ namespace Insight.MTP.Client.Platform.Scenes.ViewModels
         /// <param name="index">List下标</param>
         public void itemChanged(int index)
         {
-            config = null;
             if (index < 0 || index >= list.Count)
             {
                 item = null;
-                view.ppcTemplate.totalRows = 0;
-                view.grdTemplate.DataSource = null;
-                view.gdvTemplate.FocusedRowHandle = -1;
-                refreshToolBar();
+                config = null;
+            }
+            else
+            {
+                item = list[index];
+                if (item.configs == null) item.configs = new List<SceneConfig>();
 
-                return;
+                if (!item.configs.Any())
+                {
+                    var details = dataModel.getConfigs(item.id);
+                    if (details == null || !details.Any()) config = null;
+                    else item.configs.AddRange(details);
+                }
             }
 
-            item = list[index];
-            if (!item.configs.Any()) getConfigs();
-
-            view.ppcTemplate.totalRows = item.configTotal;
-            view.grdTemplate.DataSource = item.configs;
-            view.gdvTemplate.FocusedRowHandle = 0;
+            view.grdDetail.DataSource = item?.configs;
+            view.gdvDetail.FocusedRowHandle = 0;
 
             refreshToolBar();
         }
@@ -72,7 +74,7 @@ namespace Insight.MTP.Client.Platform.Scenes.ViewModels
         /// 所选模板配置改变
         /// </summary>
         /// <param name="index">列表行号</param>
-        public void configChanged(int index)
+        public void detailChanged(int index)
         {
             config = index < 0 ? null : item.configs[index];
 
@@ -80,35 +82,12 @@ namespace Insight.MTP.Client.Platform.Scenes.ViewModels
         }
 
         /// <summary>
-        /// 读取模板配置数据
+        /// 刷新明细列表数据
         /// </summary>
-        /// <param name="handle"></param>
-        public void getConfigs(int handle = 0)
+        public void refreshDetailGrid()
         {
-            var result = dataModel.getTempConfigs(item.id, view.ppcTemplate.page, view.ppcTemplate.size);
-            if (!result.success) return;
-
-            item.configs = result.data;
-            item.configTotal = result.total;
-        }
-
-        /// <summary>
-        /// 添加场景配置
-        /// </summary>
-        /// <param name="data"></param>
-        public void addConfig(TempConfig data)
-        {
-            item.configs.Add(data);
-            view.ppcTemplate.addItems();
-        }
-
-        /// <summary>
-        /// 移除场景配置
-        /// </summary>
-        public void removeConfig()
-        {
-            item.configs.Remove(config);
-            view.ppcTemplate.removeItems();
+            view.gdvDetail.RefreshData();
+            refreshToolBar();
         }
 
         /// <summary>
@@ -120,8 +99,9 @@ namespace Insight.MTP.Client.Platform.Scenes.ViewModels
             {
                 ["editItem"] = item != null,
                 ["deleteItem"] = item != null,
-                ["addConfig"] = item != null,
-                ["removeConfig"] = item != null && config != null,
+                ["newConfig"] = item != null,
+                ["editConfig"] = item != null && config != null,
+                ["deleteConfig"] = item != null && config != null,
             };
 
             base.refreshToolBar();

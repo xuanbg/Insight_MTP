@@ -74,21 +74,21 @@ namespace Insight.MTP.Client.Data.Interfaces.ViewModels
             if (string.IsNullOrEmpty(item.name))
             {
                 Messages.showWarning("必须输入接口名称！");
-                view.txtName.Focus();
+                view.txtName.Select();
                 return;
             }
 
             if (string.IsNullOrEmpty(item.url))
             {
                 Messages.showWarning("接口URL不能为空！");
-                view.txtUrl.Focus();
+                view.txtUrl.Select();
                 return;
             }
 
             if (item.limit && item.limitGap == null && (item.limitMax == null || item.limitCycle == null))
             {
                 Messages.showWarning("必须配置限流参数！");
-                view.spiGap.Focus();
+                view.spiGap.Select();
                 return;
             }
 

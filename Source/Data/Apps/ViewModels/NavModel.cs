@@ -46,7 +46,7 @@ namespace Insight.MTP.Client.Data.Apps.ViewModels
             if (string.IsNullOrEmpty(item.name))
             {
                 Messages.showWarning("必须输入导航名称！");
-                view.txtName.Focus();
+                view.txtName.Select();
                 return;
             }
 

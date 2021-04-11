@@ -33,7 +33,11 @@ namespace Insight.MTP.Client.Data.Interfaces
             model.callbackEvent += (sender, args) =>
             {
                 config.id = dataModel.addInterface(config);
-                if (config.id == null) return;
+                if (config.id == null)
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 mdiModel.list.Add(config);
                 mdiModel.tab.addItems();
@@ -52,7 +56,11 @@ namespace Insight.MTP.Client.Data.Interfaces
             var model = new InterfaceModel(mdiModel.item, "编辑接口配置");
             model.callbackEvent += (sender, args) =>
             {
-                if (!dataModel.updateInterface(mdiModel.item)) return;
+                if (!dataModel.updateInterface(mdiModel.item))
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 model.closeDialog();
             };

@@ -37,7 +37,11 @@ namespace Insight.MTP.Client.Setting.Roles
             model.callbackEvent += (sender, args) =>
             {
                 role.id = dataModel.addRole(role);
-                if (role.id == null) return;
+                if (role.id == null)
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 mdiModel.list.Add(role);
                 mdiModel.tab.addItems();
@@ -57,7 +61,11 @@ namespace Insight.MTP.Client.Setting.Roles
             var model = new RoleModel(mdiModel.item, apps, "编辑角色");
             model.callbackEvent += (sender, args) =>
             {
-                if (!dataModel.updateRole(mdiModel.item)) return;
+                if (!dataModel.updateRole(mdiModel.item))
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 model.closeDialog();
             };
@@ -89,7 +97,11 @@ namespace Insight.MTP.Client.Setting.Roles
             var model = new MemberModel(members, "添加角色成员");
             model.callbackEvent += (sender, args) =>
             {
-                if (!dataModel.addMember(mdiModel.item.id, model.members)) return;
+                if (!dataModel.addMember(mdiModel.item.id, model.members))
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 mdiModel.item.members.AddRange(model.members);
                 if (mdiModel.item.members.All(i => i.id != "1")) mdiModel.item.members.Add(new Member { id = "1", type = 0, name = "用户" });

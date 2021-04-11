@@ -131,14 +131,14 @@ namespace Insight.MTP.Client.Platform.Tenants.ViewModels
             if (string.IsNullOrEmpty(item.name))
             {
                 Messages.showWarning("必须输入租户名称！");
-                view.txtName.Focus();
+                view.txtName.Select();
                 return;
             }
 
             if (string.IsNullOrEmpty(item.alias))
             {
                 Messages.showWarning("必须输入租户简称！");
-                view.txtAlias.Focus();
+                view.txtAlias.Select();
                 return;
             }
 

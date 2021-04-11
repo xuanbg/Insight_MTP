@@ -42,14 +42,14 @@ namespace Insight.MTP.Client.Platform.Users.ViewModels
             if (string.IsNullOrEmpty(item.name))
             {
                 Messages.showWarning("必须输入用户名称！");
-                view.txtName.Focus();
+                view.txtName.Select();
                 return;
             }
 
             if (string.IsNullOrEmpty(item.account))
             {
                 Messages.showWarning("必须输入登录账号！");
-                view.txtAccount.Focus();
+                view.txtAccount.Select();
                 return;
             }
 

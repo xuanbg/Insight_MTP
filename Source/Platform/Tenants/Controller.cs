@@ -34,7 +34,11 @@ namespace Insight.MTP.Client.Platform.Tenants
             model.callbackEvent += (sender, args) =>
             {
                 tenant.id = dataModel.addTenant(tenant);
-                if (tenant.id == null) return;
+                if (tenant.id == null)
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 mdiModel.list.Add(tenant);
                 mdiModel.tab.addItems();
@@ -53,7 +57,11 @@ namespace Insight.MTP.Client.Platform.Tenants
             var model = new TenantModel(mdiModel.item, "编辑租户", dataModel);
             model.callbackEvent += (sender, args) =>
             {
-                if (!dataModel.updateTenant(mdiModel.item)) return;
+                if (!dataModel.updateTenant(mdiModel.item))
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 model.closeDialog();
             };
@@ -135,7 +143,11 @@ namespace Insight.MTP.Client.Platform.Tenants
             var model = new BindModel(apps, "绑定应用");
             model.callbackEvent += (sender, args) =>
             {
-                if (!dataModel.bindApps(mdiModel.item.id, model.apps)) return;
+                if (!dataModel.bindApps(mdiModel.item.id, model.apps))
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 mdiModel.item.apps.AddRange(model.apps);
                 mdiModel.refreshApp();
@@ -169,7 +181,11 @@ namespace Insight.MTP.Client.Platform.Tenants
             var model = new RentModel(mdiModel.app, "续租应用");
             model.callbackEvent += (sender, args) =>
             {
-                if (!dataModel.rentApp(mdiModel.app)) return;
+                if (!dataModel.rentApp(mdiModel.app))
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 mdiModel.refreshApp();
                 model.closeDialog();

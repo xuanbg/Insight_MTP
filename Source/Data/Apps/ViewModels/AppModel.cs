@@ -46,14 +46,14 @@ namespace Insight.MTP.Client.Data.Apps.ViewModels
             if (string.IsNullOrEmpty(item.name))
             {
                 Messages.showWarning("必须输入应用名称！");
-                view.txtName.Focus();
+                view.txtName.Select();
                 return;
             }
 
             if (string.IsNullOrEmpty(item.alias))
             {
                 Messages.showWarning("必须输入简称！");
-                view.txtAlias.Focus();
+                view.txtAlias.Select();
                 return;
             }
 

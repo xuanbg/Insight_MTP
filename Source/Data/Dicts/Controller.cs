@@ -34,7 +34,11 @@ namespace Insight.MTP.Client.Data.Dicts
             model.callbackEvent += (sender, args) =>
             {
                 dict.id = dataModel.addDict(model.item);
-                if (dict.id == null) return;
+                if (dict.id == null)
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 mdiModel.list.Add(dict);
                 mdiModel.tab.addItems();
@@ -54,7 +58,11 @@ namespace Insight.MTP.Client.Data.Dicts
             var model = new DictModel(mdiModel.item, apps, "编辑字典");
             model.callbackEvent += (sender, args) =>
             {
-                if (!dataModel.editDict(model.item)) return;
+                if (!dataModel.editDict(model.item))
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 mdiModel.refreshGrid();
                 model.closeDialog();
@@ -88,7 +96,11 @@ namespace Insight.MTP.Client.Data.Dicts
             model.callbackEvent += (sender, args) =>
             {
                 key.id = dataModel.addDictKey(model.item);
-                if (key.id == null) return;
+                if (key.id == null)
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 key.tenantId = Setting.tenantId;
                 mdiModel.item.keys.Add(key);
@@ -108,7 +120,11 @@ namespace Insight.MTP.Client.Data.Dicts
             var model = new DictKeyModel(mdiModel.key, "编辑键值");
             model.callbackEvent += (sender, args) =>
             {
-                if (!dataModel.editDictKey(model.item)) return;
+                if (!dataModel.editDictKey(model.item))
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 mdiModel.refreshKeyGrid();
                 model.closeDialog();

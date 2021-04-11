@@ -34,7 +34,11 @@ namespace Insight.MTP.Client.Platform.Users
             model.callbackEvent += (sender, args) =>
             {
                 user.id = dataModel.addUser(user);
-                if (user.id == null) return;
+                if (user.id == null)
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 mdiModel.list.Add(user);
                 mdiModel.tab.addItems();
@@ -53,7 +57,11 @@ namespace Insight.MTP.Client.Platform.Users
             var model = new UserModel(mdiModel.item, "编辑用户");
             model.callbackEvent += (sender, args) =>
             {
-                if (!dataModel.updateUser(mdiModel.item)) return;
+                if (!dataModel.updateUser(mdiModel.item))
+                {
+                    model.enableConfirm();
+                    return;
+                }
 
                 model.closeDialog();
             };

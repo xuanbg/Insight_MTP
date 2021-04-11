@@ -35,54 +35,57 @@ namespace Insight.MTP.Client.Platform.Scenes.Views
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
             this.splMain = new DevExpress.XtraEditors.SplitContainerControl();
-            this.palTenant = new DevExpress.XtraEditors.PanelControl();
-            this.grdScene = new DevExpress.XtraGrid.GridControl();
-            this.gdvScene = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.pceMaster = new DevExpress.XtraEditors.PanelControl();
+            this.grdMaster = new DevExpress.XtraGrid.GridControl();
+            this.gdvMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colid = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colcode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coltype = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colname = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coltitle = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coltag = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colparam = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colremark = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ppcScene = new Insight.Base.BaseForm.Controls.PageControl();
-            this.panSpace = new DevExpress.XtraEditors.PanelControl();
-            this.panSearch = new DevExpress.XtraEditors.PanelControl();
+            this.pucMaster = new Insight.Base.BaseForm.Controls.PageControl();
+            this.pceSpace = new DevExpress.XtraEditors.PanelControl();
+            this.pceSearch = new DevExpress.XtraEditors.PanelControl();
             this.Search = new DevExpress.XtraEditors.SimpleButton();
             this.KeyInput = new DevExpress.XtraEditors.ButtonEdit();
-            this.grpUser = new DevExpress.XtraEditors.GroupControl();
-            this.grdTemplate = new DevExpress.XtraGrid.GridControl();
-            this.gdvTemplate = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grdDetail = new DevExpress.XtraGrid.GridControl();
+            this.gdvDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colid1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colsceneId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.coltemplateId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.coltemplate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colappId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colappName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colpartnerCode = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colpartner = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colcontent = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colsign = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ppcTemplate = new Insight.Base.BaseForm.Controls.PageControl();
+            this.colexpire = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colremark1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colcreator = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colcreatedTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.rleType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.xtraScrollable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splMain)).BeginInit();
             this.splMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.palTenant)).BeginInit();
-            this.palTenant.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdScene)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvScene)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panSpace)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panSearch)).BeginInit();
-            this.panSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pceMaster)).BeginInit();
+            this.pceMaster.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pceSpace)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pceSearch)).BeginInit();
+            this.pceSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KeyInput.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grpUser)).BeginInit();
-            this.grpUser.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rleType)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraScrollable
             // 
+            this.xtraScrollable.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.xtraScrollable.Appearance.Options.UseBackColor = true;
             this.xtraScrollable.Controls.Add(this.splMain);
             this.xtraScrollable.Location = new System.Drawing.Point(0, 31);
-            this.xtraScrollable.Padding = new System.Windows.Forms.Padding(5);
-            this.xtraScrollable.Size = new System.Drawing.Size(1080, 600);
+            this.xtraScrollable.Size = new System.Drawing.Size(1420, 829);
             // 
             // splMain
             // 
@@ -93,49 +96,55 @@ namespace Insight.MTP.Client.Platform.Scenes.Views
             this.splMain.Horizontal = false;
             this.splMain.Location = new System.Drawing.Point(5, 5);
             this.splMain.Name = "splMain";
-            this.splMain.Panel1.Controls.Add(this.palTenant);
-            this.splMain.Panel1.Controls.Add(this.panSpace);
-            this.splMain.Panel1.Controls.Add(this.panSearch);
-            this.splMain.Panel1.MinSize = 200;
-            this.splMain.Panel2.Controls.Add(this.grpUser);
+            this.splMain.Panel1.Controls.Add(this.pceMaster);
+            this.splMain.Panel1.Controls.Add(this.pceSpace);
+            this.splMain.Panel1.Controls.Add(this.pceSearch);
+            this.splMain.Panel1.MinSize = 500;
+            this.splMain.Panel2.Controls.Add(this.grdDetail);
             this.splMain.Panel2.MinSize = 200;
             this.splMain.ScrollBarSmallChange = 1;
-            this.splMain.Size = new System.Drawing.Size(1070, 590);
-            this.splMain.SplitterPosition = 320;
+            this.splMain.Size = new System.Drawing.Size(1410, 819);
+            this.splMain.SplitterPosition = 540;
             this.splMain.TabIndex = 0;
             // 
-            // palTenant
+            // pceMaster
             // 
-            this.palTenant.Controls.Add(this.grdScene);
-            this.palTenant.Controls.Add(this.ppcScene);
-            this.palTenant.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.palTenant.Location = new System.Drawing.Point(0, 44);
-            this.palTenant.Name = "palTenant";
-            this.palTenant.Size = new System.Drawing.Size(1070, 276);
-            this.palTenant.TabIndex = 0;
+            this.pceMaster.Controls.Add(this.grdMaster);
+            this.pceMaster.Controls.Add(this.pucMaster);
+            this.pceMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pceMaster.Location = new System.Drawing.Point(0, 44);
+            this.pceMaster.Name = "pceMaster";
+            this.pceMaster.Size = new System.Drawing.Size(1410, 496);
+            this.pceMaster.TabIndex = 0;
             // 
-            // grdScene
+            // grdMaster
             // 
-            this.grdScene.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdScene.Location = new System.Drawing.Point(2, 2);
-            this.grdScene.MainView = this.gdvScene;
-            this.grdScene.Name = "grdScene";
-            this.grdScene.Size = new System.Drawing.Size(1066, 250);
-            this.grdScene.TabIndex = 0;
-            this.grdScene.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gdvScene});
+            this.grdMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdMaster.Location = new System.Drawing.Point(2, 2);
+            this.grdMaster.MainView = this.gdvMaster;
+            this.grdMaster.Name = "grdMaster";
+            this.grdMaster.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.rleType});
+            this.grdMaster.Size = new System.Drawing.Size(1406, 470);
+            this.grdMaster.TabIndex = 0;
+            this.grdMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gdvMaster});
             // 
-            // gdvScene
+            // gdvMaster
             // 
-            this.gdvScene.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.gdvScene.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gdvMaster.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.gdvMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colid,
             this.colcode,
+            this.coltype,
             this.colname,
+            this.coltitle,
+            this.coltag,
+            this.colparam,
             this.colremark});
-            this.gdvScene.GridControl = this.grdScene;
-            this.gdvScene.Name = "gdvScene";
-            this.gdvScene.OptionsDetail.EnableMasterViewMode = false;
+            this.gdvMaster.GridControl = this.grdMaster;
+            this.gdvMaster.Name = "gdvMaster";
+            this.gdvMaster.OptionsDetail.EnableMasterViewMode = false;
             // 
             // colid
             // 
@@ -144,12 +153,22 @@ namespace Insight.MTP.Client.Platform.Scenes.Views
             // 
             // colcode
             // 
-            this.colcode.Caption = "编码";
+            this.colcode.Caption = "场景编码";
             this.colcode.FieldName = "code";
             this.colcode.Name = "colcode";
             this.colcode.Visible = true;
             this.colcode.VisibleIndex = 0;
-            this.colcode.Width = 80;
+            this.colcode.Width = 60;
+            // 
+            // coltype
+            // 
+            this.coltype.Caption = "发送类型";
+            this.coltype.ColumnEdit = this.rleType;
+            this.coltype.FieldName = "type";
+            this.coltype.Name = "coltype";
+            this.coltype.Visible = true;
+            this.coltype.VisibleIndex = 1;
+            this.coltype.Width = 80;
             // 
             // colname
             // 
@@ -157,49 +176,77 @@ namespace Insight.MTP.Client.Platform.Scenes.Views
             this.colname.FieldName = "name";
             this.colname.Name = "colname";
             this.colname.Visible = true;
-            this.colname.VisibleIndex = 1;
-            this.colname.Width = 320;
+            this.colname.VisibleIndex = 2;
+            this.colname.Width = 200;
+            // 
+            // coltitle
+            // 
+            this.coltitle.Caption = "消息标题";
+            this.coltitle.FieldName = "title";
+            this.coltitle.Name = "coltitle";
+            this.coltitle.Visible = true;
+            this.coltitle.VisibleIndex = 3;
+            this.coltitle.Width = 240;
+            // 
+            // coltag
+            // 
+            this.coltag.Caption = "消息标签";
+            this.coltag.FieldName = "tag";
+            this.coltag.Name = "coltag";
+            this.coltag.Visible = true;
+            this.coltag.VisibleIndex = 4;
+            this.coltag.Width = 100;
+            // 
+            // colparam
+            // 
+            this.colparam.Caption = "消息参数";
+            this.colparam.FieldName = "paramVal";
+            this.colparam.Name = "colparam";
+            this.colparam.Visible = true;
+            this.colparam.VisibleIndex = 5;
+            this.colparam.Width = 320;
             // 
             // colremark
             // 
-            this.colremark.Caption = "场景描述";
+            this.colremark.Caption = "备注";
             this.colremark.FieldName = "remark";
             this.colremark.Name = "colremark";
             this.colremark.Visible = true;
-            this.colremark.VisibleIndex = 2;
-            this.colremark.Width = 634;
+            this.colremark.VisibleIndex = 6;
+            this.colremark.Width = 354;
             // 
-            // ppcScene
+            // pucMaster
             // 
-            this.ppcScene.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcScene.Location = new System.Drawing.Point(2, 252);
-            this.ppcScene.MaximumSize = new System.Drawing.Size(0, 22);
-            this.ppcScene.MinimumSize = new System.Drawing.Size(300, 22);
-            this.ppcScene.Name = "ppcScene";
-            this.ppcScene.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcScene.pageSizeItems")));
-            this.ppcScene.Size = new System.Drawing.Size(1066, 22);
-            this.ppcScene.TabIndex = 0;
+            this.pucMaster.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pucMaster.Location = new System.Drawing.Point(2, 472);
+            this.pucMaster.MaximumSize = new System.Drawing.Size(0, 22);
+            this.pucMaster.MinimumSize = new System.Drawing.Size(300, 22);
+            this.pucMaster.Name = "pucMaster";
+            this.pucMaster.orderBy = Insight.Base.BaseForm.Controls.OrderBy.POSITIVE;
+            this.pucMaster.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("pucMaster.pageSizeItems")));
+            this.pucMaster.Size = new System.Drawing.Size(1406, 22);
+            this.pucMaster.TabIndex = 0;
             // 
-            // panSpace
+            // pceSpace
             // 
-            this.panSpace.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.panSpace.Appearance.Options.UseBackColor = true;
-            this.panSpace.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panSpace.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panSpace.Location = new System.Drawing.Point(0, 39);
-            this.panSpace.Name = "panSpace";
-            this.panSpace.Size = new System.Drawing.Size(1070, 5);
-            this.panSpace.TabIndex = 0;
+            this.pceSpace.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.pceSpace.Appearance.Options.UseBackColor = true;
+            this.pceSpace.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pceSpace.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pceSpace.Location = new System.Drawing.Point(0, 39);
+            this.pceSpace.Name = "pceSpace";
+            this.pceSpace.Size = new System.Drawing.Size(1410, 5);
+            this.pceSpace.TabIndex = 0;
             // 
-            // panSearch
+            // pceSearch
             // 
-            this.panSearch.Controls.Add(this.Search);
-            this.panSearch.Controls.Add(this.KeyInput);
-            this.panSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panSearch.Location = new System.Drawing.Point(0, 0);
-            this.panSearch.Name = "panSearch";
-            this.panSearch.Size = new System.Drawing.Size(1070, 39);
-            this.panSearch.TabIndex = 0;
+            this.pceSearch.Controls.Add(this.Search);
+            this.pceSearch.Controls.Add(this.KeyInput);
+            this.pceSearch.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pceSearch.Location = new System.Drawing.Point(0, 0);
+            this.pceSearch.Name = "pceSearch";
+            this.pceSearch.Size = new System.Drawing.Size(1410, 39);
+            this.pceSearch.TabIndex = 0;
             // 
             // Search
             // 
@@ -208,7 +255,7 @@ namespace Insight.MTP.Client.Platform.Scenes.Views
             this.Search.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Search.Appearance.Options.UseFont = true;
             this.Search.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("Search.ImageOptions.Image")));
-            this.Search.Location = new System.Drawing.Point(992, 8);
+            this.Search.Location = new System.Drawing.Point(1332, 8);
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(70, 23);
             this.Search.TabIndex = 2;
@@ -225,70 +272,40 @@ namespace Insight.MTP.Client.Platform.Scenes.Views
             this.KeyInput.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
             this.KeyInput.Properties.NullText = "在此输入查询关键词……";
-            this.KeyInput.Size = new System.Drawing.Size(976, 21);
+            this.KeyInput.Size = new System.Drawing.Size(1316, 21);
             this.KeyInput.TabIndex = 1;
             // 
-            // grpUser
+            // grdDetail
             // 
-            this.grpUser.Controls.Add(this.grdTemplate);
-            this.grpUser.Controls.Add(this.ppcTemplate);
-            this.grpUser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpUser.Location = new System.Drawing.Point(0, 0);
-            this.grpUser.Name = "grpUser";
-            this.grpUser.Size = new System.Drawing.Size(1070, 265);
-            this.grpUser.TabIndex = 0;
-            this.grpUser.Text = "关联模板";
+            this.grdDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdDetail.Location = new System.Drawing.Point(0, 0);
+            this.grdDetail.MainView = this.gdvDetail;
+            this.grdDetail.Name = "grdDetail";
+            this.grdDetail.Size = new System.Drawing.Size(1410, 274);
+            this.grdDetail.TabIndex = 0;
+            this.grdDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gdvDetail});
             // 
-            // grdTemplate
+            // gdvDetail
             // 
-            this.grdTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdTemplate.Location = new System.Drawing.Point(2, 21);
-            this.grdTemplate.MainView = this.gdvTemplate;
-            this.grdTemplate.Name = "grdTemplate";
-            this.grdTemplate.Size = new System.Drawing.Size(1066, 220);
-            this.grdTemplate.TabIndex = 0;
-            this.grdTemplate.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gdvTemplate});
-            // 
-            // gdvTemplate
-            // 
-            this.gdvTemplate.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gdvDetail.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colid1,
-            this.colsceneId,
-            this.coltemplateId,
-            this.coltemplate,
             this.colappId,
             this.colappName,
-            this.colpartnerCode,
-            this.colpartner,
-            this.colsign});
-            this.gdvTemplate.GridControl = this.grdTemplate;
-            this.gdvTemplate.Name = "gdvTemplate";
-            this.gdvTemplate.OptionsDetail.EnableMasterViewMode = false;
+            this.colcontent,
+            this.colsign,
+            this.colexpire,
+            this.colremark1,
+            this.colcreator,
+            this.colcreatedTime});
+            this.gdvDetail.GridControl = this.grdDetail;
+            this.gdvDetail.Name = "gdvDetail";
+            this.gdvDetail.OptionsDetail.EnableMasterViewMode = false;
             // 
             // colid1
             // 
             this.colid1.FieldName = "id";
             this.colid1.Name = "colid1";
-            // 
-            // colsceneId
-            // 
-            this.colsceneId.FieldName = "sceneId";
-            this.colsceneId.Name = "colsceneId";
-            // 
-            // coltemplateId
-            // 
-            this.coltemplateId.FieldName = "templateId";
-            this.coltemplateId.Name = "coltemplateId";
-            // 
-            // coltemplate
-            // 
-            this.coltemplate.Caption = "模板名称";
-            this.coltemplate.FieldName = "template";
-            this.coltemplate.Name = "coltemplate";
-            this.coltemplate.Visible = true;
-            this.coltemplate.VisibleIndex = 0;
-            this.coltemplate.Width = 240;
             // 
             // colappId
             // 
@@ -297,102 +314,124 @@ namespace Insight.MTP.Client.Platform.Scenes.Views
             // 
             // colappName
             // 
-            this.colappName.Caption = "绑定应用";
+            this.colappName.Caption = "应用名称";
             this.colappName.FieldName = "appName";
             this.colappName.Name = "colappName";
             this.colappName.Visible = true;
-            this.colappName.VisibleIndex = 1;
-            this.colappName.Width = 240;
+            this.colappName.VisibleIndex = 0;
+            this.colappName.Width = 200;
             // 
-            // colpartnerCode
+            // colcontent
             // 
-            this.colpartnerCode.Caption = "合作伙伴编码";
-            this.colpartnerCode.FieldName = "partnerCode";
-            this.colpartnerCode.Name = "colpartnerCode";
-            this.colpartnerCode.Visible = true;
-            this.colpartnerCode.VisibleIndex = 2;
-            this.colpartnerCode.Width = 100;
-            // 
-            // colpartner
-            // 
-            this.colpartner.Caption = "合作伙伴名称";
-            this.colpartner.FieldName = "partner";
-            this.colpartner.Name = "colpartner";
-            this.colpartner.Visible = true;
-            this.colpartner.VisibleIndex = 3;
-            this.colpartner.Width = 374;
+            this.colcontent.Caption = "消息内容";
+            this.colcontent.FieldName = "content";
+            this.colcontent.Name = "colcontent";
+            this.colcontent.Visible = true;
+            this.colcontent.VisibleIndex = 1;
+            this.colcontent.Width = 816;
             // 
             // colsign
             // 
-            this.colsign.Caption = "消息签名";
+            this.colsign.Caption = "签名";
             this.colsign.FieldName = "sign";
             this.colsign.Name = "colsign";
             this.colsign.Visible = true;
-            this.colsign.VisibleIndex = 4;
+            this.colsign.VisibleIndex = 2;
             this.colsign.Width = 80;
             // 
-            // ppcTemplate
+            // colexpire
             // 
-            this.ppcTemplate.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ppcTemplate.Location = new System.Drawing.Point(2, 241);
-            this.ppcTemplate.MaximumSize = new System.Drawing.Size(0, 22);
-            this.ppcTemplate.MinimumSize = new System.Drawing.Size(320, 22);
-            this.ppcTemplate.Name = "ppcTemplate";
-            this.ppcTemplate.pageSizeItems = ((System.Collections.ObjectModel.Collection<string>)(resources.GetObject("ppcTemplate.pageSizeItems")));
-            this.ppcTemplate.Size = new System.Drawing.Size(1066, 22);
-            this.ppcTemplate.TabIndex = 0;
+            this.colexpire.Caption = "有效时长";
+            this.colexpire.FieldName = "expire";
+            this.colexpire.Name = "colexpire";
+            this.colexpire.Visible = true;
+            this.colexpire.VisibleIndex = 3;
+            this.colexpire.Width = 60;
+            // 
+            // colremark1
+            // 
+            this.colremark1.FieldName = "remark";
+            this.colremark1.Name = "colremark1";
+            this.colremark1.Width = 76;
+            // 
+            // colcreator
+            // 
+            this.colcreator.Caption = "创建人";
+            this.colcreator.FieldName = "creator";
+            this.colcreator.Name = "colcreator";
+            this.colcreator.Visible = true;
+            this.colcreator.VisibleIndex = 4;
+            this.colcreator.Width = 80;
+            // 
+            // colcreatedTime
+            // 
+            this.colcreatedTime.Caption = "创建时间";
+            this.colcreatedTime.FieldName = "createdTime";
+            this.colcreatedTime.Name = "colcreatedTime";
+            this.colcreatedTime.Visible = true;
+            this.colcreatedTime.VisibleIndex = 5;
+            this.colcreatedTime.Width = 120;
+            // 
+            // rleType
+            // 
+            this.rleType.AutoHeight = false;
+            this.rleType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.rleType.Name = "rleType";
             // 
             // Manager
             // 
             this.Appearance.Options.UseFont = true;
-            this.ClientSize = new System.Drawing.Size(1080, 631);
+            this.ClientSize = new System.Drawing.Size(1420, 860);
             this.Name = "Manager";
             this.xtraScrollable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splMain)).EndInit();
             this.splMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.palTenant)).EndInit();
-            this.palTenant.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdScene)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvScene)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panSpace)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panSearch)).EndInit();
-            this.panSearch.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pceMaster)).EndInit();
+            this.pceMaster.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pceSpace)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pceSearch)).EndInit();
+            this.pceSearch.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.KeyInput.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grpUser)).EndInit();
-            this.grpUser.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rleType)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private GroupControl grpUser;
         private SplitContainerControl splMain;
-        private PanelControl palTenant;
-        private PanelControl panSpace;
-        private PanelControl panSearch;
-        internal SimpleButton Search;
-        internal ButtonEdit KeyInput;
-        public Insight.Base.BaseForm.Controls.PageControl ppcTemplate;
-        public Insight.Base.BaseForm.Controls.PageControl ppcScene;
-        public GridControl grdScene;
-        public GridView gdvScene;
-        public GridControl grdTemplate;
-        public GridView gdvTemplate;
+        private PanelControl pceMaster;
+        private PanelControl pceSpace;
+        private PanelControl pceSearch;
+        public Insight.Base.BaseForm.Controls.PageControl pucMaster;
+        public GridControl grdMaster;
+        public GridView gdvMaster;
+        public GridControl grdDetail;
+        public GridView gdvDetail;
+        public SimpleButton Search;
+        public ButtonEdit KeyInput;
         private DevExpress.XtraGrid.Columns.GridColumn colid;
         private DevExpress.XtraGrid.Columns.GridColumn colcode;
+        private DevExpress.XtraGrid.Columns.GridColumn coltype;
         private DevExpress.XtraGrid.Columns.GridColumn colname;
+        private DevExpress.XtraGrid.Columns.GridColumn coltitle;
+        private DevExpress.XtraGrid.Columns.GridColumn coltag;
+        private DevExpress.XtraGrid.Columns.GridColumn colparam;
         private DevExpress.XtraGrid.Columns.GridColumn colremark;
         private DevExpress.XtraGrid.Columns.GridColumn colid1;
-        private DevExpress.XtraGrid.Columns.GridColumn colsceneId;
-        private DevExpress.XtraGrid.Columns.GridColumn coltemplateId;
-        private DevExpress.XtraGrid.Columns.GridColumn coltemplate;
         private DevExpress.XtraGrid.Columns.GridColumn colappId;
         private DevExpress.XtraGrid.Columns.GridColumn colappName;
-        private DevExpress.XtraGrid.Columns.GridColumn colpartnerCode;
-        private DevExpress.XtraGrid.Columns.GridColumn colpartner;
+        private DevExpress.XtraGrid.Columns.GridColumn colcontent;
         private DevExpress.XtraGrid.Columns.GridColumn colsign;
+        private DevExpress.XtraGrid.Columns.GridColumn colexpire;
+        private DevExpress.XtraGrid.Columns.GridColumn colremark1;
+        private DevExpress.XtraGrid.Columns.GridColumn colcreator;
+        private DevExpress.XtraGrid.Columns.GridColumn colcreatedTime;
+        public DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit rleType;
     }
 }

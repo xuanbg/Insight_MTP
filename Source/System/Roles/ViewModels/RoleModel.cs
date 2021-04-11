@@ -47,14 +47,14 @@ namespace Insight.MTP.Client.Setting.Roles.ViewModels
             if (string.IsNullOrEmpty(item.appId))
             {
                 Messages.showWarning("必须选择一个应用！");
-                view.lueApp.Focus();
+                view.lueApp.Select();
                 return;
             }
 
             if (string.IsNullOrEmpty(item.name))
             {
                 Messages.showWarning("必须输入角色名称！");
-                view.txtName.Focus();
+                view.txtName.Select();
                 return;
             }
 
