@@ -247,7 +247,7 @@ namespace Insight.MTP.Client.Platform.Tenants
             var dict = new Dictionary<string, object>
             {
                 {"appId", app.id},
-                {"expireDate", app.expireDate}
+                {"expireDate", app.expireDate.ToString("yyyy-MM-dd")}
             };
             var client = new HttpClient<object>(url);
 
