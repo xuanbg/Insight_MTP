@@ -23,8 +23,8 @@ namespace Insight.MTP.Client.Data.Apps.ViewModels
             view.txtAuthCode.EditValue = item.authCodes;
             view.txtMethod.EditValue = item.funcInfo.method;
             view.txtIcon.EditValue = item.funcInfo.iconUrl;
-            view.chkGroup.Checked = item.funcInfo.beginGroup;
-            view.chkHideText.Checked = item.funcInfo.hideText;
+            view.chkGroup.Checked = item.funcInfo.beginGroup ?? false;
+            view.chkHideText.Checked = item.funcInfo.hideText ?? false;
 
             view.comType.SelectedIndexChanged += (sender, args) => item.type = view.comType.SelectedIndex;
             view.speIndex.EditValueChanged += (sender, args) => item.index = (int)view.speIndex.Value;
