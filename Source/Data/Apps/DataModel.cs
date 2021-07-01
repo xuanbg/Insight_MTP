@@ -81,7 +81,7 @@ namespace Insight.MTP.Client.Data.Apps
         {
             if (app == null) return false;
 
-            var url = $"{service}/v1.0/apps";
+            var url = $"{service}/v1.0/apps/{app.id}";
             var client = new HttpClient<object>(url);
 
             return client.put(app);
@@ -96,10 +96,10 @@ namespace Insight.MTP.Client.Data.Apps
         {
             if (app == null) return false;
 
-            var url = $"{service}/v1.0/apps";
+            var url = $"{service}/v1.0/apps/{app.id}";
             var client = new HttpClient<object>(url);
 
-            return client.delete(app.id);
+            return client.delete();
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace Insight.MTP.Client.Data.Apps
         {
             if (nav == null) return false;
 
-            var url = $"{service}/v1.0/navigators";
+            var url = $"{service}/v1.0/navigators/{nav.id}";
             var client = new HttpClient<object>(url);
 
             return client.put(nav);
@@ -141,10 +141,10 @@ namespace Insight.MTP.Client.Data.Apps
         {
             if (nav == null) return false;
 
-            var url = $"{service}/v1.0/navigators";
+            var url = $"{service}/v1.0/navigators/{nav.id}";
             var client = new HttpClient<object>(url);
 
-            return client.delete(nav.id);
+            return client.delete();
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Insight.MTP.Client.Data.Apps
         {
             if (func == null) return false;
 
-            var url = $"{service}/v1.0/functions";
+            var url = $"{service}/v1.0/functions/{func.id}";
             var client = new HttpClient<object>(url);
 
             return client.put(func);
@@ -186,10 +186,10 @@ namespace Insight.MTP.Client.Data.Apps
         {
             if (func == null) return false;
 
-            var url = $"{service}/v1.0/functions";
+            var url = $"{service}/v1.0/functions/{func.id}";
             var client = new HttpClient<object>(url);
 
-            return client.delete(func.id);
+            return client.delete();
         }
     }
 }

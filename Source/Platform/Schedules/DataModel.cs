@@ -39,10 +39,10 @@ namespace Insight.MTP.Client.Platform.Schedules
         {
             if (string.IsNullOrEmpty(id)) return false;
 
-            var url = $"{service}/v1.0/schedules";
+            var url = $"{service}/v1.0/schedules/{id}";
             var client = new HttpClient<List<Navigation>>(url);
 
-            return client.put(id);
+            return client.put();
         }
 
         /// <summary>
@@ -54,10 +54,10 @@ namespace Insight.MTP.Client.Platform.Schedules
         {
             if (string.IsNullOrEmpty(id)) return false;
 
-            var url = $"{service}/v1.0/schedules";
+            var url = $"{service}/v1.0/schedules/{id}";
             var client = new HttpClient<object>(url);
 
-            return client.delete(id);
+            return client.delete();
         }
 
         /// <summary>
@@ -69,10 +69,10 @@ namespace Insight.MTP.Client.Platform.Schedules
         {
             if (string.IsNullOrEmpty(id)) return false;
 
-            var url = $"{service}/v1.0/schedules/disable";
+            var url = $"{service}/v1.0/schedules/{id}/disable";
             var client = new HttpClient<object>(url);
 
-            return client.put(id);
+            return client.put();
         }
 
         /// <summary>
@@ -84,10 +84,10 @@ namespace Insight.MTP.Client.Platform.Schedules
         {
             if (string.IsNullOrEmpty(id)) return false;
 
-            var url = $"{service}/v1.0/schedules/enable";
+            var url = $"{service}/v1.0/schedules/{id}/enable";
             var client = new HttpClient<object>(url);
 
-            return client.put(id);
+            return client.put();
         }
     }
 }

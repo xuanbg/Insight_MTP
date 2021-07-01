@@ -127,7 +127,7 @@ namespace Insight.MTP.Client.Setting.Roles
         {
             if (role == null) return false;
 
-            var url = $"{service}/v1.0/roles";
+            var url = $"{service}/v1.0/roles/{role.id}";
             var client = new HttpClient<object>(url);
 
             return client.put(role);
@@ -142,10 +142,10 @@ namespace Insight.MTP.Client.Setting.Roles
         {
             if (role == null) return false;
 
-            var url = $"{service}/v1.0/roles";
+            var url = $"{service}/v1.0/roles/{role.id}";
             var client = new HttpClient<object>(url);
 
-            return client.delete(role.id);
+            return client.delete();
         }
 
         /// <summary>

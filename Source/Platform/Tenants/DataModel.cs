@@ -129,7 +129,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         {
             if (tenant == null) return false;
 
-            var url = $"{service}/v1.0/tenants";
+            var url = $"{service}/v1.0/tenants/{tenant.id}";
             var client = new HttpClient<object>(url);
 
             return client.put(tenant);
@@ -144,10 +144,10 @@ namespace Insight.MTP.Client.Platform.Tenants
         {
             if (tenant == null) return false;
 
-            var url = $"{service}/v1.0/tenants";
+            var url = $"{service}/v1.0/tenants/{tenant.id}";
             var client = new HttpClient<object>(url);
 
-            return client.delete(tenant.id);
+            return client.delete();
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace Insight.MTP.Client.Platform.Tenants
         {
             if (string.IsNullOrEmpty(id)) return false;
 
-            var url = $"{service}/v1.0/tenants/status";
+            var url = $"{service}/v1.0/tenants/{id}/status";
             var dict = new Dictionary<string, object>
             {
                 {"id", id},
@@ -180,10 +180,10 @@ namespace Insight.MTP.Client.Platform.Tenants
         {
             if (tenant == null) return false;
 
-            var url = $"{service}/v1.0/tenants/disable";
+            var url = $"{service}/v1.0/tenants/{tenant.id}/disable";
             var client = new HttpClient<object>(url);
 
-            return client.put(tenant.id);
+            return client.put();
         }
 
         /// <summary>
@@ -195,10 +195,10 @@ namespace Insight.MTP.Client.Platform.Tenants
         {
             if (tenant == null) return false;
 
-            var url = $"{service}/v1.0/tenants/enable";
+            var url = $"{service}/v1.0/tenants/{tenant.id}/enable";
             var client = new HttpClient<object>(url);
 
-            return client.put(tenant.id);
+            return client.put();
         }
 
         /// <summary>

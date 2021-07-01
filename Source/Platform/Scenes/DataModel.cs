@@ -70,7 +70,7 @@ namespace Insight.MTP.Client.Platform.Scenes
         {
             if (scene == null) return false;
 
-            var url = $"{service}/v1.0/scenes";
+            var url = $"{service}/v1.0/scenes/{scene.id}";
             var client = new HttpClient<object>(url);
 
             return client.put(scene);
@@ -85,10 +85,10 @@ namespace Insight.MTP.Client.Platform.Scenes
         {
             if (scene == null) return false;
 
-            var url = $"{service}/v1.0/scenes";
+            var url = $"{service}/v1.0/scenes/{scene.id}";
             var client = new HttpClient<object>(url);
 
-            return client.delete(scene.id);
+            return client.delete();
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Insight.MTP.Client.Platform.Scenes
         {
             if (config == null) return null;
 
-            var url = $"{service}/v1.0/scenes/configs";
+            var url = $"{service}/v1.0/scenes/{config.sceneId}/configs";
             var client = new HttpClient<string>(url);
 
             return client.commit(RequestMethod.POST, config);
@@ -132,7 +132,7 @@ namespace Insight.MTP.Client.Platform.Scenes
         {
             if (config == null) return false;
 
-            var url = $"{service}/v1.0/scenes/configs";
+            var url = $"{service}/v1.0/scenes/configs/{config.id}";
             var client = new HttpClient<object>(url);
 
             return client.put(config);
@@ -147,10 +147,10 @@ namespace Insight.MTP.Client.Platform.Scenes
         {
             if (config == null) return false;
 
-            var url = $"{service}/v1.0/scenes/configs";
+            var url = $"{service}/v1.0/scenes/configs/{config.id}";
             var client = new HttpClient<object>(url);
 
-            return client.delete(config.id);
+            return client.delete();
         }
     }
 }

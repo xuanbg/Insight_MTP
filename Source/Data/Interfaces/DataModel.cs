@@ -55,7 +55,7 @@ namespace Insight.MTP.Client.Data.Interfaces
         {
             if (config == null) return false;
 
-            var url = $"{service}/v1.0/configs";
+            var url = $"{service}/v1.0/configs/{config.id}";
             var client = new HttpClient<object>(url);
 
             return client.put(config);
@@ -70,10 +70,10 @@ namespace Insight.MTP.Client.Data.Interfaces
         {
             if (config == null) return false;
 
-            var url = $"{service}/v1.0/configs";
+            var url = $"{service}/v1.0/configs/{config.id}";
             var client = new HttpClient<object>(url);
 
-            return client.delete(config.id);
+            return client.delete();
         }
 
         /// <summary>

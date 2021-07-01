@@ -87,7 +87,7 @@ namespace Insight.MTP.Client.Data.Dicts
         {
             if (dto == null) return false;
 
-            var url = $"{service}/v1.0/dicts";
+            var url = $"{service}/v1.0/dicts/{dto.id}";
             var client = new HttpClient<object>(url);
 
             return client.put(dto);
@@ -102,10 +102,10 @@ namespace Insight.MTP.Client.Data.Dicts
         {
             if (dto == null) return false;
 
-            var url = $"{service}/v1.0/dicts";
+            var url = $"{service}/v1.0/dicts/{dto.id}";
             var client = new HttpClient<object>(url);
 
-            return client.delete(dto.id);
+            return client.delete();
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Insight.MTP.Client.Data.Dicts
         {
             if (dto == null) return null;
 
-            var url = $"{service}/v1.0/dicts/keys";
+            var url = $"{service}/v1.0/dicts/{dto.dictId}/keys";
             var client = new HttpClient<string>(url);
 
             return client.commit(RequestMethod.POST, dto);
@@ -132,7 +132,7 @@ namespace Insight.MTP.Client.Data.Dicts
         {
             if (dto == null) return false;
 
-            var url = $"{service}/v1.0/dicts/keys";
+            var url = $"{service}/v1.0/dicts/keys/{dto.id}";
             var client = new HttpClient<object>(url);
 
             return client.put(dto);
@@ -147,10 +147,10 @@ namespace Insight.MTP.Client.Data.Dicts
         {
             if (dto == null) return false;
 
-            var url = $"{service}/v1.0/dicts/keys";
+            var url = $"{service}/v1.0/dicts/keys/{dto.id}";
             var client = new HttpClient<object>(url);
 
-            return client.delete(dto.id);
+            return client.delete();
         }
     }
 }

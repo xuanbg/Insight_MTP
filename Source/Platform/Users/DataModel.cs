@@ -70,7 +70,7 @@ namespace Insight.MTP.Client.Platform.Users
         {
             if (user == null) return false;
 
-            var url = $"{service}/v1.0/users";
+            var url = $"{service}/v1.0/users/{user.id}";
             var client = new HttpClient<object>(url);
 
             return client.put(user);
@@ -85,10 +85,10 @@ namespace Insight.MTP.Client.Platform.Users
         {
             if (user == null) return false;
 
-            var url = $"{service}/v1.0/users";
+            var url = $"{service}/v1.0/users/{user.id}";
             var client = new HttpClient<object>(url);
 
-            return client.delete(user.id);
+            return client.delete();
         }
 
         /// <summary>
@@ -100,10 +100,10 @@ namespace Insight.MTP.Client.Platform.Users
         {
             if (user == null) return false;
 
-            var url = $"{service}/v1.0/users/disable";
+            var url = $"{service}/v1.0/users/{user.id}/disable";
             var client = new HttpClient<object>(url);
 
-            return client.put(user.id);
+            return client.put();
         }
 
         /// <summary>
@@ -115,10 +115,10 @@ namespace Insight.MTP.Client.Platform.Users
         {
             if (user == null) return false;
 
-            var url = $"{service}/v1.0/users/enable";
+            var url = $"{service}/v1.0/users/{user.id}/enable";
             var client = new HttpClient<object>(url);
 
-            return client.put(user.id);
+            return client.put();
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace Insight.MTP.Client.Platform.Users
         {
             if (user == null) return false;
 
-            var url = $"{service}/v1.0/users/password";
+            var url = $"{service}/v1.0/users/{user.id}/password";
             var data = new PasswordDto { id = user.id };
             var client = new HttpClient<object>(url);
 
