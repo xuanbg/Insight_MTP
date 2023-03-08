@@ -19,7 +19,7 @@ namespace Insight.MTP.Client.Data.Interfaces.ViewModels
         /// <summary>
         /// 加载列表数据
         /// </summary>
-        /// <param name="page">当前页</param>
+        /// <param name="pageNum">当前页</param>
         public void loadData(int page = 1)
         {
             showWaitForm();

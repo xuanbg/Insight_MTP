@@ -15,8 +15,8 @@ namespace Insight.MTP.Client.Platform.Users
         /// 获取用户集合
         /// </summary>
         /// <param name="keyword">查询关键词</param>
-        /// <param name="page">页码</param>
-        /// <param name="size">每页行数</param>
+        /// <param name="pageNum">页码</param>
+        /// <param name="pageSize">每页行数</param>
         /// <returns>用户集合</returns>
         public Result<List<User>> getUsers(string keyword, int page, int size)
         {
@@ -25,8 +25,8 @@ namespace Insight.MTP.Client.Platform.Users
             {
                 {"all", true},
                 {"keyword", keyword},
-                {"page", page},
-                {"size", size}
+                {"pageNum", page},
+                {"pageSize", size}
             };
             var client = new HttpClient<List<User>>(url);
 

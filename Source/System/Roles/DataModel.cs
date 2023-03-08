@@ -16,8 +16,8 @@ namespace Insight.MTP.Client.Setting.Roles
         /// 获取角色集合
         /// </summary>
         /// <param name="keyword">查询关键词</param>
-        /// <param name="page">页码</param>
-        /// <param name="size">每页行数</param>
+        /// <param name="pageNum">页码</param>
+        /// <param name="pageSize">每页行数</param>
         /// <returns>角色集合</returns>
         public Result<List<Role>> getRoles(string keyword, int page, int size)
         {
@@ -25,8 +25,8 @@ namespace Insight.MTP.Client.Setting.Roles
             var dict = new Dictionary<string, object>
             {
                 {"keyword", keyword},
-                {"page", page},
-                {"size", size}
+                {"pageNum", page},
+                {"pageSize", size}
             };
             var client = new HttpClient<List<Role>>(url);
 
@@ -50,16 +50,16 @@ namespace Insight.MTP.Client.Setting.Roles
         /// 获取指定角色的成员用户
         /// </summary>
         /// <param name="id">角色ID</param>
-        /// <param name="page">页码</param>
-        /// <param name="size">每页行数</param>
+        /// <param name="pageNum">页码</param>
+        /// <param name="pageSize">每页行数</param>
         /// <returns>成员用户集合</returns>
         public Result<List<User>> getMemberUsers(string id, int page, int size)
         {
             var url = $"{service}/v1.0/roles/{id}/users";
             var dict = new Dictionary<string, object>
             {
-                {"page", page},
-                {"size", size}
+                {"pageNum", page},
+                {"pageSize", size}
             };
             var client = new HttpClient<List<User>>(url);
 

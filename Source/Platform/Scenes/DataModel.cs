@@ -16,8 +16,8 @@ namespace Insight.MTP.Client.Platform.Scenes
         /// 获取场景集合
         /// </summary>
         /// <param name="keyword">查询关键词</param>
-        /// <param name="page">页码</param>
-        /// <param name="size">每页行数</param>
+        /// <param name="pageNum">页码</param>
+        /// <param name="pageSize">每页行数</param>
         /// <returns>场景集合</returns>
         public Result<List<Scene>> getScenes(string keyword, int page, int size)
         {
@@ -25,8 +25,8 @@ namespace Insight.MTP.Client.Platform.Scenes
             var dict = new Dictionary<string, object>
             {
                 {"keyword", keyword},
-                {"page", page},
-                {"size", size}
+                {"pageNum", page},
+                {"pageSize", size}
             };
             var client = new HttpClient<List<Scene>>(url);
 
@@ -100,8 +100,8 @@ namespace Insight.MTP.Client.Platform.Scenes
             var url = $"{appService}/v1.0/apps";
             var dict = new Dictionary<string, object>
             {
-                {"page", 1},
-                {"size", 999}
+                {"pageNum", 1},
+                {"pageSize", 999}
             };
             var client = new HttpClient<List<LookUpMember>>(url);
 

@@ -15,8 +15,8 @@ namespace Insight.MTP.Client.Data.Dicts
         /// 查询字典数据
         /// </summary>
         /// <param name="keyword">查询关键词</param>
-        /// <param name="page">页码</param>
-        /// <param name="size">每页行数</param>
+        /// <param name="pageNum">页码</param>
+        /// <param name="pageSize">每页行数</param>
         /// <returns>字典数据集合</returns>
         public Result<List<DictDto>> getDicts(string keyword, int page, int size)
         {
@@ -24,8 +24,8 @@ namespace Insight.MTP.Client.Data.Dicts
             var dict = new Dictionary<string, object>
             {
                 {"keyword", keyword},
-                {"page", page},
-                {"size", size}
+                {"pageNum", page},
+                {"pageSize", size}
             };
             var client = new HttpClient<List<DictDto>>(url);
 
@@ -55,8 +55,8 @@ namespace Insight.MTP.Client.Data.Dicts
             const string url = "/base/resource/v1.0/apps";
             var dict = new Dictionary<string, object>
             {
-                {"page", 1},
-                {"size", 999}
+                {"pageNum", 1},
+                {"pageSize", 999}
             };
             var client = new HttpClient<List<LookUpMember>>(url);
 

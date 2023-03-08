@@ -17,8 +17,8 @@ namespace Insight.MTP.Client.Platform.Tenants
         /// 获取租户集合
         /// </summary>
         /// <param name="keyword">查询关键词</param>
-        /// <param name="page">页码</param>
-        /// <param name="size">每页行数</param>
+        /// <param name="pageNum">页码</param>
+        /// <param name="pageSize">每页行数</param>
         /// <returns>租户集合</returns>
         public Result<List<Tenant>> getTenants(string keyword, int page, int size)
         {
@@ -26,8 +26,8 @@ namespace Insight.MTP.Client.Platform.Tenants
             var dict = new Dictionary<string, object>
             {
                 {"keyword", keyword},
-                {"page", page},
-                {"size", size}
+                {"pageNum", page},
+                {"pageSize", size}
             };
             var client = new HttpClient<List<Tenant>>(url);
 
@@ -51,16 +51,16 @@ namespace Insight.MTP.Client.Platform.Tenants
         /// 获取指定租户绑定的用户集合
         /// </summary>
         /// <param name="id">租户ID</param>
-        /// <param name="page">页码</param>
-        /// <param name="size">每页行数</param>
+        /// <param name="pageNum">页码</param>
+        /// <param name="pageSize">每页行数</param>
         /// <returns>绑定的用户集合</returns>
         public Result<List<TenantUser>> getTenantUsers(string id, int page, int size)
         {
             var url = $"{service}/v1.0/tenants/{id}/users";
             var dict = new Dictionary<string, object>
             {
-                {"page", page},
-                {"size", size}
+                {"pageNum", page},
+                {"pageSize", size}
             };
             var client = new HttpClient<List<TenantUser>>(url);
 

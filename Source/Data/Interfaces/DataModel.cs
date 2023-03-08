@@ -14,8 +14,8 @@ namespace Insight.MTP.Client.Data.Interfaces
         /// 获取计划任务集合
         /// </summary>
         /// <param name="keyword">查询关键词</param>
-        /// <param name="page">页码</param>
-        /// <param name="size">每页行数</param>
+        /// <param name="pageNum">页码</param>
+        /// <param name="pageSize">每页行数</param>
         /// <returns>计划任务集合</returns>
         public Result<List<Interface>> getInterfaces(string keyword, int page, int size)
         {
@@ -23,8 +23,8 @@ namespace Insight.MTP.Client.Data.Interfaces
             var dict = new Dictionary<string, object>
             {
                 {"keyword", keyword},
-                {"page", page},
-                {"size", size}
+                {"pageNum", page},
+                {"pageSize", size}
             };
             var client = new HttpClient<List<Interface>>(url);
 
