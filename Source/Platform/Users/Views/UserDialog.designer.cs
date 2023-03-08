@@ -134,7 +134,7 @@ namespace Insight.MTP.Client.Platform.Users.Views
             // 
             // txtAccount
             // 
-            this.txtAccount.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtAccount.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtAccount.Location = new System.Drawing.Point(80, 50);
             this.txtAccount.Name = "txtAccount";
             this.txtAccount.Size = new System.Drawing.Size(260, 20);

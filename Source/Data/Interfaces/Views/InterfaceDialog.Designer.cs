@@ -144,7 +144,7 @@
             // txtUrl
             // 
             this.txtUrl.EnterMoveNextControl = true;
-            this.txtUrl.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtUrl.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtUrl.Location = new System.Drawing.Point(170, 53);
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.Size = new System.Drawing.Size(380, 20);
@@ -164,7 +164,7 @@
             // txtAuth
             // 
             this.txtAuth.EnterMoveNextControl = true;
-            this.txtAuth.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtAuth.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtAuth.Location = new System.Drawing.Point(440, 23);
             this.txtAuth.Name = "txtAuth";
             this.txtAuth.Size = new System.Drawing.Size(110, 20);

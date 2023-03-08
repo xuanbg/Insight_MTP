@@ -181,7 +181,7 @@
             0,
             0});
             this.speExpire.EnterMoveNextControl = true;
-            this.speExpire.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.speExpire.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.speExpire.Location = new System.Drawing.Point(263, 180);
             this.speExpire.Name = "speExpire";
             this.speExpire.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {

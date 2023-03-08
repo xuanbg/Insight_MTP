@@ -122,7 +122,7 @@
             // txtIcon
             // 
             this.txtIcon.EnterMoveNextControl = true;
-            this.txtIcon.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtIcon.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtIcon.Location = new System.Drawing.Point(60, 112);
             this.txtIcon.Name = "txtIcon";
             this.txtIcon.Size = new System.Drawing.Size(160, 20);
@@ -142,7 +142,7 @@
             // txtAuthCode
             // 
             this.txtAuthCode.EnterMoveNextControl = true;
-            this.txtAuthCode.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtAuthCode.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtAuthCode.Location = new System.Drawing.Point(280, 47);
             this.txtAuthCode.Name = "txtAuthCode";
             this.txtAuthCode.Size = new System.Drawing.Size(70, 20);
@@ -191,7 +191,7 @@
             // txtMethod
             // 
             this.txtMethod.EnterMoveNextControl = true;
-            this.txtMethod.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtMethod.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtMethod.Location = new System.Drawing.Point(60, 82);
             this.txtMethod.Name = "txtMethod";
             this.txtMethod.Size = new System.Drawing.Size(160, 20);

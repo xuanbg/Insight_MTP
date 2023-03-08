@@ -119,7 +119,7 @@
             // txtModule
             // 
             this.txtModule.EnterMoveNextControl = true;
-            this.txtModule.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtModule.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtModule.Location = new System.Drawing.Point(60, 58);
             this.txtModule.Name = "txtModule";
             this.txtModule.Size = new System.Drawing.Size(110, 20);
@@ -139,7 +139,7 @@
             // txtIcon
             // 
             this.txtIcon.EnterMoveNextControl = true;
-            this.txtIcon.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtIcon.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtIcon.Location = new System.Drawing.Point(60, 93);
             this.txtIcon.Name = "txtIcon";
             this.txtIcon.Size = new System.Drawing.Size(213, 20);
@@ -207,7 +207,7 @@
             // txtFile
             // 
             this.txtFile.EnterMoveNextControl = true;
-            this.txtFile.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtFile.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtFile.Location = new System.Drawing.Point(240, 58);
             this.txtFile.Name = "txtFile";
             this.txtFile.Size = new System.Drawing.Size(110, 20);

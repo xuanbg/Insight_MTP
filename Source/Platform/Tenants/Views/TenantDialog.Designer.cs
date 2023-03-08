@@ -174,7 +174,7 @@
             // txtAlias
             // 
             this.txtAlias.EnterMoveNextControl = true;
-            this.txtAlias.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtAlias.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtAlias.Location = new System.Drawing.Point(380, 22);
             this.txtAlias.Name = "txtAlias";
             this.txtAlias.Size = new System.Drawing.Size(170, 20);
@@ -245,7 +245,7 @@
             // txtMobile
             // 
             this.txtMobile.EnterMoveNextControl = true;
-            this.txtMobile.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtMobile.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtMobile.Location = new System.Drawing.Point(240, 277);
             this.txtMobile.Name = "txtMobile";
             this.txtMobile.Properties.Mask.EditMask = "1[3-9]\\d{9}";
@@ -267,7 +267,7 @@
             // txtEmail
             // 
             this.txtEmail.EnterMoveNextControl = true;
-            this.txtEmail.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtEmail.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtEmail.Location = new System.Drawing.Point(400, 277);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Properties.Mask.EditMask = "\\w+([.-]?\\w+)*@\\w+([.-]?\\w+)*(\\.\\w{2,3})+";
@@ -348,7 +348,7 @@
             // txtLicense
             // 
             this.txtLicense.EnterMoveNextControl = true;
-            this.txtLicense.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtLicense.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtLicense.Location = new System.Drawing.Point(80, 172);
             this.txtLicense.Name = "txtLicense";
             this.txtLicense.Size = new System.Drawing.Size(240, 20);

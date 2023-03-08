@@ -142,7 +142,7 @@
             // txtCode
             // 
             this.txtCode.EnterMoveNextControl = true;
-            this.txtCode.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtCode.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtCode.Location = new System.Drawing.Point(80, 20);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(100, 20);
@@ -182,7 +182,7 @@
             // cbeType
             // 
             this.cbeType.EnterMoveNextControl = true;
-            this.cbeType.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.cbeType.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.cbeType.Location = new System.Drawing.Point(240, 20);
             this.cbeType.Name = "cbeType";
             this.cbeType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {

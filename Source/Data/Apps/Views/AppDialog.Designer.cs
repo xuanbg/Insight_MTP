@@ -128,7 +128,7 @@
             // txtAlias
             // 
             this.txtAlias.EnterMoveNextControl = true;
-            this.txtAlias.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtAlias.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtAlias.Location = new System.Drawing.Point(60, 48);
             this.txtAlias.Name = "txtAlias";
             this.txtAlias.Size = new System.Drawing.Size(150, 20);
@@ -148,7 +148,7 @@
             // txtHost
             // 
             this.txtHost.EnterMoveNextControl = true;
-            this.txtHost.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtHost.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtHost.Location = new System.Drawing.Point(60, 78);
             this.txtHost.Name = "txtHost";
             this.txtHost.Size = new System.Drawing.Size(150, 20);
